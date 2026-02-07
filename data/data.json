@@ -1,0 +1,61 @@
+{
+  "settings": {
+    "currency": "INR",
+    "taxRules": {
+      "hotel": {
+        "slabs": [
+          { "min": 0, "max": 999, "gst": 0.0 },
+          { "min": 1000, "max": 7500, "gst": 0.05 },
+          { "min": 7500.01, "max": null, "gst": 0.18 }
+        ]
+      },
+      "tour": { "gst": 0.05, "mode": "NO_ITC" },
+      "food": { "gst": 0.05, "mode": "DEFAULT" },
+      "cab": { "gst": 0.05, "mode": "DEFAULT" }
+    }
+  },
+  "tours": [
+    {
+      "id": "tour_sample_1",
+      "title": "Goa Beaches — Sample Tour",
+      "description": "A short sample tour covering Goa's best beaches, sunset cruise and local markets.",
+      "price": 4999,
+      "duration": "4 days 3 nights",
+      "images": ["https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800", "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800", "https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800"],
+      "highlights": ["Beaches", "Sunset Cruise", "Local Markets"],
+      "itinerary": "Day 1: Arrival; Day 2: North Goa beaches; Day 3: South Goa and sunset cruise; Day 4: Depart.",
+      "inclusions": ["3 nights accommodation", "Breakfast", "Transfers as specified"],
+      "exclusions": ["Flights", "Personal expenses"],
+      "maxGuests": 20,
+      "available": true,
+      "createdAt": "2026-02-07T00:00:00.000Z",
+      "updatedAt": "2026-02-07T00:00:00.000Z"
+    }
+  ],
+  "hotels": [
+    {
+      "id": "hotel_sample_1",
+      "name": "Sample Valley Resort",
+      "description": "Comfortable resort with pool and easy access to local attractions.",
+      "location": "Goa, India",
+      "pricePerNight": 2999,
+      "images": ["https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800", "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800", "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800"],
+      "amenities": ["Pool", "Free WiFi", "Breakfast"],
+      "roomTypes": [
+        { "type": "Deluxe", "price": 2999, "capacity": 2 }
+      ],
+      "rating": 4.5,
+      "reviews": 124,
+      "checkInTime": "14:00",
+      "checkOutTime": "11:00",
+      "available": true,
+      "createdAt": "2026-02-07T00:00:00.000Z"
+    }
+  ],
+  "bookings": [],
+  "cabBookings": [],
+  "foodOrders": [],
+  "queries": [],
+  "menuItems": [],
+  "auditLog": []
+}

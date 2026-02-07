@@ -1,0 +1,21 @@
+{
+  "name": "explorevalley",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "server"
+  ],
+  "scripts": {
+    "dev:server": "npm --workspace server run dev",
+    "dev:app": "npm --workspace @explorevalley/app run dev",
+    "dev:web": "npm --workspace @explorevalley/app run web",
+    "build:server": "npm --workspace server run build",
+    "start:server": "npm --workspace server run start"
+  },
+  "dependencies": {
+    "@expo/metro-runtime": "~3.2.3",
+    "react-dom": "18.2.0",
+    "react-native-web": "~0.19.10"
+  }
+}

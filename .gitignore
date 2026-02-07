@@ -1,0 +1,17 @@
+node_modules/
+.expo/
+.expo-shared/
+dist/
+build/
+*.log
+.env
+.env.local
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.cache/
+.serverless/
+node_modules

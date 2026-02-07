@@ -1,0 +1,9 @@
+{
+  "expo": {
+    "name": "ExploreValley",
+    "slug": "explorevalley",
+    "scheme": "explorevalley",
+    "platforms": ["ios", "android", "web"],
+    "web": { "bundler": "metro" }
+  }
+}
