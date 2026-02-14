@@ -35,7 +35,12 @@ export default function FoodOrderScreen({
 }) {
   const { width } = useWindowDimensions();
   const isMobile = width < 768;
-  const vendorCardWidth = isMobile ? "100%" : width >= 1024 ? "33.333%" : "50%";
+  const gridGap = isMobile ? 14 : 18;
+  const screenPadding = isMobile ? 14 : 20;
+  const vendorColumns = isMobile ? 1 : width >= 1200 ? 3 : 2;
+  const vendorCardWidth = isMobile
+    ? "100%"
+    : Math.max(220, (width - (screenPadding * 2) - (gridGap * (vendorColumns - 1))) / vendorColumns);
 
   const [step, setStep] = useState<Step>("vendors");
   const [loading, setLoading] = useState(true);
@@ -297,13 +302,13 @@ export default function FoodOrderScreen({
     return (
       <View style={{
         flex: 1,
-        backgroundColor: "#0b0b0b",
+        backgroundColor: "#f3f5f9",
         alignItems: "center",
         justifyContent: "center"
       }}>
-        <ActivityIndicator size="large" color="#f5f2e8" />
+        <ActivityIndicator size="large" color="#f4511e" />
         <Text style={{
-          color: "#ddd",
+          color: "#54607a",
           marginTop: 16,
           fontSize: isMobile ? 14 : 16
         }}>
@@ -317,7 +322,7 @@ export default function FoodOrderScreen({
     return (
       <View style={{
         flex: 1,
-        backgroundColor: "#0b0b0b",
+        backgroundColor: "#f3f5f9",
         alignItems: "center",
         justifyContent: "center",
         padding: 20
@@ -334,7 +339,7 @@ export default function FoodOrderScreen({
         <Pressable
           onPress={() => loadRestaurants(selectedPlace)}
           style={({ hovered }) => ({
-            backgroundColor: hovered ? "#007c00" : "#f5f2e8",
+            backgroundColor: hovered ? "#d73f11" : "#f4511e",
             paddingHorizontal: 24,
             paddingVertical: 12,
             borderRadius: 8
@@ -342,7 +347,7 @@ export default function FoodOrderScreen({
         >
           {({ hovered }) => (
             <Text style={{
-              color: hovered ? "#fff" : "#1c1c1c",
+              color: "#fff",
               fontSize: isMobile ? 14 : 16,
               fontWeight: "700"
             }}>
@@ -356,31 +361,32 @@ export default function FoodOrderScreen({
 
   if (step === "vendors") {
     return (
-      <View style={{ flex: 1, backgroundColor: "#0b0b0b" }}>
+      <View style={{ flex: 1, backgroundColor: "#f3f5f9" }}>
         <ScrollView style={{ flex: 1 }}>
           <View style={{ padding: isMobile ? 14 : 20, gap: isMobile ? 16 : 20 }}>
-            <View>
+            <View style={{ backgroundColor: "#0f1a2d", borderRadius: 18, borderWidth: 1, borderColor: "#1d3258", padding: isMobile ? 14 : 18 }}>
+              <Text style={{ color: "#eaf2ff", fontSize: 12, letterSpacing: 1.2, marginBottom: 6 }}>EXPLOREVALLEY FOOD</Text>
               <Text style={{
                 color: "#fff",
                 fontSize: isMobile ? 22 : 28,
                 fontWeight: "800",
                 marginBottom: isMobile ? 8 : 12
               }}>
-                Order Food
+                Premium Food Ordering
               </Text>
               <Text style={{
-                color: "#aaa",
+                color: "#9db0d6",
                 fontSize: isMobile ? 13 : 15
               }}>
-                Choose from our restaurant partners
+                Curated restaurants, fast delivery, and clear pricing.
               </Text>
             </View>
 
-            <View style={{ gap: 8 }}>
-              <Text style={{ color: "#ddd", fontSize: isMobile ? 13 : 14, fontWeight: "700" }}>
+            <View style={{ gap: 8, backgroundColor: "#fff", borderWidth: 1, borderColor: "#dbe3ef", borderRadius: 16, padding: isMobile ? 12 : 14 }}>
+              <Text style={{ color: "#5f6b81", fontSize: isMobile ? 13 : 14, fontWeight: "700" }}>
                 Select Place
               </Text>
-              <View style={{ flexDirection: "row", gap: 8 }}>
+              <View style={{ flexDirection: "row", gap: 8, flexWrap: "wrap" }}>
                 {places.map((place) => {
                   const active = selectedPlace === place;
                   return (
@@ -388,15 +394,15 @@ export default function FoodOrderScreen({
                       key={place}
                       onPress={() => setSelectedPlace(place)}
                       style={{
-                        backgroundColor: active ? "#f5f2e8" : "#222",
+                        backgroundColor: active ? "#f4511e" : "#f7f9fc",
                         borderWidth: 1,
-                        borderColor: active ? "#f5f2e8" : "#333",
+                        borderColor: active ? "#f4511e" : "#d5deeb",
                         borderRadius: 10,
                         paddingHorizontal: 14,
                         paddingVertical: 9
                       }}
                     >
-                      <Text style={{ color: active ? "#1c1c1c" : "#fff", fontWeight: "700" }}>{place}</Text>
+                      <Text style={{ color: active ? "#fff" : "#334155", fontWeight: "700" }}>{place}</Text>
                     </Pressable>
                   );
                 })}
@@ -407,15 +413,15 @@ export default function FoodOrderScreen({
               value={searchQuery}
               onChangeText={setSearchQuery}
               placeholder="Search restaurants..."
-              placeholderTextColor="#666"
+              placeholderTextColor="#96a0b2"
               style={{
-                backgroundColor: "#141414",
-                color: "#fff",
+                backgroundColor: "#fff",
+                color: "#111827",
                 paddingHorizontal: 14,
                 paddingVertical: isMobile ? 12 : 14,
                 borderRadius: 12,
                 borderWidth: 1,
-                borderColor: "#222",
+                borderColor: "#d5deeb",
                 fontSize: isMobile ? 14 : 16
               }}
             />
@@ -426,7 +432,7 @@ export default function FoodOrderScreen({
                 alignItems: "center"
               }}>
                 <Text style={{
-                  color: "#666",
+                  color: "#7b8798",
                   fontSize: isMobile ? 14 : 16,
                   textAlign: "center"
                 }}>
@@ -439,7 +445,7 @@ export default function FoodOrderScreen({
                 alignItems: "center"
               }}>
                 <Text style={{
-                  color: "#666",
+                  color: "#7b8798",
                   fontSize: isMobile ? 14 : 16,
                   textAlign: "center"
                 }}>
@@ -450,7 +456,7 @@ export default function FoodOrderScreen({
               <View style={{
                 flexDirection: "row",
                 flexWrap: "wrap",
-                gap: isMobile ? 14 : 18
+                gap: gridGap
               }}>
                 {filteredRestaurants.map(restaurant => (
                   <View
@@ -475,11 +481,11 @@ export default function FoodOrderScreen({
 
   if (step === "menu") {
     return (
-      <View style={{ flex: 1, backgroundColor: "#0b0b0b" }}>
+      <View style={{ flex: 1, backgroundColor: "#f3f5f9" }}>
         <View style={{
-          backgroundColor: "#0f0f0f",
+          backgroundColor: "#ffffff",
           borderBottomWidth: 1,
-          borderBottomColor: "#222",
+          borderBottomColor: "#dce3ef",
           padding: isMobile ? 14 : 18,
           gap: isMobile ? 12 : 14
         }}>
@@ -487,36 +493,38 @@ export default function FoodOrderScreen({
             <Pressable
               onPress={handleBackToVendors}
               style={({ hovered }) => ({
-                backgroundColor: hovered ? "#333" : "#222",
+                backgroundColor: hovered ? "#e9eef6" : "#f4f7fb",
                 paddingHorizontal: 12,
                 paddingVertical: 8,
-                borderRadius: 8
+                borderRadius: 8,
+                borderWidth: 1,
+                borderColor: "#d7dfec"
               })}
             >
-              <Text style={{ color: "#fff", fontSize: isMobile ? 16 : 18 }}>←</Text>
+              <Text style={{ color: "#374151", fontSize: isMobile ? 16 : 18 }}>←</Text>
             </Pressable>
 
             <View style={{ flex: 1 }}>
               <Text style={{
-                color: "#fff",
+                color: "#111827",
                 fontSize: isMobile ? 18 : 20,
                 fontWeight: "700"
               }}>
                 {selectedRestaurant?.name}
               </Text>
               <Text style={{
-                color: "#aaa",
+                color: "#6b7280",
                 fontSize: isMobile ? 12 : 13
               }}>
                 ⭐ {selectedRestaurant?.rating} • {selectedRestaurant?.deliveryTime}
               </Text>
               {selectedRestaurant?.deliveryZones?.length ? (
-                <Text style={{ color: "#777", fontSize: 11, marginTop: 4 }}>
+                <Text style={{ color: "#7c8698", fontSize: 11, marginTop: 4 }}>
                   Zones: {selectedRestaurant.deliveryZones.join(", ")}
                 </Text>
               ) : null}
               {selectedRestaurant?.openHours && selectedRestaurant?.closingHours ? (
-                <Text style={{ color: "#777", fontSize: 11, marginTop: 2 }}>
+                <Text style={{ color: "#7c8698", fontSize: 11, marginTop: 2 }}>
                   Hours: {selectedRestaurant.openHours}–{selectedRestaurant.closingHours}
                 </Text>
               ) : null}
@@ -527,15 +535,15 @@ export default function FoodOrderScreen({
             value={searchQuery}
             onChangeText={setSearchQuery}
             placeholder="Search menu items..."
-            placeholderTextColor="#666"
+            placeholderTextColor="#96a0b2"
             style={{
-              backgroundColor: "#141414",
-              color: "#fff",
+              backgroundColor: "#fff",
+              color: "#111827",
               paddingHorizontal: 14,
               paddingVertical: isMobile ? 10 : 12,
               borderRadius: 12,
               borderWidth: 1,
-              borderColor: "#222",
+              borderColor: "#d5deeb",
               fontSize: isMobile ? 14 : 16
             }}
           />
@@ -547,16 +555,16 @@ export default function FoodOrderScreen({
                   key={category}
                   onPress={() => setSelectedCategory(category)}
                   style={{
-                    backgroundColor: selectedCategory === category ? "#f5f2e8" : "#222",
+                    backgroundColor: selectedCategory === category ? "#f4511e" : "#f7f9fc",
                     paddingHorizontal: isMobile ? 14 : 16,
                     paddingVertical: isMobile ? 8 : 10,
                     borderRadius: 8,
                     borderWidth: 1,
-                    borderColor: selectedCategory === category ? "#f5f2e8" : "#333"
+                    borderColor: selectedCategory === category ? "#f4511e" : "#d5deeb"
                   }}
                 >
                   <Text style={{
-                    color: selectedCategory === category ? "#1c1c1c" : "#fff",
+                    color: selectedCategory === category ? "#fff" : "#334155",
                     fontSize: isMobile ? 13 : 14,
                     fontWeight: "700"
                   }}>
@@ -576,7 +584,7 @@ export default function FoodOrderScreen({
           }}>
             {menuLoading ? (
               <View style={{ padding: 40, alignItems: "center" }}>
-                <ActivityIndicator size="small" color="#f5f2e8" />
+                <ActivityIndicator size="small" color="#f4511e" />
                 <Text style={{ color: "#777", marginTop: 10, fontSize: isMobile ? 13 : 14 }}>
                   Loading menu...
                 </Text>
@@ -614,41 +622,43 @@ export default function FoodOrderScreen({
 
   if (step === "checkout") {
     return (
-      <View style={{ flex: 1, backgroundColor: "#0b0b0b" }}>
+      <View style={{ flex: 1, backgroundColor: "#f3f5f9" }}>
         <ScrollView style={{ flex: 1 }}>
           <View style={{ padding: isMobile ? 14 : 20, gap: isMobile ? 20 : 24 }}>
             <View style={{ flexDirection: "row", alignItems: "center", gap: 12 }}>
               <Pressable
-                onPress={() => setStep("menu")}
-                style={({ hovered }) => ({
-                  backgroundColor: hovered ? "#333" : "#222",
-                  paddingHorizontal: 12,
-                  paddingVertical: 8,
-                  borderRadius: 8
-                })}
-              >
-                <Text style={{ color: "#fff", fontSize: isMobile ? 16 : 18 }}>←</Text>
-              </Pressable>
+              onPress={() => setStep("menu")}
+              style={({ hovered }) => ({
+                backgroundColor: hovered ? "#e9eef6" : "#f4f7fb",
+                paddingHorizontal: 12,
+                paddingVertical: 8,
+                borderRadius: 8,
+                borderWidth: 1,
+                borderColor: "#d7dfec"
+              })}
+            >
+              <Text style={{ color: "#374151", fontSize: isMobile ? 16 : 18 }}>←</Text>
+            </Pressable>
 
-              <Text style={{
-                color: "#fff",
-                fontSize: isMobile ? 20 : 24,
-                fontWeight: "800"
-              }}>
+            <Text style={{
+              color: "#111827",
+              fontSize: isMobile ? 20 : 24,
+              fontWeight: "800"
+            }}>
                 Checkout
               </Text>
             </View>
 
             <View style={{
-              backgroundColor: "#0f0f0f",
+              backgroundColor: "#ffffff",
               padding: isMobile ? 14 : 16,
               borderRadius: 12,
               borderWidth: 1,
-              borderColor: "#222",
+              borderColor: "#d5deeb",
               gap: isMobile ? 10 : 12
             }}>
               <Text style={{
-                color: "#fff",
+                color: "#111827",
                 fontSize: isMobile ? 16 : 18,
                 fontWeight: "700"
               }}>
@@ -665,12 +675,12 @@ export default function FoodOrderScreen({
                   }}
                 >
                   <View style={{ flex: 1 }}>
-                    <Text style={{ color: "#fff", fontSize: isMobile ? 14 : 15 }}>
+                    <Text style={{ color: "#111827", fontSize: isMobile ? 14 : 15 }}>
                       {item.name} × {item.quantity}
                     </Text>
                   </View>
                   <Text style={{
-                    color: "#f5f2e8",
+                    color: "#f4511e",
                     fontSize: isMobile ? 14 : 15,
                     fontWeight: "700"
                   }}>
@@ -697,7 +707,7 @@ export default function FoodOrderScreen({
     return (
       <View style={{
         flex: 1,
-        backgroundColor: "#0b0b0b",
+        backgroundColor: "#f3f5f9",
         alignItems: "center",
         justifyContent: "center",
         padding: 20
@@ -706,7 +716,7 @@ export default function FoodOrderScreen({
           width: isMobile ? 80 : 100,
           height: isMobile ? 80 : 100,
           borderRadius: (isMobile ? 80 : 100) / 2,
-          backgroundColor: "#9ef1a6",
+          backgroundColor: "#d7f6de",
           alignItems: "center",
           justifyContent: "center",
           marginBottom: 24
@@ -715,7 +725,7 @@ export default function FoodOrderScreen({
         </View>
 
         <Text style={{
-          color: "#fff",
+          color: "#111827",
           fontSize: isMobile ? 22 : 28,
           fontWeight: "800",
           marginBottom: 12,
@@ -725,7 +735,7 @@ export default function FoodOrderScreen({
         </Text>
 
         <Text style={{
-          color: "#aaa",
+          color: "#667085",
           fontSize: isMobile ? 14 : 16,
           textAlign: "center",
           marginBottom: 8
@@ -734,16 +744,16 @@ export default function FoodOrderScreen({
         </Text>
 
         <View style={{
-          backgroundColor: "#0f0f0f",
+          backgroundColor: "#ffffff",
           paddingHorizontal: 20,
           paddingVertical: 12,
           borderRadius: 8,
           borderWidth: 1,
-          borderColor: "#222",
+          borderColor: "#d5deeb",
           marginBottom: 32
         }}>
           <Text style={{
-            color: "#f5f2e8",
+            color: "#f4511e",
             fontSize: isMobile ? 16 : 18,
             fontWeight: "700"
           }}>
@@ -752,7 +762,7 @@ export default function FoodOrderScreen({
         </View>
 
         <Text style={{
-          color: "#ddd",
+          color: "#54607a",
           fontSize: isMobile ? 13 : 15,
           textAlign: "center",
           marginBottom: 32
@@ -764,7 +774,7 @@ export default function FoodOrderScreen({
           onPress={handleOrderMore}
           style={({ pressed, hovered }) => [
             {
-              backgroundColor: hovered ? "#007c00" : "#f5f2e8",
+              backgroundColor: hovered ? "#d73f11" : "#f4511e",
               paddingHorizontal: isMobile ? 28 : 36,
               paddingVertical: isMobile ? 14 : 16,
               borderRadius: 14,
@@ -774,7 +784,7 @@ export default function FoodOrderScreen({
         >
           {({ hovered }) => (
             <Text style={{
-              color: hovered ? "#fff" : "#1c1c1c",
+              color: "#fff",
               fontSize: isMobile ? 16 : 18,
               fontWeight: "800"
             }}>

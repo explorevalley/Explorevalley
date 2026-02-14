@@ -22,20 +22,20 @@ export default function MenuItemCard({ item, quantity, onQuantityChange }: MenuI
   return (
     <View style={{
       flexDirection: "row",
-      backgroundColor: "#0f0f0f",
+      backgroundColor: "#fff",
       borderRadius: 12,
       borderWidth: 1,
-      borderColor: "#222",
+      borderColor: "#d5deeb",
       padding: isMobile ? 10 : 12,
       gap: isMobile ? 10 : 12,
-      opacity: outOfStock ? 0.5 : 1
+      opacity: outOfStock ? 0.65 : 1
     }}>
       <View style={{
         width: imageSize,
         height: imageSize,
         borderRadius: 8,
         overflow: "hidden",
-        backgroundColor: "#1a1a1a",
+        backgroundColor: "#eef2f7",
         position: "relative"
       }}>
         {item.image && !imageError ? (
@@ -50,7 +50,7 @@ export default function MenuItemCard({ item, quantity, onQuantityChange }: MenuI
                 alignItems: "center",
                 justifyContent: "center"
               }}>
-                <ActivityIndicator size="small" color="#666" />
+                <ActivityIndicator size="small" color="#7b8798" />
               </View>
             )}
             <Image
@@ -70,7 +70,7 @@ export default function MenuItemCard({ item, quantity, onQuantityChange }: MenuI
             alignItems: "center",
             justifyContent: "center"
           }}>
-            <Text style={{ color: "#666", fontSize: isMobile ? 10 : 11, textAlign: "center" }}>
+            <Text style={{ color: "#7b8798", fontSize: isMobile ? 10 : 11, textAlign: "center" }}>
               No Image
             </Text>
           </View>
@@ -102,7 +102,7 @@ export default function MenuItemCard({ item, quantity, onQuantityChange }: MenuI
         <View style={{ gap: 4 }}>
           <View style={{ flexDirection: "row", alignItems: "flex-start", justifyContent: "space-between" }}>
             <Text style={{
-              color: "#fff",
+              color: "#111827",
               fontSize: isMobile ? 14 : 16,
               fontWeight: "700",
               flex: 1
@@ -113,7 +113,7 @@ export default function MenuItemCard({ item, quantity, onQuantityChange }: MenuI
 
           {item.description && (
             <Text style={{
-              color: "#aaa",
+              color: "#6b7280",
               fontSize: isMobile ? 12 : 13,
               lineHeight: isMobile ? 16 : 18
             }} numberOfLines={2}>
@@ -127,15 +127,15 @@ export default function MenuItemCard({ item, quantity, onQuantityChange }: MenuI
                 <View
                   key={`variant_${index}`}
                   style={{
-                    backgroundColor: "#1a1a1a",
+                    backgroundColor: "#f7f9fc",
                     paddingHorizontal: 6,
                     paddingVertical: 2,
                     borderRadius: 4,
                     borderWidth: 1,
-                    borderColor: "#333"
+                    borderColor: "#d8e1ee"
                   }}
                 >
-                  <Text style={{ color: "#ddd", fontSize: isMobile ? 10 : 11 }}>
+                  <Text style={{ color: "#4b5565", fontSize: isMobile ? 10 : 11 }}>
                     {v.name} · ₹{v.price}
                   </Text>
                 </View>
@@ -149,15 +149,15 @@ export default function MenuItemCard({ item, quantity, onQuantityChange }: MenuI
                 <View
                   key={`addon_${index}`}
                   style={{
-                    backgroundColor: "#0f0f0f",
+                    backgroundColor: "#f8fafd",
                     paddingHorizontal: 6,
                     paddingVertical: 2,
                     borderRadius: 4,
                     borderWidth: 1,
-                    borderColor: "#333"
+                    borderColor: "#e2e8f2"
                   }}
                 >
-                  <Text style={{ color: "#aaa", fontSize: isMobile ? 10 : 11 }}>
+                  <Text style={{ color: "#6b7280", fontSize: isMobile ? 10 : 11 }}>
                     + {a.name} · ₹{a.price}
                   </Text>
                 </View>
@@ -167,14 +167,14 @@ export default function MenuItemCard({ item, quantity, onQuantityChange }: MenuI
 
           <View style={{ flexDirection: "row", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
             <Text style={{
-              color: "#f5f2e8",
+              color: "#f4511e",
               fontSize: isMobile ? 16 : 18,
               fontWeight: "800"
             }}>
               ₹{item.price}
             </Text>
 
-            <Text style={{ color: "#888", fontSize: isMobile ? 11 : 12 }}>
+            <Text style={{ color: "#7b8798", fontSize: isMobile ? 11 : 12 }}>
               Stock: {item.stock ?? 0} · Max {maxOrder}
             </Text>
 
@@ -183,16 +183,16 @@ export default function MenuItemCard({ item, quantity, onQuantityChange }: MenuI
                 <View
                   key={index}
                   style={{
-                    backgroundColor: "#1a1a1a",
+                    backgroundColor: "#f7f9fc",
                     paddingHorizontal: 6,
                     paddingVertical: 2,
                     borderRadius: 4,
                     borderWidth: 1,
-                    borderColor: "#333"
+                    borderColor: "#d8e1ee"
                   }}
                 >
                   <Text style={{
-                    color: tag.toLowerCase().includes("bestseller") ? "#f5f2e8" : "#ddd",
+                    color: tag.toLowerCase().includes("bestseller") ? "#9a3412" : "#4b5565",
                     fontSize: isMobile ? 10 : 11,
                     fontWeight: tag.toLowerCase().includes("bestseller") ? "700" : "600"
                   }}>
@@ -212,12 +212,12 @@ export default function MenuItemCard({ item, quantity, onQuantityChange }: MenuI
         }}>
           {outOfStock ? (
             <View style={{
-              backgroundColor: "#1a1a1a",
+              backgroundColor: "#fff1f1",
               paddingHorizontal: 10,
               paddingVertical: 6,
               borderRadius: 6,
               borderWidth: 1,
-              borderColor: "#333"
+              borderColor: "#ffd0d0"
             }}>
               <Text style={{
                 color: "#ff6b6b",
@@ -244,7 +244,7 @@ export default function MenuItemCard({ item, quantity, onQuantityChange }: MenuI
           left: 0,
           right: 0,
           bottom: 0,
-          backgroundColor: "rgba(11, 11, 11, 0.7)",
+          backgroundColor: "rgba(255, 255, 255, 0.65)",
           borderRadius: 12,
           alignItems: "center",
           justifyContent: "center"

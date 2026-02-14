@@ -5,8 +5,7 @@ const PRIMARY_NAV = [
   { key: "travel", label: "Travel", icon: "🗺️" },
   { key: "cabs", label: "Cabs", icon: "🚕" },
   { key: "food", label: "Food", icon: "🍽️" },
-  { key: "festivals", label: "ValleyFest", icon: "🎉" },
-  { key: "orders", label: "Orders", icon: "📋" },
+  { key: "festivals", label: "Fest", icon: "🎉" },
   { key: "rescue", label: "Info", icon: "ℹ️" },
 ] as const;
 
@@ -17,7 +16,7 @@ const FILTERS = [
   { key: "cottages", label: "Cottages" },
 ] as const;
 
-export default function TopNav({ query, setQuery, onFilter, typeFilter, onTypeChange, primaryTab, onPrimaryChange, authMode, authUser, onAuthPress, onLogout }: any) {
+export default function TopNav({ query, setQuery, onFilter, typeFilter, onTypeChange, primaryTab, onPrimaryChange, authMode, authUser, onAuthPress, onLogout, onProfilePress }: any) {
   const { width: windowWidth } = useWindowDimensions();
   const isMobile = windowWidth < 768;
   const isTablet = windowWidth >= 768 && windowWidth < 1024;
@@ -144,9 +143,27 @@ export default function TopNav({ query, setQuery, onFilter, typeFilter, onTypeCh
               </HoverScale>
             </View>
             {authMode === "authenticated" ? (
-              <Text numberOfLines={1} style={{ color: "#9ef1a6", fontSize: 12, fontWeight: "700", textAlign: "right" }}>
-                {userLabel}
-              </Text>
+              <View style={{ flexDirection: "row", justifyContent: "flex-end", alignItems: "center", gap: 8 }}>
+                <Pressable
+                  onPress={() => onPrimaryChange?.("orders")}
+                  style={({ hovered, pressed }) => ({
+                    paddingHorizontal: 10,
+                    paddingVertical: 6,
+                    borderRadius: 999,
+                    borderWidth: 1,
+                    borderColor: hovered ? "#f5f2e8" : "rgba(245, 242, 232, 0.2)",
+                    backgroundColor: hovered ? "#f5f2e8" : "rgba(245, 242, 232, 0.08)",
+                    opacity: pressed ? 0.9 : 1
+                  })}
+                >
+                  <Text style={{ color: "#fff", fontSize: 12, fontWeight: "800" }}>📋</Text>
+                </Pressable>
+                <Pressable onPress={onProfilePress} style={{ maxWidth: 230 }}>
+                  <Text numberOfLines={1} style={{ color: "#9ef1a6", fontSize: 12, fontWeight: "700", textAlign: "right" }}>
+                    {userLabel}
+                  </Text>
+                </Pressable>
+              </View>
             ) : null}
 
             {/* Primary Navigation Row */}
@@ -359,7 +376,8 @@ export default function TopNav({ query, setQuery, onFilter, typeFilter, onTypeCh
         </Animated.View>
 
         {authMode === "authenticated" ? (
-          <View
+          <Pressable
+            onPress={onProfilePress}
             style={{
               paddingHorizontal: 11.25,
               paddingVertical: 7.5,
@@ -373,7 +391,23 @@ export default function TopNav({ query, setQuery, onFilter, typeFilter, onTypeCh
             <Text numberOfLines={1} style={{ color: "#9ef1a6", fontWeight: "700", fontSize: 14 }}>
               {userLabel}
             </Text>
-          </View>
+          </Pressable>
+        ) : null}
+
+        {authMode === "authenticated" ? (
+          <HoverScale
+            onPress={() => onPrimaryChange?.("orders")}
+            style={{
+              paddingHorizontal: 10,
+              paddingVertical: 7.5,
+              borderRadius: 999,
+              borderWidth: 1,
+              borderColor: "rgba(245, 242, 232, 0.2)",
+              backgroundColor: "rgba(245, 242, 232, 0.08)",
+            }}
+          >
+            <Text style={{ color: "#fff", fontWeight: "800", fontSize: fontSize.filter }}>📋</Text>
+          </HoverScale>
         ) : null}
 
         <HoverScale

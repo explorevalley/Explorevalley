@@ -20,15 +20,15 @@ export default function VendorCard({ vendor, onPress }: VendorCardProps) {
     return (
       <View style={{ flexDirection: "row", alignItems: "center", gap: 2 }}>
         {[...Array(fullStars)].map((_, i) => (
-          <Text key={`full-${i}`} style={{ color: "#f5f2e8", fontSize: isMobile ? 14 : 16 }}>
+          <Text key={`full-${i}`} style={{ color: "#f59e0b", fontSize: isMobile ? 14 : 16 }}>
             ★
           </Text>
         ))}
         {hasHalfStar && (
-          <Text style={{ color: "#f5f2e8", fontSize: isMobile ? 14 : 16 }}>☆</Text>
+          <Text style={{ color: "#f59e0b", fontSize: isMobile ? 14 : 16 }}>☆</Text>
         )}
         {[...Array(emptyStars)].map((_, i) => (
-          <Text key={`empty-${i}`} style={{ color: "#666", fontSize: isMobile ? 14 : 16 }}>
+          <Text key={`empty-${i}`} style={{ color: "#c6cfde", fontSize: isMobile ? 14 : 16 }}>
             ☆
           </Text>
         ))}
@@ -44,9 +44,14 @@ export default function VendorCard({ vendor, onPress }: VendorCardProps) {
           borderRadius: 12,
           overflow: "hidden",
           borderWidth: 1,
-          borderColor: hovered ? "#f5f2e8" : "#222",
-          backgroundColor: "#0f0f0f",
-          transform: [{ scale: pressed ? 0.98 : hovered ? 1.02 : 1 }]
+          borderColor: hovered ? "#f4511e" : "#d5deeb",
+          backgroundColor: "#fff",
+          shadowColor: hovered ? "#f4511e" : "#1d2c49",
+          shadowOpacity: hovered ? 0.2 : 0.08,
+          shadowRadius: hovered ? 14 : 8,
+          shadowOffset: { width: 0, height: 4 },
+          elevation: hovered ? 5 : 2,
+          transform: [{ scale: pressed ? 0.98 : hovered ? 1.01 : 1 }]
         }
       ]}
     >
@@ -60,20 +65,20 @@ export default function VendorCard({ vendor, onPress }: VendorCardProps) {
       >
         <View style={{
           flex: 1,
-          backgroundColor: "rgba(0, 0, 0, 0.4)",
+          backgroundColor: "rgba(12, 20, 34, 0.42)",
           padding: isMobile ? 10 : 12,
           justifyContent: "space-between"
         }}>
           {vendor.isVeg && (
             <View style={{ alignSelf: "flex-start" }}>
               <View style={{
-                backgroundColor: "#9ef1a6",
+                backgroundColor: "#d7f6de",
                 paddingHorizontal: 8,
                 paddingVertical: 4,
                 borderRadius: 6
               }}>
                 <Text style={{
-                  color: "#0b0b0b",
+                  color: "#165122",
                   fontSize: isMobile ? 10 : 11,
                   fontWeight: "700"
                 }}>
@@ -85,14 +90,14 @@ export default function VendorCard({ vendor, onPress }: VendorCardProps) {
 
           <View style={{ gap: 4 }}>
             <View style={{
-              backgroundColor: "rgba(0, 0, 0, 0.7)",
+              backgroundColor: "rgba(255, 255, 255, 0.92)",
               paddingHorizontal: 8,
               paddingVertical: 4,
               borderRadius: 6,
               alignSelf: "flex-start"
             }}>
               <Text style={{
-                color: "#f5f2e8",
+                color: "#111827",
                 fontSize: isMobile ? 11 : 12,
                 fontWeight: "700"
               }}>
@@ -106,7 +111,7 @@ export default function VendorCard({ vendor, onPress }: VendorCardProps) {
       <View style={{ padding: isMobile ? 12 : 14, gap: isMobile ? 8 : 10 }}>
         <View>
           <Text style={{
-            color: "#fff",
+            color: "#111827",
             fontSize: isMobile ? 16 : 18,
             fontWeight: "700",
             marginBottom: 4
@@ -114,7 +119,7 @@ export default function VendorCard({ vendor, onPress }: VendorCardProps) {
             {vendor.name}
           </Text>
           <Text style={{
-            color: "#aaa",
+            color: "#6b7280",
             fontSize: isMobile ? 12 : 13,
             lineHeight: isMobile ? 16 : 18
           }} numberOfLines={2}>
@@ -125,7 +130,7 @@ export default function VendorCard({ vendor, onPress }: VendorCardProps) {
         <View style={{ flexDirection: "row", alignItems: "center", gap: 6 }}>
           {renderStars(vendor.rating)}
           <Text style={{
-            color: "#ddd",
+            color: "#5f6b81",
             fontSize: isMobile ? 12 : 13,
             fontWeight: "600"
           }}>
@@ -138,16 +143,16 @@ export default function VendorCard({ vendor, onPress }: VendorCardProps) {
             <View
               key={index}
               style={{
-                backgroundColor: "#1a1a1a",
+                backgroundColor: "#f7f9fc",
                 paddingHorizontal: 8,
                 paddingVertical: 4,
                 borderRadius: 6,
                 borderWidth: 1,
-                borderColor: "#333"
+                borderColor: "#d8e1ee"
               }}
             >
               <Text style={{
-                color: "#ddd",
+                color: "#445066",
                 fontSize: isMobile ? 11 : 12
               }}>
                 {cuisine}
@@ -162,14 +167,14 @@ export default function VendorCard({ vendor, onPress }: VendorCardProps) {
               <View
                 key={index}
                 style={{
-                  backgroundColor: tag.toLowerCase().includes("veg") ? "#9ef1a6" : "#f5f2e8",
+                  backgroundColor: tag.toLowerCase().includes("veg") ? "#d7f6de" : "#fff1e8",
                   paddingHorizontal: 8,
                   paddingVertical: 3,
                   borderRadius: 6
                 }}
               >
                 <Text style={{
-                  color: "#0b0b0b",
+                  color: tag.toLowerCase().includes("veg") ? "#165122" : "#9a3412",
                   fontSize: isMobile ? 10 : 11,
                   fontWeight: "700"
                 }}>
@@ -183,20 +188,20 @@ export default function VendorCard({ vendor, onPress }: VendorCardProps) {
         <View style={{
           paddingTop: isMobile ? 8 : 10,
           borderTopWidth: 1,
-          borderTopColor: "#222"
+          borderTopColor: "#edf1f7"
         }}>
           <Text style={{
-            color: "#aaa",
+            color: "#6b7280",
             fontSize: isMobile ? 11 : 12
           }}>
             Min order: ₹{vendor.minimumOrder} • {vendor.location}
           </Text>
           {vendor.deliveryZones && vendor.deliveryZones.length > 0 ? (
-            <Text style={{ color: "#777", fontSize: isMobile ? 10 : 11, marginTop: 4 }}>
+            <Text style={{ color: "#7c8698", fontSize: isMobile ? 10 : 11, marginTop: 4 }}>
               Zones: {vendor.deliveryZones.join(", ")}
             </Text>
           ) : vendor.serviceRadiusKm ? (
-            <Text style={{ color: "#777", fontSize: isMobile ? 10 : 11, marginTop: 4 }}>
+            <Text style={{ color: "#7c8698", fontSize: isMobile ? 10 : 11, marginTop: 4 }}>
               Service radius: {vendor.serviceRadiusKm} km
             </Text>
           ) : null}

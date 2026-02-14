@@ -64,7 +64,7 @@ export default function FestivalScreen() {
 
   return (
     <ScrollView
-      style={{ flex: 1, backgroundColor: "#060606" }}
+      style={{ flex: 1, backgroundColor: "#f3f5f9" }}
       contentContainerStyle={{ paddingTop: 110, paddingHorizontal: isMobile ? 14 : 24, paddingBottom: 32 }}
       showsVerticalScrollIndicator={false}
     >
@@ -72,19 +72,19 @@ export default function FestivalScreen() {
         style={{
           borderRadius: 18,
           borderWidth: 1,
-          borderColor: "#22342a",
-          backgroundColor: "#0d1711",
+          borderColor: "#1d3258",
+          backgroundColor: "#0f1a2d",
           padding: isMobile ? 16 : 22,
           marginBottom: 16
         }}
       >
-        <Text style={{ color: "#9ad8a0", fontSize: isMobile ? 12 : 13, fontWeight: "800", letterSpacing: 1.1 }}>
-          EXPLOREVALLEY MODE
+        <Text style={{ color: "#eaf2ff", fontSize: isMobile ? 12 : 13, fontWeight: "800", letterSpacing: 1.1 }}>
+          EXPLOREVALLEY FEST
         </Text>
         <Text style={{ color: "#fff", fontSize: isMobile ? 25 : 34, fontWeight: "800", marginTop: 6 }}>
           ExploreValley Highlights
         </Text>
-        <Text style={{ color: "#d5d5d5", fontSize: isMobile ? 13 : 16, marginTop: 8 }}>
+        <Text style={{ color: "#9db0d6", fontSize: isMobile ? 13 : 16, marginTop: 8 }}>
           Browse upcoming events, compare vibes, and book your next trip around live experiences.
         </Text>
       </View>
@@ -98,14 +98,14 @@ export default function FestivalScreen() {
 
       {items === null ? (
         <View style={{ paddingVertical: 30, alignItems: "center" }}>
-          <ActivityIndicator color="#fff" />
-          <Text style={{ color: "#aaa", marginTop: 8 }}>Loading ExploreValley highlights...</Text>
+          <ActivityIndicator color="#f4511e" />
+          <Text style={{ color: "#6b7280", marginTop: 8 }}>Loading ExploreValley highlights...</Text>
         </View>
       ) : null}
 
       {items !== null && festivals.length === 0 ? (
         <View style={{ paddingVertical: 20 }}>
-          <Text style={{ color: "#fff", fontSize: 16, fontWeight: "700" }}>No ExploreValley data in JSON.</Text>
+          <Text style={{ color: "#111827", fontSize: 16, fontWeight: "700" }}>No ExploreValley data in JSON.</Text>
           {error ? <Text style={{ color: "#ff8b8b", marginTop: 6, fontSize: 12 }}>{error}</Text> : null}
         </View>
       ) : null}
@@ -117,14 +117,21 @@ export default function FestivalScreen() {
             style={{
               borderRadius: 16,
               borderWidth: 1,
-              borderColor: "rgba(255,255,255,0.12)",
-              backgroundColor: fest.color,
-              padding: isMobile ? 14 : 18
+              borderColor: "#d8e1ee",
+              backgroundColor: "#ffffff",
+              padding: isMobile ? 14 : 18,
+              shadowColor: "#1d2c49",
+              shadowOpacity: 0.08,
+              shadowRadius: 8,
+              shadowOffset: { width: 0, height: 4 },
+              elevation: 2
             }}
           >
             <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
-              <Text style={{ color: "#fff", fontSize: isMobile ? 20 : 24, fontWeight: "800" }}>{fest.title}</Text>
-              <Text style={{ color: "#fff", fontSize: isMobile ? 12 : 13, fontWeight: "700", opacity: 0.9 }}>{fest.month}</Text>
+              <Text style={{ color: "#111827", fontSize: isMobile ? 20 : 24, fontWeight: "800", flex: 1, marginRight: 8 }}>{fest.title}</Text>
+              <View style={{ backgroundColor: "#fff1e8", borderWidth: 1, borderColor: "#ffd8c2", borderRadius: 999, paddingHorizontal: 10, paddingVertical: 4 }}>
+                <Text style={{ color: "#9a3412", fontSize: isMobile ? 12 : 13, fontWeight: "700" }}>{fest.month}</Text>
+              </View>
             </View>
             {fest.image ? (
               <Image
@@ -133,17 +140,17 @@ export default function FestivalScreen() {
                 style={{ width: "100%", height: isMobile ? 120 : 170, borderRadius: 10, marginTop: 8 }}
               />
             ) : null}
-            <Text style={{ color: "#f4f4f4", marginTop: 6, fontSize: isMobile ? 13 : 14 }}>{fest.location || "Explore Valley"}</Text>
-            <Text style={{ color: "#f2f2f2", marginTop: 8, fontSize: isMobile ? 13 : 14 }}>{fest.vibe}</Text>
-            <Text style={{ color: "#f9f6d8", marginTop: 8, fontSize: isMobile ? 15 : 16, fontWeight: "800" }}>
+            <Text style={{ color: "#6b7280", marginTop: 6, fontSize: isMobile ? 13 : 14 }}>{fest.location || "Explore Valley"}</Text>
+            <Text style={{ color: "#4b5563", marginTop: 8, fontSize: isMobile ? 13 : 14 }}>{fest.vibe}</Text>
+            <Text style={{ color: "#f4511e", marginTop: 8, fontSize: isMobile ? 15 : 16, fontWeight: "800" }}>
               {typeof fest.ticket === "number" ? `From INR ${fest.ticket}` : fest.ticket}
             </Text>
             <View style={{ flexDirection: "row", gap: 10, marginTop: 12 }}>
-              <Pressable style={buttonBase}>
-                <Text style={buttonText}>View Lineup</Text>
+              <Pressable style={secondaryButtonBase}>
+                <Text style={secondaryButtonText}>View Lineup</Text>
               </Pressable>
-              <Pressable style={[buttonBase, { backgroundColor: "#f5f2e8", borderColor: "#f5f2e8" }]}>
-                <Text style={[buttonText, { color: "#121212" }]}>Book Pass</Text>
+              <Pressable style={primaryButtonBase}>
+                <Text style={primaryButtonText}>Book Pass</Text>
               </Pressable>
             </View>
           </View>
@@ -159,28 +166,43 @@ function Pill({ text }: { text: string }) {
       style={{
         borderRadius: 999,
         borderWidth: 1,
-        borderColor: "#2a7a3f",
-        backgroundColor: "rgba(10,40,20,0.65)",
+        borderColor: "#f4511e",
+        backgroundColor: "#fff1e8",
         paddingHorizontal: 12,
         paddingVertical: 7
       }}
     >
-      <Text style={{ color: "#d5ffd8", fontSize: 12, fontWeight: "700" }}>{text}</Text>
+      <Text style={{ color: "#9a3412", fontSize: 12, fontWeight: "700" }}>{text}</Text>
     </View>
   );
 }
 
-const buttonBase = {
+const primaryButtonBase = {
   borderRadius: 999,
   borderWidth: 1,
-  borderColor: "#ffffff",
-  backgroundColor: "rgba(0,0,0,0.2)",
+  borderColor: "#f4511e",
+  backgroundColor: "#f4511e",
   paddingHorizontal: 14,
   paddingVertical: 8
 } as const;
 
-const buttonText = {
+const primaryButtonText = {
   color: "#fff",
+  fontSize: 12,
+  fontWeight: "800"
+} as const;
+
+const secondaryButtonBase = {
+  borderRadius: 999,
+  borderWidth: 1,
+  borderColor: "#d8e1ee",
+  backgroundColor: "#f8fafc",
+  paddingHorizontal: 14,
+  paddingVertical: 8
+} as const;
+
+const secondaryButtonText = {
+  color: "#334155",
   fontSize: 12,
   fontWeight: "800"
 } as const;

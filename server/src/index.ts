@@ -23,6 +23,7 @@ import { aiSupportRouter } from "./routes/aiSupport";
 import { deliveryRouter } from "./routes/delivery";
 import { refundRouter } from "./routes/refund";
 import { cartRouter } from "./routes/cart";
+import { profileRouter } from "./routes/profile";
 
 const PORT = Number(process.env.PORT || 8082);
 const HOST = (process.env.HOST || "0.0.0.0").trim() || "0.0.0.0";
@@ -176,6 +177,7 @@ app.use("/api/ai", aiSupportRouter(adminBot, ADMIN_CHAT_IDS));
 app.use("/api/delivery", deliveryRouter(adminBot, ADMIN_CHAT_IDS));
 app.use("/api/refunds", refundRouter(adminBot, ADMIN_CHAT_IDS));
 app.use("/api/cart", cartRouter());
+app.use("/api/profile", profileRouter());
 
 app.get("/health", (_req, res) => res.json({ ok: true }));
 

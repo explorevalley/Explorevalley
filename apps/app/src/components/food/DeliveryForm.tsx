@@ -24,7 +24,7 @@ function Field({ label, ...props }: any) {
   return (
     <View>
       <Text style={{
-        color: "#ddd",
+        color: "#5f6b81",
         marginBottom: 6,
         fontSize: isMobile ? 12 : 14,
         fontWeight: "600"
@@ -33,15 +33,15 @@ function Field({ label, ...props }: any) {
       </Text>
       <TextInput
         {...props}
-        placeholderTextColor="#666"
+        placeholderTextColor="#96a0b2"
         style={{
-          backgroundColor: "#141414",
-          color: "#fff",
+          backgroundColor: "#fff",
+          color: "#111827",
           paddingHorizontal: 12,
           paddingVertical: isMobile ? 10 : 12,
           borderRadius: 12,
           borderWidth: 1,
-          borderColor: "#222",
+          borderColor: "#d5deeb",
           fontSize: isMobile ? 14 : 16
         }}
       />
@@ -108,7 +108,7 @@ export default function DeliveryForm({ onSubmit, cartTotal, minimumOrder = 0, co
     <View style={{ gap: isMobile ? 16 : 18 }}>
       <View>
         <Text style={{
-          color: "#fff",
+          color: "#111827",
           fontSize: isMobile ? 18 : 22,
           fontWeight: "800",
           marginBottom: isMobile ? 12 : 16
@@ -157,15 +157,15 @@ export default function DeliveryForm({ onSubmit, cartTotal, minimumOrder = 0, co
       </View>
 
       <View style={{
-        backgroundColor: "#0f0f0f",
+        backgroundColor: "#ffffff",
         padding: isMobile ? 14 : 16,
         borderRadius: 12,
         borderWidth: 1,
-        borderColor: "#222",
+        borderColor: "#d5deeb",
         gap: isMobile ? 10 : 12
       }}>
         <Text style={{
-          color: "#fff",
+          color: "#111827",
           fontSize: isMobile ? 16 : 18,
           fontWeight: "700"
         }}>
@@ -174,39 +174,39 @@ export default function DeliveryForm({ onSubmit, cartTotal, minimumOrder = 0, co
 
         <View style={{ gap: 8 }}>
           <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-            <Text style={{ color: "#ddd", fontSize: isMobile ? 13 : 14 }}>
+            <Text style={{ color: "#5f6b81", fontSize: isMobile ? 13 : 14 }}>
               Subtotal
             </Text>
-            <Text style={{ color: "#fff", fontSize: isMobile ? 13 : 14, fontWeight: "600" }}>
+            <Text style={{ color: "#111827", fontSize: isMobile ? 13 : 14, fontWeight: "600" }}>
               ₹{cartTotal.toFixed(2)}
             </Text>
           </View>
 
           <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-            <Text style={{ color: "#ddd", fontSize: isMobile ? 13 : 14 }}>
+            <Text style={{ color: "#5f6b81", fontSize: isMobile ? 13 : 14 }}>
               GST (5%)
             </Text>
-            <Text style={{ color: "#fff", fontSize: isMobile ? 13 : 14, fontWeight: "600" }}>
+            <Text style={{ color: "#111827", fontSize: isMobile ? 13 : 14, fontWeight: "600" }}>
               ₹{gstAmount.toFixed(2)}
             </Text>
           </View>
 
           <View style={{
             height: 1,
-            backgroundColor: "#222",
+            backgroundColor: "#e9edf5",
             marginVertical: 4
           }} />
 
           <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
             <Text style={{
-              color: "#f5f2e8",
+              color: "#111827",
               fontSize: isMobile ? 16 : 18,
               fontWeight: "800"
             }}>
               Total
             </Text>
             <Text style={{
-              color: "#f5f2e8",
+              color: "#f4511e",
               fontSize: isMobile ? 16 : 18,
               fontWeight: "800"
             }}>
@@ -217,7 +217,7 @@ export default function DeliveryForm({ onSubmit, cartTotal, minimumOrder = 0, co
 
         {belowMinimum && (
           <View style={{
-            backgroundColor: "#1a1a1a",
+            backgroundColor: "#fff5f5",
             padding: isMobile ? 10 : 12,
             borderRadius: 8,
             borderWidth: 1,
@@ -236,28 +236,28 @@ export default function DeliveryForm({ onSubmit, cartTotal, minimumOrder = 0, co
 
       {(coupons.length > 0 || policyText) && (
         <View style={{
-          backgroundColor: "#0f0f0f",
+          backgroundColor: "#ffffff",
           padding: isMobile ? 14 : 16,
           borderRadius: 12,
           borderWidth: 1,
-          borderColor: "#222",
+          borderColor: "#d5deeb",
           gap: 8
         }}>
-          <Text style={{ color: "#fff", fontSize: isMobile ? 15 : 16, fontWeight: "700" }}>Offers & Policy</Text>
+          <Text style={{ color: "#111827", fontSize: isMobile ? 15 : 16, fontWeight: "700" }}>Offers & Policy</Text>
           {coupons.slice(0, 3).map(c => (
-            <Text key={c.code} style={{ color: "#ddd", fontSize: isMobile ? 12 : 13 }}>
+            <Text key={c.code} style={{ color: "#5f6b81", fontSize: isMobile ? 12 : 13 }}>
               {c.code} · {c.type === "flat" ? `₹${c.amount}` : `${c.amount}%`} off · Min ₹{c.minCart}
             </Text>
           ))}
           {policyText ? (
-            <Text style={{ color: "#aaa", fontSize: isMobile ? 12 : 13 }}>{policyText}</Text>
+            <Text style={{ color: "#7c8698", fontSize: isMobile ? 12 : 13 }}>{policyText}</Text>
           ) : null}
         </View>
       )}
 
       {error && (
         <View style={{
-          backgroundColor: "#1a1a1a",
+          backgroundColor: "#fff5f5",
           padding: isMobile ? 12 : 14,
           borderRadius: 8,
           borderWidth: 1,
@@ -278,7 +278,7 @@ export default function DeliveryForm({ onSubmit, cartTotal, minimumOrder = 0, co
         disabled={busy || belowMinimum}
         style={({ pressed, hovered }) => [
           {
-            backgroundColor: busy || belowMinimum ? "#333" : hovered ? "#007c00" : "#f5f2e8",
+            backgroundColor: busy || belowMinimum ? "#c9d1de" : hovered ? "#d73f11" : "#f4511e",
             paddingVertical: isMobile ? 14 : 16,
             borderRadius: 14,
             alignItems: "center",
@@ -289,9 +289,9 @@ export default function DeliveryForm({ onSubmit, cartTotal, minimumOrder = 0, co
       >
         {({ hovered }) => (
           <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
-            {busy && <ActivityIndicator size="small" color={hovered ? "#fff" : "#1c1c1c"} />}
+            {busy && <ActivityIndicator size="small" color="#fff" />}
             <Text style={{
-              color: busy || belowMinimum ? "#666" : hovered ? "#fff" : "#1c1c1c",
+              color: busy || belowMinimum ? "#eef2f7" : "#fff",
               fontSize: isMobile ? 16 : 18,
               fontWeight: "800"
             }}>

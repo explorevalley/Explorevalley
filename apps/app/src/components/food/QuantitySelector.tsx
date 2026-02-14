@@ -35,9 +35,9 @@ export default function QuantitySelector({ quantity, onChange, min = 0, max = 99
             width: buttonSize,
             height: buttonSize,
             borderRadius: buttonSize / 2,
-            backgroundColor: quantity <= min ? "#1a1a1a" : pressed ? "#007c00" : hovered ? "#f5f2e8" : "#222",
+            backgroundColor: quantity <= min ? "#f1f4f9" : pressed ? "#d73f11" : hovered ? "#f4511e" : "#f4511e",
             borderWidth: 1,
-            borderColor: quantity <= min ? "#333" : "#222",
+            borderColor: quantity <= min ? "#d8e1ee" : "#f4511e",
             alignItems: "center",
             justifyContent: "center"
           }
@@ -45,7 +45,7 @@ export default function QuantitySelector({ quantity, onChange, min = 0, max = 99
       >
         {({ hovered }) => (
           <Text style={{
-            color: quantity <= min ? "#666" : hovered ? "#1c1c1c" : "#fff",
+            color: quantity <= min ? "#96a0b2" : "#fff",
             fontSize: isMobile ? 18 : 20,
             fontWeight: "700",
             lineHeight: isMobile ? 18 : 20
@@ -56,7 +56,7 @@ export default function QuantitySelector({ quantity, onChange, min = 0, max = 99
       </Pressable>
 
       <Text style={{
-        color: "#fff",
+        color: "#111827",
         fontSize: isMobile ? 16 : 18,
         fontWeight: "700",
         minWidth: isMobile ? 24 : 28,
@@ -73,9 +73,9 @@ export default function QuantitySelector({ quantity, onChange, min = 0, max = 99
             width: buttonSize,
             height: buttonSize,
             borderRadius: buttonSize / 2,
-            backgroundColor: quantity >= max ? "#1a1a1a" : pressed ? "#007c00" : hovered ? "#f5f2e8" : "#222",
+            backgroundColor: quantity >= max ? "#f1f4f9" : pressed ? "#d73f11" : hovered ? "#f4511e" : "#f4511e",
             borderWidth: 1,
-            borderColor: quantity >= max ? "#333" : "#222",
+            borderColor: quantity >= max ? "#d8e1ee" : "#f4511e",
             alignItems: "center",
             justifyContent: "center"
           }
@@ -83,7 +83,7 @@ export default function QuantitySelector({ quantity, onChange, min = 0, max = 99
       >
         {({ hovered }) => (
           <Text style={{
-            color: quantity >= max ? "#666" : hovered ? "#1c1c1c" : "#fff",
+            color: quantity >= max ? "#96a0b2" : "#fff",
             fontSize: isMobile ? 18 : 20,
             fontWeight: "700",
             lineHeight: isMobile ? 18 : 20

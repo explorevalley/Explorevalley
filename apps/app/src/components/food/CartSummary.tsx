@@ -33,7 +33,7 @@ export default function CartSummary({ items, onCheckout }: CartSummaryProps) {
         onPress={onCheckout}
         style={({ pressed, hovered }) => [
           {
-            backgroundColor: hovered ? "#007c00" : "#f5f2e8",
+            backgroundColor: hovered ? "#d73f11" : "#f4511e",
             paddingVertical: isMobile ? 14 : 16,
             paddingHorizontal: isMobile ? 18 : 24,
             borderRadius: 14,
@@ -41,9 +41,9 @@ export default function CartSummary({ items, onCheckout }: CartSummaryProps) {
             alignItems: "center",
             justifyContent: "space-between",
             gap: isMobile ? 12 : 16,
-            shadowColor: "#000",
+            shadowColor: "#f4511e",
             shadowOffset: { width: 0, height: 4 },
-            shadowOpacity: 0.3,
+            shadowOpacity: 0.24,
             shadowRadius: 8,
             elevation: 8,
             transform: [{ scale: pressed ? 0.98 : 1 }]
@@ -53,7 +53,7 @@ export default function CartSummary({ items, onCheckout }: CartSummaryProps) {
         {({ hovered }) => (
           <>
             <View style={{
-              backgroundColor: hovered ? "#fff" : "#1c1c1c",
+              backgroundColor: "rgba(255,255,255,0.2)",
               paddingHorizontal: isMobile ? 10 : 12,
               paddingVertical: isMobile ? 4 : 6,
               borderRadius: 8,
@@ -61,7 +61,7 @@ export default function CartSummary({ items, onCheckout }: CartSummaryProps) {
               alignItems: "center"
             }}>
               <Text style={{
-                color: hovered ? "#007c00" : "#f5f2e8",
+                color: "#fff",
                 fontSize: isMobile ? 14 : 16,
                 fontWeight: "800"
               }}>
@@ -71,7 +71,7 @@ export default function CartSummary({ items, onCheckout }: CartSummaryProps) {
 
             <View style={{ flex: 1 }}>
               <Text style={{
-                color: hovered ? "#fff" : "#1c1c1c",
+                color: "#fff",
                 fontSize: isMobile ? 14 : 16,
                 fontWeight: "800"
               }}>
@@ -80,7 +80,7 @@ export default function CartSummary({ items, onCheckout }: CartSummaryProps) {
             </View>
 
             <Text style={{
-              color: hovered ? "#fff" : "#1c1c1c",
+              color: "#fff",
               fontSize: isMobile ? 16 : 18,
               fontWeight: "800"
             }}>

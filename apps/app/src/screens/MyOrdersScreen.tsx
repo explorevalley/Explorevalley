@@ -5,7 +5,6 @@ import {
   Pressable,
   ScrollView,
   ActivityIndicator,
-  useWindowDimensions,
   RefreshControl,
 } from "react-native";
 import { apiGet } from "../lib/api";
@@ -55,8 +54,6 @@ export default function MyOrdersScreen({
   onRequestRefund?: (order: any) => void;
   onRateExperience?: (order: any) => void;
 }) {
-  const { width } = useWindowDimensions();
-  const isMobile = width < 768;
   const [orders, setOrders] = useState<OrderItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
@@ -154,51 +151,51 @@ export default function MyOrdersScreen({
 
   if (loading) {
     return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: "#0a0a0a" }}>
-        <ActivityIndicator color="#16a34a" size="large" />
-        <Text style={{ color: "#888", marginTop: 8 }}>Loading your orders…</Text>
+      <View style={{ flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: "#f3f5f9" }}>
+        <ActivityIndicator color="#f4511e" size="large" />
+        <Text style={{ color: "#6b7280", marginTop: 8 }}>Loading your orders...</Text>
       </View>
     );
   }
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#0a0a0a" }}>
+    <View style={{ flex: 1, backgroundColor: "#f3f5f9" }}>
       {/* Header */}
-      <View style={{ paddingHorizontal: 16, paddingVertical: 14, borderBottomWidth: 1, borderBottomColor: "#222" }}>
-        <Text style={{ color: "#fff", fontWeight: "800", fontSize: 18 }}>📋 My Orders</Text>
-        <Text style={{ color: "#888", fontSize: 12, marginTop: 2 }}>Track all your bookings, food orders & cab rides</Text>
+      <View style={{ margin: 14, marginBottom: 10, paddingHorizontal: 16, paddingVertical: 14, borderWidth: 1, borderColor: "#1d3258", backgroundColor: "#0f1a2d", borderRadius: 16 }}>
+        <Text style={{ color: "#fff", fontWeight: "800", fontSize: 20 }}>My Orders</Text>
+        <Text style={{ color: "#9db0d6", fontSize: 12, marginTop: 2 }}>Track all your bookings, food orders and cab rides</Text>
       </View>
 
       {/* Filter pills */}
-      <View style={{ flexDirection: "row", paddingHorizontal: 16, paddingVertical: 10, gap: 8, flexWrap: "wrap" }}>
+      <View style={{ flexDirection: "row", paddingHorizontal: 16, paddingBottom: 10, gap: 8, flexWrap: "wrap" }}>
         {[
           { key: "all", label: "All" },
-          { key: "booking", label: "🏨 Bookings" },
-          { key: "food", label: "🍽️ Food" },
-          { key: "cab", label: "🚕 Cabs" },
+          { key: "booking", label: "Bookings" },
+          { key: "food", label: "Food" },
+          { key: "cab", label: "Cabs" },
         ].map((f) => (
           <Pressable
             key={f.key}
             onPress={() => setFilter(f.key)}
             style={{
-              backgroundColor: filter === f.key ? "#16a34a" : "#1a1a1a",
+              backgroundColor: filter === f.key ? "#f4511e" : "#ffffff",
               paddingHorizontal: 14,
               paddingVertical: 6,
               borderRadius: 16,
               borderWidth: 1,
-              borderColor: filter === f.key ? "#16a34a" : "#333",
+              borderColor: filter === f.key ? "#f4511e" : "#d5deeb",
             }}
           >
-            <Text style={{ color: "#fff", fontSize: 13, fontWeight: "600" }}>{f.label}</Text>
+            <Text style={{ color: filter === f.key ? "#fff" : "#334155", fontSize: 13, fontWeight: "700" }}>{f.label}</Text>
           </Pressable>
         ))}
       </View>
 
       {error ? (
         <View style={{ padding: 16 }}>
-          <Text style={{ color: "#ef4444", fontSize: 13 }}>⚠️ {error}</Text>
-          <Pressable onPress={fetchOrders} style={{ marginTop: 10, paddingVertical: 8, paddingHorizontal: 14, backgroundColor: "#1a1a1a", borderRadius: 8, alignSelf: "flex-start" }}>
-            <Text style={{ color: "#16a34a", fontWeight: "700" }}>Retry</Text>
+          <Text style={{ color: "#ef4444", fontSize: 13 }}>{error}</Text>
+          <Pressable onPress={fetchOrders} style={{ marginTop: 10, paddingVertical: 8, paddingHorizontal: 14, backgroundColor: "#fff", borderRadius: 8, borderWidth: 1, borderColor: "#d5deeb", alignSelf: "flex-start" }}>
+            <Text style={{ color: "#f4511e", fontWeight: "700" }}>Retry</Text>
           </Pressable>
         </View>
       ) : null}
@@ -207,13 +204,12 @@ export default function MyOrdersScreen({
         style={{ flex: 1 }}
         contentContainerStyle={{ padding: 16, gap: 12, paddingBottom: 40 }}
         refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={() => { setRefreshing(true); fetchOrders(); }} tintColor="#16a34a" />
+          <RefreshControl refreshing={refreshing} onRefresh={() => { setRefreshing(true); fetchOrders(); }} tintColor="#f4511e" />
         }
       >
         {filtered.length === 0 ? (
           <View style={{ alignItems: "center", paddingVertical: 60 }}>
-            <Text style={{ fontSize: 48, marginBottom: 14 }}>📭</Text>
-            <Text style={{ color: "#888", fontSize: 15, textAlign: "center" }}>No orders yet. Explore ValleyFest and place your first order!</Text>
+            <Text style={{ color: "#6b7280", fontSize: 15, textAlign: "center" }}>No orders yet. Explore Fest and place your first order.</Text>
           </View>
         ) : null}
 
@@ -229,26 +225,31 @@ export default function MyOrdersScreen({
               key={order.id}
               onPress={() => setExpandedId(expanded ? null : order.id)}
               style={{
-                backgroundColor: "#111",
+                backgroundColor: "#fff",
                 borderRadius: 12,
                 borderWidth: 1,
-                borderColor: expanded ? "#333" : "#1a1a1a",
+                borderColor: expanded ? "#f4511e" : "#d5deeb",
                 overflow: "hidden",
+                shadowColor: expanded ? "#f4511e" : "#1d2c49",
+                shadowOpacity: expanded ? 0.15 : 0.07,
+                shadowRadius: 8,
+                shadowOffset: { width: 0, height: 3 },
+                elevation: expanded ? 4 : 2,
               }}
             >
               {/* Order header */}
               <View style={{ padding: 14, flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
                 <View style={{ flex: 1, marginRight: 10 }}>
-                  <Text style={{ color: "#fff", fontWeight: "700", fontSize: 14 }} numberOfLines={1}>
+                  <Text style={{ color: "#111827", fontWeight: "700", fontSize: 14 }} numberOfLines={1}>
                     {order.title}
                   </Text>
-                  <Text style={{ color: "#666", fontSize: 11, marginTop: 2 }}>
+                  <Text style={{ color: "#7c8698", fontSize: 11, marginTop: 2 }}>
                     {order.id.slice(0, 16)} · {order.date ? new Date(order.date).toLocaleDateString() : ""}
                   </Text>
                 </View>
                 <View style={{ flexDirection: "row", alignItems: "center", gap: 6 }}>
                   {order.amount ? (
-                    <Text style={{ color: "#16a34a", fontWeight: "700", fontSize: 13 }}>₹{order.amount}</Text>
+                    <Text style={{ color: "#f4511e", fontWeight: "800", fontSize: 13 }}>₹{order.amount}</Text>
                   ) : null}
                   <View style={{ backgroundColor: statusColor + "22", paddingHorizontal: 8, paddingVertical: 3, borderRadius: 10 }}>
                     <Text style={{ color: statusColor, fontSize: 11, fontWeight: "700" }}>
@@ -260,9 +261,9 @@ export default function MyOrdersScreen({
 
               {/* Expanded detail */}
               {expanded ? (
-                <View style={{ padding: 14, paddingTop: 0, borderTopWidth: 1, borderTopColor: "#1a1a1a" }}>
-                  <View style={{ backgroundColor: "#0a0a0a", borderRadius: 8, padding: 10, marginTop: 8 }}>
-                    <Text style={{ color: "#888", fontSize: 11, fontFamily: "monospace" }}>
+                <View style={{ padding: 14, paddingTop: 0, borderTopWidth: 1, borderTopColor: "#edf1f7" }}>
+                  <View style={{ backgroundColor: "#f8fafc", borderWidth: 1, borderColor: "#e4eaf3", borderRadius: 8, padding: 10, marginTop: 8 }}>
+                    <Text style={{ color: "#5f6b81", fontSize: 11, fontFamily: "monospace" }}>
                       {JSON.stringify(order.raw, null, 2).slice(0, 600)}
                     </Text>
                   </View>
@@ -272,7 +273,7 @@ export default function MyOrdersScreen({
                     {canRefund && onRequestRefund ? (
                       <Pressable
                         onPress={() => onRequestRefund(order)}
-                        style={{ backgroundColor: "#ef444422", paddingHorizontal: 14, paddingVertical: 8, borderRadius: 8, borderWidth: 1, borderColor: "#ef4444" }}
+                        style={{ backgroundColor: "#fff5f5", paddingHorizontal: 14, paddingVertical: 8, borderRadius: 8, borderWidth: 1, borderColor: "#ef4444" }}
                       >
                         <Text style={{ color: "#ef4444", fontWeight: "700", fontSize: 12 }}>Request Refund</Text>
                       </Pressable>
@@ -280,9 +281,9 @@ export default function MyOrdersScreen({
                     {canRate && onRateExperience ? (
                       <Pressable
                         onPress={() => onRateExperience(order)}
-                        style={{ backgroundColor: "#f59e0b22", paddingHorizontal: 14, paddingVertical: 8, borderRadius: 8, borderWidth: 1, borderColor: "#f59e0b" }}
+                        style={{ backgroundColor: "#fff7ed", paddingHorizontal: 14, paddingVertical: 8, borderRadius: 8, borderWidth: 1, borderColor: "#f59e0b" }}
                       >
-                        <Text style={{ color: "#f59e0b", fontWeight: "700", fontSize: 12 }}>⭐ Rate Experience</Text>
+                        <Text style={{ color: "#f59e0b", fontWeight: "700", fontSize: 12 }}>Rate Experience</Text>
                       </Pressable>
                     ) : null}
                   </View>

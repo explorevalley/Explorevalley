@@ -37,7 +37,7 @@ export default function AIChatWidget({
     {
       id: "welcome",
       role: "assistant",
-      text: "👋 Hi! I'm your ValleyFest AI assistant.\n\n• Browse menus & order food\n• Tour & hotel recommendations\n• Order tracking & refunds\n\nJust type naturally!",
+      text: "Hi! I'm your Fest AI assistant.\n\n• Browse menus and order food\n• Tour and hotel recommendations\n• Order tracking and refunds\n\nJust type naturally!",
       timestamp: Date.now(),
     },
   ]);

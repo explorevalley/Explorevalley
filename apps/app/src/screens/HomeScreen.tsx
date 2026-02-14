@@ -14,6 +14,7 @@ import MyOrdersScreen from "./MyOrdersScreen";
 import AuthModal from "../components/AuthModal";
 import RefundRequestModal from "../components/RefundRequestModal";
 import RateExperienceModal from "../components/RateExperienceModal";
+import ProfileModal from "../components/ProfileModal";
 import { getAuthMode, getAuthUser, loadAuth, setAuthMode, setAuthToken, setAuthUser } from "../lib/auth";
 import { applyOrderStatuses, buildStatusPayload, getTrackedOrders } from "../lib/orders";
 import { uiText } from "../lib/ui";
@@ -41,6 +42,7 @@ export default function HomeScreen() {
   const [authOpen, setAuthOpen] = useState(false);
   const [authMode, setAuthModeState] = useState(getAuthMode());
   const [authUser, setAuthUserState] = useState(getAuthUser());
+  const [profileOpen, setProfileOpen] = useState(false);
   const [userNotice, setUserNotice] = useState<string | null>(null);
   const [refundOrder, setRefundOrder] = useState<any>(null);
   const [rateOrder, setRateOrder] = useState<any>(null);
@@ -258,6 +260,27 @@ export default function HomeScreen() {
     };
   }, [authMode]);
 
+  // Pull server profile name (user-editable) and persist it in authUser storage.
+  useEffect(() => {
+    if (authMode !== "authenticated") return;
+    let alive = true;
+    (async () => {
+      try {
+        const p = await apiGet<any>("/api/profile");
+        if (!alive) return;
+        const nextName = String(p?.name || "").trim();
+        if (!nextName) return;
+        const curr = getAuthUser() || authUser || {};
+        const merged = { ...curr, name: nextName };
+        setAuthUser(merged as any);
+        setAuthUserState(merged as any);
+      } catch {
+        // ignore profile fetch failures
+      }
+    })();
+    return () => { alive = false; };
+  }, [authMode]);
+
   const filtered = useMemo(() => {
     if (!items) return null;
     const q = query.trim().toLowerCase();
@@ -313,6 +336,7 @@ export default function HomeScreen() {
           onPrimaryChange={setPrimaryTab}
           authMode={authMode}
           authUser={authUser}
+          onProfilePress={() => setProfileOpen(true)}
           onAuthPress={() => setAuthOpen(true)}
           onLogout={() => {
             trackEvent({ type: "auth_logout", category: "core", name: authUser?.name, email: authUser?.email, phone: authUser?.phone, meta: { screen: primaryTab } });
@@ -321,6 +345,18 @@ export default function HomeScreen() {
         />
       </View>
       <AuthModal visible={authOpen} onClose={() => setAuthOpen(false)} onAuthed={(mode: any) => { setAuthModeState(mode); setAuthUserState(getAuthUser()); }} />
+      <ProfileModal
+        visible={profileOpen}
+        onClose={() => setProfileOpen(false)}
+        onSaved={(p: any) => {
+          const nextName = String(p?.name || "").trim();
+          if (!nextName) return;
+          const curr = getAuthUser() || authUser || {};
+          const merged = { ...curr, name: nextName };
+          setAuthUser(merged as any);
+          setAuthUserState(merged as any);
+        }}
+      />
       <RefundRequestModal visible={!!refundOrder} onClose={() => setRefundOrder(null)} order={refundOrder} onRequireAuth={() => setAuthOpen(true)} />
       <RateExperienceModal visible={!!rateOrder} onClose={() => setRateOrder(null)} order={rateOrder} onRequireAuth={() => setAuthOpen(true)} />
       <AIChatWidget onRequireAuth={() => setAuthOpen(true)} />
@@ -354,6 +390,7 @@ export default function HomeScreen() {
             onPrimaryChange={setPrimaryTab}
             authMode={authMode}
             authUser={authUser}
+            onProfilePress={() => setProfileOpen(true)}
             onAuthPress={() => setAuthOpen(true)}
             onLogout={() => {
               trackEvent({
@@ -378,6 +415,18 @@ export default function HomeScreen() {
           onAuthed={(mode: any) => {
             setAuthModeState(mode);
             setAuthUserState(getAuthUser());
+          }}
+        />
+        <ProfileModal
+          visible={profileOpen}
+          onClose={() => setProfileOpen(false)}
+          onSaved={(p: any) => {
+            const nextName = String(p?.name || "").trim();
+            if (!nextName) return;
+            const curr = getAuthUser() || authUser || {};
+            const merged = { ...curr, name: nextName };
+            setAuthUser(merged as any);
+            setAuthUserState(merged as any);
           }}
         />
         <AIChatWidget onRequireAuth={() => setAuthOpen(true)} />
@@ -481,6 +530,7 @@ export default function HomeScreen() {
             onPrimaryChange={setPrimaryTab}
             authMode={authMode}
             authUser={authUser}
+            onProfilePress={() => setProfileOpen(true)}
             onAuthPress={() => setAuthOpen(true)}
             onLogout={() => {
               trackEvent({
@@ -517,6 +567,18 @@ export default function HomeScreen() {
         onClose={() => setFiltersOpen(false)}
         initial={filters}
         onApply={(f: any) => { setFilters(f); setFiltersOpen(false); }}
+      />
+      <ProfileModal
+        visible={profileOpen}
+        onClose={() => setProfileOpen(false)}
+        onSaved={(p: any) => {
+          const nextName = String(p?.name || "").trim();
+          if (!nextName) return;
+          const curr = getAuthUser() || authUser || {};
+          const merged = { ...curr, name: nextName };
+          setAuthUser(merged as any);
+          setAuthUserState(merged as any);
+        }}
       />
 
       <AuthModal
