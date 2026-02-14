@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Animated, View, Text, TextInput, Pressable, Platform } from "react-native";
 
-const GOOGLE_MAPS_KEY = "AIzaSyC49LGA349edPGYvmN18hXhtrn8XMzC2pk";
+const GOOGLE_MAPS_KEY = String(process.env.EXPO_PUBLIC_GOOGLE_MAPS_KEY || "").trim();
 const MAX_RESULTS = 6;
 const AnimatedTextInput = Animated.createAnimatedComponent(TextInput);
 
@@ -69,6 +69,7 @@ export default function PlaceInput({
 
   useEffect(() => {
     if (Platform.OS !== "web") return;
+    if (!GOOGLE_MAPS_KEY) return;
     const g = (globalThis as any)?.google;
     if (g?.maps?.places) {
       setReady(true);
@@ -78,7 +79,7 @@ export default function PlaceInput({
     if (document.getElementById(id)) return;
     const s = document.createElement("script");
     s.id = id;
-    s.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_KEY}&libraries=places`;
+    s.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(GOOGLE_MAPS_KEY)}&libraries=places`;
     s.async = true;
     s.onload = () => setReady(true);
     document.head.appendChild(s);
@@ -92,6 +93,7 @@ export default function PlaceInput({
     if (debounceRef.current) clearTimeout(debounceRef.current);
     debounceRef.current = setTimeout(async () => {
       if (Platform.OS === "web") {
+        if (!GOOGLE_MAPS_KEY) return;
         if (!service) return;
         service.getPlacePredictions({ input: value }, (preds: any[]) => {
           const out = (preds || []).slice(0, MAX_RESULTS).map(p => ({
@@ -101,6 +103,7 @@ export default function PlaceInput({
           setItems(out);
         });
       } else {
+        if (!GOOGLE_MAPS_KEY) return;
         try {
           const url =
             `https://maps.googleapis.com/maps/api/place/autocomplete/json` +

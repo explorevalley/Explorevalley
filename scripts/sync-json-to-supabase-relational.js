@@ -160,6 +160,43 @@ async function main() {
     service_area_id: x.serviceAreaId || null, pricing: x.pricing || {}, status: x.status || "pending", created_at: x.createdAt || null
   })));
 
+  counts.ev_buses = await upsertIfExists("ev_buses", (db.busRoutes || []).map((x) => ({
+    id: x.id,
+    operator_name: x.operatorName,
+    operator_code: x.operatorCode || "",
+    from_city: x.fromCity,
+    from_code: x.fromCode || "",
+    to_city: x.toCity,
+    to_code: x.toCode || "",
+    departure_time: x.departureTime || "",
+    arrival_time: x.arrivalTime || "",
+    duration_text: x.durationText || "",
+    bus_type: x.busType || "Non AC",
+    fare: x.fare || 0,
+    total_seats: x.totalSeats || 20,
+    seat_layout: x.seatLayout || [],
+    service_dates: x.serviceDates || [],
+    seats_booked_by_date: x.seatsBookedByDate || {},
+    hero_image: x.heroImage || "",
+    active: x.active !== false,
+    created_at: x.createdAt || null
+  })));
+
+  counts.ev_bus_bookings = await upsertIfExists("ev_bus_bookings", (db.busBookings || []).map((x) => ({
+    id: x.id,
+    route_id: x.routeId,
+    user_name: x.userName,
+    phone: x.phone,
+    from_city: x.fromCity,
+    to_city: x.toCity,
+    travel_date: x.travelDate,
+    seats: x.seats || [],
+    fare_per_seat: x.farePerSeat || 0,
+    total_fare: x.totalFare || 0,
+    status: x.status || "pending",
+    created_at: x.createdAt || null
+  })));
+
   counts.ev_food_orders = await upsert("ev_food_orders", (db.foodOrders || []).map((x) => ({
     id: x.id, user_name: x.userName, phone: x.phone, items: x.items || [], delivery_address: x.deliveryAddress,
     special_instructions: x.specialInstructions || "", pricing: x.pricing || {}, status: x.status || "pending", order_time: x.orderTime || null

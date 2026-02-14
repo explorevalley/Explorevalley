@@ -348,6 +348,8 @@ async function loadSupabaseDatabase(): Promise<Database> {
     menuItems,
     bookings,
     cabBookings,
+    busRoutes,
+    busBookings,
     foodOrders,
     foodCarts,
     queries,
@@ -371,6 +373,8 @@ async function loadSupabaseDatabase(): Promise<Database> {
     supabaseSelectAll<any>("ev_menu_items"),
     supabaseSelectAll<any>("ev_bookings"),
     supabaseSelectAll<any>("ev_cab_bookings"),
+    supabaseSelectAllIfExists<any>("ev_buses"),
+    supabaseSelectAllIfExists<any>("ev_bus_bookings"),
     supabaseSelectAll<any>("ev_food_orders"),
     supabaseSelectAllIfExists<any>("ev_food_carts"),
     supabaseSelectAll<any>("ev_queries"),
@@ -677,6 +681,41 @@ async function loadSupabaseDatabase(): Promise<Database> {
       status: x.status || "pending",
       createdAt: toIsoStringOrNow(x.created_at)
     })),
+    busRoutes: busRoutes.map((x: any) => ({
+      id: String(x.id || ""),
+      operatorName: String(x.operator_name || ""),
+      operatorCode: String(x.operator_code || ""),
+      fromCity: String(x.from_city || ""),
+      fromCode: String(x.from_code || ""),
+      toCity: String(x.to_city || ""),
+      toCode: String(x.to_code || ""),
+      departureTime: String(x.departure_time || ""),
+      arrivalTime: String(x.arrival_time || ""),
+      durationText: String(x.duration_text || ""),
+      busType: String(x.bus_type || "Non AC"),
+      fare: Number(x.fare || 0),
+      totalSeats: Number(x.total_seats || 20),
+      seatLayout: Array.isArray(x.seat_layout) ? x.seat_layout : [],
+      serviceDates: Array.isArray(x.service_dates) ? x.service_dates : [],
+      seatsBookedByDate: (x.seats_booked_by_date && typeof x.seats_booked_by_date === "object") ? x.seats_booked_by_date : {},
+      heroImage: String(x.hero_image || ""),
+      active: x.active !== false,
+      createdAt: toIsoStringOrNow(x.created_at)
+    })),
+    busBookings: busBookings.map((x: any) => ({
+      id: String(x.id || ""),
+      routeId: String(x.route_id || ""),
+      userName: String(x.user_name || ""),
+      phone: String(x.phone || ""),
+      fromCity: String(x.from_city || ""),
+      toCity: String(x.to_city || ""),
+      travelDate: String(x.travel_date || ""),
+      seats: Array.isArray(x.seats) ? x.seats.map((s: any) => String(s || "")) : [],
+      farePerSeat: Number(x.fare_per_seat || 0),
+      totalFare: Number(x.total_fare || 0),
+      status: String(x.status || "pending"),
+      createdAt: toIsoStringOrNow(x.created_at)
+    })),
     foodOrders: foodOrders.map((x: any) => ({
       id: x.id,
       userId: String(x.user_id || ""),
@@ -838,6 +877,12 @@ async function writeSupabaseDatabase(db: Database) {
   await supabaseDeleteAll("ev_menu_items");
   await supabaseDeleteAll("ev_bookings");
   await supabaseDeleteAll("ev_cab_bookings");
+  try {
+    await supabaseDeleteAll("ev_buses");
+    await supabaseDeleteAll("ev_bus_bookings");
+  } catch (err) {
+    if (!isMissingTableError(err)) throw err;
+  }
   await supabaseDeleteAll("ev_food_orders");
   try {
     await supabaseDeleteAll("ev_food_carts");
@@ -1010,6 +1055,53 @@ async function writeSupabaseDatabase(db: Database) {
       datetime: x.datetime, passengers: x.passengers, vehicle_type: x.vehicleType, estimated_fare: x.estimatedFare,
       service_area_id: x.serviceAreaId || null, pricing: x.pricing || {}, status: x.status || "pending", created_at: x.createdAt || null
     })));
+  }
+  if (db.busRoutes.length) {
+    try {
+      await supabaseUpsert("ev_buses", db.busRoutes.map((x) => ({
+        id: x.id,
+        operator_name: x.operatorName,
+        operator_code: x.operatorCode || "",
+        from_city: x.fromCity,
+        from_code: x.fromCode || "",
+        to_city: x.toCity,
+        to_code: x.toCode || "",
+        departure_time: x.departureTime || "",
+        arrival_time: x.arrivalTime || "",
+        duration_text: x.durationText || "",
+        bus_type: x.busType || "Non AC",
+        fare: Number(x.fare || 0),
+        total_seats: Number(x.totalSeats || 20),
+        seat_layout: x.seatLayout || [],
+        service_dates: x.serviceDates || [],
+        seats_booked_by_date: x.seatsBookedByDate || {},
+        hero_image: x.heroImage || "",
+        active: x.active !== false,
+        created_at: x.createdAt || nowISO()
+      })));
+    } catch (err) {
+      if (!isMissingTableError(err)) throw err;
+    }
+  }
+  if (db.busBookings.length) {
+    try {
+      await supabaseUpsert("ev_bus_bookings", db.busBookings.map((x) => ({
+        id: x.id,
+        route_id: x.routeId,
+        user_name: x.userName,
+        phone: x.phone,
+        from_city: x.fromCity,
+        to_city: x.toCity,
+        travel_date: x.travelDate,
+        seats: x.seats || [],
+        fare_per_seat: Number(x.farePerSeat || 0),
+        total_fare: Number(x.totalFare || 0),
+        status: x.status || "pending",
+        created_at: x.createdAt || nowISO()
+      })));
+    } catch (err) {
+      if (!isMissingTableError(err)) throw err;
+    }
   }
   if (db.foodOrders.length) {
     await supabaseUpsertWithOptionalPriceFields("ev_food_orders", db.foodOrders.map((x) => ({

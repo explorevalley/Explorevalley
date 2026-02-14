@@ -4,7 +4,7 @@ import { Modal, Platform, Pressable, Text, View } from "react-native";
 // @ts-ignore - optional dependency for native
 import { WebView } from "react-native-webview";
 
-const GOOGLE_MAPS_KEY = "AIzaSyC49LGA349edPGYvmN18hXhtrn8XMzC2pk";
+const GOOGLE_MAPS_KEY = String(process.env.EXPO_PUBLIC_GOOGLE_MAPS_KEY || "").trim();
 
 type PickResult = {
   lat: number;
@@ -36,6 +36,7 @@ function WebMapPicker({ visible, onClose, onPick }: { visible: boolean; onClose:
 
   useEffect(() => {
     if (!visible) return;
+    if (!GOOGLE_MAPS_KEY) return;
     const g = (globalThis as any)?.google;
     if (g?.maps?.places || g?.maps) {
       setReady(true);
@@ -45,7 +46,7 @@ function WebMapPicker({ visible, onClose, onPick }: { visible: boolean; onClose:
     if (document.getElementById(id)) return;
     const s = document.createElement("script");
     s.id = id;
-    s.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_KEY}&libraries=places`;
+    s.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(GOOGLE_MAPS_KEY)}&libraries=places`;
     s.async = true;
     s.onload = () => setReady(true);
     document.head.appendChild(s);
@@ -89,9 +90,19 @@ function WebMapPicker({ visible, onClose, onPick }: { visible: boolean; onClose:
           </Pressable>
         </View>
         <View style={{ flex: 1, borderTopWidth: 1, borderTopColor: "#222" }}>
-          <View ref={mapRef} style={{ flex: 1 }} />
+          {GOOGLE_MAPS_KEY ? (
+            <View ref={mapRef} style={{ flex: 1 }} />
+          ) : (
+            <View style={{ flex: 1, alignItems: "center", justifyContent: "center", padding: 16 }}>
+              <Text style={{ color: "#f66", textAlign: "center" }}>
+                Map is unavailable. Missing EXPO_PUBLIC_GOOGLE_MAPS_KEY.
+              </Text>
+            </View>
+          )}
         </View>
-        <Text style={{ color: "#888", padding: 12 }}>Tap anywhere on the map to drop a pin.</Text>
+        <Text style={{ color: "#888", padding: 12 }}>
+          {GOOGLE_MAPS_KEY ? "Tap anywhere on the map to drop a pin." : "Configure Google Maps key in environment to enable map picker."}
+        </Text>
       </View>
     </Modal>
   );
@@ -107,7 +118,7 @@ function NativeMapPicker({ visible, onClose, onPick }: { visible: boolean; onClo
       html, body, #map { margin:0; padding:0; width:100%; height:100%; background:#000; }
       .hint { position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%); color: #fff; background: rgba(0,0,0,0.6); padding: 6px 10px; border-radius: 999px; font-family: sans-serif; font-size: 12px; }
     </style>
-    <script src="https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_KEY}&libraries=places"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(GOOGLE_MAPS_KEY)}&libraries=places"></script>
   </head>
   <body>
     <div id="map"></div>
@@ -147,21 +158,29 @@ function NativeMapPicker({ visible, onClose, onPick }: { visible: boolean; onClo
           </Pressable>
         </View>
         <View style={{ flex: 1, borderTopWidth: 1, borderTopColor: "#222" }}>
-          <WebView
-            originWhitelist={["*"]}
-            source={{ html }}
-            onMessage={(e: any) => {
-              try {
-                const data = JSON.parse(e.nativeEvent.data);
-                if (data?.lat && data?.lng) {
-                  onPick(data);
-                  onClose();
+          {GOOGLE_MAPS_KEY ? (
+            <WebView
+              originWhitelist={["*"]}
+              source={{ html }}
+              onMessage={(e: any) => {
+                try {
+                  const data = JSON.parse(e.nativeEvent.data);
+                  if (data?.lat && data?.lng) {
+                    onPick(data);
+                    onClose();
+                  }
+                } catch {
+                  // ignore
                 }
-              } catch {
-                // ignore
-              }
-            }}
-          />
+              }}
+            />
+          ) : (
+            <View style={{ flex: 1, alignItems: "center", justifyContent: "center", padding: 16 }}>
+              <Text style={{ color: "#f66", textAlign: "center" }}>
+                Map is unavailable. Missing EXPO_PUBLIC_GOOGLE_MAPS_KEY.
+              </Text>
+            </View>
+          )}
         </View>
       </View>
     </Modal>

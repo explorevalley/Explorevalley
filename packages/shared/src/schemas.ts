@@ -360,6 +360,48 @@ export const CabBookingSchema = z.object({
   createdAt: z.string()
 });
 
+export const BusSeatSchema = z.object({
+  code: z.string().min(1),
+  seatType: z.string().default("regular")
+});
+
+export const BusRouteSchema = z.object({
+  id: z.string(),
+  operatorName: z.string().min(2),
+  operatorCode: z.string().default(""),
+  fromCity: z.string().min(2),
+  fromCode: z.string().default(""),
+  toCity: z.string().min(2),
+  toCode: z.string().default(""),
+  departureTime: z.string().default(""),
+  arrivalTime: z.string().default(""),
+  durationText: z.string().default(""),
+  busType: z.string().default("Non AC"),
+  fare: z.number().nonnegative(),
+  totalSeats: z.number().int().positive().default(20),
+  seatLayout: z.array(BusSeatSchema).default([]),
+  serviceDates: z.array(z.string()).default([]),
+  seatsBookedByDate: z.record(z.array(z.string())).default({}),
+  heroImage: z.string().default(""),
+  active: z.boolean().default(true),
+  createdAt: z.string()
+});
+
+export const BusBookingSchema = z.object({
+  id: z.string(),
+  routeId: z.string(),
+  userName: z.string().min(2),
+  phone: z.string().min(8),
+  fromCity: z.string().min(2),
+  toCity: z.string().min(2),
+  travelDate: z.string(),
+  seats: z.array(z.string()).min(1),
+  farePerSeat: z.number().nonnegative(),
+  totalFare: z.number().nonnegative(),
+  status: z.enum(["pending", "confirmed", "cancelled", "completed"]).default("pending"),
+  createdAt: z.string()
+});
+
 export const MenuItemSchema = z.object({
   id: z.string(),
   restaurantId: z.string(),
@@ -597,6 +639,8 @@ export const DatabaseSchema = z.object({
   restaurants: z.array(RestaurantSchema).default([]),
   bookings: z.array(BookingSchema).default([]),
   cabBookings: z.array(CabBookingSchema).default([]),
+  busRoutes: z.array(BusRouteSchema).default([]),
+  busBookings: z.array(BusBookingSchema).default([]),
   foodOrders: z.array(FoodOrderSchema).default([]),
   carts: z.array(CartSchema).default([]),
   queries: z.array(QuerySchema).default([]),
@@ -650,6 +694,8 @@ export type Hotel = z.infer<typeof HotelSchema>;
 export type Restaurant = z.infer<typeof RestaurantSchema>;
 export type Booking = z.infer<typeof BookingSchema>;
 export type CabBooking = z.infer<typeof CabBookingSchema>;
+export type BusRoute = z.infer<typeof BusRouteSchema>;
+export type BusBooking = z.infer<typeof BusBookingSchema>;
 export type FoodOrder = z.infer<typeof FoodOrderSchema>;
 export type Query = z.infer<typeof QuerySchema>;
 export type MenuItem = z.infer<typeof MenuItemSchema>;

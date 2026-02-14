@@ -1,273 +1,397 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Animated, View, Text, TextInput, Pressable, ScrollView } from "react-native";
-import { apiGet, apiPost, trackEvent } from "../lib/api";
-import PlaceInput from "../components/PlaceInput";
+import { View, Text, TextInput, Pressable, ScrollView } from "react-native";
+import { apiGet, apiPost } from "../lib/api";
 import { getAuthMode } from "../lib/auth";
 import { trackOrder } from "../lib/orders";
-const AnimatedTextInput = Animated.createAnimatedComponent(TextInput);
+
+function safeText(v: any) {
+  return v === undefined || v === null ? "" : String(v).trim();
+}
+
+function dayLabel(dateText: string) {
+  const d = new Date(dateText);
+  if (!Number.isFinite(d.getTime())) return dateText;
+  return d.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+}
+
+function nextDays(baseDate: string, pad = 2) {
+  const d0 = new Date(baseDate);
+  if (!Number.isFinite(d0.getTime())) return [baseDate];
+  const list: string[] = [];
+  for (let i = -pad; i <= pad; i += 1) {
+    const d = new Date(d0);
+    d.setDate(d.getDate() + i);
+    list.push(d.toISOString().slice(0, 10));
+  }
+  return list;
+}
 
 export default function CabBookingScreen({ onClose }: { onClose?: () => void }) {
-  const [userName, setUserName] = useState("");
+  const [mode, setMode] = useState<"bus" | "cab">("bus");
+  const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [pickupLocation, setPickupLocation] = useState("");
-  const [dropLocation, setDropLocation] = useState("");
-  const [datetime, setDatetime] = useState("2026-03-15 10:30");
-  const [passengers, setPassengers] = useState("2");
-  const [meta, setMeta] = useState<any>(null);
+  const [from, setFrom] = useState("");
+  const [to, setTo] = useState("");
+  const [journeyDate, setJourneyDate] = useState(new Date().toISOString().slice(0, 10));
+  const [returnDate, setReturnDate] = useState("");
+  const [passengers, setPassengers] = useState("1");
   const [serviceAreaId, setServiceAreaId] = useState("");
+  const [meta, setMeta] = useState<any>(null);
 
   const [busy, setBusy] = useState(false);
-  const [result, setResult] = useState<any>(null);
-  const [err, setErr] = useState<string | null>(null);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+
+  const [busRoutes, setBusRoutes] = useState<any[]>([]);
+  const [activeDate, setActiveDate] = useState(journeyDate);
+  const [openRouteId, setOpenRouteId] = useState("");
+  const [seatData, setSeatData] = useState<any>(null);
+  const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
+
+  const [cabResults, setCabResults] = useState<any[]>([]);
+  const [selectedCabId, setSelectedCabId] = useState("");
 
   useEffect(() => {
-    apiGet<any>("/api/meta")
-      .then((data) => {
-        setMeta(data);
-        const areas = (data?.serviceAreas || []).filter((a: any) => a.enabled);
-        if (areas.length && !serviceAreaId) {
-          setServiceAreaId(areas[0].id);
-        }
-      })
-      .catch(() => {
-        setMeta(null);
-      });
+    apiGet<any>("/api/meta").then((x) => {
+      setMeta(x || null);
+      const areas = Array.isArray(x?.serviceAreas) ? x.serviceAreas.filter((a: any) => a.enabled) : [];
+      if (areas[0]?.id) setServiceAreaId(String(areas[0].id));
+    }).catch(() => setMeta(null));
   }, []);
 
-  const serviceAreas = (meta?.serviceAreas || []).filter((a: any) => a.enabled);
-  const cabPricing = meta?.cabPricing;
-  const cabLocations = Array.isArray(meta?.cabLocations) ? meta.cabLocations : [];
-  const paxCount = Math.max(1, parseInt(passengers || "1", 10));
+  const pax = Math.max(1, Number(passengers || 1));
+  const activeCab = useMemo(() => cabResults.find((x) => safeText(x?.providerId) === safeText(selectedCabId)) || null, [cabResults, selectedCabId]);
+  const dateTabs = useMemo(() => nextDays(activeDate || journeyDate, 2), [activeDate, journeyDate]);
 
-  const payload = useMemo(() => {
-    return {
-      userName,
-      phone,
-      pickupLocation,
-      dropLocation,
-      datetime,
-      passengers: paxCount,
-      serviceAreaId
-    };
-  }, [userName, phone, pickupLocation, dropLocation, datetime, paxCount, serviceAreaId]);
+  async function runSearch() {
+    setError("");
+    setSuccess("");
+    setOpenRouteId("");
+    setSeatData(null);
+    setSelectedSeats([]);
+    setCabResults([]);
+    setBusRoutes([]);
 
-  async function submit() {
-    setErr(null);
-    setResult(null);
-    if (getAuthMode() !== "authenticated") {
-      setErr("Please login with Google before placing a cab booking.");
+    if (!from || !to || !journeyDate) {
+      setError("Enter from, to and journey date.");
       return;
     }
-    trackEvent({
-      type: "cab_booking_intent",
-      category: "transaction",
-      name: userName,
-      phone,
-      meta: {
-        passengers: paxCount,
-        estimatedFare: "computed_by_backend",
-        paymentMethod: "pending"
-      }
-    });
-    trackEvent({
-      type: "ride_route_selected",
-      category: "location",
-      name: userName,
-      phone,
-      meta: {
-        pickupDropLocations: [pickupLocation, dropLocation].filter(Boolean),
-        routeHistory: [{ from: pickupLocation, to: dropLocation, at: datetime }]
-      }
-    });
+    if (from.toLowerCase() === to.toLowerCase()) {
+      setError("From and To cannot be same.");
+      return;
+    }
     setBusy(true);
     try {
-      const r = await apiPost<{ success: boolean; id: string }>("/api/cab-bookings", payload);
-      setResult(r);
-      trackOrder("cab", r.id);
+      if (mode === "bus") {
+        const qs = new URLSearchParams({ from, to, journeyDate, passengers: String(pax) }).toString();
+        const r = await apiGet<{ routes: any[] }>(`/api/buses/search?${qs}`);
+        setBusRoutes(Array.isArray(r?.routes) ? r.routes : []);
+        setActiveDate(journeyDate);
+      } else {
+        const qs = new URLSearchParams({
+          pickupLocation: from,
+          dropLocation: to,
+          datetime: `${journeyDate} 10:00`,
+          passengers: String(pax),
+          ...(serviceAreaId ? { serviceAreaId } : {})
+        }).toString();
+        const r = await apiGet<{ results: any[] }>(`/api/cab-bookings/search?${qs}`);
+        const list = Array.isArray(r?.results) ? r.results : [];
+        setCabResults(list);
+        setSelectedCabId(safeText(list[0]?.providerId));
+      }
     } catch (e: any) {
-      setErr(String(e?.message || e));
+      setError(String(e?.message || e));
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function openSeats(routeId: string) {
+    setOpenRouteId((prev) => (prev === routeId ? "" : routeId));
+    if (openRouteId === routeId) {
+      setSeatData(null);
+      setSelectedSeats([]);
+      return;
+    }
+    setBusy(true);
+    try {
+      const qs = new URLSearchParams({ journeyDate: activeDate }).toString();
+      const r = await apiGet<any>(`/api/buses/${routeId}/seats?${qs}`);
+      setSeatData(r);
+      setSelectedSeats([]);
+    } catch (e: any) {
+      setError(String(e?.message || e));
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function bookBus() {
+    setError("");
+    setSuccess("");
+    if (getAuthMode() !== "authenticated") {
+      setError("Please login with Google before booking.");
+      return;
+    }
+    if (!openRouteId || !selectedSeats.length) {
+      setError("Select at least one seat.");
+      return;
+    }
+    if (!name || !phone) {
+      setError("Enter your name and phone.");
+      return;
+    }
+    setBusy(true);
+    try {
+      const r = await apiPost<{ id: string }>("/api/bus-bookings/book", {
+        routeId: openRouteId,
+        journeyDate: activeDate,
+        seats: selectedSeats,
+        userName: name,
+        phone
+      });
+      setSuccess(`Bus booking submitted. ID: ${r.id}`);
+    } catch (e: any) {
+      setError(String(e?.message || e));
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function bookCab() {
+    setError("");
+    setSuccess("");
+    if (getAuthMode() !== "authenticated") {
+      setError("Please login with Google before booking.");
+      return;
+    }
+    if (!activeCab) {
+      setError("Select a cab option.");
+      return;
+    }
+    if (!name || !phone) {
+      setError("Enter your name and phone.");
+      return;
+    }
+    setBusy(true);
+    try {
+      const r = await apiPost<{ id: string }>("/api/cab-bookings", {
+        userName: name,
+        phone,
+        pickupLocation: from,
+        dropLocation: to,
+        datetime: `${journeyDate} 10:00`,
+        passengers: pax,
+        serviceAreaId: serviceAreaId || undefined,
+        providerId: activeCab.providerId,
+        vehicleType: activeCab.vehicleType
+      });
+      trackOrder("cab", r.id);
+      setSuccess(`Cab booking submitted. ID: ${r.id}`);
+    } catch (e: any) {
+      setError(String(e?.message || e));
     } finally {
       setBusy(false);
     }
   }
 
   return (
-    <ScrollView contentContainerStyle={{ padding: 12, paddingBottom: 16 }}>
-      <View style={{ backgroundColor: "#0b0b0b", borderRadius: 14, padding: 12, borderWidth: 1, borderColor: "#1f1f1f", maxWidth: 1280, alignSelf: "center", width: "100%" }}>
-        <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
-          <Text style={{ color: "#fff", fontSize: 25, fontWeight: "800" }}>Book a Cab</Text>
-          {onClose ? (
-            <HoverScale onPress={onClose} style={{ paddingHorizontal: 8, paddingVertical: 4, borderRadius: 999, borderWidth: 1, borderColor: "#222" }}>
-              <Text style={{ color: "#fff", fontWeight: "700", fontSize: 22 }}>Close</Text>
-            </HoverScale>
-          ) : null}
-        </View>
-        <Text style={{ color: "#9b9b9b", marginTop: 4, fontSize: 20, fontWeight: "700" }}>
-          Fast pickups, verified drivers, and transparent pricing.
-        </Text>
+    <ScrollView style={{ flex: 1, backgroundColor: "#eceef2" }} contentContainerStyle={{ padding: 12, gap: 10, paddingBottom: 30 }}>
+      <View style={{ flexDirection: "row", gap: 8 }}>
+        <ModeButton title="Buses" active={mode === "bus"} onPress={() => setMode("bus")} />
+        <ModeButton title="Cabs" active={mode === "cab"} onPress={() => setMode("cab")} />
+        {onClose ? <ModeButton title="Close" active={false} onPress={onClose} /> : null}
+      </View>
 
-        <View style={{ marginTop: 10, gap: 8 }}>
-          <View style={{ flexDirection: "row", gap: 8, width: "92%", alignSelf: "center" }}>
-            <View style={{ flex: 1 }}>
-              <Field label="Name" value={userName} onChangeText={setUserName} />
-            </View>
-            <View style={{ flex: 1 }}>
-              <Field label="Phone" value={phone} onChangeText={setPhone} keyboardType="phone-pad" />
-            </View>
-          </View>
-          {serviceAreas.length > 0 && (
-            <View style={{ width: "92%", alignSelf: "center" }}>
-              <Text style={{ color: "#ddd", marginBottom: 4, fontSize: 22, fontWeight: "700" }}>Service Area</Text>
-              <View style={{ borderRadius: 10, borderWidth: 1, borderColor: "#222", backgroundColor: "#141414", overflow: "hidden" }}>
-                {serviceAreas.map((a: any, i: number) => (
-                  <Pressable
-                    key={a.id}
-                    onPress={() => setServiceAreaId(a.id)}
-                    style={{
-                      paddingHorizontal: 12,
-                      paddingVertical: 8,
-                      borderBottomWidth: i < serviceAreas.length - 1 ? 1 : 0,
-                      borderBottomColor: "#222",
-                      backgroundColor: serviceAreaId === a.id ? "#1a3a1a" : "transparent"
-                    }}
-                  >
-                    <Text style={{ color: serviceAreaId === a.id ? "#f5f2e8" : "#aaa", fontWeight: "700", fontSize: 20 }}>
-                      {a.name} · {a.city}
-                    </Text>
+      <View style={{ backgroundColor: "#f2f2f3", borderWidth: 1, borderColor: "#d5d8dc", borderRadius: 12, padding: 12 }}>
+        <Text style={{ fontSize: 32, fontWeight: "800", color: "#111", marginBottom: 8 }}>BUY TICKET</Text>
+        <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8 }}>
+          <InputField label="From" value={from} onChangeText={setFrom} placeholder="Please Select" width={280} />
+          <SwapButton onPress={() => { const a = from; setFrom(to); setTo(a); }} />
+          <InputField label="To" value={to} onChangeText={setTo} placeholder="Please Select" width={280} />
+          <InputField label="Journey Date" value={journeyDate} onChangeText={setJourneyDate} placeholder="YYYY-MM-DD" width={240} />
+          <InputField label="Return Date (Optional)" value={returnDate} onChangeText={setReturnDate} placeholder="YYYY-MM-DD" width={240} />
+          <InputField label="Pax" value={passengers} onChangeText={setPassengers} placeholder="1" width={90} />
+          <Pressable onPress={runSearch} style={{ alignSelf: "flex-end", backgroundColor: "#ff430a", borderRadius: 10, paddingHorizontal: 26, paddingVertical: 14, minHeight: 54 }}>
+            <Text style={{ color: "#fff", fontWeight: "800", fontSize: 32 }}>{busy ? "..." : "Search"}</Text>
+          </Pressable>
+        </View>
+        <View style={{ marginTop: 8, flexDirection: "row", gap: 8 }}>
+          <InputField label="Name" value={name} onChangeText={setName} placeholder="Passenger name" width={260} />
+          <InputField label="Phone" value={phone} onChangeText={setPhone} placeholder="Phone number" width={220} />
+        </View>
+      </View>
+
+      {mode === "bus" ? (
+        <>
+          {busRoutes.length > 0 ? (
+            <View style={{ backgroundColor: "#b9cbe8", borderRadius: 8, borderWidth: 1, borderColor: "#9eb6dd", overflow: "hidden" }}>
+              <View style={{ flexDirection: "row" }}>
+                <View style={{ width: 190, backgroundColor: "#8fb3e8", padding: 10 }}>
+                  <Text style={{ color: "#ff3c00", fontWeight: "800", fontSize: 44 }}>Departure Bus</Text>
+                  <Text style={{ color: "#111", fontSize: 34 }}>{dayLabel(activeDate)}</Text>
+                </View>
+                <View style={{ flex: 1, padding: 10, flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
+                  <Text style={{ fontSize: 42, fontWeight: "700", color: "#111" }}>{from.toUpperCase()}</Text>
+                  <Text style={{ fontSize: 28, fontWeight: "700", color: "#3568b8" }}>BUS</Text>
+                  <Text style={{ fontSize: 42, fontWeight: "700", color: "#111" }}>{to.toUpperCase()}</Text>
+                </View>
+              </View>
+              <View style={{ backgroundColor: "#d9d9d9", padding: 8, flexDirection: "row", gap: 6 }}>
+                {dateTabs.map((d) => (
+                  <Pressable key={d} onPress={() => setActiveDate(d)} style={{ paddingVertical: 7, paddingHorizontal: 12, borderRadius: 8, borderWidth: 1, borderColor: d === activeDate ? "#4b88ff" : "#c8c8c8", backgroundColor: d === activeDate ? "#eef4ff" : "#efefef" }}>
+                    <Text style={{ color: d === activeDate ? "#3b78eb" : "#444", fontSize: 28 }}>{dayLabel(d)}</Text>
                   </Pressable>
                 ))}
               </View>
             </View>
-          )}
-          <View style={{ width: "92%", alignSelf: "center" }}>
-            <PlaceInput
-              label="Pickup Location"
-              value={pickupLocation}
-              onChangeText={setPickupLocation}
-              suggestions={cabLocations}
-              labelStyle={{ fontSize: 22, fontWeight: "700" }}
-              inputStyle={{ fontSize: 22, fontWeight: "700", paddingVertical: 6 }}
-            />
-          </View>
-          <View style={{ width: "92%", alignSelf: "center" }}>
-            <PlaceInput
-              label="Drop Location"
-              value={dropLocation}
-              onChangeText={setDropLocation}
-              suggestions={cabLocations}
-              labelStyle={{ fontSize: 22, fontWeight: "700" }}
-              inputStyle={{ fontSize: 22, fontWeight: "700", paddingVertical: 6 }}
-            />
-          </View>
-          <View style={{ flexDirection: "row", gap: 8, width: "92%", alignSelf: "center" }}>
-            <View style={{ flex: 1.2 }}>
-              <Field label="Date & Time" value={datetime} onChangeText={setDatetime} />
-            </View>
-            <View style={{ flex: 0.8 }}>
-              <Field label="Passengers" value={passengers} onChangeText={setPassengers} keyboardType="numeric" />
-            </View>
-          </View>{(cabPricing || meta?.policies) && (
-            <View style={{ backgroundColor: "#0f0f0f", borderRadius: 12, padding: 10, borderWidth: 1, borderColor: "#222", width: "92%", alignSelf: "center" }}>
-              {/* Pricing formula intentionally hidden in UI. */}
-            </View>
-          )}
-        </View>
+          ) : null}
 
-        {err ? <Text style={{ color: "#ff6b6b", marginTop: 10, fontSize: 20, fontWeight: "700" }}>{err}</Text> : null}
-        {result ? (
-          <Text style={{ color: "#9ef1a6", marginTop: 10, fontSize: 20, fontWeight: "700" }}>
-            Submitted! ID: {result.id}
-            {typeof result.estimatedFare === "number" ? ` | Fare: INR ${result.estimatedFare.toFixed(0)}` : ""}
-          </Text>
-        ) : null}
+          {busRoutes.map((route) => (
+            <View key={route.id} style={{ backgroundColor: "#f7f7f7", borderRadius: 12, borderWidth: 1, borderColor: "#e3e3e3", padding: 12 }}>
+              <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
+                <View style={{ flex: 1 }}>
+                  <Text style={{ fontSize: 52, fontWeight: "800", color: "#ff3c00" }}>{safeText(route.operatorName)}</Text>
+                  <Text style={{ fontSize: 30, color: "#666" }}>{safeText(route.operatorCode)}</Text>
+                </View>
+                <View style={{ flex: 1.2 }}>
+                  <Text style={{ fontSize: 34, color: "#111" }}>{safeText(route.fromCity)} ({safeText(route.departureTime)})</Text>
+                  <Text style={{ fontSize: 34, color: "#111" }}>{safeText(route.toCity)} ({safeText(route.arrivalTime)})</Text>
+                  <Text style={{ fontSize: 34, color: "#111" }}>Duration: {safeText(route.durationText)}</Text>
+                </View>
+                <View style={{ width: 130, alignItems: "center" }}>
+                  <Text style={{ fontSize: 30, color: "#cf8b15", backgroundColor: "#fff2db", paddingHorizontal: 8, borderRadius: 6 }}>{safeText(route.busType)}</Text>
+                </View>
+                <View style={{ width: 150, alignItems: "center" }}>
+                  <Text style={{ fontSize: 44, color: "#1ca14c", fontWeight: "800" }}>{safeText(route.seatsLabel)}</Text>
+                  <Text style={{ fontSize: 32, color: "#444" }}>Seats</Text>
+                </View>
+                <View style={{ width: 130, alignItems: "center" }}>
+                  <Text style={{ fontSize: 54, color: "#ff3c00", fontWeight: "900" }}>${Number(route.fare || 0).toFixed(2)}</Text>
+                  <Text style={{ fontSize: 28, color: "#444" }}>Fare/Seat</Text>
+                </View>
+                <Pressable onPress={() => openSeats(route.id)} style={{ backgroundColor: "#ff5b33", borderRadius: 8, paddingHorizontal: 16, paddingVertical: 10 }}>
+                  <Text style={{ color: "#fff", fontWeight: "800", fontSize: 30 }}>{openRouteId === route.id ? "Close Seat" : "View Seats"}</Text>
+                </Pressable>
+              </View>
 
-        <HoverScale
-          disabled={busy}
-          onPress={submit}
-          style={{
-            marginTop: 12,
-            backgroundColor: "#f5f2e8",
-            paddingVertical: 10,
-            paddingHorizontal: 24,
-            borderRadius: 12,
-            alignItems: "center",
-            alignSelf: "flex-start",
-            opacity: busy ? 0.6 : 1,
-          }}
-        >
-          <Text style={{ fontWeight: "800", color: "#1c1c1c", fontSize: 22 }}>{busy ? "Submitting…" : "Confirm Cab Booking"}</Text>
-        </HoverScale>
-      </View>
+              {openRouteId === route.id && seatData ? (
+                <View style={{ marginTop: 12, borderWidth: 1, borderColor: "#d2d2d2", borderRadius: 8, padding: 10, backgroundColor: "#f3f3f3" }}>
+                  <View style={{ flexDirection: "row", gap: 10 }}>
+                    <View style={{ width: 320, borderWidth: 1, borderColor: "#ddd", borderRadius: 8, padding: 10, backgroundColor: "#fff" }}>
+                      <Text style={{ fontSize: 28, marginBottom: 6, color: "#777" }}>Wheel</Text>
+                      <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8 }}>
+                        {(seatData.seatLayout || []).map((s: any) => {
+                          const code = safeText(s?.code);
+                          const booked = (seatData.bookedSeats || []).includes(code);
+                          const selected = selectedSeats.includes(code);
+                          return (
+                            <Pressable
+                              key={code}
+                              disabled={booked}
+                              onPress={() => {
+                                setSelectedSeats((prev) => selected ? prev.filter((x) => x !== code) : [...prev, code]);
+                              }}
+                              style={{
+                                width: 64,
+                                height: 44,
+                                borderRadius: 8,
+                                borderWidth: 1,
+                                borderColor: booked ? "#ddd" : selected ? "#ff5b33" : "#cfcfcf",
+                                backgroundColor: booked ? "#f1f1f1" : selected ? "#ffe8e1" : "#fff",
+                                alignItems: "center",
+                                justifyContent: "center"
+                              }}
+                            >
+                              <Text style={{ fontSize: 28, color: booked ? "#aaa" : "#333", fontWeight: "700" }}>{code}</Text>
+                            </Pressable>
+                          );
+                        })}
+                      </View>
+                    </View>
+                    <View style={{ flex: 1, borderWidth: 1, borderColor: "#ddd", borderRadius: 8, backgroundColor: "#fff" }}>
+                      <Row label="Seat Type" value="Regular" />
+                      <Row label="Seat" value={selectedSeats.join(", ") || "-"} />
+                      <Row label="Price" value={`$${Number((seatData.fare || 0) * selectedSeats.length).toFixed(2)}`} />
+                      <Row label="Action" value={selectedSeats.length ? "Ready" : "-"} />
+                      <View style={{ borderTopWidth: 1, borderTopColor: "#ececec", padding: 10 }}>
+                        <Text style={{ fontSize: 34, fontWeight: "800", color: "#111" }}>
+                          Ticket Sub total: <Text style={{ color: "#ff3c00" }}>${Number((seatData.fare || 0) * selectedSeats.length).toFixed(2)}</Text>
+                        </Text>
+                        <Pressable onPress={bookBus} style={{ marginTop: 8, alignSelf: "flex-start", backgroundColor: "#ff430a", borderRadius: 8, paddingHorizontal: 14, paddingVertical: 8 }}>
+                          <Text style={{ color: "#fff", fontWeight: "800", fontSize: 28 }}>{busy ? "Booking..." : "Book Seats"}</Text>
+                        </Pressable>
+                      </View>
+                    </View>
+                  </View>
+                </View>
+              ) : null}
+            </View>
+          ))}
+        </>
+      ) : (
+        <>
+          {cabResults.map((cab) => {
+            const active = safeText(cab?.providerId) === safeText(selectedCabId);
+            return (
+              <Pressable key={safeText(cab?.providerId)} onPress={() => setSelectedCabId(safeText(cab?.providerId))} style={{ backgroundColor: active ? "#fff1ec" : "#fff", borderWidth: 1, borderColor: active ? "#ff5b33" : "#e4e4e4", borderRadius: 10, padding: 10 }}>
+                <Text style={{ fontSize: 34, fontWeight: "800", color: "#111" }}>{safeText(cab?.providerName)} · {safeText(cab?.vehicleType)}</Text>
+                <Text style={{ fontSize: 30, color: "#555" }}>{safeText(cab?.pickupLocation)} → {safeText(cab?.dropLocation)} | {safeText(cab?.distanceKm)} km</Text>
+                <Text style={{ fontSize: 42, color: "#ff3c00", fontWeight: "900" }}>${Number(cab?.totalAmount || 0).toFixed(2)}</Text>
+              </Pressable>
+            );
+          })}
+          {cabResults.length ? (
+            <Pressable onPress={bookCab} style={{ alignSelf: "flex-start", backgroundColor: "#ff430a", borderRadius: 8, paddingHorizontal: 18, paddingVertical: 10 }}>
+              <Text style={{ color: "#fff", fontWeight: "800", fontSize: 30 }}>{busy ? "Booking..." : "Book Cab"}</Text>
+            </Pressable>
+          ) : null}
+        </>
+      )}
 
+      {error ? <Text style={{ color: "#e33", fontSize: 28, fontWeight: "700" }}>{error}</Text> : null}
+      {success ? <Text style={{ color: "#1d9b4e", fontSize: 28, fontWeight: "700" }}>{success}</Text> : null}
     </ScrollView>
   );
 }
 
-function Field({ label, ...props }: any) {
-  const focusAnim = React.useRef(new Animated.Value(0)).current;
-  function onFocus(e: any) {
-    Animated.timing(focusAnim, { toValue: 1, duration: 160, useNativeDriver: false }).start();
-    props?.onFocus?.(e);
-  }
-  function onBlur(e: any) {
-    Animated.timing(focusAnim, { toValue: 0, duration: 160, useNativeDriver: false }).start();
-    props?.onBlur?.(e);
-  }
+function InputField({ label, value, onChangeText, placeholder, width = 240 }: any) {
   return (
-    <View>
-      <Text style={{ color: "#ddd", marginBottom: 4, fontSize: 22, fontWeight: "700" }}>{label}</Text>
-      <AnimatedTextInput
-        {...props}
-        onFocus={onFocus}
-        onBlur={onBlur}
-        placeholderTextColor="#666"
-        style={{
-          backgroundColor: "#141414",
-          color: "#fff",
-          paddingHorizontal: 12,
-          paddingVertical: 6,
-          borderRadius: 10,
-          borderWidth: 1,
-          borderColor: focusAnim.interpolate({ inputRange: [0, 1], outputRange: ["#222", "#f5f2e8"] }),
-          fontSize: 22,
-          fontWeight: "700",
-        }}
+    <View style={{ width }}>
+      <Text style={{ fontSize: 26, color: "#3a3a3a", marginBottom: 4 }}>{label}</Text>
+      <TextInput
+        value={value}
+        onChangeText={onChangeText}
+        placeholder={placeholder}
+        placeholderTextColor="#9d9d9d"
+        style={{ height: 48, borderWidth: 1, borderColor: "#919191", borderRadius: 8, backgroundColor: "#f4f4f4", paddingHorizontal: 10, fontSize: 24, color: "#222" }}
       />
     </View>
   );
 }
 
-function HoverScale({ children, onPress, style, disabled }: any) {
-  const scale = React.useRef(new Animated.Value(1)).current;
-  const [hovered, setHovered] = useState(false);
-  const to = (v: number) => Animated.spring(scale, { toValue: v, useNativeDriver: true, friction: 7, tension: 120 }).start();
-  const withHoverText = React.Children.map(children, (child) => {
-    if (!React.isValidElement(child)) return child;
-    if (child.type === Text) {
-      const typedChild = child as React.ReactElement<any>;
-      return React.cloneElement(typedChild, {
-        style: [typedChild.props.style, hovered ? { color: "#fff" } : null],
-      });
-    }
-    return child;
-  });
+function SwapButton({ onPress }: { onPress: () => void }) {
   return (
-    <Animated.View style={{ transform: [{ scale }] }}>
-      <Pressable
-        disabled={disabled}
-        onPress={onPress}
-        onHoverIn={() => { setHovered(true); to(1.04); }}
-        onHoverOut={() => { setHovered(false); to(1); }}
-        onPressIn={() => to(0.98)}
-        onPressOut={() => to(1)}
-        style={[style, hovered ? { backgroundColor: "#007c00", borderColor: "#007c00" } : null]}
-      >
-        {withHoverText}
-      </Pressable>
-    </Animated.View>
+    <Pressable onPress={onPress} style={{ alignSelf: "flex-end", marginBottom: 2, width: 42, height: 42, borderRadius: 21, borderWidth: 1, borderColor: "#b8b8b8", backgroundColor: "#efefef", alignItems: "center", justifyContent: "center" }}>
+      <Text style={{ color: "#ff430a", fontSize: 28, fontWeight: "800" }}>{"<->"}</Text>
+    </Pressable>
   );
 }
 
+function ModeButton({ title, active, onPress }: { title: string; active: boolean; onPress: () => void }) {
+  return (
+    <Pressable onPress={onPress} style={{ borderWidth: 1, borderColor: active ? "#ff5b33" : "#d9d9d9", backgroundColor: active ? "#fff1ec" : "#fff", borderRadius: 8, paddingHorizontal: 12, paddingVertical: 7 }}>
+      <Text style={{ fontSize: 24, fontWeight: "700", color: active ? "#ff430a" : "#333" }}>{title}</Text>
+    </Pressable>
+  );
+}
 
-
-
+function Row({ label, value }: { label: string; value: string }) {
+  return (
+    <View style={{ flexDirection: "row", justifyContent: "space-between", paddingHorizontal: 10, paddingVertical: 8, borderBottomWidth: 1, borderBottomColor: "#f0f0f0" }}>
+      <Text style={{ fontSize: 28, color: "#666" }}>{label}</Text>
+      <Text style={{ fontSize: 28, color: "#222", fontWeight: "700" }}>{value}</Text>
+    </View>
+  );
+}

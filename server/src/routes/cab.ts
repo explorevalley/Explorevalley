@@ -72,7 +72,8 @@ export function cabRouter(bot: BotLike, adminChatIds: number[]) {
     datetime: z.string(),
     passengers: z.number().int().positive(),
     vehicleType: z.string().optional(),
-    serviceAreaId: z.string().optional()
+    serviceAreaId: z.string().optional(),
+    providerId: z.string().optional()
   });
 
   const estimateRouteDistanceKm = (pickupLocation: string, dropLocation: string) => {
@@ -135,6 +136,107 @@ export function cabRouter(bot: BotLike, adminChatIds: number[]) {
     return "Tempo Traveller";
   };
 
+  const pricingConfig = (db: any) => {
+    const rawPricing = (db.cabPricing || {}) as any;
+    return {
+      baseFare: 60,
+      perKm: 14,
+      perMin: 2,
+      ...rawPricing,
+      surgeRules: Array.isArray(rawPricing.surgeRules) && rawPricing.surgeRules.length > 0
+        ? rawPricing.surgeRules
+        : [{ from: "18:00", to: "22:00", multiplier: 1.2 }],
+      nightCharges: {
+        start: "22:00",
+        end: "06:00",
+        multiplier: 1.35,
+        ...(rawPricing.nightCharges || {})
+      },
+      tolls: {
+        enabled: true,
+        defaultFee: 50,
+        ...(rawPricing.tolls || {})
+      }
+    } as any;
+  };
+
+  const estimateFare = (input: {
+    db: any;
+    pickupLocation: string;
+    dropLocation: string;
+    datetime?: string;
+    includeToll?: boolean;
+    highDemand?: boolean;
+    distanceKm?: number;
+    durationMin?: number;
+    provider?: any;
+  }) => {
+    const pricing = pricingConfig(input.db);
+    const baseFare = Number(pricing.baseFare || 60);
+    const perKm = Number(pricing.perKm || 14);
+    const perMin = Number(pricing.perMin || 2);
+    const distanceKm = Number(input.distanceKm ?? estimateRouteDistanceKm(input.pickupLocation, input.dropLocation));
+    const durationMin = Number(input.durationMin ?? Math.max(10, Math.round(distanceKm * 2)));
+    const dt = input.datetime ? new Date(input.datetime) : new Date();
+    const hour = dt.getHours();
+
+    let multiplier = 1;
+    if (input.highDemand) {
+      multiplier = 1.5;
+    } else {
+      const surgeRules = pricing.surgeRules || [];
+      const toMins = (s: string) => {
+        const [h, m] = String(s || "0:0").split(":").map(Number);
+        return h * 60 + m;
+      };
+      const nowMins = hour * 60 + dt.getMinutes();
+      for (const rule of surgeRules) {
+        const from = toMins(rule.from);
+        const to = toMins(rule.to);
+        const inRange = from <= to ? (nowMins >= from && nowMins <= to) : (nowMins >= from || nowMins <= to);
+        if (inRange) {
+          multiplier = Number(rule.multiplier || 1);
+          break;
+        }
+      }
+    }
+
+    const night = pricing.nightCharges || {};
+    const nightStart = Number(String(night.start || "22:00").split(":")[0]);
+    const nightEnd = Number(String(night.end || "06:00").split(":")[0]);
+    const isNight = nightStart > nightEnd ? (hour >= nightStart || hour < nightEnd) : (hour >= nightStart && hour < nightEnd);
+    const nightMultiplier = isNight ? Number(night.multiplier || 1.35) : 1;
+
+    const tollEnabled = !!(pricing.tolls?.enabled);
+    const tollFee = tollEnabled && input.includeToll !== false ? Number(pricing.tolls?.defaultFee || 50) : 0;
+    const rawBase = (baseFare + distanceKm * perKm + durationMin * perMin) * multiplier * nightMultiplier + tollFee;
+
+    const priceDropPercent = Number(input.provider?.priceDropPercent || 0);
+    const discountedBase = input.provider?.priceDropped === true
+      ? Math.max(0, rawBase - (rawBase * Math.max(0, Math.min(100, priceDropPercent)) / 100))
+      : rawBase;
+
+    const gstRate = Number(input.db.settings?.taxRules?.cab?.gst ?? 0.05);
+    const tax = computeGST(discountedBase, gstRate, false);
+    const total = discountedBase + tax.gstAmount;
+
+    return {
+      pricing,
+      baseFare,
+      perKm,
+      perMin,
+      distanceKm,
+      durationMin,
+      subtotal: discountedBase,
+      tollFee,
+      gstRate,
+      tax,
+      total,
+      multiplier,
+      isNight
+    };
+  };
+
   r.post("/quote", async (req, res) => {
     const parsed = QuoteCab.safeParse(req.body ?? {});
     if (!parsed.success) return res.status(400).json({ error: "INVALID_INPUT" });
@@ -185,69 +287,16 @@ export function cabRouter(bot: BotLike, adminChatIds: number[]) {
       return res.status(503).json({ error: "NO_DRIVERS_AVAILABLE" });
     }
 
-    const rawPricing = (anyDb.cabPricing || {}) as any;
-    const pricing = {
-      baseFare: 60,
-      perKm: 14,
-      perMin: 2,
-      ...rawPricing,
-      surgeRules: Array.isArray(rawPricing.surgeRules) && rawPricing.surgeRules.length > 0
-        ? rawPricing.surgeRules
-        : [{ from: "18:00", to: "22:00", multiplier: 1.2 }],
-      nightCharges: {
-        start: "22:00",
-        end: "06:00",
-        multiplier: 1.35,
-        ...(rawPricing.nightCharges || {})
-      },
-      tolls: {
-        enabled: true,
-        defaultFee: 50,
-        ...(rawPricing.tolls || {})
-      }
-    } as any;
-    const baseFare = Number(pricing.baseFare || 60);
-    const perKm = Number(pricing.perKm || 14);
-    const perMin = Number(pricing.perMin || 2);
-    const distanceKm = Number(body.distanceKm ?? estimateRouteDistanceKm(body.pickupLocation, body.dropLocation));
-    const durationMin = Number(body.durationMin ?? Math.max(10, Math.round(distanceKm * 2)));
-    const dt = body.datetime ? new Date(body.datetime) : new Date();
-    const hour = dt.getHours();
-
-    let multiplier = 1;
-    if (body.highDemand) {
-      multiplier = 1.5;
-    } else {
-      const surgeRules = pricing.surgeRules || [];
-      const toMins = (s: string) => {
-        const [h, m] = String(s || "0:0").split(":").map(Number);
-        return h * 60 + m;
-      };
-      const nowMins = hour * 60 + dt.getMinutes();
-      for (const rule of surgeRules) {
-        const from = toMins(rule.from);
-        const to = toMins(rule.to);
-        const inRange = from <= to ? (nowMins >= from && nowMins <= to) : (nowMins >= from || nowMins <= to);
-        if (inRange) {
-          multiplier = Number(rule.multiplier || 1);
-          break;
-        }
-      }
-    }
-
-    const night = pricing.nightCharges || {};
-    const nightStart = Number(String(night.start || "22:00").split(":")[0]);
-    const nightEnd = Number(String(night.end || "06:00").split(":")[0]);
-    const isNight = nightStart > nightEnd ? (hour >= nightStart || hour < nightEnd) : (hour >= nightStart && hour < nightEnd);
-    const nightMultiplier = isNight ? Number(night.multiplier || 1.35) : 1;
-
-    const tollEnabled = !!(pricing.tolls?.enabled);
-    const tollFee = tollEnabled && body.includeToll !== false ? Number(pricing.tolls?.defaultFee || 50) : 0;
-
-    const subtotal = (baseFare + distanceKm * perKm + durationMin * perMin) * multiplier * nightMultiplier + tollFee;
-    const gstRate = Number(db.settings?.taxRules?.cab?.gst ?? 0.05);
-    const tax = computeGST(subtotal, gstRate, false);
-    const total = subtotal + tax.gstAmount;
+    const fare = estimateFare({
+      db,
+      pickupLocation: body.pickupLocation,
+      dropLocation: body.dropLocation,
+      datetime: body.datetime,
+      includeToll: body.includeToll,
+      highDemand: body.highDemand,
+      distanceKm: body.distanceKm,
+      durationMin: body.durationMin
+    });
 
     const paymentStatus = body.paymentFail ? "DUE" : "OK";
     return res.json({
@@ -256,23 +305,92 @@ export function cabRouter(bot: BotLike, adminChatIds: number[]) {
       dropAreaId: dropArea.id,
       vehicleType: computedVehicleType,
       capacity,
-      distanceKm,
-      durationMin,
+      distanceKm: fare.distanceKm,
+      durationMin: fare.durationMin,
       pricing: {
-        baseFare,
-        perKm,
-        perMin,
-        subtotal,
-        toll: tollFee,
-        gst: tax.gstAmount,
-        totalAmount: total
+        baseFare: fare.baseFare,
+        perKm: fare.perKm,
+        perMin: fare.perMin,
+        subtotal: fare.subtotal,
+        toll: fare.tollFee,
+        gst: fare.tax.gstAmount,
+        totalAmount: fare.total
       },
-      gstRate,
-      multiplier,
-      nightChargeApplied: isNight,
-      tollIncluded: tollFee > 0,
+      gstRate: fare.gstRate,
+      multiplier: fare.multiplier,
+      nightChargeApplied: fare.isNight,
+      tollIncluded: fare.tollFee > 0,
       paymentStatus
     });
+  });
+
+  r.get("/search", async (req, res) => {
+    const query = z.object({
+      pickupLocation: z.string().default(""),
+      dropLocation: z.string().default(""),
+      datetime: z.string().optional(),
+      passengers: z.coerce.number().int().positive().default(1),
+      serviceAreaId: z.string().optional()
+    }).safeParse(req.query ?? {});
+    if (!query.success) return res.status(400).json({ error: "INVALID_INPUT" });
+    const input = query.data;
+
+    if (!safeText(input.pickupLocation) || !safeText(input.dropLocation)) {
+      return res.status(400).json({ error: "PICKUP_DROP_REQUIRED" });
+    }
+    if (safeText(input.pickupLocation).toLowerCase() === safeText(input.dropLocation).toLowerCase()) {
+      return res.status(400).json({ error: "INVALID_TRIP" });
+    }
+
+    const db = await readData();
+    const anyDb = db as any;
+    const serviceAreas = Array.isArray(anyDb.serviceAreas) ? anyDb.serviceAreas.filter((a: any) => a?.enabled !== false) : [];
+    if (input.serviceAreaId && !serviceAreas.some((a: any) => String(a.id) === String(input.serviceAreaId))) {
+      return res.status(400).json({ error: "OUTSIDE_SERVICE_AREA" });
+    }
+
+    const providers = (Array.isArray(anyDb.cabProviders) ? anyDb.cabProviders : [])
+      .filter((p: any) => p && p.active !== false)
+      .filter((p: any) => Number(p.capacity || 0) >= input.passengers)
+      .filter((p: any) => {
+        if (!input.serviceAreaId) return true;
+        const sid = safeText(p?.serviceAreaId);
+        return !sid || sid === safeText(input.serviceAreaId);
+      });
+
+    const distanceKm = estimateRouteDistanceKm(input.pickupLocation, input.dropLocation);
+    const durationMin = Math.max(10, Math.round(distanceKm * 2.2));
+    const results = providers.map((provider: any) => {
+      const fare = estimateFare({
+        db,
+        pickupLocation: input.pickupLocation,
+        dropLocation: input.dropLocation,
+        datetime: input.datetime,
+        distanceKm,
+        durationMin,
+        provider
+      });
+      return {
+        providerId: safeText(provider.id),
+        providerName: safeText(provider.name),
+        vehicleType: safeText(provider.vehicleType) || "Sedan",
+        plateNumber: safeText(provider.plateNumber),
+        capacity: Number(provider.capacity || 0),
+        serviceAreaId: safeText(provider.serviceAreaId),
+        heroImage: safeText(provider.heroImage),
+        pickupLocation: input.pickupLocation,
+        dropLocation: input.dropLocation,
+        datetime: input.datetime || "",
+        passengers: input.passengers,
+        distanceKm: fare.distanceKm,
+        durationMin: fare.durationMin,
+        baseAmount: fare.subtotal,
+        gstAmount: fare.tax.gstAmount,
+        totalAmount: fare.total
+      };
+    }).sort((a, b) => Number(a.totalAmount || 0) - Number(b.totalAmount || 0));
+
+    return res.json({ success: true, count: results.length, results });
   });
 
   r.post("/", requireAuth, async (req, res) => {
@@ -330,12 +448,24 @@ export function cabRouter(bot: BotLike, adminChatIds: number[]) {
       }
 
       const configuredDrivers = Array.isArray((db as any).cabProviders) ? (db as any).cabProviders.filter((d: any) => d?.active !== false) : [];
-      const computedVehicleType = pickVehicleType(body.passengers, configuredDrivers, body.vehicleType);
+      const selectedProvider = body.providerId
+        ? configuredDrivers.find((d: any) => safeText(d?.id) === safeText(body.providerId))
+        : null;
+      if (body.providerId && !selectedProvider) throw new Error("CAB_NOT_FOUND");
+
+      const computedVehicleType = selectedProvider
+        ? String(selectedProvider.vehicleType || "Sedan")
+        : pickVehicleType(body.passengers, configuredDrivers, body.vehicleType);
       const type = String(computedVehicleType || "Sedan").toLowerCase();
-      const providersForType = configuredDrivers.filter((d: any) => String(d.vehicleType || "").toLowerCase() === type);
+      const providersForType = selectedProvider
+        ? [selectedProvider]
+        : configuredDrivers.filter((d: any) => String(d.vehicleType || "").toLowerCase() === type);
       const fallbackCapacity: Record<string, number> = { hatchback: 4, sedan: 4, suv: 6, van: 7, mini: 3 };
       const capacity = providersForType[0]?.capacity ?? fallbackCapacity[type] ?? 4;
       if (body.passengers > capacity) throw new Error("CAPACITY_EXCEEDED");
+      if (selectedProvider && body.serviceAreaId && safeText(selectedProvider.serviceAreaId) && safeText(selectedProvider.serviceAreaId) !== safeText(body.serviceAreaId)) {
+        throw new Error("OUTSIDE_SERVICE_AREA");
+      }
       // If we have configured drivers, ensure we can actually fulfill the requested capacity.
       if (configuredDrivers.length > 0) {
         const canServe = providersForType.some((d: any) => Number(d?.capacity || 0) >= body.passengers);
@@ -344,24 +474,25 @@ export function cabRouter(bot: BotLike, adminChatIds: number[]) {
 
       const distanceKm = estimateRouteDistanceKm(body.pickupLocation, body.dropLocation);
       const durationMin = Math.max(10, Math.round(distanceKm * 2.2));
-      const pricing = (db as any).cabPricing || {};
-      const baseFare = Number(pricing.baseFare || 60);
-      const perKm = Number(pricing.perKm || 14);
-      const perMin = Number(pricing.perMin || 2);
-      const base = (baseFare + distanceKm * perKm + durationMin * perMin);
-      const gstRate = db.settings.taxRules.cab.gst;
-      const tax = computeGST(base, gstRate, false);
-      const total = base + tax.gstAmount;
-      estimatedFare = base;
-      totalAmount = total;
+      const fare = estimateFare({
+        db,
+        pickupLocation: body.pickupLocation,
+        dropLocation: body.dropLocation,
+        datetime: body.datetime,
+        distanceKm,
+        durationMin,
+        provider: selectedProvider
+      });
+      estimatedFare = fare.subtotal;
+      totalAmount = fare.total;
       computedVehicleTypeOut = computedVehicleType;
 
       const cab = CabBookingSchema.parse({
         id: makeId("cab"),
         ...body,
         vehicleType: computedVehicleType,
-        estimatedFare: base,
-        pricing: { baseAmount: base, tax, totalAmount: total },
+        estimatedFare: fare.subtotal,
+        pricing: { baseAmount: fare.subtotal, tax: fare.tax, totalAmount: fare.total },
         status: "pending",
         createdAt: now
       });
@@ -391,7 +522,7 @@ export function cabRouter(bot: BotLike, adminChatIds: number[]) {
         meta: {
           orderId: cab.id,
           orderType: "cab",
-          totalAmount: cab.pricing?.totalAmount || total || 0,
+          totalAmount: cab.pricing?.totalAmount || fare.total || 0,
           vehicleType: cab.vehicleType,
           distanceKm,
           durationMin,
@@ -434,9 +565,10 @@ export function cabRouter(bot: BotLike, adminChatIds: number[]) {
       createdId = cab.id;
       notifyMsg =
         `🚖 NEW CAB BOOKING\n\nPassenger: ${cab.userName}\nPhone: ${cab.phone}\n` +
+        `${selectedProvider ? `Provider: ${safeText(selectedProvider.name)}\n` : ""}` +
         `Pickup: ${cab.pickupLocation}\nDrop: ${cab.dropLocation}\nTime: ${cab.datetime}\nPassengers: ${cab.passengers}\nVehicle: ${cab.vehicleType}\n` +
         `Distance: ${distanceKm} km\nDuration: ${durationMin} min\n\n` +
-        `Base: ${formatMoney(base)}\nGST @ ${(tax.gstRate * 100).toFixed(0)}%: ${formatMoney(tax.gstAmount)}\nTotal: ${formatMoney(total)}\n\nID: ${cab.id}`;
+        `Base: ${formatMoney(fare.subtotal)}\nGST @ ${(fare.tax.gstRate * 100).toFixed(0)}%: ${formatMoney(fare.tax.gstAmount)}\nTotal: ${formatMoney(fare.total)}\n\nID: ${cab.id}`;
       }, "cab");
     } catch (err: any) {
       return res.status(400).json({ error: "CAB_BOOKING_CREATE_FAILED", message: String(err?.message || err) });

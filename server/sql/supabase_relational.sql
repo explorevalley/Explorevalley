@@ -193,6 +193,43 @@ create table if not exists public.ev_cab_bookings (
   created_at timestamptz
 );
 
+create table if not exists public.ev_buses (
+  id text primary key,
+  operator_name text not null,
+  operator_code text not null default '',
+  from_city text not null,
+  from_code text not null default '',
+  to_city text not null,
+  to_code text not null default '',
+  departure_time text not null default '',
+  arrival_time text not null default '',
+  duration_text text not null default '',
+  bus_type text not null default 'Non AC',
+  fare numeric not null default 0,
+  total_seats integer not null default 20,
+  seat_layout jsonb not null default '[]'::jsonb,
+  service_dates jsonb not null default '[]'::jsonb,
+  seats_booked_by_date jsonb not null default '{}'::jsonb,
+  hero_image text not null default '',
+  active boolean not null default true,
+  created_at timestamptz
+);
+
+create table if not exists public.ev_bus_bookings (
+  id text primary key,
+  route_id text not null,
+  user_name text not null,
+  phone text not null,
+  from_city text not null,
+  to_city text not null,
+  travel_date text not null,
+  seats jsonb not null default '[]'::jsonb,
+  fare_per_seat numeric not null default 0,
+  total_fare numeric not null default 0,
+  status text not null default 'pending',
+  created_at timestamptz
+);
+
 create table if not exists public.ev_food_orders (
   id text primary key,
   user_id text not null default '',

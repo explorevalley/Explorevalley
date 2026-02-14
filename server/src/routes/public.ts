@@ -257,11 +257,17 @@ publicRouter.get("/meta", async (_req, res) => {
     pricingTiers: db.settings.pricingTiers
   } : null;
   const serviceAreas = (db.serviceAreas || []).filter((x: any) => x && x.enabled !== false);
+  const anyDb = db as any;
   const cabLocations = Array.from(new Set([
-    ...(Array.isArray(db.cabLocations) ? db.cabLocations : []),
+    ...(Array.isArray(anyDb.cabLocations) ? anyDb.cabLocations : []),
     ...serviceAreas.flatMap((a: any) => [safeText(a?.name), safeText(a?.city)]),
   ].filter(Boolean)))
     .sort((a, b) => a.localeCompare(b));
+  const busLocations = Array.from(new Set(
+    ((anyDb.busRoutes || []) as any[])
+      .flatMap((b: any) => [safeText(b?.fromCity), safeText(b?.toCity)])
+      .filter(Boolean)
+  )).sort((a, b) => a.localeCompare(b));
 
   res.json({
     settings,
@@ -269,6 +275,7 @@ publicRouter.get("/meta", async (_req, res) => {
     cabProviders: (db.cabProviders || []).filter((x: any) => x && x.active !== false).map(stripInternalFields),
     serviceAreas,
     cabLocations,
+    busLocations,
     coupons: (db.coupons || [])
   });
 });
