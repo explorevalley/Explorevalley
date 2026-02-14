@@ -11,11 +11,17 @@
     "dev:app": "npm --workspace @explorevalley/app run dev",
     "dev:web": "npm --workspace @explorevalley/app run web",
     "build:server": "npm --workspace server run build",
-    "start:server": "npm --workspace server run start"
+    "build:web": "npm --workspace @explorevalley/app run build:web",
+    "build": "npm run build:server && npm run build:web",
+    "start:server": "npm --workspace server run start",
+    "sync:supabase:relational": "node scripts/sync-json-to-supabase-relational.js",
+    "test:security": "node scripts/run-security-testcases.js"
   },
   "dependencies": {
     "@expo/metro-runtime": "~3.2.3",
     "react-dom": "18.2.0",
-    "react-native-web": "~0.19.10"
+    "react-icons": "^5.5.0",
+    "react-native-web": "~0.19.10",
+    "react-native-webview": "^13.16.0"
   }
 }

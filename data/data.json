@@ -4,7 +4,7 @@
     "taxRules": {
       "hotel": {
         "slabs": [
-          { "min": 0, "max": 999, "gst": 0.0 },
+          { "min": 0, "max": 999, "gst": 0 },
           { "min": 1000, "max": 7500, "gst": 0.05 },
           { "min": 7500.01, "max": null, "gst": 0.18 }
         ]
@@ -12,50 +12,365 @@
       "tour": { "gst": 0.05, "mode": "NO_ITC" },
       "food": { "gst": 0.05, "mode": "DEFAULT" },
       "cab": { "gst": 0.05, "mode": "DEFAULT" }
-    }
+    },
+    "pricingTiers": [
+      { "name": "Economic", "multiplier": 0.85 },
+      { "name": "Premium", "multiplier": 1.15 },
+      { "name": "Luxury", "multiplier": 1.4 }
+    ]
+  },
+  "policies": {
+    "hotel": { "freeCancelHours": 24, "feeAfter": 0.5 },
+    "tour": { "freeCancelHours": 24, "feeAfter": 0.5 },
+    "cab": { "freeCancelMinutes": 15, "feeAfter": 50 },
+    "food": { "allowCancelMinutes": 5, "feeAfter": 20 }
+  },
+  "payments": {
+    "walletEnabled": false,
+    "refundMethod": "original",
+    "refundWindowHours": 72
   },
   "tours": [
     {
-      "id": "tour_sample_1",
-      "title": "Goa Beaches — Sample Tour",
-      "description": "A short sample tour covering Goa's best beaches, sunset cruise and local markets.",
-      "price": 4999,
-      "duration": "4 days 3 nights",
-      "images": ["https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800", "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800", "https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800"],
-      "highlights": ["Beaches", "Sunset Cruise", "Local Markets"],
-      "itinerary": "Day 1: Arrival; Day 2: North Goa beaches; Day 3: South Goa and sunset cruise; Day 4: Depart.",
-      "inclusions": ["3 nights accommodation", "Breakfast", "Transfers as specified"],
-      "exclusions": ["Flights", "Personal expenses"],
+      "id": "tour_manali_solang",
+      "title": "Solang Valley Adventure",
+      "description": "Experience the thrill of Solang Valley with paragliding, zorbing, and stunning Himalayan views. A full-day adventure tour perfect for families and thrill seekers.",
+      "price": 2500,
+      "duration": "Full Day",
+      "images": [],
+      "highlights": ["Paragliding", "Zorbing", "Snow Activities", "Mountain Views"],
+      "itinerary": "Morning pickup from hotel → Drive to Solang Valley → Adventure activities → Lunch break → More activities → Return by evening",
+      "inclusions": ["Transport", "Lunch", "Activity charges", "Guide"],
+      "exclusions": ["Personal expenses", "Tips"],
       "maxGuests": 20,
       "available": true,
-      "createdAt": "2026-02-07T00:00:00.000Z",
-      "updatedAt": "2026-02-07T00:00:00.000Z"
+      "createdAt": "2026-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "tour_rohtang_pass",
+      "title": "Rohtang Pass Day Trip",
+      "description": "Visit the iconic Rohtang Pass at 13,050 ft with breathtaking views of glaciers, peaks, and the Lahaul Valley. Snow activities available year-round.",
+      "price": 3500,
+      "duration": "Full Day",
+      "images": [],
+      "highlights": ["Rohtang Pass", "Snow Point", "Glacier Views", "Photo Stops"],
+      "itinerary": "Early morning departure → Rohtang Pass → Snow activities → Lunch at Marhi → Return via Gulaba → Evening arrival",
+      "inclusions": ["Transport", "Permit fees", "Lunch"],
+      "exclusions": ["Snow gear rental", "Personal expenses"],
+      "maxGuests": 15,
+      "available": true,
+      "createdAt": "2026-01-02T00:00:00.000Z"
+    },
+    {
+      "id": "tour_old_manali",
+      "title": "Old Manali Heritage Walk",
+      "description": "Explore the charming lanes of Old Manali, visit ancient temples, local cafes, and enjoy the bohemian vibe of this beautiful hillside town.",
+      "price": 800,
+      "duration": "Half Day",
+      "images": [],
+      "highlights": ["Hadimba Temple", "Manu Temple", "Old Manali Market", "Riverside Walk"],
+      "itinerary": "Meet at Mall Road → Walk to Hadimba Temple → Old Manali exploration → Cafe stop → Manu Temple → Return",
+      "inclusions": ["Guide", "Temple entry fees", "Tea/snack"],
+      "exclusions": ["Lunch", "Shopping"],
+      "maxGuests": 25,
+      "available": true,
+      "createdAt": "2026-01-03T00:00:00.000Z"
+    },
+    {
+      "id": "tour_kullu_rafting",
+      "title": "Kullu River Rafting",
+      "description": "White water rafting on the Beas River in Kullu. An adrenaline-pumping experience through rapids surrounded by lush green mountains.",
+      "price": 1800,
+      "duration": "Half Day",
+      "images": [],
+      "highlights": ["Grade 2-3 Rapids", "14km Stretch", "Safety Gear Provided", "Trained Instructors"],
+      "itinerary": "Drive to Pirdi → Safety briefing → Rafting 14km stretch → End at Jhiri → Return to Manali",
+      "inclusions": ["Transport", "Rafting equipment", "Life jacket", "Instructor"],
+      "exclusions": ["Photos/Videos", "Tips"],
+      "maxGuests": 8,
+      "available": true,
+      "createdAt": "2026-01-04T00:00:00.000Z"
+    }
+  ],
+  "festivals": [
+    {
+      "id": "fest_winter_carnival",
+      "title": "Manali Winter Carnival",
+      "description": "Annual winter festival featuring cultural performances, folk dances, local music, handicraft exhibitions, and adventure sports competitions.",
+      "location": "Mall Road, Manali",
+      "month": "January",
+      "date": "2026-01-02",
+      "vibe": "Cultural & Festive",
+      "ticket": "Free Entry",
+      "images": [],
+      "highlights": ["Folk Dance", "Music Performances", "Handicraft Fair", "Food Stalls"],
+      "available": true,
+      "createdAt": "2026-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "fest_dussehra",
+      "title": "Kullu Dussehra",
+      "description": "The world-famous week-long Kullu Dussehra festival where over 200 local deities are brought in processions to the Dhalpur Maidan.",
+      "location": "Dhalpur Maidan, Kullu",
+      "month": "October",
+      "date": "2026-10-02",
+      "vibe": "Religious & Cultural",
+      "ticket": "Free Entry",
+      "images": [],
+      "highlights": ["Deity Processions", "Rath Yatra", "Folk Performances", "Local Market"],
+      "available": true,
+      "createdAt": "2026-01-02T00:00:00.000Z"
+    },
+    {
+      "id": "fest_spring",
+      "title": "Spring Festival",
+      "description": "Celebrate the arrival of spring in the valley with flower exhibitions, live music, trekking events, and local food festivals.",
+      "location": "Manali",
+      "month": "March",
+      "vibe": "Nature & Celebration",
+      "ticket": "Free Entry",
+      "images": [],
+      "highlights": ["Flower Exhibition", "Live Music", "Food Festival", "Trekking Events"],
+      "available": true,
+      "createdAt": "2026-01-03T00:00:00.000Z"
     }
   ],
   "hotels": [
     {
-      "id": "hotel_sample_1",
-      "name": "Sample Valley Resort",
-      "description": "Comfortable resort with pool and easy access to local attractions.",
-      "location": "Goa, India",
-      "pricePerNight": 2999,
-      "images": ["https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800", "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800", "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800"],
-      "amenities": ["Pool", "Free WiFi", "Breakfast"],
+      "id": "hotel_mountain_view",
+      "name": "Mountain View Resort",
+      "description": "A premium resort overlooking the snow-capped Himalayas with luxurious rooms, a spa, and multi-cuisine restaurant. Perfect for a relaxing mountain getaway.",
+      "location": "Log Huts Area, Manali",
+      "pricePerNight": 4500,
+      "images": [],
+      "amenities": ["WiFi", "Spa", "Restaurant", "Room Service", "Parking", "Mountain View"],
       "roomTypes": [
-        { "type": "Deluxe", "price": 2999, "capacity": 2 }
+        { "type": "Deluxe Room", "price": 4500, "capacity": 2 },
+        { "type": "Super Deluxe", "price": 6000, "capacity": 3 },
+        { "type": "Suite", "price": 9000, "capacity": 4 }
       ],
       "rating": 4.5,
-      "reviews": 124,
+      "reviews": 128,
       "checkInTime": "14:00",
       "checkOutTime": "11:00",
       "available": true,
-      "createdAt": "2026-02-07T00:00:00.000Z"
+      "createdAt": "2026-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "hotel_riverside_cottage",
+      "name": "Riverside Cottages",
+      "description": "Cozy wooden cottages right by the Beas River with private balconies, bonfire area, and the soothing sound of flowing water. A nature lover's paradise.",
+      "location": "Club House Road, Manali",
+      "pricePerNight": 3200,
+      "images": [],
+      "amenities": ["WiFi", "Bonfire", "River View", "Parking", "Garden"],
+      "roomTypes": [
+        { "type": "Standard Cottage", "price": 3200, "capacity": 2 },
+        { "type": "Premium Cottage", "price": 4800, "capacity": 4 }
+      ],
+      "rating": 4.3,
+      "reviews": 95,
+      "checkInTime": "13:00",
+      "checkOutTime": "11:00",
+      "available": true,
+      "createdAt": "2026-01-02T00:00:00.000Z"
+    },
+    {
+      "id": "hotel_snow_peak",
+      "name": "Snow Peak Inn",
+      "description": "Budget-friendly hotel in the heart of Manali with clean rooms, hot water, and easy access to Mall Road and local attractions.",
+      "location": "Mall Road, Manali",
+      "pricePerNight": 1800,
+      "images": [],
+      "amenities": ["WiFi", "Hot Water", "TV", "Room Service"],
+      "roomTypes": [
+        { "type": "Standard", "price": 1800, "capacity": 2 },
+        { "type": "Deluxe", "price": 2500, "capacity": 3 }
+      ],
+      "rating": 4.0,
+      "reviews": 210,
+      "checkInTime": "12:00",
+      "checkOutTime": "11:00",
+      "available": true,
+      "createdAt": "2026-01-03T00:00:00.000Z"
+    },
+    {
+      "id": "hotel_apple_orchard",
+      "name": "Apple Orchard Homestay",
+      "description": "Traditional Himachali homestay surrounded by apple orchards with home-cooked meals, cultural experiences, and panoramic valley views.",
+      "location": "Naggar Road, Manali",
+      "pricePerNight": 2200,
+      "images": [],
+      "amenities": ["Home-cooked Meals", "Orchard Walk", "Valley View", "WiFi", "Parking"],
+      "roomTypes": [
+        { "type": "Traditional Room", "price": 2200, "capacity": 2 },
+        { "type": "Family Room", "price": 3500, "capacity": 4 }
+      ],
+      "rating": 4.7,
+      "reviews": 67,
+      "checkInTime": "14:00",
+      "checkOutTime": "10:00",
+      "available": true,
+      "createdAt": "2026-01-04T00:00:00.000Z"
+    }
+  ],
+  "restaurants": [
+    {
+      "id": "rest_himalayan_kitchen",
+      "name": "Himalayan Kitchen",
+      "description": "Authentic Himachali and North Indian cuisine with a cozy mountain ambiance. Famous for thali meals and local specialties.",
+      "cuisine": ["North Indian", "Himachali"],
+      "rating": 4.4,
+      "reviewCount": 180,
+      "deliveryTime": "30-45 min",
+      "minimumOrder": 200,
+      "images": [],
+      "available": true,
+      "isVeg": false,
+      "tags": ["Local Favorite", "Family Friendly"],
+      "location": "Old Manali",
+      "openHours": "08:00",
+      "closingHours": "22:00"
+    },
+    {
+      "id": "rest_cafe_1947",
+      "name": "Cafe 1947",
+      "description": "Iconic cafe in Old Manali serving Italian, Continental, and Israeli cuisine with live music evenings and a bohemian vibe.",
+      "cuisine": ["Italian", "Continental", "Israeli"],
+      "rating": 4.6,
+      "reviewCount": 320,
+      "deliveryTime": "25-35 min",
+      "minimumOrder": 300,
+      "images": [],
+      "available": true,
+      "isVeg": false,
+      "tags": ["Live Music", "Cafe", "Popular"],
+      "location": "Old Manali",
+      "openHours": "09:00",
+      "closingHours": "23:00"
+    },
+    {
+      "id": "rest_green_leaf",
+      "name": "Green Leaf Veg Restaurant",
+      "description": "Pure vegetarian restaurant offering South Indian, Chinese, and North Indian dishes. Known for crispy dosas and paneer specials.",
+      "cuisine": ["South Indian", "Chinese", "North Indian"],
+      "rating": 4.2,
+      "reviewCount": 145,
+      "deliveryTime": "20-30 min",
+      "minimumOrder": 150,
+      "images": [],
+      "available": true,
+      "isVeg": true,
+      "tags": ["Pure Veg", "Family Friendly"],
+      "location": "Mall Road",
+      "openHours": "07:30",
+      "closingHours": "22:00"
+    }
+  ],
+  "menuItems": [
+    {
+      "id": "menu_hk_thali",
+      "restaurantId": "rest_himalayan_kitchen",
+      "category": "Main Course",
+      "name": "Himachali Thali",
+      "description": "Traditional Himachali meal with dal, rice, roti, sabzi, raita, and pickle",
+      "price": 350,
+      "available": true,
+      "isVeg": true,
+      "stock": 50,
+      "maxPerOrder": 5
+    },
+    {
+      "id": "menu_hk_trout",
+      "restaurantId": "rest_himalayan_kitchen",
+      "category": "Main Course",
+      "name": "River Trout Fry",
+      "description": "Fresh Beas river trout marinated in local spices and pan fried to perfection",
+      "price": 450,
+      "available": true,
+      "isVeg": false,
+      "stock": 20,
+      "maxPerOrder": 3
+    },
+    {
+      "id": "menu_hk_momos",
+      "restaurantId": "rest_himalayan_kitchen",
+      "category": "Starters",
+      "name": "Steamed Momos",
+      "description": "Tibetan style steamed dumplings with spicy chutney (8 pcs)",
+      "price": 180,
+      "available": true,
+      "isVeg": true,
+      "stock": 100,
+      "maxPerOrder": 10
+    },
+    {
+      "id": "menu_cf_pizza",
+      "restaurantId": "rest_cafe_1947",
+      "category": "Main Course",
+      "name": "Wood Fired Margherita Pizza",
+      "description": "Classic margherita with fresh mozzarella, basil, and homemade sauce",
+      "price": 380,
+      "available": true,
+      "isVeg": true,
+      "stock": 30,
+      "maxPerOrder": 5
+    },
+    {
+      "id": "menu_cf_pasta",
+      "restaurantId": "rest_cafe_1947",
+      "category": "Main Course",
+      "name": "Penne Arrabiata",
+      "description": "Penne pasta in spicy tomato sauce with garlic bread on the side",
+      "price": 320,
+      "available": true,
+      "isVeg": true,
+      "stock": 40,
+      "maxPerOrder": 5
+    },
+    {
+      "id": "menu_cf_shakshuka",
+      "restaurantId": "rest_cafe_1947",
+      "category": "Breakfast",
+      "name": "Shakshuka",
+      "description": "Middle Eastern style eggs poached in spiced tomato sauce with pita bread",
+      "price": 280,
+      "available": true,
+      "isVeg": false,
+      "stock": 25,
+      "maxPerOrder": 3
+    },
+    {
+      "id": "menu_gl_dosa",
+      "restaurantId": "rest_green_leaf",
+      "category": "South Indian",
+      "name": "Masala Dosa",
+      "description": "Crispy dosa filled with spiced potato masala, served with sambar and chutney",
+      "price": 160,
+      "available": true,
+      "isVeg": true,
+      "stock": 80,
+      "maxPerOrder": 5
+    },
+    {
+      "id": "menu_gl_paneer",
+      "restaurantId": "rest_green_leaf",
+      "category": "Main Course",
+      "name": "Paneer Butter Masala",
+      "description": "Cottage cheese cubes in rich tomato and butter gravy with naan",
+      "price": 280,
+      "available": true,
+      "isVeg": true,
+      "stock": 50,
+      "maxPerOrder": 5
     }
   ],
   "bookings": [],
   "cabBookings": [],
   "foodOrders": [],
   "queries": [],
-  "menuItems": [],
-  "auditLog": []
+  "auditLog": [],
+  "cabProviders": [],
+  "serviceAreas": [],
+  "coupons": []
 }

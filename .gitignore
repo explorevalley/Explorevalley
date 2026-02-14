@@ -5,6 +5,8 @@ node_modules/
 build/
 dist/
 coverage/
+release/
+release_staging_*/
 
 # Expo / Metro
 .expo/
@@ -14,6 +16,7 @@ coverage/
 *.expo.*
 
 # Logs
+logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
@@ -22,28 +25,51 @@ pnpm-debug.log*
 
 # Environment files / secrets
 .env
-.env*
 .env.*
 !.env.example
 
+# Local credentials / sensitive data
+keys/
+data/auth-logins.json
+data/auth-password-profiles.json
+data.json
+
+# Generated data / reports / uploads
+data/backups/
+reports/security_tc_*.json
+uploads/
+public/uploads/
+
 # Editors / OS
 .DS_Store
+Thumbs.db
+thumbs.db
 .idea/
 .vscode/
 *.swp
 *.swo
 *~
+nul
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+*.so
+venv/
+.venv/
+env/
+ENV/
+pip-wheel-metadata/
 
 # Cloud / serverless
 .serverless/
 
-# Local scratch and backups
+# Local scratch / backups
 .claude/
 .claude*
-.claude.json
-.claude.json.*
-keys/
-nul
 * copy/
 * copy
 * copy.*
+
+# Misc
+*.sqlite3

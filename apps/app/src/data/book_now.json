@@ -1,0 +1,179 @@
+{
+  "layout": "split",
+  "left_panel": {
+    "purpose": "visual_summary",
+    "content_by_category": {
+      "tour": {
+        "title": "Himalayan Adventure Tour",
+        "destination": "Manali",
+        "duration": "5 Days / 4 Nights",
+        "starting_price": 24999,
+        "currency": "INR",
+        "images": [
+          "/uploads/images/tour/manali1.jpg",
+          "/uploads/images/tour/manali2.jpg",
+          "/uploads/images/tour/manali3.jpg"
+        ],
+        "highlights": [
+          "Snow activities",
+          "Adventure sports",
+          "Scenic mountain views",
+          "Guided sightseeing"
+        ]
+      },
+      "hotel": {
+        "title": "Mountain View Resort",
+        "location": "Manali",
+        "rating": 4.5,
+        "starting_price": 3999,
+        "currency": "INR",
+        "images": [
+          "/uploads/images/hotel/room1.jpg",
+          "/uploads/images/hotel/lobby.jpg",
+          "/uploads/images/hotel/view.jpg"
+        ],
+        "quick_info": [
+          "Free WiFi",
+          "Breakfast included",
+          "Mountain view rooms"
+        ]
+      },
+      "cottages": {
+        "title": "Pine Wood Cottages",
+        "location": "Manali",
+        "starting_price": 6999,
+        "currency": "INR",
+        "images": [
+          "/uploads/images/cottages/cottage1.jpg",
+          "/uploads/images/cottages/interior.jpg",
+          "/uploads/images/cottages/view.jpg"
+        ],
+        "quick_info": [
+          "Private cottages",
+          "Bonfire experience",
+          "Mountain view balcony"
+        ]
+      }
+    }
+  },
+  "right_panel": {
+    "purpose": "booking_details",
+    "content_by_category": {
+      "tour": {
+        "itinerary": [
+          {
+            "day": 1,
+            "title": "Arrival & Local Sightseeing",
+            "activities": [
+              "Hotel check-in",
+              "Mall Road visit"
+            ]
+          },
+          {
+            "day": 2,
+            "title": "Solang Valley Adventure",
+            "activities": [
+              "Paragliding",
+              "Snow activities"
+            ]
+          },
+          {
+            "day": 3,
+            "title": "Rohtang Pass Visit",
+            "activities": [
+              "Snow sightseeing",
+              "Photography"
+            ]
+          },
+          {
+            "day": 4,
+            "title": "Cultural Exploration",
+            "activities": [
+              "Hadimba Temple",
+              "Local markets"
+            ]
+          },
+          {
+            "day": 5,
+            "title": "Departure",
+            "activities": [
+              "Check-out",
+              "Return journey"
+            ]
+          }
+        ],
+        "booking_fields": [
+          "start_date",
+          "number_of_people",
+          "pickup_location",
+          "special_requests"
+        ],
+        "cta": "Book Tour Now"
+      },
+      "hotel": {
+        "room_types": [
+          {
+            "type": "Standard Room",
+            "bed_type": "Queen Bed",
+            "max_guests": 2,
+            "price_per_night": 3999
+          },
+          {
+            "type": "Deluxe Room",
+            "bed_type": "King Bed",
+            "max_guests": 3,
+            "price_per_night": 5999
+          },
+          {
+            "type": "Suite",
+            "bed_type": "King Bed + Sofa",
+            "max_guests": 4,
+            "price_per_night": 8999
+          }
+        ],
+        "amenities": [
+          "Free WiFi",
+          "Room Service",
+          "Parking",
+          "Heater"
+        ],
+        "booking_fields": [
+          "check_in",
+          "check_out",
+          "guests",
+          "room_type"
+        ],
+        "cta": "Book Hotel Now"
+      },
+      "cottages": {
+        "cottage_types": [
+          {
+            "type": "Wooden Cottage",
+            "bedroom_type": "1 Bedroom",
+            "max_guests": 3,
+            "price_per_night": 6999
+          },
+          {
+            "type": "Family Cottage",
+            "bedroom_type": "2 Bedrooms",
+            "max_guests": 5,
+            "price_per_night": 9999
+          }
+        ],
+        "amenities": [
+          "Private balcony",
+          "Bonfire",
+          "Kitchenette",
+          "Parking"
+        ],
+        "booking_fields": [
+          "check_in",
+          "check_out",
+          "guests",
+          "cottage_type"
+        ],
+        "cta": "Book Cottage Now"
+      }
+    }
+  }
+}

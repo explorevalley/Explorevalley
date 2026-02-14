@@ -1,0 +1,8 @@
+runtime: nodejs20
+env_variables:
+  TELEGRAM_BOT_TOKEN: "TEST_BOT_TOKEN"
+  ADMIN_CHAT_IDS: "123456789"
+  PORT: "8080"
+  SUPABASE_URL: "https://pmqlpbqwyxmfuvcrwoan.supabase.co"
+  SUPABASE_PUBLISHABLE_KEY: "sb_publishable_SK5-dnSkwYaTOpCaCMlWjQ__2of928N"
+  SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBtcWxwYnF3eXhtZnV2Y3J3b2FuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA1NDQwMDksImV4cCI6MjA4NjEyMDAwOX0.3jYbNoU4ajMQQ751BDrmajuICKrqlyj0B5D7m2Yd_qI"

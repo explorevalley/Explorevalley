@@ -1,0 +1,148 @@
+{
+  "admin": {
+    "title": "Admin Panel",
+    "subtitle": "Opens in a separate window.",
+    "openButton": "Open Admin URL"
+  },
+  "home": {
+    "loading": "Loading ExploreValley…",
+    "empty": "No content yet. Add tours/hotels from Admin Dashboard or via Telegram bot: /addtour or /addhotel",
+    "retry": "Retry"
+  },
+  "food": {
+    "title": "Order Food",
+    "subtitle": "Choose from our restaurant partners",
+    "loading": "Loading restaurants...",
+    "searchVendorsPlaceholder": "Search restaurants...",
+    "searchMenuPlaceholder": "Search menu items...",
+    "noRestaurantsForPlace": "No restaurants found for {place}",
+    "noMenuItems": "No items found",
+    "selectPlaceLabel": "Select Place",
+    "places": ["All", "Jibhi", "Tandi"],
+    "selectPlaceEmptyHint": "Select Jibhi or Tandi to view restaurants."
+  },
+  "cab": {
+    "title": "Book a Cab",
+    "subtitle": "Fast pickups, verified drivers, and transparent pricing.",
+    "close": "Close",
+    "loginRequired": "Please login with Google before placing a cab booking.",
+    "submitIdle": "Confirm Cab Booking",
+    "submitBusy": "Submitting…",
+    "labels": {
+      "name": "Name",
+      "phone": "Phone",
+      "serviceArea": "Service Area",
+      "pickup": "Pickup Location",
+      "drop": "Drop Location",
+      "datetime": "Date & Time",
+      "passengers": "Passengers"
+    }
+  },
+  "festival": {
+    "kicker": "EXPLOREVALLEY MODE",
+    "title": "ExploreValley Highlights",
+    "subtitle": "Browse upcoming events, compare vibes, and book your next trip around live experiences.",
+    "pills": ["Live Music", "Food Trails", "Cultural Nights", "Family Friendly"],
+    "loading": "Loading ExploreValley highlights...",
+    "emptyTitle": "No ExploreValley data in JSON.",
+    "viewLineup": "View Lineup",
+    "bookPass": "Book Pass"
+  },
+  "rescue": {
+    "title": "Kullu Rescue Guide",
+    "subtitle": "Verified rescue contacts and ambulance numbers for Kullu. Replace TBD with official numbers from your local authority.",
+    "rescueTeamsTitle": "Rescue Teams",
+    "ambulanceTitle": "Ambulance Numbers",
+    "call": "Call",
+    "tbd": "TBD",
+    "rescueTeams": [
+      {
+        "name": "Kullu District Emergency Control Room",
+        "role": "Central coordination, dispatch, and incident logging.",
+        "coverage": "All of Kullu district",
+        "numbers": [
+          { "label": "Control Room", "value": "TBD" },
+          { "label": "Alternate", "value": "TBD" }
+        ]
+      },
+      {
+        "name": "Mountain Rescue Team",
+        "role": "High-altitude rescue, trekking incidents, and evacuation support.",
+        "coverage": "Kullu valley and nearby routes",
+        "numbers": [
+          { "label": "Hotline", "value": "TBD" }
+        ]
+      },
+      {
+        "name": "River Safety and Flood Response",
+        "role": "Swift-water rescue, flood support, and river safety operations.",
+        "coverage": "Beas river stretch and tributaries",
+        "numbers": [
+          { "label": "Dispatch", "value": "TBD" }
+        ]
+      },
+      {
+        "name": "Forest and Wildlife Rescue",
+        "role": "Forest incident response and wilderness assistance.",
+        "coverage": "Forest zones in Kullu district",
+        "numbers": [
+          { "label": "Control", "value": "TBD" }
+        ]
+      }
+    ],
+    "ambulanceServices": [
+      {
+        "name": "Government Ambulance",
+        "coverage": "District hospitals and emergency pickup",
+        "numbers": [
+          { "label": "Emergency", "value": "TBD" }
+        ]
+      },
+      {
+        "name": "Private Ambulance Network",
+        "coverage": "Local pickups and intercity transfers",
+        "numbers": [
+          { "label": "24x7", "value": "TBD" }
+        ]
+      }
+    ],
+    "infoPages": [
+      { "title": "Affiliate Program", "slug": "affiliate-program" },
+      { "title": "Contact Us", "slug": "contact-us" },
+      { "title": "Privacy Policy", "slug": "privacy-policy" },
+      { "title": "Refund Policy", "slug": "refund-policy" },
+      { "title": "Terms and Conditions", "slug": "terms-and-conditions" }
+    ]
+  },
+  "navDemo": {
+    "title": "🏆 Award-Winning Navigation",
+    "subtitle": "Experience modern mobile navigation with glassmorphism, smooth animations, and delightful micro-interactions.",
+    "keyFeaturesTitle": "✨ Key Features",
+    "tryItTitle": "🎮 Try It Out",
+    "featureItems": [
+      { "icon": "🎨", "name": "Glassmorphism Design", "desc": "Frosted glass effect with backdrop blur" },
+      { "icon": "⚡", "name": "Smooth Animations", "desc": "60fps native-driven spring animations" },
+      { "icon": "👆", "name": "Thumb-Friendly", "desc": "Bottom navigation for easy reach" },
+      { "icon": "🔔", "name": "Smart Badges", "desc": "Notification counts with overflow handling" },
+      { "icon": "📱", "name": "Responsive", "desc": "Auto-hides on desktop and tablet" }
+    ],
+    "controls": {
+      "addNotification": "Add Notification ({count})",
+      "fillSearch": "Fill Search Bar",
+      "cycleTabs": "Cycle Through Tabs"
+    },
+    "activeTabTitles": {
+      "travel": "🗺️ Explore Amazing Places",
+      "cabs": "🚕 Book Your Ride",
+      "food": "🍽️ Delicious Food",
+      "profile": "👤 Your Profile"
+    },
+    "activeTabDescriptions": {
+      "travel": "Discover beautiful destinations, hotels, and cottages in the valley.",
+      "cabs": "Quick and reliable cab booking service. 2 pending bookings.",
+      "food": "Order from the best restaurants. 5 items in your cart.",
+      "profile": "Manage your account, bookings, and preferences."
+    }
+  }
+}
+

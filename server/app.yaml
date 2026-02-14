@@ -1,0 +1,33 @@
+runtime: nodejs20
+
+# Deploy as a separate service so it doesn't overwrite the frontend service.
+service: api
+
+# Use /health for App Engine liveness/readiness probing.
+liveness_check:
+  path: "/health"
+  check_interval_sec: 30
+  timeout_sec: 4
+  failure_threshold: 2
+  success_threshold: 2
+
+readiness_check:
+  path: "/health"
+  check_interval_sec: 5
+  timeout_sec: 4
+  failure_threshold: 2
+  success_threshold: 2
+  app_start_timeout_sec: 300
+
+# If you want to run the Telegram bot in polling mode (TELEGRAM_MODE=polling),
+# you MUST ensure only one instance is running, otherwise Telegram will return:
+#   409 Conflict: terminated by other getUpdates request
+# Uncomment to force a single instance:
+# automatic_scaling:
+#   max_instances: 1
+
+# Note: you must set Supabase env vars for the API to work, e.g.
+# SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY
+#
+# Deploy from this folder:
+#   gcloud app deploy app.yaml
