@@ -1,8 +1,0 @@
-# Use default gcloudignore rules and add project-specific ignores.
-.gcloudignore
-.git
-.gitignore
-
-node_modules/
-dist/
-

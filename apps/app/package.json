@@ -7,7 +7,6 @@
     "dev": "expo start",
     "web": "expo start --web --port 8081",
     "build:web": "expo export --platform web --output-dir web-dist",
-    "gcp-build": "npm run build:web",
     "start": "node serve-web-dist.cjs"
   },
   "dependencies": {

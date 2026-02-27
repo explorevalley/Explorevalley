@@ -23682,11 +23682,20 @@
   function FaGoogle(props) {
     return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 488 512" }, "child": [{ "tag": "path", "attr": { "d": "M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z" }, "child": [] }] })(props);
   }
+  function FaTelegramPlane(props) {
+    return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 448 512" }, "child": [{ "tag": "path", "attr": { "d": "M446.7 98.6l-67.6 318.8c-5.1 22.5-18.4 28.1-37.3 17.5l-103-75.9-49.7 47.8c-5.5 5.5-10.1 10.1-20.7 10.1l7.4-104.9 190.9-172.5c8.3-7.4-1.8-11.5-12.9-4.1L117.8 284 16.2 252.2c-22.1-6.9-22.5-22.1 4.6-32.7L418.2 66.4c18.4-6.9 34.5 4.1 28.5 32.2z" }, "child": [] }] })(props);
+  }
   function FaBed(props) {
     return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 640 512" }, "child": [{ "tag": "path", "attr": { "d": "M176 256c44.11 0 80-35.89 80-80s-35.89-80-80-80-80 35.89-80 80 35.89 80 80 80zm352-128H304c-8.84 0-16 7.16-16 16v144H64V80c0-8.84-7.16-16-16-16H16C7.16 64 0 71.16 0 80v352c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16v-48h512v48c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V240c0-61.86-50.14-112-112-112z" }, "child": [] }] })(props);
   }
+  function FaBell(props) {
+    return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 448 512" }, "child": [{ "tag": "path", "attr": { "d": "M224 512c35.32 0 63.97-28.65 63.97-64H160.03c0 35.35 28.65 64 63.97 64zm215.39-149.71c-19.32-20.76-55.47-51.99-55.47-154.29 0-77.7-54.48-139.9-127.94-155.16V32c0-17.67-14.32-32-31.98-32s-31.98 14.33-31.98 32v20.84C118.56 68.1 64.08 130.3 64.08 208c0 102.3-36.15 133.53-55.47 154.29-6 6.45-8.66 14.16-8.61 21.71.11 16.4 12.98 32 32.1 32h383.8c19.12 0 32-15.6 32.1-32 .05-7.55-2.61-15.27-8.61-21.71z" }, "child": [] }] })(props);
+  }
   function FaBuilding(props) {
     return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 448 512" }, "child": [{ "tag": "path", "attr": { "d": "M436 480h-20V24c0-13.255-10.745-24-24-24H56C42.745 0 32 10.745 32 24v456H12c-6.627 0-12 5.373-12 12v20h448v-20c0-6.627-5.373-12-12-12zM128 76c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12V76zm0 96c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12v-40zm52 148h-40c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12zm76 160h-64v-84c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v84zm64-172c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40zm0-96c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40zm0-96c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12V76c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40z" }, "child": [] }] })(props);
+  }
+  function FaBus(props) {
+    return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 512 512" }, "child": [{ "tag": "path", "attr": { "d": "M488 128h-8V80c0-44.8-99.2-80-224-80S32 35.2 32 80v48h-8c-13.25 0-24 10.74-24 24v80c0 13.25 10.75 24 24 24h8v160c0 17.67 14.33 32 32 32v32c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32v-32h192v32c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32v-32h6.4c16 0 25.6-12.8 25.6-25.6V256h8c13.25 0 24-10.75 24-24v-80c0-13.26-10.75-24-24-24zM112 400c-17.67 0-32-14.33-32-32s14.33-32 32-32 32 14.33 32 32-14.33 32-32 32zm16-112c-17.67 0-32-14.33-32-32V128c0-17.67 14.33-32 32-32h256c17.67 0 32 14.33 32 32v128c0 17.67-14.33 32-32 32H128zm272 112c-17.67 0-32-14.33-32-32s14.33-32 32-32 32 14.33 32 32-14.33 32-32 32z" }, "child": [] }] })(props);
   }
   function FaCar(props) {
     return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 512 512" }, "child": [{ "tag": "path", "attr": { "d": "M499.99 176h-59.87l-16.64-41.6C406.38 91.63 365.57 64 319.5 64h-127c-46.06 0-86.88 27.63-103.99 70.4L71.87 176H12.01C4.2 176-1.53 183.34.37 190.91l6 24C7.7 220.25 12.5 224 18.01 224h20.07C24.65 235.73 16 252.78 16 272v48c0 16.12 6.16 30.67 16 41.93V416c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32v-32h256v32c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32v-54.07c9.84-11.25 16-25.8 16-41.93v-48c0-19.22-8.65-36.27-22.07-48H494c5.51 0 10.31-3.75 11.64-9.09l6-24c1.89-7.57-3.84-14.91-11.65-14.91zm-352.06-17.83c7.29-18.22 24.94-30.17 44.57-30.17h127c19.63 0 37.28 11.95 44.57 30.17L384 208H128l19.93-49.83zM96 319.8c-19.2 0-32-12.76-32-31.9S76.8 256 96 256s48 28.71 48 47.85-28.8 15.95-48 15.95zm320 0c-19.2 0-48 3.19-48-15.95S396.8 256 416 256s32 12.76 32 31.9-12.8 31.9-32 31.9z" }, "child": [] }] })(props);
@@ -23700,11 +23709,17 @@
   function FaCog(props) {
     return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 512 512" }, "child": [{ "tag": "path", "attr": { "d": "M487.4 315.7l-42.6-24.6c4.3-23.2 4.3-47 0-70.2l42.6-24.6c4.9-2.8 7.1-8.6 5.5-14-11.1-35.6-30-67.8-54.7-94.6-3.8-4.1-10-5.1-14.8-2.3L380.8 110c-17.9-15.4-38.5-27.3-60.8-35.1V25.8c0-5.6-3.9-10.5-9.4-11.7-36.7-8.2-74.3-7.8-109.2 0-5.5 1.2-9.4 6.1-9.4 11.7V75c-22.2 7.9-42.8 19.8-60.8 35.1L88.7 85.5c-4.9-2.8-11-1.9-14.8 2.3-24.7 26.7-43.6 58.9-54.7 94.6-1.7 5.4.6 11.2 5.5 14L67.3 221c-4.3 23.2-4.3 47 0 70.2l-42.6 24.6c-4.9 2.8-7.1 8.6-5.5 14 11.1 35.6 30 67.8 54.7 94.6 3.8 4.1 10 5.1 14.8 2.3l42.6-24.6c17.9 15.4 38.5 27.3 60.8 35.1v49.2c0 5.6 3.9 10.5 9.4 11.7 36.7 8.2 74.3 7.8 109.2 0 5.5-1.2 9.4-6.1 9.4-11.7v-49.2c22.2-7.9 42.8-19.8 60.8-35.1l42.6 24.6c4.9 2.8 11 1.9 14.8-2.3 24.7-26.7 43.6-58.9 54.7-94.6 1.5-5.5-.7-11.3-5.6-14.1zM256 336c-44.1 0-80-35.9-80-80s35.9-80 80-80 80 35.9 80 80-35.9 80-80 80z" }, "child": [] }] })(props);
   }
+  function FaComments(props) {
+    return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 576 512" }, "child": [{ "tag": "path", "attr": { "d": "M416 192c0-88.4-93.1-160-208-160S0 103.6 0 192c0 34.3 14.1 65.9 38 92-13.4 30.2-35.5 54.2-35.8 54.5-2.2 2.3-2.8 5.7-1.5 8.7S4.8 352 8 352c36.6 0 66.9-12.3 88.7-25 32.2 15.7 70.3 25 111.3 25 114.9 0 208-71.6 208-160zm122 220c23.9-26 38-57.7 38-92 0-66.9-53.5-124.2-129.3-148.1.9 6.6 1.3 13.3 1.3 20.1 0 105.9-107.7 192-240 192-10.8 0-21.3-.8-31.7-1.9C207.8 439.6 281.8 480 368 480c41 0 79.1-9.2 111.3-25 21.8 12.7 52.1 25 88.7 25 3.2 0 6.1-1.9 7.3-4.8 1.3-2.9.7-6.3-1.5-8.7-.3-.3-22.4-24.2-35.8-54.5z" }, "child": [] }] })(props);
+  }
   function FaDownload(props) {
     return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 512 512" }, "child": [{ "tag": "path", "attr": { "d": "M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z" }, "child": [] }] })(props);
   }
   function FaEnvelopeOpenText(props) {
     return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 512 512" }, "child": [{ "tag": "path", "attr": { "d": "M176 216h160c8.84 0 16-7.16 16-16v-16c0-8.84-7.16-16-16-16H176c-8.84 0-16 7.16-16 16v16c0 8.84 7.16 16 16 16zm-16 80c0 8.84 7.16 16 16 16h160c8.84 0 16-7.16 16-16v-16c0-8.84-7.16-16-16-16H176c-8.84 0-16 7.16-16 16v16zm96 121.13c-16.42 0-32.84-5.06-46.86-15.19L0 250.86V464c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V250.86L302.86 401.94c-14.02 10.12-30.44 15.19-46.86 15.19zm237.61-254.18c-8.85-6.94-17.24-13.47-29.61-22.81V96c0-26.51-21.49-48-48-48h-77.55c-3.04-2.2-5.87-4.26-9.04-6.56C312.6 29.17 279.2-.35 256 0c-23.2-.35-56.59 29.17-73.41 41.44-3.17 2.3-6 4.36-9.04 6.56H96c-26.51 0-48 21.49-48 48v44.14c-12.37 9.33-20.76 15.87-29.61 22.81A47.995 47.995 0 0 0 0 200.72v10.65l96 69.35V96h320v184.72l96-69.35v-10.65c0-14.74-6.78-28.67-18.39-37.77z" }, "child": [] }] })(props);
+  }
+  function FaEnvelope(props) {
+    return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 512 512" }, "child": [{ "tag": "path", "attr": { "d": "M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z" }, "child": [] }] })(props);
   }
   function FaFileAlt(props) {
     return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 384 512" }, "child": [{ "tag": "path", "attr": { "d": "M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z" }, "child": [] }] })(props);
@@ -23724,6 +23739,9 @@
   function FaMapMarkerAlt(props) {
     return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 384 512" }, "child": [{ "tag": "path", "attr": { "d": "M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z" }, "child": [] }] })(props);
   }
+  function FaMotorcycle(props) {
+    return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 640 512" }, "child": [{ "tag": "path", "attr": { "d": "M512.9 192c-14.9-.1-29.1 2.3-42.4 6.9L437.6 144H520c13.3 0 24-10.7 24-24V88c0-13.3-10.7-24-24-24h-45.3c-6.8 0-13.3 2.9-17.8 7.9l-37.5 41.7-22.8-38C392.2 68.4 384.4 64 376 64h-80c-8.8 0-16 7.2-16 16v16c0 8.8 7.2 16 16 16h66.4l19.2 32H227.9c-17.7-23.1-44.9-40-99.9-40H72.5C59 104 47.7 115 48 128.5c.2 13 10.9 23.5 24 23.5h56c24.5 0 38.7 10.9 47.8 24.8l-11.3 20.5c-13-3.9-26.9-5.7-41.3-5.2C55.9 194.5 1.6 249.6 0 317c-1.6 72.1 56.3 131 128 131 59.6 0 109.7-40.8 124-96h84.2c13.7 0 24.6-11.4 24-25.1-2.1-47.1 17.5-93.7 56.2-125l12.5 20.8c-27.6 23.7-45.1 58.9-44.8 98.2.5 69.6 57.2 126.5 126.8 127.1 71.6.7 129.8-57.5 129.2-129.1-.7-69.6-57.6-126.4-127.2-126.9zM128 400c-44.1 0-80-35.9-80-80s35.9-80 80-80c4.2 0 8.4.3 12.5 1L99 316.4c-8.8 16 2.8 35.6 21 35.6h81.3c-12.4 28.2-40.6 48-73.3 48zm463.9-75.6c-2.2 40.6-35 73.4-75.5 75.5-46.1 2.5-84.4-34.3-84.4-79.9 0-21.4 8.4-40.8 22.1-55.1l49.4 82.4c4.5 7.6 14.4 10 22 5.5l13.7-8.2c7.6-4.5 10-14.4 5.5-22l-48.6-80.9c5.2-1.1 10.5-1.6 15.9-1.6 45.6-.1 82.3 38.2 79.9 84.3z" }, "child": [] }] })(props);
+  }
   function FaPen(props) {
     return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 512 512" }, "child": [{ "tag": "path", "attr": { "d": "M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z" }, "child": [] }] })(props);
   }
@@ -23732,6 +23750,9 @@
   }
   function FaRedo(props) {
     return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 512 512" }, "child": [{ "tag": "path", "attr": { "d": "M500.33 0h-47.41a12 12 0 0 0-12 12.57l4 82.76A247.42 247.42 0 0 0 256 8C119.34 8 7.9 119.53 8 256.19 8.1 393.07 119.1 504 256 504a247.1 247.1 0 0 0 166.18-63.91 12 12 0 0 0 .48-17.43l-34-34a12 12 0 0 0-16.38-.55A176 176 0 1 1 402.1 157.8l-101.53-4.87a12 12 0 0 0-12.57 12v47.41a12 12 0 0 0 12 12h200.33a12 12 0 0 0 12-12V12a12 12 0 0 0-12-12z" }, "child": [] }] })(props);
+  }
+  function FaRobot(props) {
+    return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 640 512" }, "child": [{ "tag": "path", "attr": { "d": "M32,224H64V416H32A31.96166,31.96166,0,0,1,0,384V256A31.96166,31.96166,0,0,1,32,224Zm512-48V448a64.06328,64.06328,0,0,1-64,64H160a64.06328,64.06328,0,0,1-64-64V176a79.974,79.974,0,0,1,80-80H288V32a32,32,0,0,1,64,0V96H464A79.974,79.974,0,0,1,544,176ZM264,256a40,40,0,1,0-40,40A39.997,39.997,0,0,0,264,256Zm-8,128H192v32h64Zm96,0H288v32h64ZM456,256a40,40,0,1,0-40,40A39.997,39.997,0,0,0,456,256Zm-8,128H384v32h64ZM640,256V384a31.96166,31.96166,0,0,1-32,32H576V224h32A31.96166,31.96166,0,0,1,640,256Z" }, "child": [] }] })(props);
   }
   function FaSave(props) {
     return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 448 512" }, "child": [{ "tag": "path", "attr": { "d": "M433.941 129.941l-83.882-83.882A48 48 0 0 0 316.118 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V163.882a48 48 0 0 0-14.059-33.941zM224 416c-35.346 0-64-28.654-64-64 0-35.346 28.654-64 64-64s64 28.654 64 64c0 35.346-28.654 64-64 64zm96-304.52V212c0 6.627-5.373 12-12 12H76c-6.627 0-12-5.373-12-12V108c0-6.627 5.373-12 12-12h228.52c3.183 0 6.235 1.264 8.485 3.515l3.48 3.48A11.996 11.996 0 0 1 320 111.48z" }, "child": [] }] })(props);
@@ -23745,11 +23766,20 @@
   function FaSignInAlt(props) {
     return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 512 512" }, "child": [{ "tag": "path", "attr": { "d": "M416 448h-84c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h84c17.7 0 32-14.3 32-32V160c0-17.7-14.3-32-32-32h-84c-6.6 0-12-5.4-12-12V76c0-6.6 5.4-12 12-12h84c53 0 96 43 96 96v192c0 53-43 96-96 96zm-47-201L201 79c-15-15-41-4.5-41 17v96H24c-13.3 0-24 10.7-24 24v96c0 13.3 10.7 24 24 24h136v96c0 21.5 26 32 41 17l168-168c9.3-9.4 9.3-24.6 0-34z" }, "child": [] }] })(props);
   }
+  function FaStar(props) {
+    return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 576 512" }, "child": [{ "tag": "path", "attr": { "d": "M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z" }, "child": [] }] })(props);
+  }
   function FaStore(props) {
     return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 616 512" }, "child": [{ "tag": "path", "attr": { "d": "M602 118.6L537.1 15C531.3 5.7 521 0 510 0H106C95 0 84.7 5.7 78.9 15L14 118.6c-33.5 53.5-3.8 127.9 58.8 136.4 4.5.6 9.1.9 13.7.9 29.6 0 55.8-13 73.8-33.1 18 20.1 44.3 33.1 73.8 33.1 29.6 0 55.8-13 73.8-33.1 18 20.1 44.3 33.1 73.8 33.1 29.6 0 55.8-13 73.8-33.1 18.1 20.1 44.3 33.1 73.8 33.1 4.7 0 9.2-.3 13.7-.9 62.8-8.4 92.6-82.8 59-136.4zM529.5 288c-10 0-19.9-1.5-29.5-3.8V384H116v-99.8c-9.6 2.2-19.5 3.8-29.5 3.8-6 0-12.1-.4-18-1.2-5.6-.8-11.1-2.1-16.4-3.6V480c0 17.7 14.3 32 32 32h448c17.7 0 32-14.3 32-32V283.2c-5.4 1.6-10.8 2.9-16.4 3.6-6.1.8-12.1 1.2-18.2 1.2z" }, "child": [] }] })(props);
   }
   function FaTable(props) {
     return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 512 512" }, "child": [{ "tag": "path", "attr": { "d": "M464 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zM224 416H64v-96h160v96zm0-160H64v-96h160v96zm224 160H288v-96h160v96zm0-160H288v-96h160v96z" }, "child": [] }] })(props);
+  }
+  function FaTruck(props) {
+    return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 640 512" }, "child": [{ "tag": "path", "attr": { "d": "M624 352h-16V243.9c0-12.7-5.1-24.9-14.1-33.9L494 110.1c-9-9-21.2-14.1-33.9-14.1H416V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48v320c0 26.5 21.5 48 48 48h16c0 53 43 96 96 96s96-43 96-96h128c0 53 43 96 96 96s96-43 96-96h48c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16zM160 464c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm320 0c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm80-208H416V144h44.1l99.9 99.9V256z" }, "child": [] }] })(props);
+  }
+  function FaUndoAlt(props) {
+    return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 512 512" }, "child": [{ "tag": "path", "attr": { "d": "M255.545 8c-66.269.119-126.438 26.233-170.86 68.685L48.971 40.971C33.851 25.851 8 36.559 8 57.941V192c0 13.255 10.745 24 24 24h134.059c21.382 0 32.09-25.851 16.971-40.971l-41.75-41.75c30.864-28.899 70.801-44.907 113.23-45.273 92.398-.798 170.283 73.977 169.484 169.442C423.236 348.009 349.816 424 256 424c-41.127 0-79.997-14.678-110.63-41.556-4.743-4.161-11.906-3.908-16.368.553L89.34 422.659c-4.872 4.872-4.631 12.815.482 17.433C133.798 479.813 192.074 504 256 504c136.966 0 247.999-111.033 248-247.998C504.001 119.193 392.354 7.755 255.545 8z" }, "child": [] }] })(props);
   }
   function FaUsers(props) {
     return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 640 512" }, "child": [{ "tag": "path", "attr": { "d": "M96 224c35.3 0 64-28.7 64-64s-28.7-64-64-64-64 28.7-64 64 28.7 64 64 64zm448 0c35.3 0 64-28.7 64-64s-28.7-64-64-64-64 28.7-64 64 28.7 64 64 64zm32 32h-64c-17.6 0-33.5 7.1-45.1 18.6 40.3 22.1 68.9 62 75.1 109.4h66c17.7 0 32-14.3 32-32v-32c0-35.3-28.7-64-64-64zm-256 0c61.9 0 112-50.1 112-112S381.9 32 320 32 208 82.1 208 144s50.1 112 112 112zm76.8 32h-8.3c-20.8 10-43.9 16-68.5 16s-47.6-6-68.5-16h-8.3C179.6 288 128 339.6 128 403.2V432c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48v-28.8c0-63.6-51.6-115.2-115.2-115.2zm-223.7-13.4C161.5 263.1 145.6 256 128 256H64c-35.3 0-64 28.7-64 64v32c0 17.7 14.3 32 32 32h65.9c6.3-47.4 34.9-87.3 75.2-109.4z" }, "child": [] }] })(props);
@@ -23759,6 +23789,7 @@
   }
 
   // public/admin/src/app.jsx
+  var PAGE_SIZE = 20;
   function safeText(v) {
     return v === void 0 || v === null ? "" : String(v);
   }
@@ -23778,28 +23809,6 @@
       return lw.charAt(0).toUpperCase() + lw.slice(1);
     }).join(" ");
   }
-  var TABLE_LABELS = {
-    ev_settings: "Settings",
-    ev_payments: "Payments",
-    ev_policies: "Policies",
-    ev_site_pages: "Site Pages",
-    ev_festivals: "Festivals",
-    ev_tours: "Tours",
-    ev_hotels: "Hotels & Cottages",
-    ev_restaurants: "Food Vendors",
-    ev_menu_items: "Menu Items",
-    ev_food_orders: "Food Orders",
-    ev_bookings: "Bookings",
-    ev_cab_bookings: "Cab Bookings",
-    ev_cab_providers: "Cab Providers",
-    ev_user_profiles: "Customer Profiles",
-    ev_user_behavior_profiles: "Customer Signals",
-    ev_analytics_events: "Security Events",
-    ev_queries: "Enquiries",
-    ev_audit_log: "Audit Log",
-    ev_coupons: "Coupons",
-    ev_service_areas: "Service Areas"
-  };
   var COMMON_COLUMN_LABELS = {
     id: "ID",
     code: "Code",
@@ -23852,8 +23861,121 @@
     drop_location: "Drop Location",
     datetime: "Date/Time"
   };
-  function tableLabel(tableName) {
+  var TABLES = Object.freeze({
+    SETTINGS: "opsSettings",
+    PAYMENTS: "billingSettings",
+    POLICIES: "policyPages",
+    SITE_PAGES: "contentPages",
+    FESTIVALS: "festivalDeck",
+    TOURS: "tourDeck",
+    HOTELS: "stayCatalog",
+    RESTAURANTS: "foodPartners",
+    MARTS: "martPartners",
+    PRODUCTS: "martProducts",
+    MENU_ITEMS: "foodItems",
+    FOOD_ORDERS: "foodOrders",
+    BOOKINGS: "travelBookings",
+    CAB_BOOKINGS: "cabBookings",
+    BUS_BOOKINGS: "busBookings",
+    CAB_PROVIDERS: "cabPartners",
+    BIKE_RENTALS: "bikeRentals",
+    BUSES: "busRoutes",
+    USER_PROFILES: "userProfiles",
+    USER_BEHAVIOR_PROFILES: "userSignals",
+    ANALYTICS_EVENTS: "securityEvents",
+    QUERIES: "supportQueries",
+    AUDIT_LOG: "auditTrail",
+    COUPONS: "promoCodes",
+    SERVICE_AREAS: "serviceZones",
+    TELEGRAM_MESSAGES: "telegramLogs",
+    AI_CONVERSATIONS: "aiChats",
+    DELIVERY_TRACKING: "deliveryTracking",
+    VENDOR_MESSAGES: "vendorComms",
+    EMAIL_NOTIFICATIONS: "emailOutbox",
+    REVIEWS: "reviewsBoard",
+    REFUNDS: "refundQueue"
+  });
+  var TABLE_LABELS = {
+    [TABLES.SETTINGS]: "Settings",
+    [TABLES.PAYMENTS]: "Payments",
+    [TABLES.POLICIES]: "Policies",
+    [TABLES.SITE_PAGES]: "Site Pages",
+    [TABLES.FESTIVALS]: "Festivals",
+    [TABLES.TOURS]: "Tours",
+    [TABLES.HOTELS]: "Hotels & Cottages",
+    [TABLES.RESTAURANTS]: "Food Vendors",
+    [TABLES.MARTS]: "Marts",
+    [TABLES.PRODUCTS]: "Products",
+    [TABLES.MENU_ITEMS]: "Menu Items",
+    [TABLES.FOOD_ORDERS]: "Food Orders",
+    [TABLES.BOOKINGS]: "Hotel Booking",
+    [TABLES.CAB_BOOKINGS]: "Cab Bookings",
+    [TABLES.BUS_BOOKINGS]: "Bus Bookings",
+    [TABLES.CAB_PROVIDERS]: "Cab Providers",
+    [TABLES.BIKE_RENTALS]: "Bike Rentals",
+    [TABLES.BUSES]: "Buses",
+    [TABLES.USER_PROFILES]: "Customer Profiles",
+    [TABLES.USER_BEHAVIOR_PROFILES]: "Customer Signals",
+    [TABLES.ANALYTICS_EVENTS]: "Security Events",
+    [TABLES.QUERIES]: "Enquiries",
+    [TABLES.AUDIT_LOG]: "Audit Log",
+    [TABLES.COUPONS]: "Coupons",
+    [TABLES.SERVICE_AREAS]: "Service Areas",
+    [TABLES.TELEGRAM_MESSAGES]: "Telegram Messages",
+    [TABLES.AI_CONVERSATIONS]: "AI Conversations",
+    [TABLES.DELIVERY_TRACKING]: "Delivery Tracking",
+    [TABLES.VENDOR_MESSAGES]: "Vendor Messages",
+    [TABLES.EMAIL_NOTIFICATIONS]: "Email Notifications",
+    [TABLES.REVIEWS]: "Reviews",
+    [TABLES.REFUNDS]: "Refunds"
+  };
+  var DB_TABLE_BY_ALIAS = Object.freeze({
+    [TABLES.SETTINGS]: "ev_settings",
+    [TABLES.PAYMENTS]: "ev_payments",
+    [TABLES.POLICIES]: "ev_policies",
+    [TABLES.SITE_PAGES]: "ev_site_pages",
+    [TABLES.FESTIVALS]: "ev_festivals",
+    [TABLES.TOURS]: "ev_tours",
+    [TABLES.HOTELS]: "ev_hotels",
+    [TABLES.RESTAURANTS]: "ev_restaurants",
+    [TABLES.MARTS]: "ev_mart_partners",
+    [TABLES.PRODUCTS]: "ev_mart_products",
+    [TABLES.MENU_ITEMS]: "ev_menu_items",
+    [TABLES.FOOD_ORDERS]: "ev_food_orders",
+    [TABLES.BOOKINGS]: "ev_bookings",
+    [TABLES.CAB_BOOKINGS]: "ev_cab_bookings",
+    [TABLES.BUS_BOOKINGS]: "ev_bus_bookings",
+    [TABLES.CAB_PROVIDERS]: "ev_cab_rates",
+    [TABLES.BIKE_RENTALS]: "ev_rental_vehicles",
+    [TABLES.BUSES]: "ev_buses",
+    [TABLES.USER_PROFILES]: "ev_user_profiles",
+    [TABLES.USER_BEHAVIOR_PROFILES]: "ev_user_behavior_profiles",
+    [TABLES.ANALYTICS_EVENTS]: "ev_analytics_events",
+    [TABLES.QUERIES]: "ev_queries",
+    [TABLES.AUDIT_LOG]: "ev_audit_log",
+    [TABLES.COUPONS]: "ev_coupons",
+    [TABLES.SERVICE_AREAS]: "ev_service_areas",
+    [TABLES.TELEGRAM_MESSAGES]: "ev_telegram_messages",
+    [TABLES.AI_CONVERSATIONS]: "ev_ai_conversations",
+    [TABLES.DELIVERY_TRACKING]: "ev_delivery_tracking",
+    [TABLES.VENDOR_MESSAGES]: "ev_vendor_messages",
+    [TABLES.EMAIL_NOTIFICATIONS]: "ev_email_notifications",
+    [TABLES.REVIEWS]: "ev_reviews",
+    [TABLES.REFUNDS]: "ev_refunds"
+  });
+  var ALIAS_BY_DB_TABLE = Object.freeze(
+    Object.fromEntries(Object.entries(DB_TABLE_BY_ALIAS).map(([alias, db]) => [db, alias]))
+  );
+  function tableAlias(tableName) {
     const key = safeText(tableName);
+    return ALIAS_BY_DB_TABLE[key] || key;
+  }
+  function tableDb(tableName) {
+    const key = safeText(tableName);
+    return DB_TABLE_BY_ALIAS[key] || key;
+  }
+  function tableLabel(tableName) {
+    const key = tableAlias(tableName);
     return TABLE_LABELS[key] || titleCaseLabel(key);
   }
   function columnLabel(tableName, colName) {
@@ -23868,7 +23990,7 @@
     if (!(t.startsWith("{") || t.startsWith("["))) return null;
     try {
       return JSON.parse(t);
-    } catch (e) {
+    } catch {
       return null;
     }
   }
@@ -23883,6 +24005,469 @@
       out.push(s);
     });
     return out;
+  }
+  function normalizeStringList(raw) {
+    if (Array.isArray(raw)) return raw.map((x) => safeText(x)).filter((x) => x.trim());
+    if (typeof raw === "string") {
+      const parsed = safeJsonParse(raw);
+      if (Array.isArray(parsed)) return parsed.map((x) => safeText(x)).filter((x) => x.trim());
+      return raw.split("\n").map((x) => x.trim()).filter(Boolean);
+    }
+    return [];
+  }
+  function normalizeObjectList(raw) {
+    if (Array.isArray(raw)) return raw.filter((x) => x && typeof x === "object");
+    if (typeof raw === "string") {
+      const parsed = safeJsonParse(raw);
+      if (Array.isArray(parsed)) return parsed.filter((x) => x && typeof x === "object");
+    }
+    return [];
+  }
+  function ListEditor({ title, values, onChange, placeholder = "Add item..." }) {
+    const [draft, setDraft] = (0, import_react3.useState)("");
+    const list = Array.isArray(values) ? values : [];
+    const add = () => {
+      const v = safeText(draft).trim();
+      if (!v) return;
+      onChange([...list || [], v]);
+      setDraft("");
+    };
+    const removeAt = (idx) => {
+      onChange(list.filter((_, i) => i !== idx));
+    };
+    return /* @__PURE__ */ import_react3.default.createElement("div", { className: "field full" }, /* @__PURE__ */ import_react3.default.createElement("label", null, title), /* @__PURE__ */ import_react3.default.createElement("div", { className: "list-editor-row" }, /* @__PURE__ */ import_react3.default.createElement(
+      "input",
+      {
+        className: "input flex-1",
+        value: draft,
+        onChange: (e) => setDraft(e.target.value),
+        onKeyDown: (e) => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            add();
+          }
+        },
+        placeholder
+      }
+    ), /* @__PURE__ */ import_react3.default.createElement("button", { type: "button", className: "btn small", onClick: add }, /* @__PURE__ */ import_react3.default.createElement(FaPlus, null), " Add")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "chip-wrap" }, (list || []).map((item, idx) => /* @__PURE__ */ import_react3.default.createElement("span", { key: `${item}-${idx}`, className: "chip" }, item, /* @__PURE__ */ import_react3.default.createElement("button", { type: "button", className: "chip-x", onClick: () => removeAt(idx), "aria-label": "Remove item" }, "x"))), !list.length ? /* @__PURE__ */ import_react3.default.createElement("span", { className: "small" }, "No items yet.") : null));
+  }
+  function FestivalGalleryEditor({ images, titles, descriptions, onChange }) {
+    const rows = (0, import_react3.useMemo)(() => {
+      const img = normalizeStringList(images);
+      const ttl = normalizeStringList(titles);
+      const desc = normalizeStringList(descriptions);
+      const count = Math.max(img.length, ttl.length, desc.length, 1);
+      const out = [];
+      for (let i = 0; i < count; i += 1) {
+        out.push({
+          image: safeText(img[i]),
+          title: safeText(ttl[i]),
+          description: safeText(desc[i])
+        });
+      }
+      return out;
+    }, [images, titles, descriptions]);
+    const applyRows = (nextRows) => {
+      const cleaned = (nextRows || []).map((r) => ({
+        image: safeText(r?.image).trim(),
+        title: safeText(r?.title).trim(),
+        description: safeText(r?.description).trim()
+      })).filter((r) => r.image || r.title || r.description);
+      onChange({
+        images: cleaned.map((r) => r.image).filter(Boolean),
+        image_titles: cleaned.map((r) => r.title),
+        image_descriptions: cleaned.map((r) => r.description),
+        image_meta: cleaned.map((r) => ({ url: r.image, title: r.title, description: r.description }))
+      });
+    };
+    const update = (index, key, value) => {
+      const next = rows.map((r, i) => i === index ? { ...r, [key]: value } : r);
+      applyRows(next);
+    };
+    const removeAt = (index) => {
+      applyRows(rows.filter((_, i) => i !== index));
+    };
+    const uploadGalleryImage = async (index, file) => {
+      if (!file) return;
+      try {
+        const fd = new FormData();
+        fd.append("image", file);
+        fd.append("folder", "images/gallery");
+        const r = await fetch("/api/admin/upload-image", { method: "POST", credentials: "include", body: fd });
+        const j = await r.json().catch(() => ({}));
+        if (!r.ok) throw new Error(j?.message || j?.error || "UPLOAD_FAILED");
+        update(index, "image", j.url || j.path || "");
+      } catch (err) {
+        alert(String(err?.message || err));
+      }
+    };
+    return /* @__PURE__ */ import_react3.default.createElement("div", { className: "field full" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Gallery"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "gallery-grid" }, rows.map((r, idx) => /* @__PURE__ */ import_react3.default.createElement("div", { key: `gallery-${idx}`, className: "gallery-card" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "gallery-head" }, /* @__PURE__ */ import_react3.default.createElement("span", null, "Image ", idx + 1), /* @__PURE__ */ import_react3.default.createElement("button", { type: "button", className: "btn small danger", onClick: () => removeAt(idx) }, "Remove")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Image"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex-gap10-center" }, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input flex-1", value: r.image, readOnly: true, placeholder: "Upload image" }), /* @__PURE__ */ import_react3.default.createElement("label", { className: "btn small pointer" }, "Upload", /* @__PURE__ */ import_react3.default.createElement("input", { type: "file", accept: "image/*", className: "hidden-input", onChange: (e) => uploadGalleryImage(idx, e.target.files?.[0]) })))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Title"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: r.title, onChange: (e) => update(idx, "title", e.target.value), placeholder: "Optional image title" })), /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Description"), /* @__PURE__ */ import_react3.default.createElement("textarea", { className: "textarea gallery-textarea", value: r.description, onChange: (e) => update(idx, "description", e.target.value), placeholder: "Optional image note" }))))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "mt-8" }, /* @__PURE__ */ import_react3.default.createElement(
+      "button",
+      {
+        type: "button",
+        className: "btn small",
+        onClick: () => applyRows([...rows || [], { image: "", title: "", description: "" }])
+      },
+      /* @__PURE__ */ import_react3.default.createElement(FaPlus, null),
+      " Add Image"
+    )));
+  }
+  function Pagination({ page, totalPages, onChange }) {
+    if (totalPages <= 1) return null;
+    const prevDisabled = page <= 1;
+    const nextDisabled = page >= totalPages;
+    return /* @__PURE__ */ import_react3.default.createElement("div", { className: "pagination" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small", disabled: prevDisabled, onClick: () => onChange(page - 1) }, "Prev"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, "Page ", page, " / ", totalPages), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small", disabled: nextDisabled, onClick: () => onChange(page + 1) }, "Next"));
+  }
+  function CabRatesTable({ rows, onUpsert, onDelete, onReload }) {
+    const [page, setPage] = (0, import_react3.useState)(1);
+    const [edits, setEdits] = (0, import_react3.useState)({});
+    const [busyId, setBusyId] = (0, import_react3.useState)("");
+    const [error, setError] = (0, import_react3.useState)("");
+    const [newRow, setNewRow] = (0, import_react3.useState)({
+      id: "",
+      name: "",
+      section: "",
+      origin: "",
+      destination: "",
+      route_label: "",
+      ordinary_4_1: "",
+      luxury_4_1: "",
+      ordinary_6_1: "",
+      luxury_6_1: "",
+      traveller: "",
+      vehicle_type: "",
+      plate_number: "",
+      capacity: "",
+      vendor_mobile: "",
+      additional_comments: "",
+      price_dropped: false,
+      price_drop_percent: "",
+      hero_image: "",
+      active: true,
+      service_area_id: ""
+    });
+    const totalPages = Math.max(1, Math.ceil((rows || []).length / PAGE_SIZE));
+    const pageRows = (rows || []).slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+    const updateEdit = (id, key, value) => {
+      setEdits((prev) => {
+        const base = prev[id] || rows.find((r) => String(r.id) === String(id)) || {};
+        return { ...prev, [id]: { ...base, [key]: value } };
+      });
+    };
+    const saveRow = async (row) => {
+      const id = safeText(row?.id) || `cab_${Date.now()}_${Math.random().toString(16).slice(2)}`;
+      const origin = safeText(row?.origin || "").trim() || "Unknown";
+      const destination = safeText(row?.destination || "").trim() || "Unknown";
+      const fallbackRoute = safeText(row?.route_label || `${origin} to ${destination}`.trim()) || `${origin} to ${destination}`;
+      const toNumber = (v) => {
+        const n = Number(v);
+        return Number.isFinite(n) ? n : 0;
+      };
+      const payload = {
+        id,
+        name: safeText(row?.name || fallbackRoute || ""),
+        section: safeText(row?.section || "General"),
+        origin,
+        destination,
+        route_label: fallbackRoute,
+        ordinary_4_1: toNumber(row?.ordinary_4_1),
+        luxury_4_1: toNumber(row?.luxury_4_1),
+        ordinary_6_1: toNumber(row?.ordinary_6_1),
+        luxury_6_1: toNumber(row?.luxury_6_1),
+        traveller: toNumber(row?.traveller),
+        vehicle_type: safeText(row?.vehicle_type || ""),
+        plate_number: safeText(row?.plate_number || ""),
+        capacity: toNumber(row?.capacity),
+        vendor_mobile: safeText(row?.vendor_mobile || ""),
+        additional_comments: safeText(row?.additional_comments || ""),
+        price_dropped: row?.price_dropped === true,
+        price_drop_percent: toNumber(row?.price_drop_percent),
+        hero_image: safeText(row?.hero_image || ""),
+        active: row?.active !== false,
+        service_area_id: safeText(row?.service_area_id || "")
+      };
+      setBusyId(id);
+      setError("");
+      try {
+        await onUpsert(TABLES.CAB_PROVIDERS, [payload]);
+        if (onReload) await onReload();
+        setEdits((p) => {
+          const next = { ...p };
+          delete next[id];
+          return next;
+        });
+        setNewRow({
+          id: "",
+          name: "",
+          section: "",
+          origin: "",
+          destination: "",
+          route_label: "",
+          ordinary_4_1: "",
+          luxury_4_1: "",
+          ordinary_6_1: "",
+          luxury_6_1: "",
+          traveller: "",
+          vehicle_type: "",
+          plate_number: "",
+          capacity: "",
+          vendor_mobile: "",
+          additional_comments: "",
+          price_dropped: false,
+          price_drop_percent: "",
+          hero_image: "",
+          active: true,
+          service_area_id: ""
+        });
+      } catch (err) {
+        setError(String(err?.message || err));
+      } finally {
+        setBusyId("");
+      }
+    };
+    const deleteRow = async (id) => {
+      const confirmText = window.prompt("Type DELETE to remove this cab rate");
+      if (confirmText !== "DELETE") return;
+      setBusyId(id);
+      setError("");
+      try {
+        await onDelete(TABLES.CAB_PROVIDERS, id, "id", confirmText);
+        if (onReload) await onReload();
+      } catch (err) {
+        setError(String(err?.message || err));
+      } finally {
+        setBusyId("");
+      }
+    };
+    return /* @__PURE__ */ import_react3.default.createElement("div", { className: "table-wrap mt-10" }, error ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "warn" }, error) : null, /* @__PURE__ */ import_react3.default.createElement("table", { className: "table menu-table" }, /* @__PURE__ */ import_react3.default.createElement("thead", null, /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("th", null, "Origin"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Destination"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Route"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Ord 4+1"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Lux 4+1"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Ord 6+1"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Lux 6+1"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Traveller"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Vehicle Type"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Capacity"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Vendor Mobile"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Active"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Actions"))), /* @__PURE__ */ import_react3.default.createElement("tbody", null, /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: newRow.origin, onChange: (e) => setNewRow((p) => ({ ...p, origin: e.target.value })), placeholder: "Origin" })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: newRow.destination, onChange: (e) => setNewRow((p) => ({ ...p, destination: e.target.value })), placeholder: "Destination" })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: newRow.route_label, onChange: (e) => setNewRow((p) => ({ ...p, route_label: e.target.value })), placeholder: "Route label" })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: newRow.ordinary_4_1, onChange: (e) => setNewRow((p) => ({ ...p, ordinary_4_1: e.target.value })) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: newRow.luxury_4_1, onChange: (e) => setNewRow((p) => ({ ...p, luxury_4_1: e.target.value })) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: newRow.ordinary_6_1, onChange: (e) => setNewRow((p) => ({ ...p, ordinary_6_1: e.target.value })) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: newRow.luxury_6_1, onChange: (e) => setNewRow((p) => ({ ...p, luxury_6_1: e.target.value })) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: newRow.traveller, onChange: (e) => setNewRow((p) => ({ ...p, traveller: e.target.value })) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: newRow.vehicle_type, onChange: (e) => setNewRow((p) => ({ ...p, vehicle_type: e.target.value })) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: newRow.capacity, onChange: (e) => setNewRow((p) => ({ ...p, capacity: e.target.value })) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: newRow.vendor_mobile, onChange: (e) => setNewRow((p) => ({ ...p, vendor_mobile: e.target.value })) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { type: "checkbox", checked: newRow.active !== false, onChange: (e) => setNewRow((p) => ({ ...p, active: e.target.checked })) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small primary", onClick: () => saveRow(newRow), disabled: !!busyId }, "Save"))), pageRows.map((r) => {
+      const edit = edits[r.id] || r;
+      return /* @__PURE__ */ import_react3.default.createElement("tr", { key: safeText(r.id || "") }, /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(edit.origin), onChange: (e) => updateEdit(r.id, "origin", e.target.value) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(edit.destination), onChange: (e) => updateEdit(r.id, "destination", e.target.value) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(edit.route_label), onChange: (e) => updateEdit(r.id, "route_label", e.target.value) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(edit.ordinary_4_1), onChange: (e) => updateEdit(r.id, "ordinary_4_1", e.target.value) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(edit.luxury_4_1), onChange: (e) => updateEdit(r.id, "luxury_4_1", e.target.value) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(edit.ordinary_6_1), onChange: (e) => updateEdit(r.id, "ordinary_6_1", e.target.value) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(edit.luxury_6_1), onChange: (e) => updateEdit(r.id, "luxury_6_1", e.target.value) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(edit.traveller), onChange: (e) => updateEdit(r.id, "traveller", e.target.value) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(edit.vehicle_type), onChange: (e) => updateEdit(r.id, "vehicle_type", e.target.value) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(edit.capacity), onChange: (e) => updateEdit(r.id, "capacity", e.target.value) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(edit.vendor_mobile), onChange: (e) => updateEdit(r.id, "vendor_mobile", e.target.value) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { type: "checkbox", checked: edit.active !== false, onChange: (e) => updateEdit(r.id, "active", e.target.checked) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex-gap6" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small primary", onClick: () => saveRow(edit), disabled: busyId === r.id }, "Save"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small danger", onClick: () => deleteRow(r.id), disabled: busyId === r.id }, "Delete"))));
+    }))), /* @__PURE__ */ import_react3.default.createElement(Pagination, { page, totalPages, onChange: setPage }));
+  }
+  function BusesTable({ rows, onUpsert, onDelete, onReload }) {
+    const [page, setPage] = (0, import_react3.useState)(1);
+    const [edits, setEdits] = (0, import_react3.useState)({});
+    const [busyId, setBusyId] = (0, import_react3.useState)("");
+    const [error, setError] = (0, import_react3.useState)("");
+    const [newRow, setNewRow] = (0, import_react3.useState)({
+      id: "",
+      operator_name: "",
+      from_city: "",
+      to_city: "",
+      departure_time: "",
+      arrival_time: "",
+      duration_text: "",
+      bus_type: "Non AC",
+      fare: "",
+      total_seats: "",
+      hero_image: "",
+      active: true
+    });
+    const uploadBusImage = async (file, onDone) => {
+      if (!file) return;
+      setError("");
+      try {
+        const fd = new FormData();
+        fd.append("image", file);
+        fd.append("folder", "images/buses");
+        const r = await fetch("/api/admin/upload-image", { method: "POST", credentials: "include", body: fd });
+        const j = await r.json().catch(() => ({}));
+        if (!r.ok) throw new Error(j?.message || j?.error || "UPLOAD_FAILED");
+        onDone(j.url || j.path || "");
+      } catch (err) {
+        setError(String(err?.message || err));
+      }
+    };
+    const totalPages = Math.max(1, Math.ceil((rows || []).length / PAGE_SIZE));
+    const pageRows = (rows || []).slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+    const updateEdit = (id, key, value) => {
+      setEdits((prev) => {
+        const base = prev[id] || rows.find((r) => String(r.id) === String(id)) || {};
+        return { ...prev, [id]: { ...base, [key]: value } };
+      });
+    };
+    const toNumber = (v, fallback = 0) => {
+      const n = Number(v);
+      return Number.isFinite(n) ? n : fallback;
+    };
+    const saveRow = async (row) => {
+      const id = safeText(row?.id) || `bus_${Date.now()}_${Math.random().toString(16).slice(2)}`;
+      const payload = {
+        id,
+        operator_name: safeText(row?.operator_name || ""),
+        operator_code: safeText(row?.operator_code || ""),
+        from_city: safeText(row?.from_city || ""),
+        from_code: safeText(row?.from_code || ""),
+        to_city: safeText(row?.to_city || ""),
+        to_code: safeText(row?.to_code || ""),
+        departure_time: safeText(row?.departure_time || ""),
+        arrival_time: safeText(row?.arrival_time || ""),
+        duration_text: safeText(row?.duration_text || ""),
+        bus_type: safeText(row?.bus_type || "Non AC"),
+        fare: toNumber(row?.fare, 0),
+        total_seats: toNumber(row?.total_seats, 20),
+        seat_layout: row?.seat_layout || [],
+        service_dates: row?.service_dates || [],
+        seats_booked_by_date: row?.seats_booked_by_date || {},
+        hero_image: safeText(row?.hero_image || ""),
+        active: row?.active !== false
+      };
+      setBusyId(id);
+      setError("");
+      try {
+        await onUpsert(TABLES.BUSES, [payload]);
+        if (onReload) await onReload();
+        setEdits((p) => {
+          const next = { ...p };
+          delete next[id];
+          return next;
+        });
+        setNewRow({
+          id: "",
+          operator_name: "",
+          from_city: "",
+          to_city: "",
+          departure_time: "",
+          arrival_time: "",
+          duration_text: "",
+          bus_type: "Non AC",
+          fare: "",
+          total_seats: "",
+          hero_image: "",
+          active: true
+        });
+      } catch (err) {
+        setError(String(err?.message || err));
+      } finally {
+        setBusyId("");
+      }
+    };
+    const deleteRow = async (id) => {
+      const confirmText = window.prompt("Type DELETE to remove this bus route");
+      if (confirmText !== "DELETE") return;
+      setBusyId(id);
+      setError("");
+      try {
+        await onDelete(TABLES.BUSES, id, "id", confirmText);
+        if (onReload) await onReload();
+      } catch (err) {
+        setError(String(err?.message || err));
+      } finally {
+        setBusyId("");
+      }
+    };
+    return /* @__PURE__ */ import_react3.default.createElement("div", { className: "table-wrap mt-10" }, error ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "warn" }, error) : null, /* @__PURE__ */ import_react3.default.createElement("table", { className: "table menu-table" }, /* @__PURE__ */ import_react3.default.createElement("thead", null, /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("th", null, "Image"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Operator"), /* @__PURE__ */ import_react3.default.createElement("th", null, "From"), /* @__PURE__ */ import_react3.default.createElement("th", null, "To"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Departure"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Arrival"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Duration"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Type"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Fare"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Seats"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Active"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Actions"))), /* @__PURE__ */ import_react3.default.createElement("tbody", null, /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("td", { className: "thumb-cell" }, newRow.hero_image ? /* @__PURE__ */ import_react3.default.createElement("img", { className: "thumb", src: newRow.hero_image, alt: "" }) : null, /* @__PURE__ */ import_react3.default.createElement("label", { className: "btn small pointer mt-4" }, "Upload", /* @__PURE__ */ import_react3.default.createElement("input", { type: "file", accept: "image/*", className: "hidden-input", onChange: (e) => uploadBusImage(e.target.files?.[0], (url) => setNewRow((p) => ({ ...p, hero_image: url }))) }))), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: newRow.operator_name, onChange: (e) => setNewRow((p) => ({ ...p, operator_name: e.target.value })), placeholder: "Operator" })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: newRow.from_city, onChange: (e) => setNewRow((p) => ({ ...p, from_city: e.target.value })), placeholder: "From" })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: newRow.to_city, onChange: (e) => setNewRow((p) => ({ ...p, to_city: e.target.value })), placeholder: "To" })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: newRow.departure_time, onChange: (e) => setNewRow((p) => ({ ...p, departure_time: e.target.value })), placeholder: "06:30" })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: newRow.arrival_time, onChange: (e) => setNewRow((p) => ({ ...p, arrival_time: e.target.value })), placeholder: "12:30" })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: newRow.duration_text, onChange: (e) => setNewRow((p) => ({ ...p, duration_text: e.target.value })), placeholder: "6h" })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: newRow.bus_type, onChange: (e) => setNewRow((p) => ({ ...p, bus_type: e.target.value })), placeholder: "Non AC" })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: newRow.fare, onChange: (e) => setNewRow((p) => ({ ...p, fare: e.target.value })), placeholder: "0" })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: newRow.total_seats, onChange: (e) => setNewRow((p) => ({ ...p, total_seats: e.target.value })), placeholder: "20" })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { type: "checkbox", checked: newRow.active !== false, onChange: (e) => setNewRow((p) => ({ ...p, active: e.target.checked })) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small primary", onClick: () => saveRow(newRow), disabled: !!busyId }, "Save"))), pageRows.map((r) => {
+      const edit = edits[r.id] || r;
+      return /* @__PURE__ */ import_react3.default.createElement("tr", { key: safeText(r.id || "") }, /* @__PURE__ */ import_react3.default.createElement("td", { className: "thumb-cell" }, edit.hero_image ? /* @__PURE__ */ import_react3.default.createElement("img", { className: "thumb", src: edit.hero_image, alt: "" }) : null, /* @__PURE__ */ import_react3.default.createElement("label", { className: "btn small pointer mt-4" }, "Upload", /* @__PURE__ */ import_react3.default.createElement("input", { type: "file", accept: "image/*", className: "hidden-input", onChange: (e) => uploadBusImage(e.target.files?.[0], (url) => updateEdit(r.id, "hero_image", url)) }))), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(edit.operator_name), onChange: (e) => updateEdit(r.id, "operator_name", e.target.value) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(edit.from_city), onChange: (e) => updateEdit(r.id, "from_city", e.target.value) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(edit.to_city), onChange: (e) => updateEdit(r.id, "to_city", e.target.value) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(edit.departure_time), onChange: (e) => updateEdit(r.id, "departure_time", e.target.value) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(edit.arrival_time), onChange: (e) => updateEdit(r.id, "arrival_time", e.target.value) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(edit.duration_text), onChange: (e) => updateEdit(r.id, "duration_text", e.target.value) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(edit.bus_type), onChange: (e) => updateEdit(r.id, "bus_type", e.target.value) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(edit.fare), onChange: (e) => updateEdit(r.id, "fare", e.target.value) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(edit.total_seats), onChange: (e) => updateEdit(r.id, "total_seats", e.target.value) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { type: "checkbox", checked: edit.active !== false, onChange: (e) => updateEdit(r.id, "active", e.target.checked) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex-gap6" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small primary", onClick: () => saveRow(edit), disabled: busyId === r.id }, "Save"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small danger", onClick: () => deleteRow(r.id), disabled: busyId === r.id }, "Delete"))));
+    }))), /* @__PURE__ */ import_react3.default.createElement(Pagination, { page, totalPages, onChange: setPage }));
+  }
+  function BikeRentalsTable({ rows, onUpsert, onDelete, onReload }) {
+    const [page, setPage] = (0, import_react3.useState)(1);
+    const [edits, setEdits] = (0, import_react3.useState)({});
+    const [busyId, setBusyId] = (0, import_react3.useState)("");
+    const [error, setError] = (0, import_react3.useState)("");
+    const [newRow, setNewRow] = (0, import_react3.useState)({
+      id: "",
+      name: "",
+      category: "",
+      bike_model: "",
+      max_days: "",
+      availability_rates: "",
+      vendor_details: "",
+      pricing: "",
+      available: true
+    });
+    const totalPages = Math.max(1, Math.ceil((rows || []).length / PAGE_SIZE));
+    const pageRows = (rows || []).slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+    const updateEdit = (id, key, value) => {
+      setEdits((prev) => {
+        const base = prev[id] || rows.find((r) => String(r.id) === String(id)) || {};
+        return { ...prev, [id]: { ...base, [key]: value } };
+      });
+    };
+    const saveRow = async (row) => {
+      const id = safeText(row?.id) || `bike_${Date.now()}_${Math.random().toString(16).slice(2)}`;
+      const payload = {
+        id,
+        name: safeText(row?.name || ""),
+        category: safeText(row?.category || ""),
+        bike_model: safeText(row?.bike_model || ""),
+        max_days: Number(row?.max_days || 0) || 0,
+        availability_rates: safeText(row?.availability_rates || ""),
+        vendor_details: safeText(row?.vendor_details || ""),
+        pricing: safeText(row?.pricing || ""),
+        available: row?.available !== false
+      };
+      setBusyId(id);
+      try {
+        await onUpsert(TABLES.BIKE_RENTALS, [payload]);
+        setEdits((p) => {
+          const next = { ...p };
+          delete next[id];
+          return next;
+        });
+        setNewRow({
+          id: "",
+          name: "",
+          category: "",
+          bike_model: "",
+          max_days: "",
+          availability_rates: "",
+          vendor_details: "",
+          pricing: "",
+          available: true
+        });
+      } finally {
+        setBusyId("");
+      }
+    };
+    const deleteRow = async (id) => {
+      const confirmText = window.prompt("Type DELETE to remove this rental");
+      if (confirmText !== "DELETE") return;
+      setBusyId(id);
+      try {
+        await onDelete(TABLES.BIKE_RENTALS, id, "id", confirmText);
+        if (onReload) await onReload();
+      } finally {
+        setBusyId("");
+      }
+    };
+    return /* @__PURE__ */ import_react3.default.createElement("div", { className: "table-wrap mt-10" }, error ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "warn" }, error) : null, /* @__PURE__ */ import_react3.default.createElement("table", { className: "table menu-table" }, /* @__PURE__ */ import_react3.default.createElement("thead", null, /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("th", null, "Name"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Category"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Bike Model"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Max Days"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Availability Rates"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Pricing"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Vendor Details"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Available"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Actions"))), /* @__PURE__ */ import_react3.default.createElement("tbody", null, /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: newRow.name, onChange: (e) => setNewRow((p) => ({ ...p, name: e.target.value })), placeholder: "Name" })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: newRow.category, onChange: (e) => setNewRow((p) => ({ ...p, category: e.target.value })), placeholder: "Category" })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: newRow.bike_model, onChange: (e) => setNewRow((p) => ({ ...p, bike_model: e.target.value })), placeholder: "Model" })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: newRow.max_days, onChange: (e) => setNewRow((p) => ({ ...p, max_days: e.target.value })), placeholder: "0" })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: newRow.availability_rates, onChange: (e) => setNewRow((p) => ({ ...p, availability_rates: e.target.value })), placeholder: "\u20B91200/day" })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: newRow.pricing, onChange: (e) => setNewRow((p) => ({ ...p, pricing: e.target.value })), placeholder: "\u20B91200/day" })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: newRow.vendor_details, onChange: (e) => setNewRow((p) => ({ ...p, vendor_details: e.target.value })), placeholder: "Vendor details" })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { type: "checkbox", checked: newRow.available !== false, onChange: (e) => setNewRow((p) => ({ ...p, available: e.target.checked })) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small primary", onClick: () => saveRow(newRow), disabled: !!busyId }, "Save"))), pageRows.map((r) => {
+      const edit = edits[r.id] || r;
+      return /* @__PURE__ */ import_react3.default.createElement("tr", { key: safeText(r.id || "") }, /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(edit.name), onChange: (e) => updateEdit(r.id, "name", e.target.value) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(edit.category), onChange: (e) => updateEdit(r.id, "category", e.target.value) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(edit.bike_model), onChange: (e) => updateEdit(r.id, "bike_model", e.target.value) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(edit.max_days), onChange: (e) => updateEdit(r.id, "max_days", e.target.value) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(edit.availability_rates), onChange: (e) => updateEdit(r.id, "availability_rates", e.target.value) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(edit.pricing), onChange: (e) => updateEdit(r.id, "pricing", e.target.value) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(edit.vendor_details), onChange: (e) => updateEdit(r.id, "vendor_details", e.target.value) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { type: "checkbox", checked: edit.available !== false, onChange: (e) => updateEdit(r.id, "available", e.target.checked) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex-gap6" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small primary", onClick: () => saveRow(edit), disabled: busyId === r.id }, "Save"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small danger", onClick: () => deleteRow(r.id), disabled: busyId === r.id }, "Delete"))));
+    }))), /* @__PURE__ */ import_react3.default.createElement(Pagination, { page, totalPages, onChange: setPage }));
+  }
+  function ObjectListEditor({ title, items, onChange, fields, addLabel = "Add Item" }) {
+    const list = Array.isArray(items) ? items : [];
+    const updateItem = (idx, key, value) => {
+      onChange(list.map((item, i) => i === idx ? { ...item || {}, [key]: value } : item));
+    };
+    const removeAt = (idx) => onChange(list.filter((_, i) => i !== idx));
+    const addNew = () => {
+      const blank = {};
+      fields.forEach((f) => {
+        blank[f.key] = f.type === "number" ? null : "";
+      });
+      onChange([...list || [], blank]);
+    };
+    return /* @__PURE__ */ import_react3.default.createElement("div", { className: "field full" }, /* @__PURE__ */ import_react3.default.createElement("label", null, title), /* @__PURE__ */ import_react3.default.createElement("div", { className: "obj-grid" }, list.map((item, idx) => /* @__PURE__ */ import_react3.default.createElement("div", { key: `${title}-${idx}`, className: "obj-card" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "obj-head" }, /* @__PURE__ */ import_react3.default.createElement("span", null, title, " #", idx + 1), /* @__PURE__ */ import_react3.default.createElement("button", { type: "button", className: "btn small danger", onClick: () => removeAt(idx) }, "Remove")), fields.map((f) => /* @__PURE__ */ import_react3.default.createElement("div", { key: f.key, className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, f.label), f.type === "textarea" ? /* @__PURE__ */ import_react3.default.createElement(
+      "textarea",
+      {
+        className: "textarea gallery-textarea",
+        value: safeText(item?.[f.key]),
+        onChange: (e) => updateItem(idx, f.key, e.target.value),
+        placeholder: f.placeholder || ""
+      }
+    ) : /* @__PURE__ */ import_react3.default.createElement(
+      "input",
+      {
+        className: "input",
+        type: f.type === "number" ? "number" : "text",
+        value: safeText(item?.[f.key]),
+        onChange: (e) => updateItem(idx, f.key, f.type === "number" ? Number(e.target.value || 0) : e.target.value),
+        placeholder: f.placeholder || ""
+      }
+    )))))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "mt-8" }, /* @__PURE__ */ import_react3.default.createElement("button", { type: "button", className: "btn small", onClick: addNew }, /* @__PURE__ */ import_react3.default.createElement(FaPlus, null), " ", addLabel)));
   }
   function extractImageUrlsFromRow(row) {
     if (!row || typeof row !== "object") return [];
@@ -23928,7 +24513,7 @@
     return uniqStrings(urls);
   }
   function keyColumnForTable(table) {
-    const cols = ((table == null ? void 0 : table.columns) || []).map((c) => c.name);
+    const cols = (table?.columns || []).map((c) => c.name);
     const preferred = ["id", "code", "slug", "restaurant_id"];
     for (const p of preferred) if (cols.includes(p)) return p;
     return cols[0] || "id";
@@ -23941,6 +24526,7 @@
     if (!row || typeof row !== "object") return false;
     const id = safeText(row.id).trim().toLowerCase();
     if (id.startsWith("cottage_")) return true;
+    if (id.startsWith("hotel_")) return false;
     const name = safeText(row.name).trim().toLowerCase();
     const desc = safeText(row.description).trim().toLowerCase();
     if (name.includes("cottage") || desc.includes("cottage")) return true;
@@ -23955,25 +24541,39 @@
     { key: "hotels", label: "Hotels", icon: FaHotel },
     { key: "cottages", label: "Cottages", icon: FaBed },
     { key: "food_vendors", label: "Food Vendors", icon: FaUtensils },
+    { key: "mart_catalog", label: "Marts & Products", icon: FaStore },
     { key: "cab_providers", label: "Cab Providers", icon: FaCar },
+    { key: "bike_rentals", label: "Bike Rentals", icon: FaMotorcycle },
+    { key: "buses", label: "Buses", icon: FaBus },
     { key: "orders", label: "Orders", icon: FaStore },
+    { key: "delivery", label: "Delivery", icon: FaTruck },
     { key: "customers", label: "Customers", icon: FaUsers },
+    { key: "ai_support", label: "AI Support", icon: FaRobot },
+    { key: "refunds", label: "Refunds", icon: FaUndoAlt },
+    { key: "notifications", label: "Notifications", icon: FaEnvelope },
     { key: "tracking", label: "Tracking", icon: FaShieldAlt },
     { key: "analytics", label: "Analytics", icon: FaChartLine },
     { key: "settings", label: "Settings", icon: FaCog }
   ];
   var PAGE_TABLES = {
-    explorevalley: ["ev_festivals"],
-    tours: ["ev_tours"],
-    hotels: ["ev_hotels"],
-    cottages: ["ev_hotels"],
-    food_vendors: ["ev_restaurants", "ev_menu_items"],
-    cab_providers: ["ev_cab_providers"],
-    orders: ["ev_food_orders"],
-    customers: ["ev_user_profiles", "ev_user_behavior_profiles"],
-    tracking: ["ev_analytics_events"],
-    analytics: ["ev_analytics_events"],
-    settings: ["ev_site_pages", "ev_settings", "ev_payments", "ev_policies"]
+    explorevalley: [TABLES.FESTIVALS],
+    tours: [TABLES.TOURS],
+    hotels: [TABLES.HOTELS],
+    cottages: [TABLES.HOTELS],
+    food_vendors: [TABLES.RESTAURANTS, TABLES.MENU_ITEMS],
+    mart_catalog: [TABLES.MARTS, TABLES.PRODUCTS],
+    cab_providers: [TABLES.CAB_PROVIDERS],
+    bike_rentals: [TABLES.BIKE_RENTALS],
+    buses: [TABLES.BUSES, TABLES.BUS_BOOKINGS],
+    orders: [TABLES.BOOKINGS, TABLES.CAB_BOOKINGS, TABLES.BUS_BOOKINGS, TABLES.FOOD_ORDERS],
+    delivery: [TABLES.DELIVERY_TRACKING, TABLES.VENDOR_MESSAGES],
+    customers: [TABLES.USER_PROFILES, TABLES.USER_BEHAVIOR_PROFILES],
+    ai_support: [TABLES.AI_CONVERSATIONS, TABLES.TELEGRAM_MESSAGES],
+    refunds: [TABLES.REFUNDS],
+    notifications: [TABLES.EMAIL_NOTIFICATIONS],
+    tracking: [TABLES.ANALYTICS_EVENTS],
+    analytics: [TABLES.ANALYTICS_EVENTS],
+    settings: [TABLES.SITE_PAGES, TABLES.SETTINGS, TABLES.PAYMENTS, TABLES.POLICIES]
   };
   var PAGE_TITLE = {
     dashboard: "Dashboard",
@@ -23982,9 +24582,16 @@
     hotels: "Hotels",
     cottages: "Cottages",
     food_vendors: "Food Vendors",
+    mart_catalog: "Marts & Products",
     cab_providers: "Cab Providers",
+    bike_rentals: "Bike Rentals",
+    buses: "Buses",
     orders: "Orders",
+    delivery: "Delivery Management",
     customers: "Customers",
+    ai_support: "AI Support",
+    refunds: "Refunds",
+    notifications: "Notifications",
     tracking: "Tracking",
     analytics: "Analytics",
     settings: "Settings"
@@ -23994,15 +24601,15 @@
     const [selectedId, setSelectedId] = (0, import_react3.useState)("");
     const [draft, setDraft] = (0, import_react3.useState)("");
     const [saving, setSaving] = (0, import_react3.useState)(false);
-    const rows = Array.isArray(table == null ? void 0 : table.rows) ? table.rows : [];
+    const rows = Array.isArray(table?.rows) ? table.rows : [];
     const filtered = (0, import_react3.useMemo)(() => {
       if (filter === "all") return rows;
-      return rows.filter((r) => String((r == null ? void 0 : r.status) || "pending") === filter);
+      return rows.filter((r) => String(r?.status || "pending") === filter);
     }, [rows, filter]);
     const selected = (0, import_react3.useMemo)(() => {
       if (!filtered.length) return null;
       if (!selectedId) return filtered[0];
-      return filtered.find((r) => String((r == null ? void 0 : r.id) || "") === selectedId) || filtered[0];
+      return filtered.find((r) => String(r?.id || "") === selectedId) || filtered[0];
     }, [filtered, selectedId]);
     (0, import_react3.useEffect)(() => {
       if (!selected) {
@@ -24011,13 +24618,13 @@
       }
       setSelectedId(String(selected.id || ""));
       setDraft(String(selected.response || ""));
-    }, [selected == null ? void 0 : selected.id]);
+    }, [selected?.id]);
     const saveResponse = async (status) => {
       if (!selected) return;
       setSaving(true);
       try {
         const now = (/* @__PURE__ */ new Date()).toISOString();
-        await onUpsert("ev_queries", [{
+        await onUpsert(TABLES.QUERIES, [{
           ...selected,
           response: draft ? String(draft) : null,
           responded_at: draft ? now : selected.responded_at || null,
@@ -24032,37 +24639,37 @@
       "button",
       {
         key: q.id,
-        className: `list-item ${String(q.id) === String(selected == null ? void 0 : selected.id) ? "active" : ""}`,
+        className: `list-item ${String(q.id) === String(selected?.id) ? "active" : ""}`,
         onClick: () => setSelectedId(String(q.id || ""))
       },
       /* @__PURE__ */ import_react3.default.createElement("div", { className: "list-title" }, safeText(q.subject || "Enquiry")),
       /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, displayText(q.user_name || q.userName), " \u2022 ", displayText(q.email), " \u2022 ", displayText(q.phone)),
       /* @__PURE__ */ import_react3.default.createElement("div", { className: `badge ${String(q.status || "pending") === "pending" ? "warn" : "green"}` }, safeText(q.status || "pending"))
-    )) : /* @__PURE__ */ import_react3.default.createElement("div", { className: "small", style: { padding: 12 } }, "No enquiries."))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "split-right" }, !selected ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "card" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, "No enquiry selected.")) : /* @__PURE__ */ import_react3.default.createElement("div", { className: "card" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "row" }, /* @__PURE__ */ import_react3.default.createElement("h3", { style: { margin: 0 } }, safeText(selected.subject || "Enquiry")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "mini-row" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small ghost", onClick: () => {
+    )) : /* @__PURE__ */ import_react3.default.createElement("div", { className: "small small pad-12" }, "No enquiries."))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "split-right" }, !selected ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "card" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, "No enquiry selected.")) : /* @__PURE__ */ import_react3.default.createElement("div", { className: "card" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "row" }, /* @__PURE__ */ import_react3.default.createElement("h3", { className: "m-0" }, safeText(selected.subject || "Enquiry")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "mini-row" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small ghost", onClick: () => {
       const urls = extractImageUrlsFromRow(selected);
       if (urls.length) onOpenImages("Enquiry Attachments", urls, 0);
-    } }, "Images"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small primary", disabled: saving, onClick: () => saveResponse("resolved") }, "Save + Resolve"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small ghost", disabled: saving, onClick: () => saveResponse("spam") }, "Mark Spam"))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small", style: { marginTop: 8 } }, "From: ", /* @__PURE__ */ import_react3.default.createElement("b", null, displayText(selected.user_name || selected.userName)), " (", displayText(selected.email), ") \u2022 ", displayText(selected.phone)), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small", style: { marginTop: 6 } }, "Submitted: ", displayText(selected.submitted_at || selected.submittedAt || "")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "field", style: { marginTop: 12 } }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Message"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "readonly" }, safeText(selected.message))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Response"), /* @__PURE__ */ import_react3.default.createElement("textarea", { className: "input", rows: 8, value: draft, onChange: (e) => setDraft(e.target.value), placeholder: "Type your response..." })), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, "Responded at: ", displayText(selected.responded_at || selected.respondedAt || "", "not yet")))));
+    } }, "Images"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small primary", disabled: saving, onClick: () => saveResponse("resolved") }, "Save + Resolve"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small ghost", disabled: saving, onClick: () => saveResponse("spam") }, "Mark Spam"))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small mt-8" }, "From: ", /* @__PURE__ */ import_react3.default.createElement("b", null, displayText(selected.user_name || selected.userName)), " (", displayText(selected.email), ") \u2022 ", displayText(selected.phone)), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small mt-6" }, "Submitted: ", displayText(selected.submitted_at || selected.submittedAt || "")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "field mt-12" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Message"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "readonly" }, safeText(selected.message))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Response"), /* @__PURE__ */ import_react3.default.createElement("textarea", { className: "input", rows: 8, value: draft, onChange: (e) => setDraft(e.target.value), placeholder: "Type your response..." })), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, "Responded at: ", displayText(selected.responded_at || selected.respondedAt || "", "not yet")))));
   }
   async function http(path, init) {
     const r = await fetch(path, {
       credentials: "include",
-      headers: { "Content-Type": "application/json", ...(init == null ? void 0 : init.headers) || {} },
+      headers: { "Content-Type": "application/json", ...init?.headers || {} },
       ...init
     });
     let payload = null;
     try {
       payload = await r.json();
-    } catch (e) {
+    } catch {
       payload = null;
     }
     if (!r.ok) {
-      const message = (payload == null ? void 0 : payload.message) || (payload == null ? void 0 : payload.error) || `HTTP_${r.status}`;
+      const message = payload?.message || payload?.error || `HTTP_${r.status}`;
       throw new Error(message);
     }
     return payload;
   }
   function ImageLightbox({ title, urls, index, onClose, onPick }) {
-    if (!(urls == null ? void 0 : urls.length)) return null;
+    if (!urls?.length) return null;
     const i = Math.max(0, Math.min(urls.length - 1, index || 0));
     const active = urls[i];
     return /* @__PURE__ */ import_react3.default.createElement("div", { className: "modal-backdrop", onClick: onClose }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "modal", onClick: (e) => e.stopPropagation() }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "modal-head" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "modal-title" }, title || "Images"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small", onClick: onClose }, "Close")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "modal-body" }, /* @__PURE__ */ import_react3.default.createElement("img", { className: "modal-img", src: active, alt: "" })), /* @__PURE__ */ import_react3.default.createElement("div", { className: "modal-foot" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, i + 1, " / ", urls.length), /* @__PURE__ */ import_react3.default.createElement("div", { className: "mini-row" }, urls.slice(0, 16).map((u, idx) => /* @__PURE__ */ import_react3.default.createElement(
@@ -24075,29 +24682,6 @@
         onClick: () => onPick(idx)
       }
     ))))));
-  }
-  function BotsAgentsCard() {
-    const [status, setStatus] = (0, import_react3.useState)(null);
-    const [error, setError] = (0, import_react3.useState)("");
-    const refresh = async () => {
-      setError("");
-      try {
-        const payload = await http("/api/admin/bots/status");
-        setStatus(payload || null);
-      } catch (err) {
-        setError(String((err == null ? void 0 : err.message) || err || "Failed to load bot status"));
-      }
-    };
-    (0, import_react3.useEffect)(() => {
-      refresh();
-    }, []);
-    const bots = (status == null ? void 0 : status.bots) || {};
-    const webhookPaths = (status == null ? void 0 : status.webhookPaths) || {};
-    const mode = safeText((status == null ? void 0 : status.mode) || "off");
-    const webhookBase = safeText((status == null ? void 0 : status.webhookBase) || "");
-    const agentModel = safeText((status == null ? void 0 : status.agentModel) || "gpt-4o-mini");
-    const transcribeModel = safeText((status == null ? void 0 : status.transcribeModel) || "whisper-1");
-    return /* @__PURE__ */ import_react3.default.createElement("div", { className: "card" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "row", style: { marginBottom: 6 } }, /* @__PURE__ */ import_react3.default.createElement("h3", { style: { margin: 0 } }, /* @__PURE__ */ import_react3.default.createElement(FaRobot, null), " Bots & Agents"), /* @__PURE__ */ import_react3.default.createElement("div", { style: { flex: 1 } }), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small", onClick: refresh }, /* @__PURE__ */ import_react3.default.createElement(FaRedo, null), " Refresh")), error ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "warn", style: { marginBottom: 8 } }, error) : null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "grid-2" }, /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, "Telegram Mode"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "badge" }, mode || "off"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small", style: { marginTop: 8 } }, "Webhook Base"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, webhookBase || "Not set"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small", style: { marginTop: 8 } }, "Webhook Paths"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, "Admin: ", safeText(webhookPaths.admin || "/telegram/admin")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, "Support: ", safeText(webhookPaths.support || "/telegram/support")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, "Sales: ", safeText(webhookPaths.sales || "/telegram/sales")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, "Ops: ", safeText(webhookPaths.ops || "/telegram/ops")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, "Finance: ", safeText(webhookPaths.finance || "/telegram/finance"))), /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, "Agent Model"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "badge" }, agentModel), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small", style: { marginTop: 8 } }, "Transcribe Model"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "badge" }, transcribeModel), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small", style: { marginTop: 8 } }, "Bots Enabled"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "mini-row", style: { flexWrap: "wrap" } }, ["admin", "support", "sales", "ops", "finance"].map((key) => /* @__PURE__ */ import_react3.default.createElement("span", { key, className: `badge ${bots[key] ? "green" : "warn"}`, style: { textTransform: "capitalize" } }, key, ": ", bots[key] ? "on" : "off")))))));
   }
   function statCard(label, count, tag) {
     return /* @__PURE__ */ import_react3.default.createElement("div", { className: "stat", key: label }, /* @__PURE__ */ import_react3.default.createElement("h4", null, label), /* @__PURE__ */ import_react3.default.createElement("div", { className: "num" }, count), /* @__PURE__ */ import_react3.default.createElement("div", { className: `badge ${tag === "live" ? "green" : "warn"}` }, tag === "live" ? "Live" : "Catalog"));
@@ -24134,7 +24718,7 @@
         body: JSON.stringify({ supabaseAccessToken: accessToken })
       }).then((payload) => {
         setGoogleVerified(true);
-        setVerifiedEmail(String((payload == null ? void 0 : payload.email) || ""));
+        setVerifiedEmail(String(payload?.email || ""));
       }).catch((e) => {
         setError(String(e.message || e));
       }).finally(() => {
@@ -24142,7 +24726,7 @@
       });
     }, []);
     const startGoogleSignIn = () => {
-      if (!(googleConfig == null ? void 0 : googleConfig.supabaseUrl)) return;
+      if (!googleConfig?.supabaseUrl) return;
       const redirectTo = `${window.location.origin}${window.location.pathname}`;
       const url = `${googleConfig.supabaseUrl}/auth/v1/authorize?provider=google&redirect_to=${encodeURIComponent(redirectTo)}&prompt=select_account&scopes=${encodeURIComponent("email profile")}`;
       window.location.assign(url);
@@ -24162,98 +24746,108 @@
         setBusy(false);
       }
     };
-    return /* @__PURE__ */ import_react3.default.createElement("div", { className: "login-wrap" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "login-card" }, /* @__PURE__ */ import_react3.default.createElement("h1", { className: "page-title" }, /* @__PURE__ */ import_react3.default.createElement(FaShieldAlt, null), " ExploreValley Admin"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, "Secure session - IP and browser bound"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, "Google sign-in only for: ", /* @__PURE__ */ import_react3.default.createElement("b", null, (googleConfig == null ? void 0 : googleConfig.allowedEmail) || "bharatkaistha007@gmail.com")), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn", disabled: !googleConfig || checkingGoogle, onClick: startGoogleSignIn }, /* @__PURE__ */ import_react3.default.createElement(FaGoogle, null), " ", checkingGoogle ? "Verifying Google..." : googleVerified ? "Google Verified" : "Continue with Google"), googleVerified ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "badge green" }, "Verified as ", verifiedEmail || "allowed admin") : null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Admin Dashboard Key"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: adminKey, onChange: (e) => setAdminKey(e.target.value), placeholder: "Enter ADMIN_DASHBOARD_KEY" })), error ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "warn" }, error) : null, /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn primary", disabled: busy || !adminKey || !googleVerified, onClick: unlockWithAdminKey }, /* @__PURE__ */ import_react3.default.createElement(FaSignInAlt, null), " ", busy ? "Unlocking..." : "Unlock Dashboard")));
+    return /* @__PURE__ */ import_react3.default.createElement("div", { className: "login-wrap" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "login-card" }, /* @__PURE__ */ import_react3.default.createElement("h1", { className: "page-title" }, /* @__PURE__ */ import_react3.default.createElement(FaShieldAlt, null), " ExploreValley Admin"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, "Secure session - IP and browser bound"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn", disabled: !googleConfig || checkingGoogle, onClick: startGoogleSignIn }, /* @__PURE__ */ import_react3.default.createElement(FaGoogle, null), " ", checkingGoogle ? "Verifying Google..." : googleVerified ? "Google Verified" : "Continue with Google"), googleVerified ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "badge green" }, "Verified as ", verifiedEmail || "allowed admin") : null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Admin Dashboard Key"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: adminKey, onChange: (e) => setAdminKey(e.target.value), placeholder: "Enter ADMIN_DASHBOARD_KEY" })), error ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "warn" }, error) : null, /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn primary", disabled: busy || !adminKey || !googleVerified, onClick: unlockWithAdminKey }, /* @__PURE__ */ import_react3.default.createElement(FaSignInAlt, null), " ", busy ? "Unlocking..." : "Unlock Dashboard")));
   }
-  function DashboardView({ tablesByName, onReload, onOpenImages, onUpsert }) {
-    var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k;
+  function DashboardView({ snapshot, tablesByName, onReload, onOpenImages, onUpsert }) {
     const [dashTab, setDashTab] = (0, import_react3.useState)("bookings");
+    const [ordersTab, setOrdersTab] = (0, import_react3.useState)("bookings");
     const [bookingSearch, setBookingSearch] = (0, import_react3.useState)("");
     const [bookingStatus, setBookingStatus] = (0, import_react3.useState)("all");
-    const enquiriesTable = tablesByName.get("ev_queries");
-    const bookingsRows = ((_a = tablesByName.get("ev_bookings")) == null ? void 0 : _a.rows) || [];
-    const cabBookingRows = ((_b = tablesByName.get("ev_cab_bookings")) == null ? void 0 : _b.rows) || [];
-    const foodOrderRows = ((_c = tablesByName.get("ev_food_orders")) == null ? void 0 : _c.rows) || [];
-    const toursRows = ((_d = tablesByName.get("ev_tours")) == null ? void 0 : _d.rows) || [];
+    const [dashPage, setDashPage] = (0, import_react3.useState)(1);
+    const [dashSection, setDashSection] = (0, import_react3.useState)("live");
+    (0, import_react3.useEffect)(() => {
+      setDashPage(1);
+    }, [dashTab, ordersTab, bookingSearch, bookingStatus, dashSection]);
+    const enquiriesTable = tablesByName.get(TABLES.QUERIES);
+    const bookingsRows = tablesByName.get(TABLES.BOOKINGS)?.rows || [];
+    const cabBookingRows = tablesByName.get(TABLES.CAB_BOOKINGS)?.rows || [];
+    const foodOrderRows = tablesByName.get(TABLES.FOOD_ORDERS)?.rows || [];
+    const toursRows = tablesByName.get(TABLES.TOURS)?.rows || [];
+    const busBookingRows = tablesByName.get(TABLES.BUS_BOOKINGS)?.rows || [];
     const filteredBookings = (0, import_react3.useMemo)(() => {
       const q = safeText(bookingSearch).trim().toLowerCase();
       const status = safeText(bookingStatus).trim().toLowerCase();
       const rows = Array.isArray(bookingsRows) ? bookingsRows : [];
-      return rows.filter((b) => status === "all" ? true : safeText(b == null ? void 0 : b.status).toLowerCase() === status).filter((b) => q ? JSON.stringify(b).toLowerCase().includes(q) : true);
+      return rows.filter((b) => status === "all" ? true : safeText(b?.status).toLowerCase() === status).filter((b) => q ? JSON.stringify(b).toLowerCase().includes(q) : true);
     }, [bookingsRows, bookingSearch, bookingStatus]);
     const statCards = [
-      { label: "Bookings", count: ((_e = tablesByName.get("ev_bookings")) == null ? void 0 : _e.rowCount) || 0, tag: "live" },
-      { label: "Cab Bookings", count: ((_f = tablesByName.get("ev_cab_bookings")) == null ? void 0 : _f.rowCount) || 0, tag: "live" },
-      { label: "Food Orders", count: ((_g = tablesByName.get("ev_food_orders")) == null ? void 0 : _g.rowCount) || 0, tag: "live" },
-      { label: "Enquiries", count: ((_h = tablesByName.get("ev_queries")) == null ? void 0 : _h.rowCount) || 0, tag: "live" },
-      { label: "Tours", count: ((_i = tablesByName.get("ev_tours")) == null ? void 0 : _i.rowCount) || 0, tag: "catalog" },
-      { label: "Hotels", count: ((_j = tablesByName.get("ev_hotels")) == null ? void 0 : _j.rowCount) || 0, tag: "catalog" },
-      { label: "Food Vendors", count: ((_k = tablesByName.get("ev_restaurants")) == null ? void 0 : _k.rowCount) || 0, tag: "catalog" }
+      { label: "Bookings", count: tablesByName.get(TABLES.BOOKINGS)?.rowCount || 0, tag: "live" },
+      { label: "Cab Bookings", count: tablesByName.get(TABLES.CAB_BOOKINGS)?.rowCount || 0, tag: "live" },
+      { label: "Food Orders", count: tablesByName.get(TABLES.FOOD_ORDERS)?.rowCount || 0, tag: "live" },
+      { label: "Enquiries", count: tablesByName.get(TABLES.QUERIES)?.rowCount || 0, tag: "live" },
+      { label: "Tours", count: tablesByName.get(TABLES.TOURS)?.rowCount || 0, tag: "catalog" },
+      { label: "Hotels", count: tablesByName.get(TABLES.HOTELS)?.rowCount || 0, tag: "catalog" },
+      { label: "Food Vendors", count: tablesByName.get(TABLES.RESTAURANTS)?.rowCount || 0, tag: "catalog" }
     ];
     const renderSimpleTable = (rows, cols, emptyText) => {
       const list = Array.isArray(rows) ? rows : [];
-      if (!list.length) return /* @__PURE__ */ import_react3.default.createElement("div", { className: "small", style: { padding: 10 } }, emptyText || "No data yet.");
+      if (!list.length) return /* @__PURE__ */ import_react3.default.createElement("div", { className: "small pad-10" }, emptyText || "No data yet.");
       const head = cols.map((c) => c.key);
-      return /* @__PURE__ */ import_react3.default.createElement("div", { className: "table-wrap", style: { marginTop: 10 } }, /* @__PURE__ */ import_react3.default.createElement("table", { className: "table" }, /* @__PURE__ */ import_react3.default.createElement("thead", null, /* @__PURE__ */ import_react3.default.createElement("tr", null, head.map((k) => /* @__PURE__ */ import_react3.default.createElement("th", { key: k }, k)))), /* @__PURE__ */ import_react3.default.createElement("tbody", null, list.slice(0, 50).map((r, idx) => /* @__PURE__ */ import_react3.default.createElement("tr", { key: safeText((r == null ? void 0 : r.id) || idx) }, cols.map((c) => {
+      const totalPages = Math.max(1, Math.ceil(list.length / PAGE_SIZE));
+      const start = (dashPage - 1) * PAGE_SIZE;
+      const pageRows = list.slice(start, start + PAGE_SIZE);
+      return /* @__PURE__ */ import_react3.default.createElement("div", { className: "table-wrap mt-10" }, /* @__PURE__ */ import_react3.default.createElement("table", { className: "table" }, /* @__PURE__ */ import_react3.default.createElement("thead", null, /* @__PURE__ */ import_react3.default.createElement("tr", null, head.map((k) => /* @__PURE__ */ import_react3.default.createElement("th", { key: k }, k)))), /* @__PURE__ */ import_react3.default.createElement("tbody", null, pageRows.map((r, idx) => /* @__PURE__ */ import_react3.default.createElement("tr", { key: safeText(r?.id || idx) }, cols.map((c) => {
         const val = c.value(r);
         if (c.kind === "img") {
           const urls = Array.isArray(val) ? val : val ? [val] : [];
           return /* @__PURE__ */ import_react3.default.createElement("td", { key: c.key, className: "thumb-cell" }, urls[0] ? /* @__PURE__ */ import_react3.default.createElement("img", { className: "thumb", src: urls[0], alt: "", onClick: () => onOpenImages(c.key, urls, 0) }) : null);
         }
         return /* @__PURE__ */ import_react3.default.createElement("td", { key: c.key }, displayText(val).slice(0, 120));
-      }))))), Array.isArray(rows) && rows.length > 50 ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "small", style: { marginTop: 8 } }, "Showing 50 / ", rows.length) : null);
+      }))))), /* @__PURE__ */ import_react3.default.createElement(Pagination, { page: dashPage, totalPages, onChange: setDashPage }));
     };
-    return /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "card" }, /* @__PURE__ */ import_react3.default.createElement("h2", { style: { marginTop: 0 } }, "Welcome back"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, "Everything below is loaded directly from Supabase tables and fields."), /* @__PURE__ */ import_react3.default.createElement("div", { className: "stat-grid", style: { marginTop: 12 } }, statCards.map((x) => statCard(x.label, x.count, x.tag)))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "card" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "row", style: { marginBottom: 8 } }, /* @__PURE__ */ import_react3.default.createElement("h3", { style: { margin: 0 } }, "Live Queue"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small", onClick: onReload }, /* @__PURE__ */ import_react3.default.createElement(FaRedo, null), " Reload")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "tabs", style: { marginTop: 8 } }, /* @__PURE__ */ import_react3.default.createElement("button", { className: `tab ${dashTab === "bookings" ? "active" : ""}`, onClick: () => setDashTab("bookings") }, /* @__PURE__ */ import_react3.default.createElement(FaClipboardList, null), " Bookings"), /* @__PURE__ */ import_react3.default.createElement("button", { className: `tab ${dashTab === "food" ? "active" : ""}`, onClick: () => setDashTab("food") }, /* @__PURE__ */ import_react3.default.createElement(FaStore, null), " Food Orders"), /* @__PURE__ */ import_react3.default.createElement("button", { className: `tab ${dashTab === "cab" ? "active" : ""}`, onClick: () => setDashTab("cab") }, /* @__PURE__ */ import_react3.default.createElement(FaCar, null), " Cab Bookings"), /* @__PURE__ */ import_react3.default.createElement("button", { className: `tab ${dashTab === "tours" ? "active" : ""}`, onClick: () => setDashTab("tours") }, /* @__PURE__ */ import_react3.default.createElement(FaMapMarkerAlt, null), " Tours"), /* @__PURE__ */ import_react3.default.createElement("button", { className: `tab ${dashTab === "enquiries" ? "active" : ""}`, onClick: () => setDashTab("enquiries") }, /* @__PURE__ */ import_react3.default.createElement(FaEnvelopeOpenText, null), " Enquiries")), dashTab === "bookings" ? /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "filters", style: { marginTop: 10 } }, /* @__PURE__ */ import_react3.default.createElement("div", { style: { position: "relative" } }, /* @__PURE__ */ import_react3.default.createElement(FaSearch, { style: { position: "absolute", left: 10, top: 12, opacity: 0.8 } }), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", style: { paddingLeft: 30 }, value: bookingSearch, onChange: (e) => setBookingSearch(e.target.value), placeholder: "Search bookings..." })), /* @__PURE__ */ import_react3.default.createElement("select", { className: "input", value: bookingStatus, onChange: (e) => setBookingStatus(e.target.value) }, ["all", "pending", "confirmed", "cancelled", "completed"].map((s) => /* @__PURE__ */ import_react3.default.createElement("option", { key: s, value: s }, s))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "badge" }, filteredBookings.length, " rows")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "table-wrap", style: { marginTop: 10 } }, /* @__PURE__ */ import_react3.default.createElement(
+    return /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "card" }, /* @__PURE__ */ import_react3.default.createElement("h2", { className: "mt-0" }, "Welcome back"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, "Everything below is loaded directly from Supabase tables and fields."), /* @__PURE__ */ import_react3.default.createElement("div", { className: "stat-grid mt-12" }, statCards.map((x) => statCard(x.label, x.count, x.tag)))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "dash-nav" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: `tab ${dashSection === "live" ? "active" : ""}`, onClick: () => setDashSection("live") }, /* @__PURE__ */ import_react3.default.createElement(FaClipboardList, null), " Live Queue"), /* @__PURE__ */ import_react3.default.createElement("button", { className: `tab ${dashSection === "pricing" ? "active" : ""}`, onClick: () => setDashSection("pricing") }, /* @__PURE__ */ import_react3.default.createElement(FaChartLine, null), " Pricing Controls"), /* @__PURE__ */ import_react3.default.createElement("button", { className: `tab ${dashSection === "orders" ? "active" : ""}`, onClick: () => setDashSection("orders") }, /* @__PURE__ */ import_react3.default.createElement(FaStore, null), " Orders"), /* @__PURE__ */ import_react3.default.createElement("button", { className: `tab ${dashSection === "refunds" ? "active" : ""}`, onClick: () => setDashSection("refunds") }, /* @__PURE__ */ import_react3.default.createElement(FaUndoAlt, null), " Refunds"), /* @__PURE__ */ import_react3.default.createElement("button", { className: `tab ${dashSection === "notifications" ? "active" : ""}`, onClick: () => setDashSection("notifications") }, /* @__PURE__ */ import_react3.default.createElement(FaEnvelope, null), " Notifications")), dashSection === "pricing" ? /* @__PURE__ */ import_react3.default.createElement(
+      PricingControlsWorkspace,
+      {
+        snapshot,
+        onReload,
+        onUpsert
+      }
+    ) : null, dashSection === "live" ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "card" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "row mb-8" }, /* @__PURE__ */ import_react3.default.createElement("h3", { className: "m-0" }, "Live Queue"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small", onClick: onReload }, /* @__PURE__ */ import_react3.default.createElement(FaRedo, null), " Reload")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "tabs mt-8" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: `tab ${dashTab === "bookings" ? "active" : ""}`, onClick: () => setDashTab("bookings") }, /* @__PURE__ */ import_react3.default.createElement(FaClipboardList, null), "Travel Bookings"), /* @__PURE__ */ import_react3.default.createElement("button", { className: `tab ${dashTab === "food" ? "active" : ""}`, onClick: () => setDashTab("food") }, /* @__PURE__ */ import_react3.default.createElement(FaStore, null), " Food Orders"), /* @__PURE__ */ import_react3.default.createElement("button", { className: `tab ${dashTab === "cab" ? "active" : ""}`, onClick: () => setDashTab("cab") }, /* @__PURE__ */ import_react3.default.createElement(FaCar, null), " Cab Bookings"), /* @__PURE__ */ import_react3.default.createElement("button", { className: `tab ${dashTab === "tours" ? "active" : ""}`, onClick: () => setDashTab("tours") }, /* @__PURE__ */ import_react3.default.createElement(FaMapMarkerAlt, null), " Tours"), /* @__PURE__ */ import_react3.default.createElement("button", { className: `tab ${dashTab === "enquiries" ? "active" : ""}`, onClick: () => setDashTab("enquiries") }, /* @__PURE__ */ import_react3.default.createElement(FaEnvelopeOpenText, null), " Enquiries")), dashTab === "bookings" ? /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "filters mt-10" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "pos-rel" }, /* @__PURE__ */ import_react3.default.createElement(FaSearch, { className: "search-icon" }), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input input-search", value: bookingSearch, onChange: (e) => setBookingSearch(e.target.value), placeholder: "Search bookings..." })), /* @__PURE__ */ import_react3.default.createElement("select", { className: "input", value: bookingStatus, onChange: (e) => setBookingStatus(e.target.value) }, ["all", "pending", "confirmed", "cancelled", "completed"].map((s) => /* @__PURE__ */ import_react3.default.createElement("option", { key: s, value: s }, s))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "badge" }, filteredBookings.length, " rows")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "table-wrap mt-10" }, /* @__PURE__ */ import_react3.default.createElement(
       BookingsTable,
       {
-        rows: filteredBookings,
+        rows: filteredBookings.slice((dashPage - 1) * PAGE_SIZE, dashPage * PAGE_SIZE),
         onOpenRow: () => {
         },
         onOpenImages,
         onUpsert,
         onReload
       }
-    ))) : null, dashTab === "food" ? /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "small", style: { marginTop: 10 } }, "Latest food orders"), renderSimpleTable(
+    ), /* @__PURE__ */ import_react3.default.createElement(Pagination, { page: dashPage, totalPages: Math.max(1, Math.ceil(filteredBookings.length / PAGE_SIZE)), onChange: setDashPage }))) : null, dashTab === "food" ? /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "small mt-10" }, "Latest food orders"), renderSimpleTable(
       foodOrderRows,
       [
-        { key: "id", value: (r) => r == null ? void 0 : r.id },
-        { key: "status", value: (r) => r == null ? void 0 : r.status },
-        { key: "name", value: (r) => (r == null ? void 0 : r.user_name) || (r == null ? void 0 : r.userName) },
-        { key: "phone", value: (r) => r == null ? void 0 : r.phone },
-        { key: "restaurant_id", value: (r) => (r == null ? void 0 : r.restaurant_id) || (r == null ? void 0 : r.restaurantId) },
-        { key: "total", value: (r) => {
-          var _a2, _b2, _c2, _d2;
-          return (_d2 = (_c2 = (_a2 = r == null ? void 0 : r.pricing) == null ? void 0 : _a2.totalAmount) != null ? _c2 : (_b2 = r == null ? void 0 : r.pricing) == null ? void 0 : _b2.total_amount) != null ? _d2 : "";
-        } },
-        { key: "order_time", value: (r) => (r == null ? void 0 : r.order_time) || (r == null ? void 0 : r.orderTime) }
+        { key: "id", value: (r) => r?.id },
+        { key: "status", value: (r) => r?.status },
+        { key: "name", value: (r) => r?.user_name || r?.userName },
+        { key: "phone", value: (r) => r?.phone },
+        { key: "restaurant_id", value: (r) => r?.restaurant_id || r?.restaurantId },
+        { key: "total", value: (r) => r?.pricing?.totalAmount ?? r?.pricing?.total_amount ?? "" },
+        { key: "order_time", value: (r) => r?.order_time || r?.orderTime }
       ],
       "No food orders yet. Place an order from the frontend to see it here."
-    )) : null, dashTab === "cab" ? /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "small", style: { marginTop: 10 } }, "Latest cab bookings"), renderSimpleTable(
+    )) : null, dashTab === "cab" ? /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "small mt-10" }, "Latest cab bookings"), renderSimpleTable(
       cabBookingRows,
       [
-        { key: "id", value: (r) => r == null ? void 0 : r.id },
-        { key: "status", value: (r) => r == null ? void 0 : r.status },
-        { key: "name", value: (r) => (r == null ? void 0 : r.user_name) || (r == null ? void 0 : r.userName) },
-        { key: "phone", value: (r) => r == null ? void 0 : r.phone },
-        { key: "pickup", value: (r) => (r == null ? void 0 : r.pickup_location) || (r == null ? void 0 : r.pickupLocation) },
-        { key: "drop", value: (r) => (r == null ? void 0 : r.drop_location) || (r == null ? void 0 : r.dropLocation) },
-        { key: "datetime", value: (r) => r == null ? void 0 : r.datetime },
-        { key: "fare", value: (r) => {
-          var _a2, _b2;
-          return (_b2 = (_a2 = r == null ? void 0 : r.estimated_fare) != null ? _a2 : r == null ? void 0 : r.estimatedFare) != null ? _b2 : "";
-        } }
+        { key: "id", value: (r) => r?.id },
+        { key: "status", value: (r) => r?.status },
+        { key: "name", value: (r) => r?.user_name || r?.userName },
+        { key: "phone", value: (r) => r?.phone },
+        { key: "pickup", value: (r) => r?.pickup_location || r?.pickupLocation },
+        { key: "drop", value: (r) => r?.drop_location || r?.dropLocation },
+        { key: "datetime", value: (r) => r?.datetime },
+        { key: "fare", value: (r) => r?.estimated_fare ?? r?.estimatedFare ?? "" }
       ],
       "No cab bookings yet. Add cab providers + book from frontend to see it here."
-    )) : null, dashTab === "tours" ? /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "small", style: { marginTop: 10 } }, "Tours catalog"), renderSimpleTable(
+    )) : null, dashTab === "tours" ? /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "small mt-10" }, "Tours catalog"), renderSimpleTable(
       toursRows,
       [
-        { key: "id", value: (r) => r == null ? void 0 : r.id },
-        { key: "image", kind: "img", value: (r) => (r == null ? void 0 : r.hero_image) || (Array.isArray(r == null ? void 0 : r.images) ? r.images[0] : "") },
-        { key: "title", value: (r) => r == null ? void 0 : r.title },
-        { key: "price", value: (r) => r == null ? void 0 : r.price },
-        { key: "available", value: (r) => r == null ? void 0 : r.available }
+        { key: "id", value: (r) => r?.id },
+        { key: "image", kind: "img", value: (r) => r?.hero_image || (Array.isArray(r?.images) ? r.images[0] : "") },
+        { key: "title", value: (r) => r?.title },
+        { key: "price", value: (r) => r?.price },
+        { key: "available", value: (r) => r?.available }
       ],
       "No tours yet. Add tours from Admin: Tours section."
-    )) : null, dashTab === "enquiries" ? /* @__PURE__ */ import_react3.default.createElement("div", { style: { marginTop: 10 } }, /* @__PURE__ */ import_react3.default.createElement(
+    )) : null, dashTab === "enquiries" ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "mt-10" }, /* @__PURE__ */ import_react3.default.createElement(
       EnquiriesWorkspace,
       {
         table: enquiriesTable,
@@ -24261,7 +24855,55 @@
         onOpenImages,
         onUpsert
       }
-    )) : null));
+    )) : null) : null, dashSection === "orders" ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "card" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "row mb-8" }, /* @__PURE__ */ import_react3.default.createElement("h3", { className: "m-0" }, "Orders"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small", onClick: onReload }, /* @__PURE__ */ import_react3.default.createElement(FaRedo, null), " Reload")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "tabs mt-8" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: `tab ${ordersTab === "bookings" ? "active" : ""}`, onClick: () => setOrdersTab("bookings") }, /* @__PURE__ */ import_react3.default.createElement(FaClipboardList, null), " Hotel Bookings"), /* @__PURE__ */ import_react3.default.createElement("button", { className: `tab ${ordersTab === "food" ? "active" : ""}`, onClick: () => setOrdersTab("food") }, /* @__PURE__ */ import_react3.default.createElement(FaStore, null), " Food Orders"), /* @__PURE__ */ import_react3.default.createElement("button", { className: `tab ${ordersTab === "cab" ? "active" : ""}`, onClick: () => setOrdersTab("cab") }, /* @__PURE__ */ import_react3.default.createElement(FaCar, null), " Cab Bookings"), /* @__PURE__ */ import_react3.default.createElement("button", { className: `tab ${ordersTab === "bus" ? "active" : ""}`, onClick: () => setOrdersTab("bus") }, /* @__PURE__ */ import_react3.default.createElement(FaBus, null), " Bus Bookings")), ordersTab === "bookings" ? /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "filters mt-10" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "pos-rel" }, /* @__PURE__ */ import_react3.default.createElement(FaSearch, { className: "search-icon" }), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input input-search", value: bookingSearch, onChange: (e) => setBookingSearch(e.target.value), placeholder: "Search bookings..." })), /* @__PURE__ */ import_react3.default.createElement("select", { className: "input", value: bookingStatus, onChange: (e) => setBookingStatus(e.target.value) }, ["all", "pending", "confirmed", "cancelled", "completed"].map((s) => /* @__PURE__ */ import_react3.default.createElement("option", { key: s, value: s }, s))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "badge" }, filteredBookings.length, " rows")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "table-wrap mt-10" }, /* @__PURE__ */ import_react3.default.createElement(
+      BookingsTable,
+      {
+        rows: filteredBookings.slice((dashPage - 1) * PAGE_SIZE, dashPage * PAGE_SIZE),
+        onOpenRow: () => {
+        },
+        onOpenImages,
+        onUpsert,
+        onReload
+      }
+    ), /* @__PURE__ */ import_react3.default.createElement(Pagination, { page: dashPage, totalPages: Math.max(1, Math.ceil(filteredBookings.length / PAGE_SIZE)), onChange: setDashPage }))) : null, ordersTab === "food" ? /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "small mt-10" }, "Latest food orders"), renderSimpleTable(
+      foodOrderRows,
+      [
+        { key: "id", value: (r) => r?.id },
+        { key: "status", value: (r) => r?.status },
+        { key: "name", value: (r) => r?.user_name || r?.userName },
+        { key: "phone", value: (r) => r?.phone },
+        { key: "restaurant_id", value: (r) => r?.restaurant_id || r?.restaurantId },
+        { key: "total", value: (r) => r?.pricing?.totalAmount ?? r?.pricing?.total_amount ?? "" },
+        { key: "order_time", value: (r) => r?.order_time || r?.orderTime }
+      ],
+      "No food orders yet."
+    )) : null, ordersTab === "cab" ? /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "small mt-10" }, "Latest cab bookings"), renderSimpleTable(
+      cabBookingRows,
+      [
+        { key: "id", value: (r) => r?.id },
+        { key: "status", value: (r) => r?.status },
+        { key: "name", value: (r) => r?.user_name || r?.userName },
+        { key: "phone", value: (r) => r?.phone },
+        { key: "pickup", value: (r) => r?.pickup_location || r?.pickupLocation },
+        { key: "drop", value: (r) => r?.drop_location || r?.dropLocation },
+        { key: "datetime", value: (r) => r?.datetime },
+        { key: "fare", value: (r) => r?.estimated_fare ?? r?.estimatedFare ?? "" }
+      ],
+      "No cab bookings yet."
+    )) : null, ordersTab === "bus" ? /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "small mt-10" }, "Latest bus bookings"), renderSimpleTable(
+      busBookingRows,
+      [
+        { key: "id", value: (r) => r?.id },
+        { key: "status", value: (r) => r?.status },
+        { key: "name", value: (r) => r?.user_name || r?.userName },
+        { key: "phone", value: (r) => r?.phone },
+        { key: "from", value: (r) => r?.from_city || r?.fromCity },
+        { key: "to", value: (r) => r?.to_city || r?.toCity },
+        { key: "travel_date", value: (r) => r?.travel_date || r?.travelDate },
+        { key: "total_fare", value: (r) => r?.total_fare ?? r?.totalFare ?? "" }
+      ],
+      "No bus bookings yet."
+    )) : null) : null, dashSection === "refunds" ? /* @__PURE__ */ import_react3.default.createElement(RefundsWorkspace, { snapshot, onReload }) : null, dashSection === "notifications" ? /* @__PURE__ */ import_react3.default.createElement(NotificationsWorkspace, { snapshot }) : null);
   }
   function normalizePhone(phone) {
     const raw = safeText(phone);
@@ -24299,36 +24941,18 @@
     return out;
   }
   function CustomersWorkspace({ snapshot }) {
-    const tables = Array.isArray(snapshot == null ? void 0 : snapshot.tables) ? snapshot.tables : [];
+    const tables = Array.isArray(snapshot?.tables) ? snapshot.tables : [];
     const byName = (0, import_react3.useMemo)(() => {
       const m = /* @__PURE__ */ new Map();
       tables.forEach((t) => m.set(t.name, t));
       return m;
     }, [snapshot]);
-    const profiles = (0, import_react3.useMemo)(() => {
-      var _a;
-      return ((_a = byName.get("ev_user_profiles")) == null ? void 0 : _a.rows) || [];
-    }, [byName]);
-    const behavior = (0, import_react3.useMemo)(() => {
-      var _a;
-      return ((_a = byName.get("ev_user_behavior_profiles")) == null ? void 0 : _a.rows) || [];
-    }, [byName]);
-    const bookings = (0, import_react3.useMemo)(() => {
-      var _a;
-      return ((_a = byName.get("ev_bookings")) == null ? void 0 : _a.rows) || [];
-    }, [byName]);
-    const cabBookings = (0, import_react3.useMemo)(() => {
-      var _a;
-      return ((_a = byName.get("ev_cab_bookings")) == null ? void 0 : _a.rows) || [];
-    }, [byName]);
-    const foodOrders = (0, import_react3.useMemo)(() => {
-      var _a;
-      return ((_a = byName.get("ev_food_orders")) == null ? void 0 : _a.rows) || [];
-    }, [byName]);
-    const events = (0, import_react3.useMemo)(() => {
-      var _a;
-      return ((_a = byName.get("ev_analytics_events")) == null ? void 0 : _a.rows) || [];
-    }, [byName]);
+    const profiles = (0, import_react3.useMemo)(() => byName.get(TABLES.USER_PROFILES)?.rows || [], [byName]);
+    const behavior = (0, import_react3.useMemo)(() => byName.get(TABLES.USER_BEHAVIOR_PROFILES)?.rows || [], [byName]);
+    const bookings = (0, import_react3.useMemo)(() => byName.get(TABLES.BOOKINGS)?.rows || [], [byName]);
+    const cabBookings = (0, import_react3.useMemo)(() => byName.get(TABLES.CAB_BOOKINGS)?.rows || [], [byName]);
+    const foodOrders = (0, import_react3.useMemo)(() => byName.get(TABLES.FOOD_ORDERS)?.rows || [], [byName]);
+    const events = (0, import_react3.useMemo)(() => byName.get(TABLES.ANALYTICS_EVENTS)?.rows || [], [byName]);
     const [showAnonymous, setShowAnonymous] = (0, import_react3.useState)(false);
     const [detail, setDetail] = (0, import_react3.useState)(null);
     const rows = (0, import_react3.useMemo)(() => {
@@ -24343,63 +24967,62 @@
         map.set(id, next);
       };
       (profiles || []).forEach((p) => {
-        const userId = safeText(p == null ? void 0 : p.id) || ((p == null ? void 0 : p.phone) ? userIdFromPhone(p.phone) : "");
+        const userId = safeText(p?.id) || (p?.phone ? userIdFromPhone(p.phone) : "");
         upsert(userId, {
-          name: safeText(p == null ? void 0 : p.name),
-          phone: safeText(p == null ? void 0 : p.phone),
-          email: safeText(p == null ? void 0 : p.email),
-          ipAddress: safeText((p == null ? void 0 : p.ip_address) || (p == null ? void 0 : p.ipAddress)),
-          browser: safeText(p == null ? void 0 : p.browser),
-          createdAt: safeText((p == null ? void 0 : p.created_at) || (p == null ? void 0 : p.createdAt)),
-          updatedAt: safeText((p == null ? void 0 : p.updated_at) || (p == null ? void 0 : p.updatedAt)),
+          name: safeText(p?.name),
+          phone: safeText(p?.phone),
+          email: safeText(p?.email),
+          ipAddress: safeText(p?.ip_address || p?.ipAddress),
+          browser: safeText(p?.browser),
+          createdAt: safeText(p?.created_at || p?.createdAt),
+          updatedAt: safeText(p?.updated_at || p?.updatedAt),
           sources: ["profiles"]
         });
       });
       (behavior || []).forEach((b) => {
-        var _a, _b;
-        const userId = safeText((b == null ? void 0 : b.user_id) || (b == null ? void 0 : b.userId) || (b == null ? void 0 : b.id));
-        const saved = ((_a = b == null ? void 0 : b.location_mobility) == null ? void 0 : _a.savedAddresses) || ((_b = b == null ? void 0 : b.locationMobility) == null ? void 0 : _b.savedAddresses);
+        const userId = safeText(b?.user_id || b?.userId || b?.id);
+        const saved = b?.location_mobility?.savedAddresses || b?.locationMobility?.savedAddresses;
         upsert(userId, {
-          name: safeText(b == null ? void 0 : b.name),
-          phone: safeText(b == null ? void 0 : b.phone),
-          email: safeText(b == null ? void 0 : b.email),
+          name: safeText(b?.name),
+          phone: safeText(b?.phone),
+          email: safeText(b?.email),
           addresses: Array.isArray(saved) ? saved.map((x) => safeText(x)).filter(Boolean) : [],
           sources: ["behavior"]
         });
       });
       (foodOrders || []).forEach((o) => {
-        const phone = safeText(o == null ? void 0 : o.phone);
-        const email = safeText(o == null ? void 0 : o.email);
-        const userId = safeText((o == null ? void 0 : o.user_id) || (o == null ? void 0 : o.userId)) || (phone ? userIdFromPhone(phone) : "") || (email ? userIdFromEmail(email) : "");
-        const addr = safeText((o == null ? void 0 : o.delivery_address) || (o == null ? void 0 : o.deliveryAddress));
+        const phone = safeText(o?.phone);
+        const email = safeText(o?.email);
+        const userId = safeText(o?.user_id || o?.userId) || (phone ? userIdFromPhone(phone) : "") || (email ? userIdFromEmail(email) : "");
+        const addr = safeText(o?.delivery_address || o?.deliveryAddress);
         upsert(userId, {
-          name: safeText((o == null ? void 0 : o.user_name) || (o == null ? void 0 : o.userName)),
+          name: safeText(o?.user_name || o?.userName),
           phone,
           email,
           addresses: addr ? [addr] : [],
-          lastOrderAt: safeText((o == null ? void 0 : o.order_time) || (o == null ? void 0 : o.orderTime)),
+          lastOrderAt: safeText(o?.order_time || o?.orderTime),
           sources: ["food"]
         });
       });
       (cabBookings || []).forEach((o) => {
-        const phone = safeText(o == null ? void 0 : o.phone);
-        const userId = safeText((o == null ? void 0 : o.user_id) || (o == null ? void 0 : o.userId)) || (phone ? userIdFromPhone(phone) : "");
-        const pickup = safeText((o == null ? void 0 : o.pickup_location) || (o == null ? void 0 : o.pickupLocation));
-        const drop = safeText((o == null ? void 0 : o.drop_location) || (o == null ? void 0 : o.dropLocation));
+        const phone = safeText(o?.phone);
+        const userId = safeText(o?.user_id || o?.userId) || (phone ? userIdFromPhone(phone) : "");
+        const pickup = safeText(o?.pickup_location || o?.pickupLocation);
+        const drop = safeText(o?.drop_location || o?.dropLocation);
         upsert(userId, {
-          name: safeText((o == null ? void 0 : o.user_name) || (o == null ? void 0 : o.userName)),
+          name: safeText(o?.user_name || o?.userName),
           phone,
           addresses: uniqList([pickup, drop]),
-          lastOrderAt: safeText((o == null ? void 0 : o.created_at) || (o == null ? void 0 : o.createdAt)),
+          lastOrderAt: safeText(o?.created_at || o?.createdAt),
           sources: ["cab"]
         });
       });
       (bookings || []).forEach((o) => {
-        const phone = safeText(o == null ? void 0 : o.phone);
-        const email = safeText(o == null ? void 0 : o.email);
-        const userId = safeText((o == null ? void 0 : o.user_id) || (o == null ? void 0 : o.userId)) || (phone ? userIdFromPhone(phone) : "") || (email ? userIdFromEmail(email) : "");
+        const phone = safeText(o?.phone);
+        const email = safeText(o?.email);
+        const userId = safeText(o?.user_id || o?.userId) || (phone ? userIdFromPhone(phone) : "") || (email ? userIdFromEmail(email) : "");
         upsert(userId, {
-          name: safeText((o == null ? void 0 : o.user_name) || (o == null ? void 0 : o.userName)),
+          name: safeText(o?.user_name || o?.userName),
           phone,
           email,
           sources: ["bookings"]
@@ -24408,23 +25031,22 @@
       const lastByUser = /* @__PURE__ */ new Map();
       const lastAuthByUser = /* @__PURE__ */ new Map();
       (events || []).forEach((e) => {
-        var _a;
-        const meta = (e == null ? void 0 : e.meta) && typeof e.meta === "object" ? e.meta : safeJsonParse(e == null ? void 0 : e.meta) || {};
-        const phone = safeText(e == null ? void 0 : e.phone);
-        const email = safeText(e == null ? void 0 : e.email);
-        const ip = safeText((meta == null ? void 0 : meta.ipAddress) || (meta == null ? void 0 : meta.ip) || "");
-        const userId = safeText((e == null ? void 0 : e.user_id) || (e == null ? void 0 : e.userId)) || (phone ? userIdFromPhone(phone) : "") || (email ? userIdFromEmail(email) : "") || (ip ? userIdFromIp(ip) : "");
-        const at = safeText(e == null ? void 0 : e.at);
-        const prevAt = safeText(((_a = lastByUser.get(userId)) == null ? void 0 : _a.at) || "");
+        const meta = e?.meta && typeof e.meta === "object" ? e.meta : safeJsonParse(e?.meta) || {};
+        const phone = safeText(e?.phone);
+        const email = safeText(e?.email);
+        const ip = safeText(meta?.ipAddress || meta?.ip || "");
+        const userId = safeText(e?.user_id || e?.userId) || (phone ? userIdFromPhone(phone) : "") || (email ? userIdFromEmail(email) : "") || (ip ? userIdFromIp(ip) : "");
+        const at = safeText(e?.at);
+        const prevAt = safeText(lastByUser.get(userId)?.at || "");
         if (!prevAt || new Date(at).getTime() >= new Date(prevAt).getTime()) {
           lastByUser.set(userId, {
             at,
             ipAddress: ip,
-            browser: safeText((meta == null ? void 0 : meta.browser) || ""),
-            page: safeText((meta == null ? void 0 : meta.screen) || (meta == null ? void 0 : meta.path) || (meta == null ? void 0 : meta.url) || "")
+            browser: safeText(meta?.browser || ""),
+            page: safeText(meta?.screen || meta?.path || meta?.url || "")
           });
         }
-        const type = safeText(e == null ? void 0 : e.type).toLowerCase();
+        const type = safeText(e?.type).toLowerCase();
         if (type === "auth_login" || type === "auth_logout") {
           const prev = lastAuthByUser.get(userId);
           if (!prev || new Date(at).getTime() >= new Date(prev.at).getTime()) {
@@ -24448,7 +25070,163 @@
       filtered.sort((a, b) => new Date(b.lastSeenAt || b.updatedAt || 0).getTime() - new Date(a.lastSeenAt || a.updatedAt || 0).getTime());
       return filtered;
     }, [profiles, behavior, bookings, cabBookings, foodOrders, events, showAnonymous]);
-    return /* @__PURE__ */ import_react3.default.createElement("div", { className: "card" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "filters" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, "Customers aggregated from orders + analytics + profiles"), /* @__PURE__ */ import_react3.default.createElement("div", { style: { flex: 1 } }), /* @__PURE__ */ import_react3.default.createElement("button", { className: `btn small ${showAnonymous ? "primary" : "ghost"}`, onClick: () => setShowAnonymous((p) => !p) }, showAnonymous ? "Showing anonymous" : "Hide anonymous")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "table-wrap", style: { marginTop: 10 } }, /* @__PURE__ */ import_react3.default.createElement("table", { className: "table" }, /* @__PURE__ */ import_react3.default.createElement("thead", null, /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("th", null, "User"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Name"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Phone"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Email"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Logged In"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Last Seen"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Last Page"), /* @__PURE__ */ import_react3.default.createElement("th", null, "IP"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Browser"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Addresses"))), /* @__PURE__ */ import_react3.default.createElement("tbody", null, rows.map((u) => /* @__PURE__ */ import_react3.default.createElement("tr", { key: safeText(u.userId), onClick: () => setDetail(u) }, /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(u.userId).slice(0, 36)), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(u.name).slice(0, 40)), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(u.phone).slice(0, 20)), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(u.email).slice(0, 40)), /* @__PURE__ */ import_react3.default.createElement("td", null, u.loggedIn === null ? "" : u.loggedIn ? "Yes" : "No"), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(u.lastSeenAt || u.updatedAt).slice(0, 19).replace("T", " ")), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(u.lastPage).slice(0, 50)), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(u.ipAddress).slice(0, 32)), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(u.browser).slice(0, 48)), /* @__PURE__ */ import_react3.default.createElement("td", null, Array.isArray(u.addresses) ? `${u.addresses.length}` : "0"))), !rows.length ? /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("td", { colSpan: 10, className: "small" }, "No customers yet.")) : null))), detail ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "card", style: { marginTop: 12 } }, /* @__PURE__ */ import_react3.default.createElement("div", { style: { display: "flex", justifyContent: "space-between", gap: 10, alignItems: "center" } }, /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("div", { style: { fontWeight: 800 } }, "Customer Detail"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, safeText(detail.userId))), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small", onClick: () => setDetail(null) }, "Close")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small", style: { marginTop: 10 } }, "Addresses"), /* @__PURE__ */ import_react3.default.createElement("div", { style: { marginTop: 6, display: "flex", flexDirection: "column", gap: 6 } }, (detail.addresses || []).slice(0, 30).map((a) => /* @__PURE__ */ import_react3.default.createElement("div", { key: a, className: "img-chip" }, /* @__PURE__ */ import_react3.default.createElement("span", null, a))), !(detail.addresses || []).length ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, "No addresses collected yet (food delivery + cab pickup/drop populate this).") : null), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small", style: { marginTop: 10 } }, "Raw"), /* @__PURE__ */ import_react3.default.createElement("textarea", { className: "textarea json-mini", value: JSON.stringify(detail, null, 2), readOnly: true, style: { marginTop: 6 } })) : null);
+    return /* @__PURE__ */ import_react3.default.createElement("div", { className: "card" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "filters" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, "Customers aggregated from orders + analytics + profiles"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex-1" }), /* @__PURE__ */ import_react3.default.createElement("button", { className: `btn small ${showAnonymous ? "primary" : "ghost"}`, onClick: () => setShowAnonymous((p) => !p) }, showAnonymous ? "Showing anonymous" : "Hide anonymous")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "table-wrap mt-10" }, /* @__PURE__ */ import_react3.default.createElement("table", { className: "table" }, /* @__PURE__ */ import_react3.default.createElement("thead", null, /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("th", null, "User"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Name"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Phone"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Email"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Logged In"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Last Seen"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Last Page"), /* @__PURE__ */ import_react3.default.createElement("th", null, "IP"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Browser"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Addresses"))), /* @__PURE__ */ import_react3.default.createElement("tbody", null, rows.map((u) => /* @__PURE__ */ import_react3.default.createElement("tr", { key: safeText(u.userId), onClick: () => setDetail(u) }, /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(u.userId).slice(0, 36)), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(u.name).slice(0, 40)), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(u.phone).slice(0, 20)), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(u.email).slice(0, 40)), /* @__PURE__ */ import_react3.default.createElement("td", null, u.loggedIn === null ? "" : u.loggedIn ? "Yes" : "No"), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(u.lastSeenAt || u.updatedAt).slice(0, 19).replace("T", " ")), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(u.lastPage).slice(0, 50)), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(u.ipAddress).slice(0, 32)), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(u.browser).slice(0, 48)), /* @__PURE__ */ import_react3.default.createElement("td", null, Array.isArray(u.addresses) ? `${u.addresses.length}` : "0"))), !rows.length ? /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("td", { colSpan: 10, className: "small" }, "No customers yet.")) : null))), detail ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "card mt-12" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex-between-gap10-center" }, /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "fw-800" }, "Customer Detail"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, safeText(detail.userId))), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small", onClick: () => setDetail(null) }, "Close")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small mt-10" }, "Addresses"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "mt-6 flex-col-gap6" }, (detail.addresses || []).slice(0, 30).map((a) => /* @__PURE__ */ import_react3.default.createElement("div", { key: a, className: "img-chip" }, /* @__PURE__ */ import_react3.default.createElement("span", null, a))), !(detail.addresses || []).length ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, "No addresses collected yet (food delivery + cab pickup/drop populate this).") : null), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small mt-10" }, "Raw"), /* @__PURE__ */ import_react3.default.createElement("textarea", { className: "textarea json-mini mt-6", value: JSON.stringify(detail, null, 2), readOnly: true })) : null);
+  }
+  function DeliveryWorkspace({ snapshot, onReload }) {
+    const tables = Array.isArray(snapshot?.tables) ? snapshot.tables : [];
+    const byName = (0, import_react3.useMemo)(() => {
+      const m = /* @__PURE__ */ new Map();
+      tables.forEach((t) => m.set(t.name, t));
+      return m;
+    }, [snapshot]);
+    const deliveryRows = (0, import_react3.useMemo)(() => byName.get(TABLES.DELIVERY_TRACKING)?.rows || [], [byName]);
+    const vendorMsgRows = (0, import_react3.useMemo)(() => byName.get(TABLES.VENDOR_MESSAGES)?.rows || [], [byName]);
+    const [activeTab, setActiveTab] = (0, import_react3.useState)("tracking");
+    const [statusFilter, setStatusFilter] = (0, import_react3.useState)("all");
+    const [updateForm, setUpdateForm] = (0, import_react3.useState)({ orderId: "", status: "confirmed", notes: "" });
+    const [updating, setUpdating] = (0, import_react3.useState)(false);
+    const [updateMsg, setUpdateMsg] = (0, import_react3.useState)("");
+    const filteredDelivery = (0, import_react3.useMemo)(() => {
+      const rows = Array.isArray(deliveryRows) ? deliveryRows : [];
+      if (statusFilter === "all") return rows;
+      return rows.filter((r) => safeText(r?.status).toLowerCase() === statusFilter);
+    }, [deliveryRows, statusFilter]);
+    const handleStatusUpdate = async () => {
+      if (!updateForm.orderId || !updateForm.status) return;
+      setUpdating(true);
+      setUpdateMsg("");
+      try {
+        const res = await http("/api/delivery/update-status", {
+          method: "POST",
+          body: JSON.stringify({
+            orderId: updateForm.orderId,
+            status: updateForm.status,
+            notes: updateForm.notes || void 0,
+            orderType: "food"
+          })
+        });
+        setUpdateMsg("Status updated successfully!");
+        setUpdateForm({ orderId: "", status: "confirmed", notes: "" });
+        onReload();
+      } catch (err) {
+        setUpdateMsg("Error: " + (err.message || "Failed to update"));
+      } finally {
+        setUpdating(false);
+      }
+    };
+    return /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "card" }, /* @__PURE__ */ import_react3.default.createElement("h3", { className: "mt-0" }, /* @__PURE__ */ import_react3.default.createElement(FaTruck, null), " Update Order Status"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex-gap10-wrap mt-10" }, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input w-220", placeholder: "Order ID", value: updateForm.orderId, onChange: (e) => setUpdateForm((p) => ({ ...p, orderId: e.target.value })) }), /* @__PURE__ */ import_react3.default.createElement("select", { className: "input", value: updateForm.status, onChange: (e) => setUpdateForm((p) => ({ ...p, status: e.target.value })) }, ["pending", "confirmed", "preparing", "ready", "picked_up", "in_transit", "delivered", "cancelled"].map((s) => /* @__PURE__ */ import_react3.default.createElement("option", { key: s, value: s }, s))), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input flex-1 minw-200", placeholder: "Notes (optional)", value: updateForm.notes, onChange: (e) => setUpdateForm((p) => ({ ...p, notes: e.target.value })) }), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn primary", disabled: updating, onClick: handleStatusUpdate }, updating ? "Updating..." : "Update")), updateMsg ? /* @__PURE__ */ import_react3.default.createElement("div", { className: `small mt-8 ${updateMsg.startsWith("Error") ? "text-danger" : "text-success"}` }, updateMsg) : null), /* @__PURE__ */ import_react3.default.createElement("div", { className: "card" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "tabs" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: `tab ${activeTab === "tracking" ? "active" : ""}`, onClick: () => setActiveTab("tracking") }, /* @__PURE__ */ import_react3.default.createElement(FaTruck, null), " Tracking"), /* @__PURE__ */ import_react3.default.createElement("button", { className: `tab ${activeTab === "vendor_msgs" ? "active" : ""}`, onClick: () => setActiveTab("vendor_msgs") }, /* @__PURE__ */ import_react3.default.createElement(FaComments, null), " Vendor Messages")), activeTab === "tracking" ? /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "filters mt-10" }, /* @__PURE__ */ import_react3.default.createElement("select", { className: "input", value: statusFilter, onChange: (e) => setStatusFilter(e.target.value) }, ["all", "pending", "confirmed", "preparing", "ready", "picked_up", "in_transit", "delivered", "cancelled"].map((s) => /* @__PURE__ */ import_react3.default.createElement("option", { key: s, value: s }, s))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "badge" }, filteredDelivery.length, " records")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "table-wrap mt-10" }, /* @__PURE__ */ import_react3.default.createElement("table", { className: "table" }, /* @__PURE__ */ import_react3.default.createElement("thead", null, /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("th", null, "Order ID"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Status"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Driver"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Driver Phone"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Company"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Updated"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Notes"))), /* @__PURE__ */ import_react3.default.createElement("tbody", null, filteredDelivery.map((r, idx) => /* @__PURE__ */ import_react3.default.createElement("tr", { key: safeText(r?.id || idx) }, /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(r?.order_id || r?.orderId).slice(0, 20)), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("span", { className: "badge" }, safeText(r?.status))), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(r?.driver_name || r?.driverName)), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(r?.driver_phone || r?.driverPhone)), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(r?.delivery_company || r?.deliveryCompany)), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(r?.updated_at || r?.updatedAt).slice(0, 19).replace("T", " ")), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(r?.notes).slice(0, 80)))), !filteredDelivery.length ? /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("td", { colSpan: 7, className: "small" }, "No delivery records yet.")) : null)))) : null, activeTab === "vendor_msgs" ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "table-wrap mt-10" }, /* @__PURE__ */ import_react3.default.createElement("table", { className: "table" }, /* @__PURE__ */ import_react3.default.createElement("thead", null, /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("th", null, "Vendor ID"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Order ID"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Channel"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Status"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Sent At"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Message"))), /* @__PURE__ */ import_react3.default.createElement("tbody", null, vendorMsgRows.map((r, idx) => /* @__PURE__ */ import_react3.default.createElement("tr", { key: safeText(r?.id || idx) }, /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(r?.vendor_id || r?.vendorId).slice(0, 20)), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(r?.order_id || r?.orderId).slice(0, 20)), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(r?.channel)), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("span", { className: "badge" }, safeText(r?.status))), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(r?.sent_at || r?.sentAt).slice(0, 19).replace("T", " ")), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(typeof r?.message_body === "object" ? JSON.stringify(r.message_body) : r?.message_body).slice(0, 100)))), !vendorMsgRows.length ? /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("td", { colSpan: 6, className: "small" }, "No vendor messages sent yet.")) : null))) : null));
+  }
+  function AISupportWorkspace({ snapshot }) {
+    const tables = Array.isArray(snapshot?.tables) ? snapshot.tables : [];
+    const byName = (0, import_react3.useMemo)(() => {
+      const m = /* @__PURE__ */ new Map();
+      tables.forEach((t) => m.set(t.name, t));
+      return m;
+    }, [snapshot]);
+    const aiConversations = (0, import_react3.useMemo)(() => byName.get(TABLES.AI_CONVERSATIONS)?.rows || [], [byName]);
+    const telegramMessages = (0, import_react3.useMemo)(() => byName.get(TABLES.TELEGRAM_MESSAGES)?.rows || [], [byName]);
+    const [activeTab, setActiveTab] = (0, import_react3.useState)("conversations");
+    const [detail, setDetail] = (0, import_react3.useState)(null);
+    const sortedConversations = (0, import_react3.useMemo)(() => {
+      return [...aiConversations].sort(
+        (a, b) => new Date(b?.created_at || b?.createdAt || 0).getTime() - new Date(a?.created_at || a?.createdAt || 0).getTime()
+      );
+    }, [aiConversations]);
+    const sortedTelegram = (0, import_react3.useMemo)(() => {
+      return [...telegramMessages].sort(
+        (a, b) => new Date(b?.created_at || b?.createdAt || 0).getTime() - new Date(a?.created_at || a?.createdAt || 0).getTime()
+      );
+    }, [telegramMessages]);
+    return /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "card" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "stat-grid" }, statCard("AI Conversations", aiConversations.length, "live"), statCard("Telegram Messages", telegramMessages.length, "live"), statCard("Escalated", aiConversations.filter((c) => c?.escalated || c?.should_escalate).length, "alert"))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "card" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "tabs" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: `tab ${activeTab === "conversations" ? "active" : ""}`, onClick: () => setActiveTab("conversations") }, /* @__PURE__ */ import_react3.default.createElement(FaRobot, null), " AI Conversations"), /* @__PURE__ */ import_react3.default.createElement("button", { className: `tab ${activeTab === "telegram" ? "active" : ""}`, onClick: () => setActiveTab("telegram") }, /* @__PURE__ */ import_react3.default.createElement(FaTelegramPlane, null), " Telegram Messages")), activeTab === "conversations" ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "table-wrap mt-10" }, /* @__PURE__ */ import_react3.default.createElement("table", { className: "table" }, /* @__PURE__ */ import_react3.default.createElement("thead", null, /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("th", null, "User"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Intent"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Message"), /* @__PURE__ */ import_react3.default.createElement("th", null, "AI Reply"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Escalated"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Time"))), /* @__PURE__ */ import_react3.default.createElement("tbody", null, sortedConversations.slice(0, 100).map((r, idx) => /* @__PURE__ */ import_react3.default.createElement("tr", { key: safeText(r?.id || idx), onClick: () => setDetail(r), className: "cursor-pointer" }, /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(r?.user_id || r?.userId || r?.phone).slice(0, 24)), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("span", { className: "badge" }, safeText(r?.intent || r?.detected_intent))), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(r?.user_message || r?.message).slice(0, 80)), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(r?.ai_reply || r?.reply).slice(0, 80)), /* @__PURE__ */ import_react3.default.createElement("td", null, r?.escalated || r?.should_escalate ? "Yes" : "No"), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(r?.created_at || r?.createdAt).slice(0, 19).replace("T", " ")))), !sortedConversations.length ? /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("td", { colSpan: 6, className: "small" }, "No AI conversations yet.")) : null))) : null, activeTab === "telegram" ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "table-wrap mt-10" }, /* @__PURE__ */ import_react3.default.createElement("table", { className: "table" }, /* @__PURE__ */ import_react3.default.createElement("thead", null, /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("th", null, "Chat ID"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Direction"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Type"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Message"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Time"))), /* @__PURE__ */ import_react3.default.createElement("tbody", null, sortedTelegram.slice(0, 100).map((r, idx) => /* @__PURE__ */ import_react3.default.createElement("tr", { key: safeText(r?.id || idx) }, /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(r?.chat_id || r?.chatId).slice(0, 16)), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("span", { className: "badge" }, safeText(r?.direction))), /* @__PURE__ */ import_react3.default.createElement("td", null, safeText(r?.message_type || r?.messageType)), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(typeof r?.content === "object" ? JSON.stringify(r.content) : r?.content).slice(0, 100)), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(r?.created_at || r?.createdAt).slice(0, 19).replace("T", " ")))), !sortedTelegram.length ? /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("td", { colSpan: 5, className: "small" }, "No Telegram messages logged yet.")) : null))) : null), detail ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "card mt-12" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex-between-center" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "fw-800" }, "Conversation Detail"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small", onClick: () => setDetail(null) }, "Close")), /* @__PURE__ */ import_react3.default.createElement("textarea", { className: "textarea json-mini mt-8", value: JSON.stringify(detail, null, 2), readOnly: true })) : null);
+  }
+  function BotsAgentsCard() {
+    const [status, setStatus] = (0, import_react3.useState)(null);
+    const [error, setError] = (0, import_react3.useState)("");
+    const refresh = async () => {
+      setError("");
+      try {
+        const payload = await http("/api/admin/bots/status");
+        setStatus(payload || null);
+      } catch (err) {
+        setError(String(err?.message || err || "Failed to load bot status"));
+      }
+    };
+    (0, import_react3.useEffect)(() => {
+      refresh();
+    }, []);
+    const bots = status?.bots || {};
+    const webhookPaths = status?.webhookPaths || {};
+    const mode = safeText(status?.mode || "off");
+    const webhookBase = safeText(status?.webhookBase || "");
+    const agentModel = safeText(status?.agentModel || "gpt-4o-mini");
+    const transcribeModel = safeText(status?.transcribeModel || "whisper-1");
+    return /* @__PURE__ */ import_react3.default.createElement("div", { className: "card" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "row mb-6" }, /* @__PURE__ */ import_react3.default.createElement("h3", { className: "m-0" }, /* @__PURE__ */ import_react3.default.createElement(FaRobot, null), " Bots & Agents"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex-1" }), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small", onClick: refresh }, /* @__PURE__ */ import_react3.default.createElement(FaRedo, null), " Refresh")), error ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "warn mb-8" }, error) : null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "grid-2" }, /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, "Telegram Mode"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "badge" }, mode || "off"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small mt-8" }, "Webhook Base"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, webhookBase || "Not set"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small mt-8" }, "Webhook Paths"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, "Admin: ", safeText(webhookPaths.admin || "/telegram/admin")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, "Support: ", safeText(webhookPaths.support || "/telegram/support")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, "Sales: ", safeText(webhookPaths.sales || "/telegram/sales")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, "Ops: ", safeText(webhookPaths.ops || "/telegram/ops")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, "Finance: ", safeText(webhookPaths.finance || "/telegram/finance"))), /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, "Agent Model"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "badge" }, agentModel), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small mt-8" }, "Transcribe Model"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "badge" }, transcribeModel), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small mt-8" }, "Bots Enabled"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "mini-row wrap" }, ["admin", "support", "sales", "ops", "finance"].map((key) => /* @__PURE__ */ import_react3.default.createElement("span", { key, className: `badge cap ${bots[key] ? "green" : "warn"}` }, key, ": ", bots[key] ? "on" : "off"))))));
+  }
+  function RefundsWorkspace({ snapshot, onReload }) {
+    const tables = Array.isArray(snapshot?.tables) ? snapshot.tables : [];
+    const byName = (0, import_react3.useMemo)(() => {
+      const m = /* @__PURE__ */ new Map();
+      tables.forEach((t) => m.set(t.name, t));
+      return m;
+    }, [snapshot]);
+    const refunds = (0, import_react3.useMemo)(() => {
+      const rows = byName.get(TABLES.REFUNDS)?.rows || [];
+      return [...rows].sort(
+        (a, b) => new Date(b?.created_at || b?.createdAt || 0).getTime() - new Date(a?.created_at || a?.createdAt || 0).getTime()
+      );
+    }, [byName]);
+    const [statusFilter, setStatusFilter] = (0, import_react3.useState)("all");
+    const filteredRefunds = (0, import_react3.useMemo)(() => {
+      if (statusFilter === "all") return refunds;
+      return refunds.filter((r) => safeText(r?.status).toLowerCase() === statusFilter);
+    }, [refunds, statusFilter]);
+    const statCounts = (0, import_react3.useMemo)(() => {
+      const counts = { pending: 0, approved: 0, rejected: 0, processed: 0 };
+      refunds.forEach((r) => {
+        const s = safeText(r?.status).toLowerCase();
+        if (counts[s] !== void 0) counts[s]++;
+      });
+      return counts;
+    }, [refunds]);
+    const handleAction = async (refundId, newStatus) => {
+      try {
+        await http("/api/admin/supabase/upsert", {
+          method: "POST",
+          body: JSON.stringify({ table: tableDb(TABLES.REFUNDS), rows: [{ id: refundId, status: newStatus }] })
+        });
+        onReload();
+      } catch (err) {
+        alert("Error updating refund: " + (err.message || "Unknown"));
+      }
+    };
+    return /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "card" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "stat-grid" }, statCard("Pending", statCounts.pending, "alert"), statCard("Approved", statCounts.approved, "live"), statCard("Rejected", statCounts.rejected, "catalog"), statCard("Processed", statCounts.processed, "live"))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "card" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "filters" }, /* @__PURE__ */ import_react3.default.createElement("h3", { className: "m-0" }, /* @__PURE__ */ import_react3.default.createElement(FaUndoAlt, null), " Refund Requests"), /* @__PURE__ */ import_react3.default.createElement("select", { className: "input", value: statusFilter, onChange: (e) => setStatusFilter(e.target.value) }, ["all", "pending", "approved", "rejected", "processed"].map((s) => /* @__PURE__ */ import_react3.default.createElement("option", { key: s, value: s }, s))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "badge" }, filteredRefunds.length, " refunds")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "table-wrap mt-10" }, /* @__PURE__ */ import_react3.default.createElement("table", { className: "table" }, /* @__PURE__ */ import_react3.default.createElement("thead", null, /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("th", null, "Order ID"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Customer"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Reason"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Amount"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Status"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Requested"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Actions"))), /* @__PURE__ */ import_react3.default.createElement("tbody", null, filteredRefunds.map((r, idx) => /* @__PURE__ */ import_react3.default.createElement("tr", { key: safeText(r?.id || idx) }, /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(r?.order_id || r?.orderId).slice(0, 20)), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(r?.customer_name || r?.customerName || r?.user_id).slice(0, 30)), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(r?.reason).slice(0, 60)), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(r?.amount)), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement(
+      "select",
+      {
+        className: "input",
+        value: safeText(r?.status) || "pending",
+        onChange: (e) => handleAction(r?.id, e.target.value)
+      },
+      ["pending", "approved", "rejected", "processed"].map((s) => /* @__PURE__ */ import_react3.default.createElement("option", { key: s, value: s }, s))
+    )), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(r?.created_at || r?.createdAt).slice(0, 19).replace("T", " ")), /* @__PURE__ */ import_react3.default.createElement("td", { onClick: (e) => e.stopPropagation() }, safeText(r?.status).toLowerCase() === "pending" ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex-gap6" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small primary", onClick: () => handleAction(r?.id, "approved") }, "Approve"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small", onClick: () => handleAction(r?.id, "rejected") }, "Reject")) : safeText(r?.status).toLowerCase() === "approved" ? /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small primary", onClick: () => handleAction(r?.id, "processed") }, "Mark Processed") : /* @__PURE__ */ import_react3.default.createElement("span", { className: "small" }, safeText(r?.status))))), !filteredRefunds.length ? /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("td", { colSpan: 7, className: "small" }, "No refund requests yet.")) : null)))));
+  }
+  function NotificationsWorkspace({ items, onOpen, onDismiss }) {
+    return /* @__PURE__ */ import_react3.default.createElement("div", { className: "card" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "filters" }, /* @__PURE__ */ import_react3.default.createElement("h3", { className: "m-0" }, /* @__PURE__ */ import_react3.default.createElement(FaBell, null), " Notifications"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "badge" }, items.length, " items")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "notif-list" }, items.map((n) => /* @__PURE__ */ import_react3.default.createElement("div", { key: `${n.type}:${n.id}`, className: "notif-item" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "notif-meta" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "notif-type" }, n.type), /* @__PURE__ */ import_react3.default.createElement("div", { className: "notif-status" }, n.status || "pending")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "notif-title-row" }, n.title || n.id || "New request"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "notif-date" }, n.date ? n.date.toString().slice(0, 19).replace("T", " ") : ""), /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex-gap6" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small", onClick: () => onOpen(n) }, "View"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small danger", onClick: () => onDismiss(n) }, "Dismiss")))), !items.length ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, "No notifications.") : null));
+  }
+  function ReviewsWidget({ snapshot }) {
+    const tables = Array.isArray(snapshot?.tables) ? snapshot.tables : [];
+    const byName = (0, import_react3.useMemo)(() => {
+      const m = /* @__PURE__ */ new Map();
+      tables.forEach((t) => m.set(t.name, t));
+      return m;
+    }, [snapshot]);
+    const reviews = (0, import_react3.useMemo)(() => {
+      const rows = byName.get(TABLES.REVIEWS)?.rows || [];
+      return [...rows].sort(
+        (a, b) => new Date(b?.created_at || 0).getTime() - new Date(a?.created_at || 0).getTime()
+      );
+    }, [byName]);
+    if (!reviews.length) return null;
+    return /* @__PURE__ */ import_react3.default.createElement("div", { className: "card mt-12" }, /* @__PURE__ */ import_react3.default.createElement("h3", { className: "mt-0" }, /* @__PURE__ */ import_react3.default.createElement(FaStar, { className: "review-star" }), " Recent Reviews"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "table-wrap" }, /* @__PURE__ */ import_react3.default.createElement("table", { className: "table" }, /* @__PURE__ */ import_react3.default.createElement("thead", null, /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("th", null, "User"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Rating"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Comment"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Entity"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Date"))), /* @__PURE__ */ import_react3.default.createElement("tbody", null, reviews.slice(0, 20).map((r, idx) => /* @__PURE__ */ import_react3.default.createElement("tr", { key: safeText(r?.id || idx) }, /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(r?.user_name || r?.user_id).slice(0, 24)), /* @__PURE__ */ import_react3.default.createElement("td", null, "\u2605".repeat(Math.min(5, Math.max(0, parseInt(r?.rating) || 0)))), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(r?.comment).slice(0, 80)), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(r?.entity_type), ": ", displayText(r?.entity_id).slice(0, 16)), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(r?.created_at).slice(0, 10))))))));
   }
   function App() {
     const [authed, setAuthed] = (0, import_react3.useState)(false);
@@ -24456,6 +25234,7 @@
     const [loadingData, setLoadingData] = (0, import_react3.useState)(false);
     const [error, setError] = (0, import_react3.useState)("");
     const [tab, setTab] = (0, import_react3.useState)("table");
+    const [tablePage, setTablePage] = (0, import_react3.useState)(1);
     const [page, setPage] = (0, import_react3.useState)("dashboard");
     const [snapshot, setSnapshot] = (0, import_react3.useState)({ tables: [] });
     const [search, setSearch] = (0, import_react3.useState)("");
@@ -24463,19 +25242,21 @@
     const [selectedRowKey, setSelectedRowKey] = (0, import_react3.useState)("");
     const [jsonDraft, setJsonDraft] = (0, import_react3.useState)("[]");
     const [lightbox, setLightbox] = (0, import_react3.useState)({ open: false, title: "", urls: [], index: 0 });
+    const loadingRef = import_react3.default.useRef(false);
+    const [notifOpen, setNotifOpen] = (0, import_react3.useState)(false);
+    const [dismissedNotifs, setDismissedNotifs] = (0, import_react3.useState)(() => /* @__PURE__ */ new Set());
     const tablesByName = (0, import_react3.useMemo)(() => {
       const map = /* @__PURE__ */ new Map();
       (snapshot.tables || []).forEach((t) => map.set(t.name, t));
       return map;
     }, [snapshot]);
     const catalogLookup = (0, import_react3.useMemo)(() => {
-      var _a, _b;
-      const tours = (((_a = tablesByName.get("ev_tours")) == null ? void 0 : _a.rows) || []).slice();
-      const hotels = (((_b = tablesByName.get("ev_hotels")) == null ? void 0 : _b.rows) || []).slice();
+      const tours = (tablesByName.get(TABLES.TOURS)?.rows || []).slice();
+      const hotels = (tablesByName.get(TABLES.HOTELS)?.rows || []).slice();
       const toursById = /* @__PURE__ */ new Map();
       const hotelsById = /* @__PURE__ */ new Map();
-      tours.forEach((t) => toursById.set(String((t == null ? void 0 : t.id) || ""), t));
-      hotels.forEach((h) => hotelsById.set(String((h == null ? void 0 : h.id) || ""), h));
+      tours.forEach((t) => toursById.set(String(t?.id || ""), t));
+      hotels.forEach((h) => hotelsById.set(String(h?.id || ""), h));
       return { toursById, hotelsById };
     }, [tablesByName]);
     const currentTables = (0, import_react3.useMemo)(() => {
@@ -24492,7 +25273,7 @@
     }, [currentTables, selectedTable]);
     const effectiveTable = (0, import_react3.useMemo)(() => {
       if (!activeTable) return null;
-      if (activeTable.name === "ev_hotels" && (page === "hotels" || page === "cottages")) {
+      if (activeTable.name === TABLES.HOTELS && (page === "hotels" || page === "cottages")) {
         const rows = Array.isArray(activeTable.rows) ? activeTable.rows : [];
         const filtered = page === "cottages" ? rows.filter(isLikelyCottage) : rows.filter((r) => !isLikelyCottage(r));
         return { ...activeTable, rows: filtered, rowCount: filtered.length };
@@ -24506,33 +25287,37 @@
       }
       setSelectedTable(effectiveTable.name);
       setSelectedRowKey("");
-    }, [page, effectiveTable == null ? void 0 : effectiveTable.name]);
+    }, [page, effectiveTable?.name]);
     (0, import_react3.useEffect)(() => {
       if (!effectiveTable) return;
       if (tab === "json") return;
       setJsonDraft(JSON.stringify(effectiveTable.rows || [], null, 2));
-    }, [effectiveTable == null ? void 0 : effectiveTable.name, effectiveTable == null ? void 0 : effectiveTable.rowCount, tab]);
+    }, [effectiveTable?.name, effectiveTable?.rowCount, tab]);
     const checkSession = async () => {
       setLoadingSession(true);
       try {
         await http("/api/admin/whoami");
         setAuthed(true);
-      } catch (e) {
+      } catch {
         setAuthed(false);
       } finally {
         setLoadingSession(false);
       }
     };
     const reload = async () => {
+      if (loadingRef.current) return;
+      loadingRef.current = true;
       setLoadingData(true);
       setError("");
       try {
         const data = await http("/api/admin/supabase/snapshot");
-        setSnapshot(data || { tables: [] });
+        const tables = Array.isArray(data?.tables) ? data.tables.map((t) => ({ ...t, name: tableAlias(t?.name) })) : [];
+        setSnapshot({ ...data || {}, tables });
       } catch (e) {
         setError(String(e.message || e));
       } finally {
         setLoadingData(false);
+        loadingRef.current = false;
       }
     };
     const openImages = (title, urls, index = 0) => {
@@ -24546,6 +25331,13 @@
     (0, import_react3.useEffect)(() => {
       if (authed) reload();
     }, [authed]);
+    (0, import_react3.useEffect)(() => {
+      if (!authed) return void 0;
+      const id = setInterval(() => {
+        reload();
+      }, 3e4);
+      return () => clearInterval(id);
+    }, [authed]);
     const saveJson = async () => {
       if (!activeTable) return;
       try {
@@ -24553,7 +25345,7 @@
         if (!Array.isArray(parsed)) throw new Error("JSON must be an array of rows");
         await http("/api/admin/supabase/upsert", {
           method: "POST",
-          body: JSON.stringify({ table: activeTable.name, rows: parsed })
+          body: JSON.stringify({ table: tableDb(activeTable.name), rows: parsed })
         });
         await reload();
         setTab("table");
@@ -24566,7 +25358,7 @@
       try {
         await http("/api/admin/supabase/upsert", {
           method: "POST",
-          body: JSON.stringify({ table: activeTable.name, rows: [row] })
+          body: JSON.stringify({ table: tableDb(activeTable.name), rows: [row] })
         });
         await reload();
         setTab("table");
@@ -24577,7 +25369,7 @@
     const upsertPartial = async (tableName, rows) => {
       await http("/api/admin/supabase/upsert", {
         method: "POST",
-        body: JSON.stringify({ table: tableName, rows })
+        body: JSON.stringify({ table: tableDb(tableName), rows })
       });
       await reload();
     };
@@ -24587,6 +25379,9 @@
       if (!q) return effectiveTable.rows || [];
       return (effectiveTable.rows || []).filter((row) => JSON.stringify(row).toLowerCase().includes(q));
     }, [effectiveTable, search]);
+    (0, import_react3.useEffect)(() => {
+      setTablePage(1);
+    }, [selectedTable, search, page, tab]);
     const selectedRow = (0, import_react3.useMemo)(() => {
       if (!effectiveTable) return null;
       const rows = effectiveTable.rows || [];
@@ -24599,31 +25394,114 @@
       if (!effectiveTable) return false;
       const rows = (effectiveTable.rows || []).slice(0, 25);
       return rows.some((r) => extractImageUrlsFromRow(r).length > 0);
-    }, [effectiveTable == null ? void 0 : effectiveTable.name, effectiveTable == null ? void 0 : effectiveTable.rowCount]);
+    }, [effectiveTable?.name, effectiveTable?.rowCount]);
     const keyCol = effectiveTable ? keyColumnForTable(effectiveTable) : "id";
     const heavyCols = /* @__PURE__ */ new Set(["images", "image_meta", "hero_image", "image", "content"]);
     const baseCols = effectiveTable ? (effectiveTable.columns || []).map((c) => c.name) : [];
-    const orderedCols = effectiveTable ? [keyCol, ...baseCols.filter((n) => n !== keyCol && !heavyCols.has(n)).slice(0, 7)] : [];
+    const firstDisplayCol = page === "tours" && baseCols.includes("title") ? "title" : keyCol;
+    const orderedCols = effectiveTable ? [firstDisplayCol, ...baseCols.filter((n) => n !== firstDisplayCol && !heavyCols.has(n)).slice(0, 7)] : [];
+    const ActivePageIcon = NAV_ITEMS.find((item) => item.key === page)?.icon || FaHome;
+    const notificationCount = (0, import_react3.useMemo)(() => {
+      const pending = /* @__PURE__ */ new Set(["pending", "new", "open", "unread"]);
+      const countByStatus = (rows) => (rows || []).filter((r) => pending.has(safeText(r?.status).toLowerCase())).length;
+      const bookings = countByStatus(tablesByName.get(TABLES.BOOKINGS)?.rows || []);
+      const cab = countByStatus(tablesByName.get(TABLES.CAB_BOOKINGS)?.rows || []);
+      const bus = countByStatus(tablesByName.get(TABLES.BUS_BOOKINGS)?.rows || []);
+      const food = countByStatus(tablesByName.get(TABLES.FOOD_ORDERS)?.rows || []);
+      const queries = countByStatus(tablesByName.get(TABLES.QUERIES)?.rows || []);
+      const total = bookings + cab + bus + food + queries;
+      return Math.max(0, total - dismissedNotifs.size);
+    }, [tablesByName, dismissedNotifs]);
+    const notificationItems = (0, import_react3.useMemo)(() => {
+      const pending = /* @__PURE__ */ new Set(["pending", "new", "open", "unread"]);
+      const normalize = (rows, type, pageKey, titleKey, dateKey) => (rows || []).filter((r) => pending.has(safeText(r?.status).toLowerCase())).map((r) => ({
+        id: safeText(r?.id || ""),
+        type,
+        status: safeText(r?.status || ""),
+        title: safeText(r?.[titleKey] || r?.user_name || r?.userName || r?.customer_name || r?.customerName || r?.order_id || r?.orderId || ""),
+        date: safeText(r?.[dateKey] || r?.created_at || r?.createdAt || r?.order_time || r?.orderTime || r?.submitted_at || r?.submittedAt || ""),
+        pageKey
+      }));
+      const list = [
+        ...normalize(tablesByName.get(TABLES.BOOKINGS)?.rows || [], "Hotel Booking", "orders", "user_name", "booking_date"),
+        ...normalize(tablesByName.get(TABLES.CAB_BOOKINGS)?.rows || [], "Cab Booking", "orders", "user_name", "datetime"),
+        ...normalize(tablesByName.get(TABLES.BUS_BOOKINGS)?.rows || [], "Bus Booking", "orders", "user_name", "travel_date"),
+        ...normalize(tablesByName.get(TABLES.FOOD_ORDERS)?.rows || [], "Food Order", "orders", "user_name", "order_time"),
+        ...normalize(tablesByName.get(TABLES.QUERIES)?.rows || [], "Customer Query", "dashboard", "customer_name", "created_at")
+      ];
+      return list.filter((n) => !dismissedNotifs.has(`${n.type}:${n.id}`)).sort((a, b) => new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime()).slice(0, 50);
+    }, [tablesByName, dismissedNotifs]);
     if (loadingSession) {
       return /* @__PURE__ */ import_react3.default.createElement("div", { className: "login-wrap" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, "Checking admin session..."));
     }
     if (!authed) {
       return /* @__PURE__ */ import_react3.default.createElement(LoginView, { onSuccess: () => setAuthed(true) });
     }
-    return /* @__PURE__ */ import_react3.default.createElement("div", { className: "layout" }, /* @__PURE__ */ import_react3.default.createElement("aside", { className: "sidebar" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "brand" }, "ExploreValley"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "brand-sub" }, "Admin command center"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "nav" }, NAV_ITEMS.map(({ key, label, icon: Icon }) => /* @__PURE__ */ import_react3.default.createElement("button", { key, className: `nav-btn ${page === key ? "active" : ""}`, onClick: () => setPage(key) }, /* @__PURE__ */ import_react3.default.createElement(Icon, null), " ", label)))), /* @__PURE__ */ import_react3.default.createElement("main", { className: "main" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "header" }, /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("h1", { className: "page-title" }, /* @__PURE__ */ import_react3.default.createElement(FaShieldAlt, { color: "#16a34a" }), " ", PAGE_TITLE[page]), /* @__PURE__ */ import_react3.default.createElement("div", { className: "page-sub" }, "Secure session - IP and browser bound")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "actions" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn primary", onClick: reload, disabled: loadingData }, /* @__PURE__ */ import_react3.default.createElement(FaRedo, null), " ", loadingData ? "Reloading" : "Reload"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn ghost", onClick: () => setTab("json") }, /* @__PURE__ */ import_react3.default.createElement(FaSave, null), " Save All"))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "content" }, error ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "warn" }, error) : null, page === "dashboard" ? /* @__PURE__ */ import_react3.default.createElement(
+    return /* @__PURE__ */ import_react3.default.createElement("div", { className: "layout" }, /* @__PURE__ */ import_react3.default.createElement("aside", { className: "sidebar" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "brand" }, "ExploreValley"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "brand-sub" }, "Admin command center"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "nav" }, NAV_ITEMS.map(({ key, label, icon: Icon }) => /* @__PURE__ */ import_react3.default.createElement("button", { key, className: `nav-btn ${page === key ? "active" : ""}`, onClick: () => setPage(key) }, /* @__PURE__ */ import_react3.default.createElement(Icon, null), " ", label)))), /* @__PURE__ */ import_react3.default.createElement("main", { className: "main" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "header" }, /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("h1", { className: "page-title" }, /* @__PURE__ */ import_react3.default.createElement(ActivePageIcon, { color: "#16a34a" }), " ", PAGE_TITLE[page]), /* @__PURE__ */ import_react3.default.createElement("div", { className: "page-sub" }, "Secure session - IP and browser bound")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "actions" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "notif-wrap" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "notif-bell", title: "Notifications", onClick: () => setNotifOpen((v) => !v) }, /* @__PURE__ */ import_react3.default.createElement(FaBell, null), notificationCount > 0 ? /* @__PURE__ */ import_react3.default.createElement("span", { className: "notif-badge" }, notificationCount) : null), notifOpen ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "notif-popover", onMouseLeave: () => setNotifOpen(false) }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "notif-head" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "notif-title" }, "Notifications"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small", onClick: () => {
+      setNotifOpen(false);
+      reload();
+    }, disabled: loadingData }, /* @__PURE__ */ import_react3.default.createElement(FaRedo, null), " Refresh")), !notificationItems.length ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, "No new notifications.") : /* @__PURE__ */ import_react3.default.createElement("div", { className: "notif-list" }, notificationItems.map((n) => /* @__PURE__ */ import_react3.default.createElement("div", { key: `${n.type}-${n.id}`, className: "notif-item" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "notif-meta" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "notif-type" }, n.type), /* @__PURE__ */ import_react3.default.createElement("div", { className: "notif-status" }, n.status || "pending")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "notif-title-row" }, n.title || n.id || "New request"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "notif-date" }, n.date ? n.date.toString().slice(0, 19).replace("T", " ") : ""), /* @__PURE__ */ import_react3.default.createElement(
+      "button",
+      {
+        className: "btn small",
+        onClick: () => {
+          setNotifOpen(false);
+          setDismissedNotifs((prev) => {
+            const next = new Set(prev);
+            next.add(`${n.type}:${n.id}`);
+            return next;
+          });
+          setPage(n.pageKey);
+        }
+      },
+      "View"
+    ))))) : null), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn primary", onClick: reload, disabled: loadingData }, /* @__PURE__ */ import_react3.default.createElement(FaRedo, null), " ", loadingData ? "Reloading" : "Reload"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn ghost", onClick: () => setTab("json") }, /* @__PURE__ */ import_react3.default.createElement(FaSave, null), " Save All"))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "content" }, error ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "warn" }, error) : null, page === "dashboard" ? /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, null, /* @__PURE__ */ import_react3.default.createElement(
       DashboardView,
       {
+        snapshot,
         tablesByName,
         onReload: reload,
         onOpenImages: openImages,
         onUpsert: async (tableName, rows) => {
           await http("/api/admin/supabase/upsert", {
             method: "POST",
-            body: JSON.stringify({ table: tableName, rows })
+            body: JSON.stringify({ table: tableDb(tableName), rows })
           });
         }
       }
-    ) : page === "customers" ? /* @__PURE__ */ import_react3.default.createElement(CustomersWorkspace, { snapshot }) : /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, null, page === "settings" ? /* @__PURE__ */ import_react3.default.createElement(BotsAgentsCard, null) : null, page === "food_vendors" ? /* @__PURE__ */ import_react3.default.createElement(
+    ), /* @__PURE__ */ import_react3.default.createElement(ReviewsWidget, { snapshot })) : page === "customers" ? /* @__PURE__ */ import_react3.default.createElement(CustomersWorkspace, { snapshot }) : page === "delivery" ? /* @__PURE__ */ import_react3.default.createElement(DeliveryWorkspace, { snapshot, onReload: reload }) : page === "ai_support" ? /* @__PURE__ */ import_react3.default.createElement(AISupportWorkspace, { snapshot }) : page === "refunds" ? /* @__PURE__ */ import_react3.default.createElement(RefundsWorkspace, { snapshot, onReload: reload }) : page === "notifications" ? /* @__PURE__ */ import_react3.default.createElement(
+      NotificationsWorkspace,
+      {
+        items: notificationItems,
+        onOpen: (n) => {
+          setDismissedNotifs((prev) => {
+            const next = new Set(prev);
+            next.add(`${n.type}:${n.id}`);
+            return next;
+          });
+          setPage(n.pageKey);
+        },
+        onDismiss: (n) => {
+          setDismissedNotifs((prev) => {
+            const next = new Set(prev);
+            next.add(`${n.type}:${n.id}`);
+            return next;
+          });
+        }
+      }
+    ) : page === "pricing_controls" ? /* @__PURE__ */ import_react3.default.createElement(
+      PricingControlsWorkspace,
+      {
+        snapshot,
+        onReload: reload,
+        onUpsert: async (tableName, rows) => {
+          await http("/api/admin/supabase/upsert", {
+            method: "POST",
+            body: JSON.stringify({ table: tableDb(tableName), rows })
+          });
+        }
+      }
+    ) : /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, null, page === "settings" ? /* @__PURE__ */ import_react3.default.createElement(BotsAgentsCard, null) : null, page === "food_vendors" ? /* @__PURE__ */ import_react3.default.createElement(
       FoodVendorsWorkspace,
       {
         snapshot,
@@ -24632,17 +25510,35 @@
         onUpsert: async (tableName, rows) => {
           await http("/api/admin/supabase/upsert", {
             method: "POST",
-            body: JSON.stringify({ table: tableName, rows })
+            body: JSON.stringify({ table: tableDb(tableName), rows })
           });
         },
-        onDelete: async (tableName, id, keyColumn) => {
+        onDelete: async (tableName, id, keyColumn, confirmText) => {
           await http("/api/admin/supabase/delete", {
             method: "POST",
-            body: JSON.stringify({ table: tableName, id, keyColumn })
+            body: JSON.stringify({ table: tableDb(tableName), id, keyColumn, confirmText })
           });
         }
       }
-    ) : /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, null, currentTables.length > 1 ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "tabs" }, currentTables.map((t) => /* @__PURE__ */ import_react3.default.createElement("button", { key: t.name, className: `tab ${selectedTable === t.name ? "active" : ""}`, onClick: () => setSelectedTable(t.name) }, /* @__PURE__ */ import_react3.default.createElement(FaBuilding, null), " ", tableLabel(t.name)))) : null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "tabs" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: `tab ${tab === "table" ? "active" : ""}`, onClick: () => setTab("table") }, /* @__PURE__ */ import_react3.default.createElement(FaTable, null), " Table"), /* @__PURE__ */ import_react3.default.createElement("button", { className: `tab ${tab === "form" ? "active" : ""}`, onClick: () => setTab("form") }, /* @__PURE__ */ import_react3.default.createElement(FaPen, null), " Form"), /* @__PURE__ */ import_react3.default.createElement("button", { className: `tab ${tab === "json" ? "active" : ""}`, onClick: () => setTab("json") }, /* @__PURE__ */ import_react3.default.createElement(FaFileCode, null), " JSON")), !effectiveTable ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "card" }, "No Supabase table mapped for this section.") : null, effectiveTable && tab === "table" ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "card" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "filters" }, /* @__PURE__ */ import_react3.default.createElement("div", { style: { position: "relative" } }, /* @__PURE__ */ import_react3.default.createElement(FaSearch, { style: { position: "absolute", left: 10, top: 12, opacity: 0.8 } }), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", style: { paddingLeft: 30 }, value: search, onChange: (e) => setSearch(e.target.value), placeholder: "Search..." })), /* @__PURE__ */ import_react3.default.createElement("div", { className: "badge" }, effectiveTable.rowCount, " rows"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn", onClick: () => {
+    ) : page === "mart_catalog" ? /* @__PURE__ */ import_react3.default.createElement(
+      MartCatalogWorkspace,
+      {
+        snapshot,
+        onReload: reload,
+        onUpsert: async (tableName, rows) => {
+          await http("/api/admin/supabase/upsert", {
+            method: "POST",
+            body: JSON.stringify({ table: tableDb(tableName), rows })
+          });
+        },
+        onDelete: async (tableName, id, keyColumn, confirmText) => {
+          await http("/api/admin/supabase/delete", {
+            method: "POST",
+            body: JSON.stringify({ table: tableDb(tableName), id, keyColumn, confirmText })
+          });
+        }
+      }
+    ) : /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, null, currentTables.length > 1 ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "tabs" }, currentTables.map((t) => /* @__PURE__ */ import_react3.default.createElement("button", { key: t.name, className: `tab ${selectedTable === t.name ? "active" : ""}`, onClick: () => setSelectedTable(t.name) }, /* @__PURE__ */ import_react3.default.createElement(FaBuilding, null), " ", tableLabel(t.name)))) : null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "tabs" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: `tab ${tab === "table" ? "active" : ""}`, onClick: () => setTab("table") }, /* @__PURE__ */ import_react3.default.createElement(FaTable, null), " Table"), /* @__PURE__ */ import_react3.default.createElement("button", { className: `tab ${tab === "form" ? "active" : ""}`, onClick: () => setTab("form") }, /* @__PURE__ */ import_react3.default.createElement(FaPen, null), " Form"), /* @__PURE__ */ import_react3.default.createElement("button", { className: `tab ${tab === "json" ? "active" : ""}`, onClick: () => setTab("json") }, /* @__PURE__ */ import_react3.default.createElement(FaFileCode, null), " JSON")), !effectiveTable ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "card" }, "No Supabase table mapped for this section.") : null, effectiveTable && tab === "table" ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "card" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "filters" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "pos-rel" }, /* @__PURE__ */ import_react3.default.createElement(FaSearch, { className: "search-icon" }), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input input-search", value: search, onChange: (e) => setSearch(e.target.value), placeholder: "Search..." })), /* @__PURE__ */ import_react3.default.createElement("div", { className: "badge" }, effectiveTable.rowCount, " rows"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn", onClick: () => {
       setSelectedRowKey("__new__");
       setTab("form");
     } }, /* @__PURE__ */ import_react3.default.createElement(FaPlus, null), " Create"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn", onClick: () => {
@@ -24651,10 +25547,64 @@
       a.href = URL.createObjectURL(blob);
       a.download = `${activeTable.name}.json`;
       a.click();
-    } }, /* @__PURE__ */ import_react3.default.createElement(FaDownload, null), " Export")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "table-wrap", style: { marginTop: 10 } }, effectiveTable.name === "ev_bookings" ? /* @__PURE__ */ import_react3.default.createElement(
-      BookingsTable,
+    } }, /* @__PURE__ */ import_react3.default.createElement(FaDownload, null), " Export")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "table-wrap mt-10" }, page === "cab_providers" ? /* @__PURE__ */ import_react3.default.createElement(
+      CabRatesTable,
       {
         rows: filteredRows,
+        onUpsert: async (tableName, rows) => {
+          await http("/api/admin/supabase/upsert", {
+            method: "POST",
+            body: JSON.stringify({ table: tableDb(tableName), rows })
+          });
+        },
+        onDelete: async (tableName, id, keyColumn, confirmText) => {
+          await http("/api/admin/supabase/delete", {
+            method: "POST",
+            body: JSON.stringify({ table: tableDb(tableName), id, keyColumn, confirmText })
+          });
+        },
+        onReload: reload
+      }
+    ) : page === "bike_rentals" ? /* @__PURE__ */ import_react3.default.createElement(
+      BikeRentalsTable,
+      {
+        rows: filteredRows,
+        onUpsert: async (tableName, rows) => {
+          await http("/api/admin/supabase/upsert", {
+            method: "POST",
+            body: JSON.stringify({ table: tableDb(tableName), rows })
+          });
+        },
+        onDelete: async (tableName, id, keyColumn, confirmText) => {
+          await http("/api/admin/supabase/delete", {
+            method: "POST",
+            body: JSON.stringify({ table: tableDb(tableName), id, keyColumn, confirmText })
+          });
+        },
+        onReload: reload
+      }
+    ) : effectiveTable.name === TABLES.BUSES ? /* @__PURE__ */ import_react3.default.createElement(
+      BusesTable,
+      {
+        rows: filteredRows,
+        onUpsert: async (tableName, rows) => {
+          await http("/api/admin/supabase/upsert", {
+            method: "POST",
+            body: JSON.stringify({ table: tableDb(tableName), rows })
+          });
+        },
+        onDelete: async (tableName, id, keyColumn, confirmText) => {
+          await http("/api/admin/supabase/delete", {
+            method: "POST",
+            body: JSON.stringify({ table: tableDb(tableName), id, keyColumn, confirmText })
+          });
+        },
+        onReload: reload
+      }
+    ) : effectiveTable.name === TABLES.BOOKINGS ? /* @__PURE__ */ import_react3.default.createElement(
+      BookingsTable,
+      {
+        rows: filteredRows.slice((tablePage - 1) * PAGE_SIZE, tablePage * PAGE_SIZE),
         onOpenRow: (rowKey) => {
           setSelectedRowKey(rowKey);
           setTab("form");
@@ -24663,25 +25613,31 @@
         onUpsert: async (tableName, rows) => {
           await http("/api/admin/supabase/upsert", {
             method: "POST",
-            body: JSON.stringify({ table: tableName, rows })
+            body: JSON.stringify({ table: tableDb(tableName), rows })
           });
         },
         onReload: reload,
         catalogLookup
       }
-    ) : effectiveTable.name === "ev_analytics_events" && page === "tracking" ? /* @__PURE__ */ import_react3.default.createElement(TrackingTable, { rows: filteredRows }) : /* @__PURE__ */ import_react3.default.createElement("table", { className: "table" }, /* @__PURE__ */ import_react3.default.createElement("thead", null, /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("th", null, columnLabel(effectiveTable.name, keyCol)), hasImages ? /* @__PURE__ */ import_react3.default.createElement("th", { className: "thumb-cell" }, "image") : null, orderedCols.filter((n) => n !== keyCol).map((name) => /* @__PURE__ */ import_react3.default.createElement("th", { key: name }, columnLabel(effectiveTable.name, name))))), /* @__PURE__ */ import_react3.default.createElement("tbody", null, filteredRows.map((row, idx) => {
-      var _a;
+    ) : effectiveTable.name === TABLES.ANALYTICS_EVENTS && page === "tracking" ? /* @__PURE__ */ import_react3.default.createElement(TrackingTable, { rows: filteredRows.slice((tablePage - 1) * PAGE_SIZE, tablePage * PAGE_SIZE) }) : /* @__PURE__ */ import_react3.default.createElement("table", { className: "table" }, /* @__PURE__ */ import_react3.default.createElement("thead", null, /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("th", null, columnLabel(effectiveTable.name, firstDisplayCol)), hasImages ? /* @__PURE__ */ import_react3.default.createElement("th", { className: "thumb-cell" }, "image") : null, orderedCols.filter((n) => n !== firstDisplayCol).map((name) => /* @__PURE__ */ import_react3.default.createElement("th", { key: name }, columnLabel(effectiveTable.name, name))))), /* @__PURE__ */ import_react3.default.createElement("tbody", null, filteredRows.slice((tablePage - 1) * PAGE_SIZE, tablePage * PAGE_SIZE).map((row, idx) => {
       const rowKey = String(row[keyCol] || row.id || row.slug || row.code || row.restaurant_id || idx);
       const urls = hasImages ? extractImageUrlsFromRow(row) : [];
       return /* @__PURE__ */ import_react3.default.createElement("tr", { key: rowKey, onClick: () => {
         setSelectedRowKey(rowKey);
         setTab("form");
-      } }, /* @__PURE__ */ import_react3.default.createElement("td", null, displayText((_a = row[keyCol]) != null ? _a : "").slice(0, 120)), hasImages ? /* @__PURE__ */ import_react3.default.createElement("td", { className: "thumb-cell", onClick: (e) => e.stopPropagation() }, urls[0] ? /* @__PURE__ */ import_react3.default.createElement("img", { className: "thumb", src: urls[0], alt: "", onClick: () => openImages(effectiveTable.name, urls, 0) }) : null) : null, orderedCols.filter((n) => n !== keyCol).map((name) => {
+      } }, /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(row[firstDisplayCol] ?? "").slice(0, 120)), hasImages ? /* @__PURE__ */ import_react3.default.createElement("td", { className: "thumb-cell", onClick: (e) => e.stopPropagation() }, urls[0] ? /* @__PURE__ */ import_react3.default.createElement("img", { className: "thumb", src: urls[0], alt: "", onClick: () => openImages(effectiveTable.name, urls, 0) }) : null) : null, orderedCols.filter((n) => n !== firstDisplayCol).map((name) => {
         const value = row[name];
         const text = typeof value === "object" ? JSON.stringify(value) : displayText(value);
         return /* @__PURE__ */ import_react3.default.createElement("td", { key: name }, text.slice(0, 100));
       }));
-    }))))) : null, effectiveTable && tab === "form" ? /* @__PURE__ */ import_react3.default.createElement(
+    }))), page === "cab_providers" || page === "bike_rentals" ? null : /* @__PURE__ */ import_react3.default.createElement(
+      Pagination,
+      {
+        page: tablePage,
+        totalPages: Math.max(1, Math.ceil(filteredRows.length / PAGE_SIZE)),
+        onChange: setTablePage
+      }
+    ))) : null, effectiveTable && tab === "form" ? /* @__PURE__ */ import_react3.default.createElement(
       FormEditor,
       {
         table: effectiveTable,
@@ -24692,7 +25648,7 @@
         contextPage: page,
         catalogLookup
       }
-    ) : null, activeTable && tab === "json" ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "card" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, "Advanced: edit entire table as JSON array"), /* @__PURE__ */ import_react3.default.createElement("textarea", { className: "textarea json-box", value: jsonDraft, onChange: (e) => setJsonDraft(e.target.value), style: { marginTop: 10 } }), /* @__PURE__ */ import_react3.default.createElement("div", { style: { marginTop: 10, display: "flex", gap: 10 } }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn primary", onClick: saveJson }, /* @__PURE__ */ import_react3.default.createElement(FaLock, null), " Save JSON Changes"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn", onClick: () => setJsonDraft(JSON.stringify((effectiveTable == null ? void 0 : effectiveTable.rows) || (activeTable.rows || []), null, 2)) }, /* @__PURE__ */ import_react3.default.createElement(FaRedo, null), " Reset"))) : null)))), lightbox.open ? /* @__PURE__ */ import_react3.default.createElement(
+    ) : null, activeTable && tab === "json" ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "card" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, "Advanced: edit entire table as JSON array"), /* @__PURE__ */ import_react3.default.createElement("textarea", { className: "textarea json-box mt-10", value: jsonDraft, onChange: (e) => setJsonDraft(e.target.value) }), /* @__PURE__ */ import_react3.default.createElement("div", { className: "mt-10 flex-gap10" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn primary", onClick: saveJson }, /* @__PURE__ */ import_react3.default.createElement(FaLock, null), " Save JSON Changes"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn", onClick: () => setJsonDraft(JSON.stringify(effectiveTable?.rows || (activeTable.rows || []), null, 2)) }, /* @__PURE__ */ import_react3.default.createElement(FaRedo, null), " Reset"))) : null)))), lightbox.open ? /* @__PURE__ */ import_react3.default.createElement(
       ImageLightbox,
       {
         title: lightbox.title,
@@ -24704,17 +25660,17 @@
     ) : null);
   }
   function FoodVendorsWorkspace({ snapshot, onReload, onOpenImages, onUpsert, onDelete }) {
-    var _a;
     const restaurants = (0, import_react3.useMemo)(() => {
-      const t = ((snapshot == null ? void 0 : snapshot.tables) || []).find((x) => x.name === "ev_restaurants");
-      return Array.isArray(t == null ? void 0 : t.rows) ? t.rows : [];
+      const t = (snapshot?.tables || []).find((x) => x.name === TABLES.RESTAURANTS);
+      return Array.isArray(t?.rows) ? t.rows : [];
     }, [snapshot]);
     const menuItems = (0, import_react3.useMemo)(() => {
-      const t = ((snapshot == null ? void 0 : snapshot.tables) || []).find((x) => x.name === "ev_menu_items");
-      return Array.isArray(t == null ? void 0 : t.rows) ? t.rows : [];
+      const t = (snapshot?.tables || []).find((x) => x.name === TABLES.MENU_ITEMS);
+      return Array.isArray(t?.rows) ? t.rows : [];
     }, [snapshot]);
     const [vendorQuery, setVendorQuery] = (0, import_react3.useState)("");
-    const [vendorId, setVendorId] = (0, import_react3.useState)(((_a = restaurants[0]) == null ? void 0 : _a.id) || "");
+    const [vendorId, setVendorId] = (0, import_react3.useState)(restaurants[0]?.id || "");
+    const [vendorMode, setVendorMode] = (0, import_react3.useState)("edit");
     const [menuQuery, setMenuQuery] = (0, import_react3.useState)("");
     const [rightTab, setRightTab] = (0, import_react3.useState)("visual");
     const [draft, setDraft] = (0, import_react3.useState)({
@@ -24737,12 +25693,22 @@
       available: true
     });
     const [menuJson, setMenuJson] = (0, import_react3.useState)("[]");
+    const [menuEdits, setMenuEdits] = (0, import_react3.useState)({});
+    const [newMenuItem, setNewMenuItem] = (0, import_react3.useState)({
+      id: "",
+      name: "",
+      category: "General",
+      description: "",
+      price: "",
+      image: "",
+      available: true,
+      isVeg: false
+    });
     const [busy, setBusy] = (0, import_react3.useState)(false);
     const [error, setError] = (0, import_react3.useState)("");
     (0, import_react3.useEffect)(() => {
-      var _a2;
-      if (!vendorId && ((_a2 = restaurants[0]) == null ? void 0 : _a2.id)) setVendorId(restaurants[0].id);
-    }, [restaurants == null ? void 0 : restaurants.length]);
+      if (!vendorId && restaurants[0]?.id) setVendorId(restaurants[0].id);
+    }, [restaurants?.length]);
     const filteredVendors = (0, import_react3.useMemo)(() => {
       const q = vendorQuery.trim().toLowerCase();
       if (!q) return restaurants;
@@ -24756,9 +25722,14 @@
       const filtered = q ? list.filter((m) => JSON.stringify(m).toLowerCase().includes(q)) : list;
       return filtered.slice().sort((a, b) => String(a.category || "").localeCompare(String(b.category || "")) || String(a.name || "").localeCompare(String(b.name || "")));
     }, [menuItems, vendorId, menuQuery]);
+    const [menuPage, setMenuPage] = (0, import_react3.useState)(1);
+    (0, import_react3.useEffect)(() => {
+      setMenuPage(1);
+    }, [menuQuery, vendorId]);
     const vendorImages = (0, import_react3.useMemo)(() => extractImageUrlsFromRow(vendor || {}), [vendorId, vendor]);
     (0, import_react3.useEffect)(() => {
-      if (!vendor) return;
+      if (!vendor || vendorMode === "new") return;
+      setVendorMode("edit");
       setVendorDraft({
         id: safeText(vendor.id || ""),
         name: safeText(vendor.name || ""),
@@ -24769,21 +25740,46 @@
         available: vendor.available !== false
       });
       setMenuJson(JSON.stringify(vendorItems, null, 2));
-    }, [vendorId, vendor == null ? void 0 : vendor.id, vendorItems.length]);
+    }, [vendorId, vendor?.id, vendorItems.length]);
     const startNew = () => {
       setDraft({ id: "", name: "", category: "General", description: "", price: "", image: "", available: true, isVeg: false });
     };
+    const startNewMenuRow = () => {
+      setNewMenuItem({
+        id: "",
+        name: "",
+        category: "General",
+        description: "",
+        price: "",
+        image: "",
+        available: true,
+        isVeg: false
+      });
+    };
+    const startNewVendor = () => {
+      const newId = `vendor_${Date.now()}_${Math.random().toString(16).slice(2)}`;
+      setVendorMode("new");
+      setVendorId("");
+      setVendorDraft({
+        id: newId,
+        name: "",
+        location: "",
+        description: "",
+        cuisineCsv: "",
+        heroImage: "",
+        available: true
+      });
+    };
     const editItem = (item) => {
-      var _a2;
       setDraft({
-        id: safeText((item == null ? void 0 : item.id) || ""),
-        name: safeText((item == null ? void 0 : item.name) || ""),
-        category: safeText((item == null ? void 0 : item.category) || "General"),
-        description: safeText((item == null ? void 0 : item.description) || ""),
-        price: safeText((_a2 = item == null ? void 0 : item.price) != null ? _a2 : ""),
-        image: safeText((item == null ? void 0 : item.image) || (item == null ? void 0 : item.hero_image) || ""),
-        available: (item == null ? void 0 : item.available) !== false,
-        isVeg: (item == null ? void 0 : item.is_veg) === true || (item == null ? void 0 : item.isVeg) === true
+        id: safeText(item?.id || ""),
+        name: safeText(item?.name || ""),
+        category: safeText(item?.category || "General"),
+        description: safeText(item?.description || ""),
+        price: safeText(item?.price ?? ""),
+        image: safeText(item?.image || item?.hero_image || ""),
+        available: item?.available !== false,
+        isVeg: item?.is_veg === true || item?.isVeg === true
       });
     };
     const saveItem = async () => {
@@ -24807,7 +25803,7 @@
           available: !!draft.available,
           is_veg: !!draft.isVeg
         };
-        await onUpsert("ev_menu_items", [row]);
+        await onUpsert(TABLES.MENU_ITEMS, [row]);
         await onReload();
         setDraft((p) => ({ ...p, id }));
       } catch (e) {
@@ -24816,13 +25812,62 @@
         setBusy(false);
       }
     };
-    const deleteItem = async (id) => {
-      const ok = window.confirm("Delete this menu item?");
-      if (!ok) return;
+    const saveMenuRow = async (row) => {
+      if (!vendorId) {
+        setError("Select a vendor first.");
+        return;
+      }
+      if (!safeText(row?.name).trim()) {
+        setError("Item name is required");
+        return;
+      }
       setBusy(true);
       setError("");
       try {
-        await onDelete("ev_menu_items", id, "id");
+        const id = safeText(row?.id) || `menu_${Date.now()}_${Math.random().toString(16).slice(2)}`;
+        const payload = {
+          id,
+          restaurant_id: vendorId,
+          category: safeText(row?.category || "General"),
+          name: safeText(row?.name || ""),
+          description: safeText(row?.description || ""),
+          price: Number(row?.price || 0),
+          image: row?.image || null,
+          available: row?.available !== false,
+          is_veg: row?.isVeg === true || row?.is_veg === true
+        };
+        await onUpsert(TABLES.MENU_ITEMS, [payload]);
+        await onReload();
+        setMenuEdits((p) => {
+          const next = { ...p };
+          delete next[id];
+          return next;
+        });
+        startNewMenuRow();
+      } catch (e) {
+        setError(String(e.message || e));
+      } finally {
+        setBusy(false);
+      }
+    };
+    const updateMenuEdit = (id, key, value) => {
+      setMenuEdits((prev) => {
+        const base = prev[id] || vendorItems.find((m) => String(m.id) === String(id)) || {};
+        return { ...prev, [id]: { ...base, [key]: value } };
+      });
+    };
+    const deleteItem = async (id) => {
+      const ok = window.confirm("Delete this menu item?");
+      if (!ok) return;
+      const typed = window.prompt("Type DELETE to confirm menu item deletion", "");
+      if (safeText(typed) !== "DELETE") {
+        setError("Delete cancelled: confirmation text did not match.");
+        return;
+      }
+      setBusy(true);
+      setError("");
+      try {
+        await onDelete(TABLES.MENU_ITEMS, id, "id", "DELETE");
         await onReload();
         startNew();
       } catch (e) {
@@ -24832,7 +25877,7 @@
       }
     };
     const saveVendor = async () => {
-      if (!vendorDraft.id) return;
+      const nextId = vendorDraft.id || `vendor_${Date.now()}_${Math.random().toString(16).slice(2)}`;
       if (!vendorDraft.name.trim()) {
         setError("Vendor name is required");
         return;
@@ -24841,7 +25886,7 @@
       setError("");
       try {
         const row = {
-          id: vendorDraft.id,
+          id: nextId,
           name: vendorDraft.name,
           location: vendorDraft.location || "",
           description: vendorDraft.description || "",
@@ -24849,8 +25894,10 @@
           hero_image: vendorDraft.heroImage || "",
           available: !!vendorDraft.available
         };
-        await onUpsert("ev_restaurants", [row]);
+        await onUpsert(TABLES.RESTAURANTS, [row]);
         await onReload();
+        setVendorId(nextId);
+        setVendorMode("edit");
       } catch (e) {
         setError(String(e.message || e));
       } finally {
@@ -24861,12 +25908,17 @@
       if (!vendorDraft.id) return;
       const ok = window.confirm("Delete vendor and all its menu items?");
       if (!ok) return;
+      const typed = window.prompt("Type DELETE_VENDOR to confirm vendor deletion", "");
+      if (safeText(typed) !== "DELETE_VENDOR") {
+        setError("Delete cancelled: confirmation text did not match.");
+        return;
+      }
       setBusy(true);
       setError("");
       try {
         await http("/api/admin/food-vendors/delete-vendor", {
           method: "POST",
-          body: JSON.stringify({ restaurantId: vendorDraft.id })
+          body: JSON.stringify({ restaurantId: vendorDraft.id, confirmText: "DELETE_VENDOR" })
         });
         await onReload();
         setVendorId("");
@@ -24886,8 +25938,44 @@
         fd.append("folder", "images/food");
         const r = await fetch("/api/admin/upload-image", { method: "POST", credentials: "include", body: fd });
         const j = await r.json().catch(() => ({}));
-        if (!r.ok) throw new Error((j == null ? void 0 : j.message) || (j == null ? void 0 : j.error) || "UPLOAD_FAILED");
-        setVendorDraft((p) => ({ ...p, heroImage: j.path || j.url || "" }));
+        if (!r.ok) throw new Error(j?.message || j?.error || "UPLOAD_FAILED");
+        setVendorDraft((p) => ({ ...p, heroImage: j.url || j.path || "" }));
+      } catch (e) {
+        setError(String(e.message || e));
+      } finally {
+        setBusy(false);
+      }
+    };
+    const uploadMenuImage = async (file) => {
+      if (!file) return;
+      setBusy(true);
+      setError("");
+      try {
+        const fd = new FormData();
+        fd.append("image", file);
+        fd.append("folder", "images/food/menu");
+        const r = await fetch("/api/admin/upload-image", { method: "POST", credentials: "include", body: fd });
+        const j = await r.json().catch(() => ({}));
+        if (!r.ok) throw new Error(j?.message || j?.error || "UPLOAD_FAILED");
+        setDraft((p) => ({ ...p, image: j.url || j.path || "" }));
+      } catch (e) {
+        setError(String(e.message || e));
+      } finally {
+        setBusy(false);
+      }
+    };
+    const uploadMenuTableImage = async (file, onDone) => {
+      if (!file) return;
+      setBusy(true);
+      setError("");
+      try {
+        const fd = new FormData();
+        fd.append("image", file);
+        fd.append("folder", "images/food/menu");
+        const r = await fetch("/api/admin/upload-image", { method: "POST", credentials: "include", body: fd });
+        const j = await r.json().catch(() => ({}));
+        if (!r.ok) throw new Error(j?.message || j?.error || "UPLOAD_FAILED");
+        onDone(j.url || j.path || "");
       } catch (e) {
         setError(String(e.message || e));
       } finally {
@@ -24901,19 +25989,16 @@
       try {
         const parsed = JSON.parse(menuJson);
         if (!Array.isArray(parsed)) throw new Error("JSON must be an array");
-        const normalized = parsed.map((x) => {
-          var _a2, _b;
-          return {
-            id: safeText((x == null ? void 0 : x.id) || ""),
-            category: safeText((x == null ? void 0 : x.category) || "General"),
-            name: safeText((x == null ? void 0 : x.name) || ""),
-            description: safeText((x == null ? void 0 : x.description) || ""),
-            price: Number((x == null ? void 0 : x.price) || 0),
-            image: (_b = (_a2 = x == null ? void 0 : x.image) != null ? _a2 : x == null ? void 0 : x.hero_image) != null ? _b : null,
-            available: (x == null ? void 0 : x.available) !== false,
-            is_veg: (x == null ? void 0 : x.is_veg) === true || (x == null ? void 0 : x.isVeg) === true
-          };
-        }).filter((x) => x.id && x.name);
+        const normalized = parsed.map((x) => ({
+          id: safeText(x?.id || ""),
+          category: safeText(x?.category || "General"),
+          name: safeText(x?.name || ""),
+          description: safeText(x?.description || ""),
+          price: Number(x?.price || 0),
+          image: x?.image ?? x?.hero_image ?? null,
+          available: x?.available !== false,
+          is_veg: x?.is_veg === true || x?.isVeg === true
+        })).filter((x) => x.id && x.name);
         if (!normalized.length) throw new Error("At least 1 item with {id,name} is required");
         await http("/api/admin/food-vendors/replace-menu", {
           method: "POST",
@@ -24926,48 +26011,660 @@
         setBusy(false);
       }
     };
-    return /* @__PURE__ */ import_react3.default.createElement("div", { className: "workspace" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "pane" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "pane-title" }, /* @__PURE__ */ import_react3.default.createElement("div", null, "Vendors"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small", onClick: startNew, disabled: busy }, "+ Add")), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: vendorQuery, onChange: (e) => setVendorQuery(e.target.value), placeholder: "Search vendors..." }), /* @__PURE__ */ import_react3.default.createElement("div", { className: "list", style: { marginTop: 10 } }, filteredVendors.map((r) => /* @__PURE__ */ import_react3.default.createElement(
+    return /* @__PURE__ */ import_react3.default.createElement("div", { className: "workspace compact-workspace" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "pane" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "pane-title" }, /* @__PURE__ */ import_react3.default.createElement("div", null, "Vendors"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small", onClick: startNewVendor, disabled: busy }, "+ Add")), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: vendorQuery, onChange: (e) => setVendorQuery(e.target.value), placeholder: "Search vendors..." }), /* @__PURE__ */ import_react3.default.createElement("div", { className: "list mt-10" }, filteredVendors.map((r) => /* @__PURE__ */ import_react3.default.createElement(
       "div",
       {
         key: r.id,
         className: `vendor-card ${String(r.id) === String(vendorId) ? "active" : ""}`,
         onClick: () => {
           setVendorId(r.id);
-          startNew();
         },
         role: "button",
         tabIndex: 0
       },
       /* @__PURE__ */ import_react3.default.createElement("div", { className: "vendor-name" }, safeText(r.name || "").slice(0, 60) || r.id),
       /* @__PURE__ */ import_react3.default.createElement("div", { className: "vendor-sub" }, safeText(r.location || "").slice(0, 40)),
-      /* @__PURE__ */ import_react3.default.createElement("div", { className: "vendor-actions", onClick: (e) => e.stopPropagation() }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small", onClick: () => setVendorId(r.id), disabled: busy }, "Edit"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small danger", onClick: () => {
+      /* @__PURE__ */ import_react3.default.createElement("div", { className: "vendor-actions", onClick: (e) => e.stopPropagation() }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small", onClick: () => {
+        setVendorId(r.id);
+        setVendorMode("edit");
+        startNew();
+      }, disabled: busy }, "Edit"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small danger", onClick: () => {
         setVendorId(r.id);
         setTimeout(() => deleteVendor(), 0);
       }, disabled: busy }, "Delete"))
     )))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "pane" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "pane-title" }, /* @__PURE__ */ import_react3.default.createElement("div", null, "Vendor Frontend Preview"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "mini-row" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small primary", onClick: onReload, disabled: busy }, "Reload"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small", onClick: () => {
-    }, disabled: true }, "Save All"))), vendor ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "vendor-preview" }, vendorImages[0] ? /* @__PURE__ */ import_react3.default.createElement("img", { className: "img", src: vendorImages[0], alt: "", onClick: () => onOpenImages((vendor == null ? void 0 : vendor.name) || "Vendor images", vendorImages, 0) }) : /* @__PURE__ */ import_react3.default.createElement("div", { className: "img-chip" }, /* @__PURE__ */ import_react3.default.createElement("span", null, "No image")), /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "vendor-name", style: { fontSize: 18 } }, safeText(vendor.name || vendor.id)), /* @__PURE__ */ import_react3.default.createElement("div", { className: "vendor-sub" }, safeText(vendor.location || "").slice(0, 60)), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small", style: { marginTop: 6 } }, safeText(vendor.description || "").slice(0, 180)))) : /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, "Select a vendor."), /* @__PURE__ */ import_react3.default.createElement("div", { className: "menu-grid" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "pane-title", style: { marginTop: 2 } }, /* @__PURE__ */ import_react3.default.createElement("div", null, "Vendor Menu"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small", onClick: () => {
-    }, disabled: true }, "Table")), error ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "warn" }, error) : null, vendor ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "card", style: { margin: 0 } }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "small", style: { marginBottom: 8 } }, "Edit Vendor"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "split-row" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Name *"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: vendorDraft.name, onChange: (e) => setVendorDraft((p) => ({ ...p, name: e.target.value })) })), /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Location"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: vendorDraft.location, onChange: (e) => setVendorDraft((p) => ({ ...p, location: e.target.value })) }))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "split-row", style: { marginTop: 10 } }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Cuisine (comma separated)"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: vendorDraft.cuisineCsv, onChange: (e) => setVendorDraft((p) => ({ ...p, cuisineCsv: e.target.value })) })), /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Hero Image (URL)"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: vendorDraft.heroImage, onChange: (e) => setVendorDraft((p) => ({ ...p, heroImage: e.target.value })), placeholder: "https://..." }))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "field full", style: { marginTop: 10 } }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Description"), /* @__PURE__ */ import_react3.default.createElement("textarea", { className: "textarea", value: vendorDraft.description, onChange: (e) => setVendorDraft((p) => ({ ...p, description: e.target.value })) })), /* @__PURE__ */ import_react3.default.createElement("div", { className: "toggle-row" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: `pill-toggle ${vendorDraft.available ? "on" : ""}`, onClick: () => setVendorDraft((p) => ({ ...p, available: !p.available })) }, "Available"), /* @__PURE__ */ import_react3.default.createElement("label", { className: "pill-toggle", style: { cursor: "pointer" } }, "Upload Hero", /* @__PURE__ */ import_react3.default.createElement("input", { type: "file", accept: "image/*", style: { display: "none" }, onChange: (e) => {
-      var _a2;
-      return uploadVendorHero((_a2 = e.target.files) == null ? void 0 : _a2[0]);
-    } })), vendorDraft.heroImage ? /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small", onClick: () => onOpenImages("Hero image", [vendorDraft.heroImage], 0), disabled: busy }, "Preview") : null), /* @__PURE__ */ import_react3.default.createElement("div", { style: { marginTop: 10, display: "flex", gap: 10, flexWrap: "wrap" } }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn primary", onClick: saveVendor, disabled: busy }, "Save Vendor"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn danger", onClick: deleteVendor, disabled: busy }, "Delete Vendor"))) : null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "two-tabs" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: `tab ${rightTab === "visual" ? "active" : ""}`, onClick: () => setRightTab("visual") }, "Visual"), /* @__PURE__ */ import_react3.default.createElement("button", { className: `tab ${rightTab === "json" ? "active" : ""}`, onClick: () => setRightTab("json") }, "JSON")), rightTab === "visual" ? /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "card", style: { margin: 0 } }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "small", style: { marginBottom: 8 } }, "Add / Edit Menu Item"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "split-row" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Item Name *"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: draft.name, onChange: (e) => setDraft((p) => ({ ...p, name: e.target.value })), placeholder: "Veg Thali" })), /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Price *"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: draft.price, onChange: (e) => setDraft((p) => ({ ...p, price: e.target.value })), placeholder: "250" }))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "split-row", style: { marginTop: 10 } }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Category"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: draft.category, onChange: (e) => setDraft((p) => ({ ...p, category: e.target.value })), placeholder: "General" })), /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Item Image (URL)"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: draft.image, onChange: (e) => setDraft((p) => ({ ...p, image: e.target.value })), placeholder: "https://..." }))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "field full", style: { marginTop: 10 } }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Description"), /* @__PURE__ */ import_react3.default.createElement("textarea", { className: "textarea", value: draft.description, onChange: (e) => setDraft((p) => ({ ...p, description: e.target.value })), placeholder: "Describe this item..." })), /* @__PURE__ */ import_react3.default.createElement("div", { className: "toggle-row" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: `pill-toggle ${draft.available ? "on" : ""}`, onClick: () => setDraft((p) => ({ ...p, available: !p.available })) }, "Available"), /* @__PURE__ */ import_react3.default.createElement("div", { className: `pill-toggle ${draft.isVeg ? "on" : ""}`, onClick: () => setDraft((p) => ({ ...p, isVeg: !p.isVeg })) }, "Vegetarian")), /* @__PURE__ */ import_react3.default.createElement("div", { style: { marginTop: 10, display: "flex", gap: 10, flexWrap: "wrap" } }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn primary", onClick: saveItem, disabled: busy || !vendorId }, "+ Add Menu Item"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn", onClick: startNew, disabled: busy }, "Reset"), draft.id ? /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn danger", onClick: () => deleteItem(draft.id), disabled: busy }, "Delete") : null)), /* @__PURE__ */ import_react3.default.createElement("div", { className: "card", style: { margin: 0 } }, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: menuQuery, onChange: (e) => setMenuQuery(e.target.value), placeholder: "Search..." }), /* @__PURE__ */ import_react3.default.createElement("div", { className: "table-wrap", style: { marginTop: 10 } }, /* @__PURE__ */ import_react3.default.createElement("table", { className: "table menu-table" }, /* @__PURE__ */ import_react3.default.createElement("thead", null, /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("th", null, "Image"), /* @__PURE__ */ import_react3.default.createElement("th", null, "ID"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Name"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Category"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Price"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Available"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Actions"))), /* @__PURE__ */ import_react3.default.createElement("tbody", null, vendorItems.map((m) => {
-      const urls = extractImageUrlsFromRow(m);
-      return /* @__PURE__ */ import_react3.default.createElement("tr", { key: m.id, onClick: () => editItem(m) }, /* @__PURE__ */ import_react3.default.createElement("td", { className: "thumb-cell", onClick: (e) => e.stopPropagation() }, urls[0] ? /* @__PURE__ */ import_react3.default.createElement("img", { className: "thumb", src: urls[0], alt: "", onClick: () => onOpenImages("Menu item images", urls, 0) }) : null), /* @__PURE__ */ import_react3.default.createElement("td", null, safeText(m.id)), /* @__PURE__ */ import_react3.default.createElement("td", null, safeText(m.name)), /* @__PURE__ */ import_react3.default.createElement("td", null, safeText(m.category)), /* @__PURE__ */ import_react3.default.createElement("td", null, safeText(m.price)), /* @__PURE__ */ import_react3.default.createElement("td", null, m.available !== false ? "Yes" : "No"), /* @__PURE__ */ import_react3.default.createElement("td", { onClick: (e) => e.stopPropagation() }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small danger", onClick: () => deleteItem(safeText(m.id)), disabled: busy }, "Delete")));
-    }), !vendorItems.length ? /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("td", { colSpan: 7, className: "small" }, "No menu items yet.")) : null))))) : /* @__PURE__ */ import_react3.default.createElement("div", { className: "card", style: { margin: 0 } }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, "Replace vendor menu as JSON (array of items)"), /* @__PURE__ */ import_react3.default.createElement("textarea", { className: "textarea json-mini", value: menuJson, onChange: (e) => setMenuJson(e.target.value), style: { marginTop: 10 } }), /* @__PURE__ */ import_react3.default.createElement("div", { style: { marginTop: 10, display: "flex", gap: 10, flexWrap: "wrap" } }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn primary", onClick: saveMenuJsonReplace, disabled: busy || !vendorId }, "Save JSON"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn", onClick: () => setMenuJson(JSON.stringify(vendorItems, null, 2)), disabled: busy }, "Reset")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small", style: { marginTop: 8 } }, "Required fields per item: ", /* @__PURE__ */ import_react3.default.createElement("code", null, "id"), ", ", /* @__PURE__ */ import_react3.default.createElement("code", null, "name"), ". Optional: ", /* @__PURE__ */ import_react3.default.createElement("code", null, "category"), ", ", /* @__PURE__ */ import_react3.default.createElement("code", null, "description"), ", ", /* @__PURE__ */ import_react3.default.createElement("code", null, "price"), ", ", /* @__PURE__ */ import_react3.default.createElement("code", null, "image"), ", ", /* @__PURE__ */ import_react3.default.createElement("code", null, "available"), ", ", /* @__PURE__ */ import_react3.default.createElement("code", null, "is_veg"), ".")))));
+    }, disabled: true }, "Save All"))), vendor ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "vendor-preview" }, vendorImages[0] ? /* @__PURE__ */ import_react3.default.createElement("img", { className: "img", src: vendorImages[0], alt: "", onClick: () => onOpenImages(vendor?.name || "Vendor images", vendorImages, 0) }) : /* @__PURE__ */ import_react3.default.createElement("div", { className: "img-chip" }, /* @__PURE__ */ import_react3.default.createElement("span", null, "No image")), /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "vendor-name fs-18" }, safeText(vendor.name || vendor.id)), /* @__PURE__ */ import_react3.default.createElement("div", { className: "vendor-sub" }, safeText(vendor.location || "").slice(0, 60)), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small mt-6" }, safeText(vendor.description || "").slice(0, 180)))) : vendorMode === "new" ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, "Creating a new vendor.") : /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, "Select a vendor."), /* @__PURE__ */ import_react3.default.createElement("div", { className: "menu-grid" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "pane-title mt-2" }, /* @__PURE__ */ import_react3.default.createElement("div", null, "Vendor Menu"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small", onClick: () => {
+    }, disabled: true }, "Table")), error ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "warn" }, error) : null, vendorMode === "new" || vendorMode === "edit" ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "card m-0" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "small mb-8" }, vendorMode === "new" ? "Add Vendor" : "Edit Vendor"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "split-row" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Name *"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: vendorDraft.name, onChange: (e) => setVendorDraft((p) => ({ ...p, name: e.target.value })) })), /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Location"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: vendorDraft.location, onChange: (e) => setVendorDraft((p) => ({ ...p, location: e.target.value })) }))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "split-row mt-10" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Cuisine (comma separated)"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: vendorDraft.cuisineCsv, onChange: (e) => setVendorDraft((p) => ({ ...p, cuisineCsv: e.target.value })) })), /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Hero Image (URL)"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex-gap10-center" }, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input flex-1", value: vendorDraft.heroImage, onChange: (e) => setVendorDraft((p) => ({ ...p, heroImage: e.target.value })), placeholder: "https://..." }), /* @__PURE__ */ import_react3.default.createElement("label", { className: "btn small pointer" }, "Upload", /* @__PURE__ */ import_react3.default.createElement("input", { type: "file", accept: "image/*", className: "hidden-input", onChange: (e) => uploadVendorHero(e.target.files?.[0]) }))))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "field full mt-10" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Description"), /* @__PURE__ */ import_react3.default.createElement("textarea", { className: "textarea", value: vendorDraft.description, onChange: (e) => setVendorDraft((p) => ({ ...p, description: e.target.value })) })), /* @__PURE__ */ import_react3.default.createElement("div", { className: "toggle-row" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: `pill-toggle ${vendorDraft.available ? "on" : ""}`, onClick: () => setVendorDraft((p) => ({ ...p, available: !p.available })) }, "Available"), vendorDraft.heroImage ? /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small", onClick: () => onOpenImages("Hero image", [vendorDraft.heroImage], 0), disabled: busy }, "Preview") : null), /* @__PURE__ */ import_react3.default.createElement("div", { className: "mt-10 flex-gap10-wrap" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn primary", onClick: saveVendor, disabled: busy }, "Save Vendor"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn danger", onClick: deleteVendor, disabled: busy }, "Delete Vendor"))) : null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "two-tabs" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: `tab ${rightTab === "visual" ? "active" : ""}`, onClick: () => setRightTab("visual") }, "Visual"), /* @__PURE__ */ import_react3.default.createElement("button", { className: `tab ${rightTab === "json" ? "active" : ""}`, onClick: () => setRightTab("json") }, "JSON")), rightTab === "visual" ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "card m-0" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "row mb-8" }, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: menuQuery, onChange: (e) => setMenuQuery(e.target.value), placeholder: "Search..." }), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small", onClick: startNewMenuRow, disabled: busy }, /* @__PURE__ */ import_react3.default.createElement(FaPlus, null), " Add")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "table-wrap mt-10" }, /* @__PURE__ */ import_react3.default.createElement("table", { className: "table menu-table" }, /* @__PURE__ */ import_react3.default.createElement("thead", null, /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("th", null, "Image"), /* @__PURE__ */ import_react3.default.createElement("th", null, "ID"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Name"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Category"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Price"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Available"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Veg"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Actions"))), /* @__PURE__ */ import_react3.default.createElement("tbody", null, /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("td", { className: "thumb-cell" }, newMenuItem.image ? /* @__PURE__ */ import_react3.default.createElement("img", { className: "thumb", src: newMenuItem.image, alt: "" }) : null, /* @__PURE__ */ import_react3.default.createElement("label", { className: "btn small pointer mt-4" }, "Upload", /* @__PURE__ */ import_react3.default.createElement("input", { type: "file", accept: "image/*", className: "hidden-input", onChange: (e) => uploadMenuTableImage(e.target.files?.[0], (url) => setNewMenuItem((p) => ({ ...p, image: url }))) }))), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: newMenuItem.id, onChange: (e) => setNewMenuItem((p) => ({ ...p, id: e.target.value })), placeholder: "auto" })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: newMenuItem.name, onChange: (e) => setNewMenuItem((p) => ({ ...p, name: e.target.value })), placeholder: "Item name" })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: newMenuItem.category, onChange: (e) => setNewMenuItem((p) => ({ ...p, category: e.target.value })), placeholder: "General" })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: newMenuItem.price, onChange: (e) => setNewMenuItem((p) => ({ ...p, price: e.target.value })), placeholder: "0" })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { type: "checkbox", checked: newMenuItem.available !== false, onChange: (e) => setNewMenuItem((p) => ({ ...p, available: e.target.checked })) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { type: "checkbox", checked: newMenuItem.isVeg === true, onChange: (e) => setNewMenuItem((p) => ({ ...p, isVeg: e.target.checked })) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small primary", onClick: () => saveMenuRow(newMenuItem), disabled: busy || !vendorId }, "Save"))), vendorItems.slice((menuPage - 1) * PAGE_SIZE, menuPage * PAGE_SIZE).map((m) => {
+      const edit = menuEdits[m.id] || m;
+      const urls = extractImageUrlsFromRow(edit);
+      return /* @__PURE__ */ import_react3.default.createElement("tr", { key: m.id }, /* @__PURE__ */ import_react3.default.createElement("td", { className: "thumb-cell" }, urls[0] ? /* @__PURE__ */ import_react3.default.createElement("img", { className: "thumb", src: urls[0], alt: "", onClick: () => onOpenImages("Menu item images", urls, 0) }) : null, /* @__PURE__ */ import_react3.default.createElement("label", { className: "btn small pointer mt-4" }, "Upload", /* @__PURE__ */ import_react3.default.createElement("input", { type: "file", accept: "image/*", className: "hidden-input", onChange: (e) => uploadMenuTableImage(e.target.files?.[0], (url) => updateMenuEdit(m.id, "image", url)) }))), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(edit.id), onChange: (e) => updateMenuEdit(m.id, "id", e.target.value) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(edit.name), onChange: (e) => updateMenuEdit(m.id, "name", e.target.value) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(edit.category), onChange: (e) => updateMenuEdit(m.id, "category", e.target.value) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(edit.price), onChange: (e) => updateMenuEdit(m.id, "price", e.target.value) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { type: "checkbox", checked: edit.available !== false, onChange: (e) => updateMenuEdit(m.id, "available", e.target.checked) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { type: "checkbox", checked: edit.is_veg === true || edit.isVeg === true, onChange: (e) => updateMenuEdit(m.id, "isVeg", e.target.checked) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex-gap6" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small primary", onClick: () => saveMenuRow(edit), disabled: busy }, "Save"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small danger", onClick: () => deleteItem(safeText(m.id)), disabled: busy }, "Delete"))));
+    }), !vendorItems.length ? /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("td", { colSpan: 8, className: "small" }, "No menu items yet.")) : null)), /* @__PURE__ */ import_react3.default.createElement(
+      Pagination,
+      {
+        page: menuPage,
+        totalPages: Math.max(1, Math.ceil(vendorItems.length / PAGE_SIZE)),
+        onChange: setMenuPage
+      }
+    ))) : /* @__PURE__ */ import_react3.default.createElement("div", { className: "card m-0" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, "Replace vendor menu as JSON (array of items)"), /* @__PURE__ */ import_react3.default.createElement("textarea", { className: "textarea json-mini mt-10", value: menuJson, onChange: (e) => setMenuJson(e.target.value) }), /* @__PURE__ */ import_react3.default.createElement("div", { className: "mt-10 flex-gap10-wrap" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn primary", onClick: saveMenuJsonReplace, disabled: busy || !vendorId }, "Save JSON"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn", onClick: () => setMenuJson(JSON.stringify(vendorItems, null, 2)), disabled: busy }, "Reset")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small mt-8" }, "Required fields per item: ", /* @__PURE__ */ import_react3.default.createElement("code", null, "id"), ", ", /* @__PURE__ */ import_react3.default.createElement("code", null, "name"), ". Optional: ", /* @__PURE__ */ import_react3.default.createElement("code", null, "category_id"), ", ", /* @__PURE__ */ import_react3.default.createElement("code", null, "quantity"), ", ", /* @__PURE__ */ import_react3.default.createElement("code", null, "description"), ", ", /* @__PURE__ */ import_react3.default.createElement("code", null, "price"), ", ", /* @__PURE__ */ import_react3.default.createElement("code", null, "image"), ", ", /* @__PURE__ */ import_react3.default.createElement("code", null, "available"), ", ", /* @__PURE__ */ import_react3.default.createElement("code", null, "is_veg"), ".")))));
+  }
+  function MartCatalogWorkspace({ snapshot, onReload, onUpsert, onDelete }) {
+    const marts = (0, import_react3.useMemo)(() => {
+      const t = (snapshot?.tables || []).find((x) => x.name === TABLES.MARTS);
+      return Array.isArray(t?.rows) ? t.rows : [];
+    }, [snapshot]);
+    const products = (0, import_react3.useMemo)(() => {
+      const t = (snapshot?.tables || []).find((x) => x.name === TABLES.PRODUCTS);
+      return Array.isArray(t?.rows) ? t.rows : [];
+    }, [snapshot]);
+    const [martQuery, setMartQuery] = (0, import_react3.useState)("");
+    const [productQuery, setProductQuery] = (0, import_react3.useState)("");
+    const [martId, setMartId] = (0, import_react3.useState)("");
+    const [rightTab, setRightTab] = (0, import_react3.useState)("visual");
+    const [busy, setBusy] = (0, import_react3.useState)(false);
+    const [error, setError] = (0, import_react3.useState)("");
+    const [martMode, setMartMode] = (0, import_react3.useState)("none");
+    const [martDraft, setMartDraft] = (0, import_react3.useState)({
+      id: "",
+      name: "",
+      location: "",
+      phone: "",
+      category: "",
+      description: "",
+      available: true
+    });
+    const [productDraft, setProductDraft] = (0, import_react3.useState)({
+      id: "",
+      name: "",
+      categoryId: "",
+      subCategory: "",
+      unit: "",
+      description: "",
+      price: "",
+      mrp: "",
+      stock: "",
+      maxPerOrder: "",
+      isVeg: false,
+      brand: "",
+      tags: "",
+      deliveryPincodes: "",
+      type: "",
+      rating: "",
+      image: "",
+      available: true
+    });
+    const [productEdits, setProductEdits] = (0, import_react3.useState)({});
+    const [newProductRow, setNewProductRow] = (0, import_react3.useState)({
+      id: "",
+      name: "",
+      categoryId: "",
+      subCategory: "",
+      unit: "",
+      description: "",
+      price: "",
+      mrp: "",
+      stock: "",
+      maxPerOrder: "",
+      isVeg: false,
+      brand: "",
+      tags: "",
+      deliveryPincodes: "",
+      type: "",
+      rating: "",
+      image: "",
+      available: true
+    });
+    const [productsJson, setProductsJson] = (0, import_react3.useState)("[]");
+    const productMartId = (x) => safeText(x?.mart_partner_id || x?.martPartnerId || "");
+    (0, import_react3.useEffect)(() => {
+      if (!martId && marts[0]?.id) setMartId(String(marts[0].id));
+    }, [marts, martId]);
+    const filteredMarts = (0, import_react3.useMemo)(() => {
+      const q = martQuery.trim().toLowerCase();
+      if (!q) return marts;
+      return marts.filter((m) => JSON.stringify(m).toLowerCase().includes(q));
+    }, [marts, martQuery]);
+    const selectedMart = (0, import_react3.useMemo)(
+      () => marts.find((m) => String(m?.id || "") === String(martId || "")) || null,
+      [marts, martId]
+    );
+    const martProducts = (0, import_react3.useMemo)(() => {
+      const list = products.filter((p) => productMartId(p) === String(martId || ""));
+      const q = productQuery.trim().toLowerCase();
+      const filtered = q ? list.filter((p) => JSON.stringify(p).toLowerCase().includes(q)) : list;
+      return filtered.slice().sort((a, b) => String(a?.category_id || a?.categoryId || "").localeCompare(String(b?.category_id || b?.categoryId || "")) || String(a?.name || "").localeCompare(String(b?.name || "")));
+    }, [products, martId, productQuery]);
+    const [productPage, setProductPage] = (0, import_react3.useState)(1);
+    (0, import_react3.useEffect)(() => {
+      setProductPage(1);
+    }, [productQuery, martId]);
+    (0, import_react3.useEffect)(() => {
+      if (!selectedMart) return;
+      if (martMode !== "edit") return;
+      setMartDraft({
+        id: safeText(selectedMart?.id || ""),
+        name: safeText(selectedMart?.name || ""),
+        location: safeText(selectedMart?.location || ""),
+        phone: safeText(selectedMart?.phone || selectedMart?.phone_number || ""),
+        category: safeText(selectedMart?.category || ""),
+        description: safeText(selectedMart?.description || ""),
+        available: selectedMart?.available !== false
+      });
+      setProductsJson(JSON.stringify(martProducts, null, 2));
+    }, [selectedMart?.id, martProducts.length, martMode]);
+    const categoryOptions = (0, import_react3.useMemo)(() => {
+      const set = /* @__PURE__ */ new Set();
+      products.forEach((p) => {
+        const v = safeText(p?.category_id || p?.categoryId || "");
+        if (v) set.add(v);
+      });
+      return Array.from(set);
+    }, [products]);
+    const productNameOptions = (0, import_react3.useMemo)(() => {
+      const set = /* @__PURE__ */ new Set();
+      products.forEach((p) => {
+        const v = safeText(p?.name || "");
+        if (v) set.add(v);
+      });
+      return Array.from(set);
+    }, [products]);
+    const resetProductDraft = () => {
+      setProductDraft({
+        id: "",
+        name: "",
+        categoryId: "",
+        subCategory: "",
+        unit: "",
+        description: "",
+        price: "",
+        mrp: "",
+        stock: "",
+        maxPerOrder: "",
+        isVeg: false,
+        brand: "",
+        tags: "",
+        deliveryPincodes: "",
+        type: "",
+        rating: "",
+        image: "",
+        available: true
+      });
+    };
+    const editProduct = (item) => {
+      setProductDraft({
+        id: safeText(item?.id || ""),
+        name: safeText(item?.name || ""),
+        martPartnerId: safeText(item?.mart_partner_id || item?.martPartnerId || ""),
+        categoryId: safeText(item?.category_id || item?.categoryId || ""),
+        subCategory: safeText(item?.sub_category || item?.subCategory || ""),
+        unit: safeText(item?.unit || ""),
+        description: safeText(item?.description || ""),
+        price: safeText(item?.price ?? ""),
+        mrp: safeText(item?.mrp ?? ""),
+        stock: safeText(item?.stock ?? ""),
+        maxPerOrder: safeText(item?.max_per_order ?? item?.maxPerOrder ?? ""),
+        isVeg: item?.is_veg === true || item?.isVeg === true,
+        brand: safeText(item?.brand || ""),
+        tags: Array.isArray(item?.tags) ? item.tags.join(", ") : safeText(item?.tags || ""),
+        deliveryPincodes: safeText(item?.delivery_pincodes || ""),
+        type: safeText(item?.type || ""),
+        rating: safeText(item?.rating ?? ""),
+        image: safeText(item?.image || item?.hero_image || ""),
+        available: item?.available !== false
+      });
+    };
+    const startNewProductRow = () => {
+      setNewProductRow({
+        id: "",
+        name: "",
+        categoryId: "",
+        subCategory: "",
+        unit: "",
+        description: "",
+        price: "",
+        mrp: "",
+        stock: "",
+        maxPerOrder: "",
+        isVeg: false,
+        brand: "",
+        tags: "",
+        deliveryPincodes: "",
+        type: "",
+        rating: "",
+        image: "",
+        available: true
+      });
+    };
+    const updateProductEdit = (id, key, value) => {
+      setProductEdits((prev) => {
+        const base = prev[id] || martProducts.find((p) => String(p.id) === String(id)) || {};
+        return { ...prev, [id]: { ...base, [key]: value } };
+      });
+    };
+    const saveMart = async () => {
+      if (!martDraft.name.trim()) {
+        setError("Mart name is required");
+        return;
+      }
+      setBusy(true);
+      setError("");
+      try {
+        const id = martDraft.id || `mart_${Date.now()}_${Math.random().toString(16).slice(2)}`;
+        await onUpsert(TABLES.MARTS, [{
+          id,
+          name: martDraft.name,
+          location: martDraft.location || "",
+          phone: martDraft.phone || "",
+          category: martDraft.category || "",
+          description: martDraft.description || "",
+          available: !!martDraft.available
+        }]);
+        await onReload();
+        setMartId(id);
+        setMartMode("edit");
+      } catch (e) {
+        setError(String(e?.message || e));
+      } finally {
+        setBusy(false);
+      }
+    };
+    const saveProduct = async () => {
+      if (!martId) {
+        setError("Select a mart first.");
+        return;
+      }
+      if (!productDraft.name.trim()) {
+        setError("Product name is required");
+        return;
+      }
+      setBusy(true);
+      setError("");
+      try {
+        const id = productDraft.id || `prod_${Date.now()}_${Math.random().toString(16).slice(2)}`;
+        const image = safeText(productDraft.image || "").trim() || "https://placehold.co/600x400?text=Image";
+        await onUpsert(TABLES.PRODUCTS, [{
+          id,
+          mart_partner_id: martId,
+          name: productDraft.name,
+          category_id: productDraft.categoryId || null,
+          sub_category: productDraft.subCategory || "",
+          unit: productDraft.unit || "",
+          description: productDraft.description || "",
+          price: Number(productDraft.price || 0),
+          mrp: Number(productDraft.mrp || 0) || null,
+          stock: Number(productDraft.stock || 0) || null,
+          max_per_order: Number(productDraft.maxPerOrder || 0) || 0,
+          is_veg: !!productDraft.isVeg,
+          tags: productDraft.tags ? productDraft.tags.split(",").map((x) => x.trim()).filter(Boolean) : [],
+          brand: productDraft.brand || "",
+          delivery_pincodes: productDraft.deliveryPincodes || "",
+          type: productDraft.type || "",
+          rating: Number(productDraft.rating || 0) || 0,
+          image,
+          available: !!productDraft.available
+        }]);
+        await onReload();
+        setProductDraft((p) => ({ ...p, id }));
+      } catch (e) {
+        setError(String(e?.message || e));
+      } finally {
+        setBusy(false);
+      }
+    };
+    const saveProductRow = async (row) => {
+      if (!martId) {
+        setError("Select a mart first.");
+        return;
+      }
+      if (!safeText(row?.name).trim()) {
+        setError("Product name is required");
+        return;
+      }
+      setBusy(true);
+      setError("");
+      try {
+        const id = safeText(row?.id) || `prod_${Date.now()}_${Math.random().toString(16).slice(2)}`;
+        const image = safeText(row?.image || "").trim() || "https://placehold.co/600x400?text=Image";
+        await onUpsert(TABLES.PRODUCTS, [{
+          id,
+          mart_partner_id: martId,
+          name: safeText(row?.name || ""),
+          category_id: safeText(row?.categoryId || row?.category_id || "") || null,
+          sub_category: safeText(row?.subCategory || row?.sub_category || ""),
+          unit: safeText(row?.unit || ""),
+          description: safeText(row?.description || ""),
+          price: Number(row?.price || 0),
+          mrp: Number(row?.mrp || 0) || null,
+          stock: Number(row?.stock || 0) || null,
+          max_per_order: Number(row?.maxPerOrder || row?.max_per_order || 0) || 0,
+          is_veg: row?.isVeg === true || row?.is_veg === true,
+          tags: safeText(row?.tags || "").split(",").map((x) => x.trim()).filter(Boolean),
+          brand: safeText(row?.brand || ""),
+          delivery_pincodes: safeText(row?.deliveryPincodes || row?.delivery_pincodes || ""),
+          type: safeText(row?.type || ""),
+          rating: Number(row?.rating || 0) || 0,
+          image,
+          available: row?.available !== false
+        }]);
+        await onReload();
+        setProductEdits((p) => {
+          const next = { ...p };
+          delete next[id];
+          return next;
+        });
+        startNewProductRow();
+      } catch (e) {
+        setError(String(e?.message || e));
+      } finally {
+        setBusy(false);
+      }
+    };
+    const uploadProductImage = async (file, onDone) => {
+      if (!file) return;
+      setBusy(true);
+      setError("");
+      try {
+        const fd = new FormData();
+        fd.append("image", file);
+        fd.append("folder", "images/marts");
+        const r = await fetch("/api/admin/upload-image", { method: "POST", credentials: "include", body: fd });
+        const j = await r.json().catch(() => ({}));
+        if (!r.ok) throw new Error(j?.message || j?.error || "UPLOAD_FAILED");
+        onDone(j.url || j.path || "");
+      } catch (e) {
+        setError(String(e?.message || e));
+      } finally {
+        setBusy(false);
+      }
+    };
+    const deleteProduct = async (id) => {
+      const ok = window.confirm("Delete this product?");
+      if (!ok) return;
+      const typed = window.prompt("Type DELETE to confirm product deletion", "");
+      if (safeText(typed) !== "DELETE") {
+        setError("Delete cancelled: confirmation text did not match.");
+        return;
+      }
+      setBusy(true);
+      setError("");
+      try {
+        await onDelete(TABLES.PRODUCTS, id, "id", "DELETE");
+        await onReload();
+        resetProductDraft();
+      } catch (e) {
+        setError(String(e?.message || e));
+      } finally {
+        setBusy(false);
+      }
+    };
+    const deleteMart = async () => {
+      if (!martId) return;
+      const ok = window.confirm("Delete this mart and all of its products?");
+      if (!ok) return;
+      const typed = window.prompt("Type DELETE_MART to confirm mart deletion", "");
+      if (safeText(typed) !== "DELETE_MART") {
+        setError("Delete cancelled: confirmation text did not match.");
+        return;
+      }
+      setBusy(true);
+      setError("");
+      try {
+        const rows = products.filter((p) => productMartId(p) === String(martId));
+        for (const p of rows) {
+          const id = safeText(p?.id || "");
+          if (!id) continue;
+          await onDelete(TABLES.PRODUCTS, id, "id", "DELETE");
+        }
+        await onDelete(TABLES.MARTS, martId, "id", "DELETE");
+        await onReload();
+        setMartId("");
+        resetProductDraft();
+        setMartMode("none");
+      } catch (e) {
+        setError(String(e?.message || e));
+      } finally {
+        setBusy(false);
+      }
+    };
+    const saveProductsJson = async () => {
+      if (!martId) {
+        setError("Select a mart first.");
+        return;
+      }
+      setBusy(true);
+      setError("");
+      try {
+        const parsed = JSON.parse(productsJson);
+        if (!Array.isArray(parsed)) throw new Error("JSON must be an array");
+        const normalized = parsed.map((x) => ({
+          id: safeText(x?.id || ""),
+          mart_partner_id: martId,
+          name: safeText(x?.name || ""),
+          category_id: safeText(x?.category_id || x?.categoryId || ""),
+          sub_category: safeText(x?.sub_category || x?.subCategory || ""),
+          unit: safeText(x?.unit || ""),
+          description: safeText(x?.description || ""),
+          price: Number(x?.price || 0),
+          mrp: Number(x?.mrp || 0) || null,
+          stock: Number(x?.stock || 0) || null,
+          max_per_order: Number(x?.max_per_order || x?.maxPerOrder || 0) || null,
+          is_veg: x?.is_veg === true || x?.isVeg === true,
+          tags: Array.isArray(x?.tags) ? x.tags : safeText(x?.tags || "").split(",").map((s) => s.trim()).filter(Boolean),
+          brand: safeText(x?.brand || ""),
+          delivery_pincodes: safeText(x?.delivery_pincodes || x?.deliveryPincodes || ""),
+          type: safeText(x?.type || ""),
+          rating: Number(x?.rating || 0) || null,
+          image: x?.image ?? x?.hero_image ?? null,
+          available: x?.available !== false
+        })).filter((x) => x.id && x.name);
+        if (!normalized.length) throw new Error("At least 1 item with {id,name} is required");
+        await onUpsert(TABLES.PRODUCTS, normalized);
+        await onReload();
+      } catch (e) {
+        setError(String(e?.message || e));
+      } finally {
+        setBusy(false);
+      }
+    };
+    return /* @__PURE__ */ import_react3.default.createElement("div", { className: "workspace" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "pane" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "pane-title" }, /* @__PURE__ */ import_react3.default.createElement("div", null, "Marts"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small", onClick: () => {
+      setMartDraft({ id: "", name: "", location: "", phone: "", category: "", description: "", available: true });
+      setMartId("");
+      setMartMode("new");
+    }, disabled: busy }, "+ Add")), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: martQuery, onChange: (e) => setMartQuery(e.target.value), placeholder: "Search marts..." }), /* @__PURE__ */ import_react3.default.createElement("div", { className: "list mt-10" }, filteredMarts.map((m) => /* @__PURE__ */ import_react3.default.createElement(
+      "div",
+      {
+        key: safeText(m?.id || ""),
+        className: `vendor-card ${String(m?.id || "") === String(martId || "") ? "active" : ""}`,
+        onClick: () => {
+          setMartId(String(m?.id || ""));
+        },
+        role: "button",
+        tabIndex: 0
+      },
+      /* @__PURE__ */ import_react3.default.createElement("div", { className: "vendor-name" }, safeText(m?.name || m?.id || "")),
+      /* @__PURE__ */ import_react3.default.createElement("div", { className: "vendor-sub" }, safeText(m?.location || "").slice(0, 40)),
+      /* @__PURE__ */ import_react3.default.createElement("div", { className: "vendor-actions" }, /* @__PURE__ */ import_react3.default.createElement(
+        "button",
+        {
+          className: "btn small",
+          onClick: () => {
+            setMartId(String(m?.id || ""));
+            setMartMode("edit");
+            resetProductDraft();
+            setMartDraft({
+              id: safeText(m?.id || ""),
+              name: safeText(m?.name || ""),
+              location: safeText(m?.location || ""),
+              phone: safeText(m?.phone || m?.phone_number || ""),
+              category: safeText(m?.category || ""),
+              description: safeText(m?.description || ""),
+              available: m?.available !== false
+            });
+          },
+          disabled: busy
+        },
+        "Edit"
+      ))
+    )))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "pane" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "pane-title" }, /* @__PURE__ */ import_react3.default.createElement("div", null, "Mart Products"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "mini-row" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small primary", onClick: onReload, disabled: busy }, "Reload"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small", onClick: () => setRightTab("pricing") }, "Pricing Controls"))), error ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "warn" }, error) : null, martMode === "none" ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, "Select a mart or click Add.") : /* @__PURE__ */ import_react3.default.createElement("div", { className: "card m-0" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "small mb-8" }, martMode === "new" ? "Add Mart" : "Edit Mart"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "split-row" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Mart Name *"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: martDraft.name, onChange: (e) => setMartDraft((p) => ({ ...p, name: e.target.value })) })), /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Location"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: martDraft.location, onChange: (e) => setMartDraft((p) => ({ ...p, location: e.target.value })) }))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "split-row mt-10" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Phone"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: martDraft.phone, onChange: (e) => setMartDraft((p) => ({ ...p, phone: e.target.value })), placeholder: "+91-00000-00000" })), /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Category"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: martDraft.category || "", onChange: (e) => setMartDraft((p) => ({ ...p, category: e.target.value })), placeholder: "General" }))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "field full mt-10" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Description"), /* @__PURE__ */ import_react3.default.createElement("textarea", { className: "textarea", value: martDraft.description, onChange: (e) => setMartDraft((p) => ({ ...p, description: e.target.value })) })), /* @__PURE__ */ import_react3.default.createElement("div", { className: "toggle-row" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: `pill-toggle ${martDraft.available ? "on" : ""}`, onClick: () => setMartDraft((p) => ({ ...p, available: !p.available })) }, "Available")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "mt-10 flex-gap10-wrap" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn primary", onClick: saveMart, disabled: busy }, "Save Mart"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn danger", onClick: deleteMart, disabled: busy || !martId }, "Delete Mart"))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "two-tabs" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: `tab ${rightTab === "visual" ? "active" : ""}`, onClick: () => setRightTab("visual") }, "Visual"), /* @__PURE__ */ import_react3.default.createElement("button", { className: `tab ${rightTab === "json" ? "active" : ""}`, onClick: () => setRightTab("json") }, "JSON"), /* @__PURE__ */ import_react3.default.createElement("button", { className: `tab ${rightTab === "pricing" ? "active" : ""}`, onClick: () => setRightTab("pricing") }, "Pricing")), rightTab === "pricing" ? /* @__PURE__ */ import_react3.default.createElement(
+      PricingControlsWorkspace,
+      {
+        snapshot,
+        onReload,
+        onUpsert
+      }
+    ) : rightTab === "visual" ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "card m-0" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "row mb-8" }, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: productQuery, onChange: (e) => setProductQuery(e.target.value), placeholder: "Search products..." }), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small", onClick: startNewProductRow, disabled: busy }, /* @__PURE__ */ import_react3.default.createElement(FaPlus, null), " Add")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "table-wrap mt-10" }, /* @__PURE__ */ import_react3.default.createElement("table", { className: "table menu-table" }, /* @__PURE__ */ import_react3.default.createElement("thead", null, /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("th", null, "Image"), /* @__PURE__ */ import_react3.default.createElement("th", { className: "col-name" }, "Name"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Category ID"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Unit"), /* @__PURE__ */ import_react3.default.createElement("th", null, "MRP"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Price"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Stock"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Available"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Actions"))), /* @__PURE__ */ import_react3.default.createElement("tbody", null, /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("td", { className: "thumb-cell" }, newProductRow.image ? /* @__PURE__ */ import_react3.default.createElement("img", { className: "thumb", src: newProductRow.image, alt: "" }) : null, /* @__PURE__ */ import_react3.default.createElement("label", { className: "btn small pointer mt-4" }, "Upload", /* @__PURE__ */ import_react3.default.createElement("input", { type: "file", accept: "image/*", className: "hidden-input", onChange: (e) => uploadProductImage(e.target.files?.[0], (url) => setNewProductRow((p) => ({ ...p, image: url }))) }))), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement(
+      "input",
+      {
+        className: "input",
+        value: newProductRow.name,
+        onChange: (e) => setNewProductRow((p) => ({ ...p, name: e.target.value })),
+        placeholder: "Product name",
+        list: "mart-product-name-options"
+      }
+    )), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement(
+      "input",
+      {
+        className: "input",
+        value: newProductRow.categoryId,
+        onChange: (e) => setNewProductRow((p) => ({ ...p, categoryId: e.target.value })),
+        placeholder: "cat_dairy",
+        list: "mart-category-options"
+      }
+    )), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: newProductRow.unit, onChange: (e) => setNewProductRow((p) => ({ ...p, unit: e.target.value })), placeholder: "1L / 500g" })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: newProductRow.mrp, onChange: (e) => setNewProductRow((p) => ({ ...p, mrp: e.target.value })), placeholder: "0" })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: newProductRow.price, onChange: (e) => setNewProductRow((p) => ({ ...p, price: e.target.value })), placeholder: "0" })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: newProductRow.stock, onChange: (e) => setNewProductRow((p) => ({ ...p, stock: e.target.value })), placeholder: "0" })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { type: "checkbox", checked: newProductRow.available !== false, onChange: (e) => setNewProductRow((p) => ({ ...p, available: e.target.checked })) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small primary", onClick: () => saveProductRow({ ...newProductRow, id: newProductRow.id || `prod_${Date.now()}_${Math.random().toString(16).slice(2)}` }), disabled: busy || !martId }, "Save"))), martProducts.slice((productPage - 1) * PAGE_SIZE, productPage * PAGE_SIZE).map((p) => {
+      const edit = productEdits[p.id] || p;
+      return /* @__PURE__ */ import_react3.default.createElement("tr", { key: safeText(p?.id || "") }, /* @__PURE__ */ import_react3.default.createElement("td", { className: "thumb-cell" }, edit.image ? /* @__PURE__ */ import_react3.default.createElement("img", { className: "thumb", src: edit.image, alt: "" }) : null, /* @__PURE__ */ import_react3.default.createElement("label", { className: "btn small pointer mt-4" }, "Upload", /* @__PURE__ */ import_react3.default.createElement("input", { type: "file", accept: "image/*", className: "hidden-input", onChange: (e) => uploadProductImage(e.target.files?.[0], (url) => updateProductEdit(p.id, "image", url)) }))), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement(
+        "input",
+        {
+          className: "input",
+          value: safeText(edit.name),
+          onChange: (e) => updateProductEdit(p.id, "name", e.target.value),
+          list: "mart-product-name-options"
+        }
+      )), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement(
+        "input",
+        {
+          className: "input",
+          value: safeText(edit.category_id || edit.categoryId),
+          onChange: (e) => updateProductEdit(p.id, "categoryId", e.target.value),
+          list: "mart-category-options"
+        }
+      )), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(edit.unit), onChange: (e) => updateProductEdit(p.id, "unit", e.target.value) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(edit.mrp), onChange: (e) => updateProductEdit(p.id, "mrp", e.target.value) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(edit.price), onChange: (e) => updateProductEdit(p.id, "price", e.target.value) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(edit.stock), onChange: (e) => updateProductEdit(p.id, "stock", e.target.value) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("input", { type: "checkbox", checked: edit.available !== false, onChange: (e) => updateProductEdit(p.id, "available", e.target.checked) })), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex-gap6" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small primary", onClick: () => saveProductRow(edit), disabled: busy }, "Save"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small danger", onClick: () => deleteProduct(safeText(p?.id || "")), disabled: busy }, "Delete"))));
+    }), !martProducts.length ? /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("td", { colSpan: 9, className: "small" }, "No products yet.")) : null)), /* @__PURE__ */ import_react3.default.createElement("datalist", { id: "mart-category-options" }, categoryOptions.map((opt) => /* @__PURE__ */ import_react3.default.createElement("option", { key: opt, value: opt }))), /* @__PURE__ */ import_react3.default.createElement("datalist", { id: "mart-product-name-options" }, productNameOptions.map((opt) => /* @__PURE__ */ import_react3.default.createElement("option", { key: opt, value: opt }))), /* @__PURE__ */ import_react3.default.createElement(
+      Pagination,
+      {
+        page: productPage,
+        totalPages: Math.max(1, Math.ceil(martProducts.length / PAGE_SIZE)),
+        onChange: setProductPage
+      }
+    ))) : /* @__PURE__ */ import_react3.default.createElement("div", { className: "card m-0" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, "Edit products for selected mart as JSON array"), /* @__PURE__ */ import_react3.default.createElement("textarea", { className: "textarea json-mini mt-10", value: productsJson, onChange: (e) => setProductsJson(e.target.value) }), /* @__PURE__ */ import_react3.default.createElement("div", { className: "mt-10 flex-gap10-wrap" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn primary", onClick: saveProductsJson, disabled: busy || !martId }, "Save JSON"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn", onClick: () => setProductsJson(JSON.stringify(martProducts, null, 2)), disabled: busy }, "Reset")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small mt-8" }, "Required fields per item: ", /* @__PURE__ */ import_react3.default.createElement("code", null, "id"), ", ", /* @__PURE__ */ import_react3.default.createElement("code", null, "name"), ". Optional: ", /* @__PURE__ */ import_react3.default.createElement("code", null, "category_id"), ", ", /* @__PURE__ */ import_react3.default.createElement("code", null, "quantity"), ", ", /* @__PURE__ */ import_react3.default.createElement("code", null, "description"), ", ", /* @__PURE__ */ import_react3.default.createElement("code", null, "price"), ", ", /* @__PURE__ */ import_react3.default.createElement("code", null, "image"), ", ", /* @__PURE__ */ import_react3.default.createElement("code", null, "available"), "."))));
+  }
+  function getRowPriceValue(row) {
+    const directKeys = ["price", "price_per_night", "pricePerNight", "rate_per_km", "ratePerKm", "daily_rate", "dailyRate", "amount", "rent", "fare"];
+    for (const k of directKeys) {
+      const v = row?.[k];
+      if (v !== void 0 && v !== null && v !== "" && !Number.isNaN(Number(v))) return Number(v);
+    }
+    const pricing = row?.pricing && typeof row.pricing === "object" ? row.pricing : safeJsonParse(row?.pricing || "") || {};
+    const pv = pricing?.selling_price ?? pricing?.sellingPrice ?? pricing?.price ?? pricing?.market_price ?? pricing?.marketPrice;
+    if (pv !== void 0 && pv !== null && pv !== "" && !Number.isNaN(Number(pv))) return Number(pv);
+    return null;
+  }
+  function withUpdatedRowPrice(row, nextPrice) {
+    const out = { ...row || {} };
+    const n = Math.max(0, Number(nextPrice || 0));
+    const directKeys = ["price", "price_per_night", "pricePerNight", "rate_per_km", "ratePerKm", "daily_rate", "dailyRate", "amount", "rent", "fare"];
+    let wroteDirect = false;
+    for (const k of directKeys) {
+      if (Object.prototype.hasOwnProperty.call(out, k)) {
+        out[k] = n;
+        wroteDirect = true;
+      }
+    }
+    let pricing = out?.pricing;
+    if (typeof pricing === "string") pricing = safeJsonParse(pricing) || {};
+    if (Array.isArray(pricing)) pricing = pricing[0] || {};
+    if (pricing && typeof pricing === "object") {
+      const market = Number(pricing.market_price ?? pricing.marketPrice ?? n);
+      const cost = Number(pricing.cost_price ?? pricing.costPrice ?? 0);
+      const safeSelling = Math.max(cost, n);
+      out.pricing = {
+        ...pricing,
+        market_price: Number.isNaN(market) ? n : market,
+        cost_price: Number.isNaN(cost) ? 0 : cost,
+        selling_price: safeSelling
+      };
+    } else if (!wroteDirect) {
+      out.price = n;
+    }
+    return out;
+  }
+  function PricingControlsWorkspace({ snapshot, onReload, onUpsert }) {
+    const byName = (0, import_react3.useMemo)(() => new Map((snapshot?.tables || []).map((t) => [t.name, t])), [snapshot?.generatedAt]);
+    const groups = (0, import_react3.useMemo)(() => [
+      { key: "tours", label: "Tours", table: TABLES.TOURS, rows: byName.get(TABLES.TOURS)?.rows || [] },
+      { key: "hotels", label: "Hotels", table: TABLES.HOTELS, rows: (byName.get(TABLES.HOTELS)?.rows || []).filter((r) => !isLikelyCottage(r)) },
+      { key: "cottages", label: "Cottages", table: TABLES.HOTELS, rows: (byName.get(TABLES.HOTELS)?.rows || []).filter((r) => isLikelyCottage(r)) },
+      { key: "cab", label: "Cab Rates", table: TABLES.CAB_PROVIDERS, rows: byName.get(TABLES.CAB_PROVIDERS)?.rows || [] },
+      { key: "bike", label: "Bike Rentals", table: TABLES.BIKE_RENTALS, rows: byName.get(TABLES.BIKE_RENTALS)?.rows || [] }
+    ], [byName]);
+    const [activeGroup, setActiveGroup] = (0, import_react3.useState)("tours");
+    const [adjustPct, setAdjustPct] = (0, import_react3.useState)("0");
+    const [gstPct, setGstPct] = (0, import_react3.useState)("5");
+    const [reason, setReason] = (0, import_react3.useState)("");
+    const [basePrice, setBasePrice] = (0, import_react3.useState)("1000");
+    const [busy, setBusy] = (0, import_react3.useState)(false);
+    const [msg, setMsg] = (0, import_react3.useState)("");
+    const pct = Number(adjustPct || 0);
+    const gst = Number(gstPct || 0);
+    const base = Number(basePrice || 0);
+    const afterAdjust = base + base * (Number.isNaN(pct) ? 0 : pct) / 100;
+    const customer = afterAdjust + afterAdjust * (Number.isNaN(gst) ? 0 : gst) / 100;
+    const active = groups.find((g) => g.key === activeGroup) || groups[0];
+    const applyPricing = async () => {
+      if (!active || !active.rows.length) {
+        setMsg("No rows available for selected category.");
+        return;
+      }
+      const factor = 1 + (Number.isNaN(pct) ? 0 : pct) / 100;
+      const gstFactor = 1 + (Number.isNaN(gst) ? 0 : gst) / 100;
+      const updated = active.rows.map((row) => {
+        const current = getRowPriceValue(row);
+        if (current === null) return row;
+        const next = Math.round(current * factor * gstFactor * 100) / 100;
+        const out = withUpdatedRowPrice(row, next);
+        out.price_dropped = pct < 0;
+        out.price_drop_percent = pct < 0 ? Math.abs(pct) : 0;
+        if (reason.trim()) out.additional_comments = reason.trim();
+        return out;
+      });
+      setBusy(true);
+      setMsg("");
+      try {
+        await onUpsert(active.table, updated);
+        await onReload();
+        setMsg(`Saved pricing for ${active.label}.`);
+      } catch (e) {
+        setMsg(String(e?.message || e));
+      } finally {
+        setBusy(false);
+      }
+    };
+    return /* @__PURE__ */ import_react3.default.createElement("div", { className: "pricing-wrap" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "pricing-card" }, /* @__PURE__ */ import_react3.default.createElement("h3", { className: "m-0" }, "ExploreValley Pricing Controls"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small mt-8" }, "Set global price adjustment and GST. Customer pricing = base value +/- adjustment + GST."), /* @__PURE__ */ import_react3.default.createElement("div", { className: "tabs mt-10" }, groups.map((g) => /* @__PURE__ */ import_react3.default.createElement("button", { key: g.key, className: `tab ${activeGroup === g.key ? "active" : ""}`, onClick: () => setActiveGroup(g.key) }, g.label))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "form-grid mt-10" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Price Adjustment (%)"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", type: "number", value: adjustPct, onChange: (e) => setAdjustPct(e.target.value) })), /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "GST (%)"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", type: "number", value: gstPct, onChange: (e) => setGstPct(e.target.value) })), /* @__PURE__ */ import_react3.default.createElement("div", { className: "field full" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Reason (optional)"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: reason, onChange: (e) => setReason(e.target.value), placeholder: "Why this price update was applied" }))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "pricing-preview mt-10" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "small mb-6" }, "Base vs Customer Price Preview"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "form-grid" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Base Price (INR)"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", type: "number", value: basePrice, onChange: (e) => setBasePrice(e.target.value) })), /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Customer Price (INR)"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", readOnly: true, value: Number.isFinite(customer) ? Math.round(customer).toLocaleString("en-IN") : "0" }))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "small mt-8" }, "Base: INR ", Number.isFinite(base) ? Math.round(base).toLocaleString("en-IN") : 0, " ", "->", " After ", pct || 0, "%: INR ", Number.isFinite(afterAdjust) ? Math.round(afterAdjust).toLocaleString("en-IN") : 0, " ", "->", " After GST ", gst || 0, "%: INR ", Number.isFinite(customer) ? Math.round(customer).toLocaleString("en-IN") : 0)), /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex-gap10-wrap mt-12" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn primary", onClick: applyPricing, disabled: busy }, /* @__PURE__ */ import_react3.default.createElement(FaSave, null), " ", busy ? "Saving..." : "Save Pricing Config"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn", onClick: onReload, disabled: busy }, /* @__PURE__ */ import_react3.default.createElement(FaRedo, null), " Reload Config")), msg ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "small mt-10" }, msg) : /* @__PURE__ */ import_react3.default.createElement("div", { className: "small mt-10" }, "Loaded from Supabase settings.")));
   }
   function FormEditor({ table, selectedRow, onSave, onOpenImages, onUpsertPartial, contextPage, catalogLookup }) {
     const initial = (0, import_react3.useMemo)(() => {
       const out = {};
       (table.columns || []).forEach((c) => {
-        var _a;
-        out[c.name] = (_a = selectedRow == null ? void 0 : selectedRow[c.name]) != null ? _a : "";
+        out[c.name] = selectedRow?.[c.name] ?? "";
       });
       if (!selectedRow && out.id !== void 0) {
-        const prefix = contextPage === "cottages" && table.name === "ev_hotels" ? "cottage_" : "";
+        const prefix = contextPage === "cottages" && table.name === TABLES.HOTELS ? "cottage_" : "";
         out.id = `${prefix}${makeUuid()}`;
       }
       return out;
     }, [table, selectedRow, contextPage]);
     const [form, setForm] = (0, import_react3.useState)(initial);
+    const tableColSet = (0, import_react3.useMemo)(() => new Set((table.columns || []).map((c) => c.name)), [table.columns]);
+    const hasCol = (name) => tableColSet.has(name);
     (0, import_react3.useEffect)(() => {
       setForm(initial);
     }, [initial]);
@@ -24975,6 +26672,10 @@
       setForm((prev) => ({ ...prev, [name]: value }));
     };
     const parseValue = (raw) => {
+      if (raw === null || raw === void 0) return raw;
+      if (Array.isArray(raw)) return raw;
+      if (typeof raw === "object") return raw;
+      if (typeof raw === "number" || typeof raw === "boolean") return raw;
       if (raw === "") return null;
       const trimmed = String(raw).trim();
       if (trimmed === "true") return true;
@@ -24983,11 +26684,39 @@
       if (trimmed.startsWith("[") && trimmed.endsWith("]") || trimmed.startsWith("{") && trimmed.endsWith("}")) {
         try {
           return JSON.parse(trimmed);
-        } catch (e) {
+        } catch {
           return raw;
         }
       }
       return raw;
+    };
+    const parseValueForColumn = (col, raw) => {
+      const t = safeText(col?.type).toLowerCase();
+      if (raw === null || raw === void 0) return raw;
+      if (Array.isArray(raw)) return raw;
+      if (typeof raw === "object") return raw;
+      if (typeof raw === "number" || typeof raw === "boolean") return raw;
+      const rawText = String(raw);
+      const trimmed = rawText.trim();
+      if (trimmed === "") {
+        if (t === "array") return [];
+        if (t === "object" || t === "json" || t === "jsonb") return {};
+        if (t === "number" || t === "integer" || t === "float" || t === "double") return null;
+        return "";
+      }
+      if (trimmed === "true") return true;
+      if (trimmed === "false") return false;
+      if ((t === "number" || t === "integer" || t === "float" || t === "double") && !Number.isNaN(Number(trimmed))) {
+        return Number(trimmed);
+      }
+      if (trimmed.startsWith("[") && trimmed.endsWith("]") || trimmed.startsWith("{") && trimmed.endsWith("}")) {
+        try {
+          return JSON.parse(trimmed);
+        } catch {
+          return rawText;
+        }
+      }
+      return rawText;
     };
     const isUploadableField = (name) => {
       const n = safeText(name).toLowerCase();
@@ -24999,66 +26728,675 @@
       return false;
     };
     const uploadForField = async (fieldName, file) => {
-      var _a, _b, _c;
       if (!file) return;
       const keyCol = keyColumnForTable(table);
-      const keyVal = safeText((_c = (_b = (_a = form == null ? void 0 : form[keyCol]) != null ? _a : selectedRow == null ? void 0 : selectedRow[keyCol]) != null ? _b : selectedRow == null ? void 0 : selectedRow.id) != null ? _c : "");
+      const keyVal = safeText(form?.[keyCol] ?? selectedRow?.[keyCol] ?? selectedRow?.id ?? "");
       const fd = new FormData();
       fd.append("image", file);
       fd.append("folder", `images/${safeText(table.name || "admin")}`);
       const r = await fetch("/api/admin/upload-image", { method: "POST", credentials: "include", body: fd });
       const j = await r.json().catch(() => ({}));
-      if (!r.ok) throw new Error((j == null ? void 0 : j.message) || (j == null ? void 0 : j.error) || "UPLOAD_FAILED");
-      const url = safeText((j == null ? void 0 : j.path) || (j == null ? void 0 : j.url) || "");
+      if (!r.ok) throw new Error(j?.message || j?.error || "UPLOAD_FAILED");
+      const url = safeText(j?.url || j?.path || "");
       if (!url) throw new Error("UPLOAD_FAILED");
       setField(fieldName, url);
-      if (keyVal && onUpsertPartial) {
-        await onUpsertPartial(table.name, [{ [keyCol]: keyVal, [fieldName]: url }]);
+      if (selectedRow && keyVal && onUpsertPartial) {
+        const merged = { ...form, [fieldName]: url };
+        const fullRow = {};
+        (table.columns || []).forEach((c) => {
+          const v = merged[c.name];
+          fullRow[c.name] = parseValueForColumn(c, v);
+        });
+        if (fullRow[keyCol] === null || fullRow[keyCol] === void 0 || String(fullRow[keyCol]).trim() === "") {
+          fullRow[keyCol] = keyVal;
+        }
+        await onUpsertPartial(table.name, [fullRow]);
       }
     };
     const imageUrls = (0, import_react3.useMemo)(() => extractImageUrlsFromRow(form), [form]);
+    const isFestivalForm = table?.name === TABLES.FESTIVALS;
+    const isTourForm = table?.name === TABLES.TOURS;
+    const isHotelForm = table?.name === TABLES.HOTELS;
+    const festivalHandledCols = (0, import_react3.useMemo)(() => /* @__PURE__ */ new Set([
+      "title",
+      "description",
+      "location",
+      "month",
+      "date",
+      "vibe",
+      "ticket",
+      "hero_image",
+      "highlights",
+      "inclusions",
+      "images",
+      "image_titles",
+      "image_descriptions",
+      "image_meta",
+      "available",
+      "price_dropped",
+      "price_drop_percent",
+      "vendor_mobile",
+      "additional_comments",
+      "pricing"
+    ]), []);
+    const tourHandledCols = (0, import_react3.useMemo)(() => /* @__PURE__ */ new Set([
+      "title",
+      "description",
+      "location",
+      "month",
+      "date",
+      "duration",
+      "vibe",
+      "ticket",
+      "hero_image",
+      "highlights",
+      "inclusions",
+      "itinerary",
+      "images",
+      "image_titles",
+      "image_descriptions",
+      "image_meta",
+      "available",
+      "price_dropped",
+      "price_drop_percent",
+      "vendor_mobile",
+      "additional_comments",
+      "pricing",
+      "price",
+      "exclusions",
+      "max_guests",
+      "availability",
+      "map_embed_url",
+      "faqs",
+      "itinerary_items",
+      "facts",
+      "content_blocks",
+      "i18n"
+    ]), []);
+    const hotelHandledCols = (0, import_react3.useMemo)(() => /* @__PURE__ */ new Set([
+      "name",
+      "description",
+      "location",
+      "category",
+      "price_per_night",
+      "pricePerNight",
+      "rating",
+      "reviews",
+      "check_in_time",
+      "check_out_time",
+      "min_nights",
+      "max_nights",
+      "child_policy",
+      "amenities",
+      "room_types",
+      "availability",
+      "seasonal_pricing",
+      "date_overrides",
+      "hero_image",
+      "images",
+      "image_titles",
+      "image_descriptions",
+      "image_meta",
+      "vendor_mobile",
+      "additional_comments",
+      "private_spaces",
+      "shared_spaces",
+      "room_amenities",
+      "popular_with_guests",
+      "room_features",
+      "basic_facilities",
+      "beds_and_blanket",
+      "food_and_drinks",
+      "safety_and_security",
+      "media_and_entertainment",
+      "bathroom",
+      "other_facilities",
+      "inclusion",
+      "exclusion",
+      "available",
+      "price_dropped",
+      "price_drop_percent"
+    ]), []);
+    const festivalPricing = (0, import_react3.useMemo)(() => {
+      const raw = form?.pricing;
+      let src = raw;
+      if (typeof src === "string") src = safeJsonParse(src) || {};
+      if (Array.isArray(src)) src = src[0] || {};
+      if (!src || typeof src !== "object") src = {};
+      const market = src.market_price ?? src.marketPrice ?? src.mrp ?? form?.price ?? "";
+      const cost = src.cost_price ?? src.costPrice ?? src.base_price ?? src.basePrice ?? "";
+      const selling = src.selling_price ?? src.sellingPrice ?? src.price ?? form?.price ?? "";
+      return { market, cost, selling };
+    }, [form?.pricing, form?.price]);
+    const asNumberOrNull = (v) => {
+      const t = safeText(v).trim();
+      if (!t) return null;
+      const n = Number(t);
+      return Number.isNaN(n) ? null : n;
+    };
+    const computeSellingFromDrop = (marketRaw, costRaw, dropRaw) => {
+      const market = asNumberOrNull(marketRaw);
+      const cost = asNumberOrNull(costRaw);
+      const drop = asNumberOrNull(dropRaw);
+      if (market === null || drop === null) return null;
+      const pct = Math.max(0, Math.min(100, drop));
+      const dropped = market - market * pct / 100;
+      const floor = cost === null ? dropped : Math.max(cost, dropped);
+      return Math.round(floor * 100) / 100;
+    };
+    const toPricingObject = () => {
+      let src = form?.pricing;
+      if (typeof src === "string") src = safeJsonParse(src) || {};
+      if (Array.isArray(src)) src = src[0] || {};
+      if (!src || typeof src !== "object") src = {};
+      return src;
+    };
+    const setFestivalCostPrice = (nextRaw) => {
+      const nextCost = asNumberOrNull(nextRaw);
+      const src = toPricingObject();
+      const nextSelling = computeSellingFromDrop(src?.market_price ?? festivalPricing.market, nextCost, form?.price_drop_percent);
+      const currentSelling = asNumberOrNull(src?.selling_price ?? festivalPricing.selling);
+      setField("pricing", {
+        ...src,
+        cost_price: nextCost,
+        market_price: asNumberOrNull(src?.market_price ?? festivalPricing.market),
+        selling_price: nextSelling === null ? currentSelling === null ? null : Math.max(currentSelling, nextCost ?? currentSelling) : nextSelling
+      });
+      if (isTourForm && hasCol("price") && nextSelling !== null) setField("price", nextSelling);
+    };
+    const setFestivalMarketPrice = (nextRaw) => {
+      const nextMarket = asNumberOrNull(nextRaw);
+      const src = toPricingObject();
+      const nextSelling = computeSellingFromDrop(nextMarket, src?.cost_price ?? festivalPricing.cost, form?.price_drop_percent);
+      setField("pricing", {
+        ...src,
+        market_price: nextMarket,
+        cost_price: asNumberOrNull(src?.cost_price ?? festivalPricing.cost),
+        selling_price: nextSelling
+      });
+      if (isTourForm && hasCol("price") && nextSelling !== null) setField("price", nextSelling);
+    };
+    const setFestivalPriceDropPercent = (nextRaw) => {
+      const nextPct = asNumberOrNull(nextRaw);
+      const clamped = nextPct === null ? 0 : Math.max(0, Math.min(100, nextPct));
+      const nextSelling = computeSellingFromDrop(festivalPricing.market, festivalPricing.cost, clamped);
+      setField("price_drop_percent", clamped);
+      setField("price_dropped", clamped > 0);
+      const src = toPricingObject();
+      setField("pricing", {
+        ...src,
+        market_price: asNumberOrNull(festivalPricing.market),
+        cost_price: asNumberOrNull(festivalPricing.cost),
+        selling_price: nextSelling
+      });
+      if (isTourForm && hasCol("price") && nextSelling !== null) setField("price", nextSelling);
+    };
+    const tourAvailability = (0, import_react3.useMemo)(() => {
+      const raw = form?.availability;
+      let src = raw;
+      if (typeof src === "string") src = safeJsonParse(src) || {};
+      if (!src || typeof src !== "object" || Array.isArray(src)) src = {};
+      return {
+        closedDates: normalizeStringList(src.closedDates)
+      };
+    }, [form?.availability]);
+    const setTourAvailability = (next) => {
+      setField("availability", {
+        closedDates: normalizeStringList(next?.closedDates)
+      });
+    };
+    const tourContentBlocks = (0, import_react3.useMemo)(() => {
+      const raw = form?.content_blocks;
+      let src = raw;
+      if (typeof src === "string") src = safeJsonParse(src) || {};
+      if (!src || typeof src !== "object" || Array.isArray(src)) src = {};
+      return {
+        overview: safeText(src.overview),
+        notes: safeText(src.notes),
+        best_time: safeText(src.best_time),
+        who_is_this_for: safeText(src.who_is_this_for),
+        what_to_carry: normalizeStringList(src.what_to_carry)
+      };
+    }, [form?.content_blocks]);
+    const setTourContentBlocks = (next) => {
+      setField("content_blocks", {
+        overview: safeText(next?.overview),
+        notes: safeText(next?.notes),
+        best_time: safeText(next?.best_time),
+        who_is_this_for: safeText(next?.who_is_this_for),
+        what_to_carry: normalizeStringList(next?.what_to_carry)
+      });
+    };
+    const tourI18nEn = (0, import_react3.useMemo)(() => {
+      const raw = form?.i18n;
+      let src = raw;
+      if (typeof src === "string") src = safeJsonParse(src) || {};
+      if (!src || typeof src !== "object" || Array.isArray(src)) src = {};
+      const en = src?.en && typeof src.en === "object" ? src.en : {};
+      return {
+        title: safeText(en.title),
+        description: safeText(en.description)
+      };
+    }, [form?.i18n]);
+    const setTourI18nEn = (next) => {
+      setField("i18n", {
+        en: {
+          title: safeText(next?.title),
+          description: safeText(next?.description)
+        }
+      });
+    };
     const relatedItem = (0, import_react3.useMemo)(() => {
-      var _a, _b;
-      if ((table == null ? void 0 : table.name) !== "ev_bookings") return null;
-      const type = safeText((form == null ? void 0 : form.type) || (selectedRow == null ? void 0 : selectedRow.type) || "").toLowerCase();
-      const itemId = safeText((form == null ? void 0 : form.item_id) || (form == null ? void 0 : form.itemId) || (selectedRow == null ? void 0 : selectedRow.item_id) || (selectedRow == null ? void 0 : selectedRow.itemId) || "");
+      if (table?.name !== TABLES.BOOKINGS) return null;
+      const type = safeText(form?.type || selectedRow?.type || "").toLowerCase();
+      const itemId = safeText(form?.item_id || form?.itemId || selectedRow?.item_id || selectedRow?.itemId || "");
       if (!type || !itemId) return null;
-      if (type === "tour") return ((_a = catalogLookup == null ? void 0 : catalogLookup.toursById) == null ? void 0 : _a.get(itemId)) || null;
-      if (type === "hotel") return ((_b = catalogLookup == null ? void 0 : catalogLookup.hotelsById) == null ? void 0 : _b.get(itemId)) || null;
+      if (type === "tour") return catalogLookup?.toursById?.get(itemId) || null;
+      if (type === "hotel") return catalogLookup?.hotelsById?.get(itemId) || null;
       return null;
-    }, [catalogLookup, form == null ? void 0 : form.type, form == null ? void 0 : form.item_id, form == null ? void 0 : form.itemId, selectedRow == null ? void 0 : selectedRow.type, selectedRow == null ? void 0 : selectedRow.item_id, selectedRow == null ? void 0 : selectedRow.itemId, table == null ? void 0 : table.name]);
+    }, [catalogLookup, form?.type, form?.item_id, form?.itemId, selectedRow?.type, selectedRow?.item_id, selectedRow?.itemId, table?.name]);
     const relatedItemUrls = (0, import_react3.useMemo)(() => uniqStrings(extractImageUrlsFromRow(relatedItem || {})), [relatedItem]);
-    return /* @__PURE__ */ import_react3.default.createElement("div", { className: "card" }, /* @__PURE__ */ import_react3.default.createElement("h3", { style: { marginTop: 0 } }, "Create / Edit ", tableLabel(table.name)), relatedItemUrls.length ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "img-strip" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "img-chip" }, /* @__PURE__ */ import_react3.default.createElement("span", null, "Booked Item")), relatedItemUrls.slice(0, 10).map((u, i) => /* @__PURE__ */ import_react3.default.createElement("img", { key: u, className: "thumb", src: u, alt: "", onClick: () => onOpenImages == null ? void 0 : onOpenImages("Booked item images", relatedItemUrls, i) }))) : null, imageUrls.length ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "img-strip" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "img-chip" }, /* @__PURE__ */ import_react3.default.createElement("span", null, "Images")), imageUrls.slice(0, 10).map((u, i) => /* @__PURE__ */ import_react3.default.createElement("img", { key: u, className: "thumb", src: u, alt: "", onClick: () => onOpenImages == null ? void 0 : onOpenImages(table.name, imageUrls, i) }))) : null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "form-grid" }, (table.columns || []).map((col) => {
-      var _a;
-      const raw = (_a = form[col.name]) != null ? _a : "";
+    return /* @__PURE__ */ import_react3.default.createElement("div", { className: "card" }, /* @__PURE__ */ import_react3.default.createElement("h3", { className: "mt-0" }, "Create / Edit ", tableLabel(table.name)), relatedItemUrls.length ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "img-strip" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "img-chip" }, /* @__PURE__ */ import_react3.default.createElement("span", null, "Booked Item")), relatedItemUrls.slice(0, 10).map((u, i) => /* @__PURE__ */ import_react3.default.createElement("img", { key: u, className: "thumb", src: u, alt: "", onClick: () => onOpenImages?.("Booked item images", relatedItemUrls, i) }))) : null, imageUrls.length ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "img-strip" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "img-chip" }, /* @__PURE__ */ import_react3.default.createElement("span", null, "Images")), imageUrls.slice(0, 10).map((u, i) => /* @__PURE__ */ import_react3.default.createElement("img", { key: u, className: "thumb", src: u, alt: "", onClick: () => onOpenImages?.(table.name, imageUrls, i) }))) : null, isFestivalForm ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "festival-form" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "form-section" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "section-title" }, "Festival Basics"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "form-grid" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "field full" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Title"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(form.title), onChange: (e) => setField("title", e.target.value), placeholder: "Kullu Dussehra Festival" })), /* @__PURE__ */ import_react3.default.createElement("div", { className: "field full" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Description"), /* @__PURE__ */ import_react3.default.createElement("textarea", { className: "textarea", value: safeText(form.description), onChange: (e) => setField("description", e.target.value), placeholder: "Tell users what this festival is about..." })), /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Location"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(form.location), onChange: (e) => setField("location", e.target.value), placeholder: "Kullu, Himachal Pradesh" })), /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Month"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(form.month), onChange: (e) => setField("month", e.target.value), placeholder: "October" })), /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Date"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", type: "date", value: safeText(form.date).slice(0, 10), onChange: (e) => setField("date", e.target.value) })), /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Vendor Mobile"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(form.vendor_mobile), onChange: (e) => setField("vendor_mobile", e.target.value), placeholder: "+919999000001" })), /* @__PURE__ */ import_react3.default.createElement("div", { className: "field full" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Vibe"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(form.vibe), onChange: (e) => setField("vibe", e.target.value), placeholder: "Cultural, festive, traditional..." })), /* @__PURE__ */ import_react3.default.createElement("div", { className: "field full" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Ticket Info"), /* @__PURE__ */ import_react3.default.createElement("textarea", { className: "textarea", value: safeText(form.ticket), onChange: (e) => setField("ticket", e.target.value), placeholder: "Entry details and pass information" })), /* @__PURE__ */ import_react3.default.createElement("div", { className: "field full" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Additional Comments"), /* @__PURE__ */ import_react3.default.createElement("textarea", { className: "textarea", value: safeText(form.additional_comments), onChange: (e) => setField("additional_comments", e.target.value), placeholder: "Operational notes, schedule caveats..." })))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "form-section" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "section-title" }, "Media"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "form-grid" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "field full" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Hero Image"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex-gap10-center" }, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input flex-1", value: safeText(form.hero_image), onChange: (e) => setField("hero_image", e.target.value), placeholder: "/uploads/images/..." }), /* @__PURE__ */ import_react3.default.createElement("label", { className: "btn small pointer" }, /* @__PURE__ */ import_react3.default.createElement(FaDownload, null), " Upload", /* @__PURE__ */ import_react3.default.createElement(
+      "input",
+      {
+        type: "file",
+        accept: "image/*",
+        className: "hidden-input",
+        onChange: async (e) => {
+          const file = e.target.files && e.target.files[0];
+          e.target.value = "";
+          try {
+            await uploadForField("hero_image", file);
+          } catch (err) {
+            alert(String(err?.message || err));
+          }
+        }
+      }
+    )))), /* @__PURE__ */ import_react3.default.createElement(
+      FestivalGalleryEditor,
+      {
+        images: form.images,
+        titles: form.image_titles,
+        descriptions: form.image_descriptions,
+        onChange: (next) => {
+          setField("images", next.images);
+          setField("image_titles", next.image_titles);
+          setField("image_descriptions", next.image_descriptions);
+          setField("image_meta", next.image_meta);
+        }
+      }
+    ))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "form-section" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "section-title" }, "Highlights & Inclusions"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "form-grid" }, /* @__PURE__ */ import_react3.default.createElement(
+      ListEditor,
+      {
+        title: "Highlights",
+        values: normalizeStringList(form.highlights),
+        onChange: (list) => setField("highlights", list),
+        placeholder: "Traditional Rath Yatra and deity processions"
+      }
+    ), /* @__PURE__ */ import_react3.default.createElement(
+      ListEditor,
+      {
+        title: "Inclusions",
+        values: normalizeStringList(form.inclusions),
+        onChange: (list) => setField("inclusions", list),
+        placeholder: "Entry to main festival ground"
+      }
+    ))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "form-section" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "section-title" }, "Availability & Pricing"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "form-grid" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "field full" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Price Drop %"), /* @__PURE__ */ import_react3.default.createElement(
+      "input",
+      {
+        className: "input",
+        type: "number",
+        min: "0",
+        max: "100",
+        value: safeText(form.price_drop_percent),
+        onChange: (e) => setFestivalPriceDropPercent(e.target.value)
+      }
+    )), /* @__PURE__ */ import_react3.default.createElement("label", { className: `pill-toggle ${form.available !== false ? "on" : ""}` }, /* @__PURE__ */ import_react3.default.createElement(
+      "input",
+      {
+        type: "checkbox",
+        checked: form.available !== false,
+        onChange: (e) => setField("available", e.target.checked)
+      }
+    ), "Available"), /* @__PURE__ */ import_react3.default.createElement("label", { className: `pill-toggle ${form.price_dropped ? "on" : ""}` }, /* @__PURE__ */ import_react3.default.createElement(
+      "input",
+      {
+        type: "checkbox",
+        checked: !!form.price_dropped,
+        onChange: (e) => setField("price_dropped", e.target.checked)
+      }
+    ), "Price Dropped"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Market Price"), /* @__PURE__ */ import_react3.default.createElement(
+      "input",
+      {
+        className: "input",
+        type: "number",
+        min: "0",
+        value: safeText(festivalPricing.market),
+        onChange: (e) => setFestivalMarketPrice(e.target.value),
+        placeholder: "1999"
+      }
+    )), /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Cost Price"), /* @__PURE__ */ import_react3.default.createElement(
+      "input",
+      {
+        className: "input",
+        type: "number",
+        min: "0",
+        value: safeText(festivalPricing.cost),
+        onChange: (e) => setFestivalCostPrice(e.target.value),
+        placeholder: "1200"
+      }
+    )), /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Selling Price"), /* @__PURE__ */ import_react3.default.createElement(
+      "input",
+      {
+        className: "input",
+        type: "number",
+        min: "0",
+        value: safeText(festivalPricing.selling),
+        readOnly: true,
+        placeholder: "1499"
+      }
+    ))))) : null, isTourForm ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "festival-form" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "form-section" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "section-title" }, "Tour Basics"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "form-grid" }, hasCol("title") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "field full" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Title"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(form.title), onChange: (e) => setField("title", e.target.value), placeholder: "Great Himalayan Tour" })) : null, hasCol("description") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "field full" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Description"), /* @__PURE__ */ import_react3.default.createElement("textarea", { className: "textarea", value: safeText(form.description), onChange: (e) => setField("description", e.target.value), placeholder: "Describe this tour experience..." })) : null, hasCol("location") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Location"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(form.location), onChange: (e) => setField("location", e.target.value), placeholder: "Manali, Himachal Pradesh" })) : null, hasCol("duration") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Duration"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(form.duration), onChange: (e) => setField("duration", e.target.value), placeholder: "3 Days / 2 Nights" })) : null, hasCol("max_guests") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Max Guests"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", type: "number", min: "1", value: safeText(form.max_guests), onChange: (e) => setField("max_guests", e.target.value), placeholder: "2" })) : null, hasCol("month") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Month"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(form.month), onChange: (e) => setField("month", e.target.value), placeholder: "October" })) : null, hasCol("date") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Date"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", type: "date", value: safeText(form.date).slice(0, 10), onChange: (e) => setField("date", e.target.value) })) : null, hasCol("vendor_mobile") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Vendor Mobile"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(form.vendor_mobile), onChange: (e) => setField("vendor_mobile", e.target.value), placeholder: "+919999000001" })) : null, hasCol("vibe") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "field full" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Vibe"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(form.vibe), onChange: (e) => setField("vibe", e.target.value), placeholder: "Adventure, scenic, family-friendly..." })) : null, hasCol("ticket") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "field full" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Booking Notes"), /* @__PURE__ */ import_react3.default.createElement("textarea", { className: "textarea", value: safeText(form.ticket), onChange: (e) => setField("ticket", e.target.value), placeholder: "Ticket or booking details" })) : null, hasCol("additional_comments") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "field full" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Additional Comments"), /* @__PURE__ */ import_react3.default.createElement("textarea", { className: "textarea", value: safeText(form.additional_comments), onChange: (e) => setField("additional_comments", e.target.value), placeholder: "Operational notes..." })) : null, hasCol("map_embed_url") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "field full" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Map URL"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(form.map_embed_url), onChange: (e) => setField("map_embed_url", e.target.value), placeholder: "https://www.google.com/maps?q=..." })) : null)), hasCol("hero_image") || hasCol("images") || hasCol("image_titles") || hasCol("image_descriptions") || hasCol("image_meta") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "form-section" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "section-title" }, "Media"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "form-grid" }, hasCol("hero_image") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "field full" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Hero Image"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex-gap10-center" }, form.hero_image ? /* @__PURE__ */ import_react3.default.createElement("img", { className: "thumb", src: safeText(form.hero_image), alt: "" }) : null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, form.hero_image ? `Current: ${safeText(form.hero_image).slice(0, 80)}` : "No image yet."), /* @__PURE__ */ import_react3.default.createElement("label", { className: "btn small pointer" }, /* @__PURE__ */ import_react3.default.createElement(FaDownload, null), " Upload", /* @__PURE__ */ import_react3.default.createElement(
+      "input",
+      {
+        type: "file",
+        accept: "image/*",
+        className: "hidden-input",
+        onChange: async (e) => {
+          const file = e.target.files && e.target.files[0];
+          e.target.value = "";
+          try {
+            await uploadForField("hero_image", file);
+          } catch (err) {
+            alert(String(err?.message || err));
+          }
+        }
+      }
+    )))) : null, /* @__PURE__ */ import_react3.default.createElement(
+      FestivalGalleryEditor,
+      {
+        images: form.images,
+        titles: form.image_titles,
+        descriptions: form.image_descriptions,
+        onChange: (next) => {
+          if (hasCol("images")) setField("images", next.images);
+          if (hasCol("image_titles")) setField("image_titles", next.image_titles);
+          if (hasCol("image_descriptions")) setField("image_descriptions", next.image_descriptions);
+          if (hasCol("image_meta")) setField("image_meta", next.image_meta);
+        }
+      }
+    ))) : null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "form-section" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "section-title" }, "Plan Details"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "form-grid" }, hasCol("highlights") ? /* @__PURE__ */ import_react3.default.createElement(
+      ListEditor,
+      {
+        title: "Highlights",
+        values: normalizeStringList(form.highlights),
+        onChange: (list) => setField("highlights", list),
+        placeholder: "Sunrise viewpoint and local market walk"
+      }
+    ) : null, hasCol("inclusions") ? /* @__PURE__ */ import_react3.default.createElement(
+      ListEditor,
+      {
+        title: "Inclusions",
+        values: normalizeStringList(form.inclusions),
+        onChange: (list) => setField("inclusions", list),
+        placeholder: "Guide support and transport"
+      }
+    ) : null, hasCol("exclusions") ? /* @__PURE__ */ import_react3.default.createElement(
+      ListEditor,
+      {
+        title: "Exclusions",
+        values: normalizeStringList(form.exclusions),
+        onChange: (list) => setField("exclusions", list),
+        placeholder: "Meals unless included by property"
+      }
+    ) : null, hasCol("itinerary") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "field full" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Itinerary Summary"), /* @__PURE__ */ import_react3.default.createElement("textarea", { className: "textarea", value: safeText(form.itinerary), onChange: (e) => setField("itinerary", e.target.value), placeholder: "Day 1: ...\\nDay 2: ..." })) : null)), hasCol("faqs") || hasCol("itinerary_items") || hasCol("facts") || hasCol("content_blocks") || hasCol("i18n") || hasCol("availability") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "form-section" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "section-title" }, "Advanced Content"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "form-grid" }, hasCol("faqs") ? /* @__PURE__ */ import_react3.default.createElement(
+      ObjectListEditor,
+      {
+        title: "FAQs",
+        items: normalizeObjectList(form.faqs),
+        onChange: (next) => setField("faqs", next),
+        addLabel: "Add FAQ",
+        fields: [
+          { key: "question", label: "Question", placeholder: "Is this package suitable for couples?" },
+          { key: "answer", label: "Answer", type: "textarea", placeholder: "Yes, this package is designed..." }
+        ]
+      }
+    ) : null, hasCol("itinerary_items") ? /* @__PURE__ */ import_react3.default.createElement(
+      ObjectListEditor,
+      {
+        title: "Day-wise Itinerary",
+        items: normalizeObjectList(form.itinerary_items),
+        onChange: (next) => setField("itinerary_items", next),
+        addLabel: "Add Day",
+        fields: [
+          { key: "day", label: "Day", type: "number", placeholder: "1" },
+          { key: "title", label: "Title", placeholder: "Arrival + Tandi Cottage Stay" },
+          { key: "content", label: "Content", type: "textarea", placeholder: "Route, activities, overnight, notes..." }
+        ]
+      }
+    ) : null, hasCol("facts") ? /* @__PURE__ */ import_react3.default.createElement(
+      ObjectListEditor,
+      {
+        title: "Quick Facts",
+        items: normalizeObjectList(form.facts),
+        onChange: (next) => setField("facts", next),
+        addLabel: "Add Fact",
+        fields: [
+          { key: "label", label: "Label", placeholder: "Great for couples seeking scenic views" },
+          { key: "value", label: "Value", placeholder: "Optional short value" }
+        ]
+      }
+    ) : null, hasCol("content_blocks") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "field full" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Content Blocks"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "obj-card" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Overview"), /* @__PURE__ */ import_react3.default.createElement("textarea", { className: "textarea gallery-textarea", value: safeText(tourContentBlocks.overview), onChange: (e) => setTourContentBlocks({ ...tourContentBlocks, overview: e.target.value }) })), /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Notes"), /* @__PURE__ */ import_react3.default.createElement("textarea", { className: "textarea gallery-textarea", value: safeText(tourContentBlocks.notes), onChange: (e) => setTourContentBlocks({ ...tourContentBlocks, notes: e.target.value }) })), /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Best Time"), /* @__PURE__ */ import_react3.default.createElement("textarea", { className: "textarea gallery-textarea", value: safeText(tourContentBlocks.best_time), onChange: (e) => setTourContentBlocks({ ...tourContentBlocks, best_time: e.target.value }) })), /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Who Is This For"), /* @__PURE__ */ import_react3.default.createElement("textarea", { className: "textarea gallery-textarea", value: safeText(tourContentBlocks.who_is_this_for), onChange: (e) => setTourContentBlocks({ ...tourContentBlocks, who_is_this_for: e.target.value }) })), /* @__PURE__ */ import_react3.default.createElement(
+      ListEditor,
+      {
+        title: "What To Carry",
+        values: tourContentBlocks.what_to_carry,
+        onChange: (list) => setTourContentBlocks({ ...tourContentBlocks, what_to_carry: list }),
+        placeholder: "Warm layers"
+      }
+    ))) : null, hasCol("i18n") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "field full" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "English Translation"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "obj-card" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Title (EN)"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(tourI18nEn.title), onChange: (e) => setTourI18nEn({ ...tourI18nEn, title: e.target.value }) })), /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Description (EN)"), /* @__PURE__ */ import_react3.default.createElement("textarea", { className: "textarea gallery-textarea", value: safeText(tourI18nEn.description), onChange: (e) => setTourI18nEn({ ...tourI18nEn, description: e.target.value }) })))) : null, hasCol("availability") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "field full" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Availability"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "obj-card" }, /* @__PURE__ */ import_react3.default.createElement(
+      ListEditor,
+      {
+        title: "Closed Dates",
+        values: tourAvailability.closedDates,
+        onChange: (list) => setTourAvailability({ ...tourAvailability, closedDates: list }),
+        placeholder: "2026-10-20"
+      }
+    ), /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Capacity (Persons)"), /* @__PURE__ */ import_react3.default.createElement(
+      "input",
+      {
+        className: "input",
+        type: "number",
+        min: "1",
+        value: safeText(form.max_guests),
+        onChange: (e) => setField("max_guests", e.target.value),
+        placeholder: "4"
+      }
+    )))) : null)) : null, hasCol("price_drop_percent") || hasCol("available") || hasCol("price_dropped") || hasCol("pricing") || hasCol("price") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "form-section" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "section-title" }, "Availability & Pricing"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "form-grid" }, hasCol("price_drop_percent") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "field full" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Price Drop %"), /* @__PURE__ */ import_react3.default.createElement(
+      "input",
+      {
+        className: "input",
+        type: "number",
+        min: "0",
+        max: "100",
+        value: safeText(form.price_drop_percent),
+        onChange: (e) => setFestivalPriceDropPercent(e.target.value)
+      }
+    )) : null, hasCol("available") ? /* @__PURE__ */ import_react3.default.createElement("label", { className: `pill-toggle ${form.available !== false ? "on" : ""}` }, /* @__PURE__ */ import_react3.default.createElement(
+      "input",
+      {
+        type: "checkbox",
+        checked: form.available !== false,
+        onChange: (e) => setField("available", e.target.checked)
+      }
+    ), "Available") : null, hasCol("price_dropped") ? /* @__PURE__ */ import_react3.default.createElement("label", { className: `pill-toggle ${form.price_dropped ? "on" : ""}` }, /* @__PURE__ */ import_react3.default.createElement(
+      "input",
+      {
+        type: "checkbox",
+        checked: !!form.price_dropped,
+        onChange: (e) => setField("price_dropped", e.target.checked)
+      }
+    ), "Price Dropped") : null, hasCol("pricing") ? /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Market Price"), /* @__PURE__ */ import_react3.default.createElement(
+      "input",
+      {
+        className: "input",
+        type: "number",
+        min: "0",
+        value: safeText(festivalPricing.market),
+        onChange: (e) => setFestivalMarketPrice(e.target.value),
+        placeholder: "1999"
+      }
+    )), /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Cost Price"), /* @__PURE__ */ import_react3.default.createElement(
+      "input",
+      {
+        className: "input",
+        type: "number",
+        min: "0",
+        value: safeText(festivalPricing.cost),
+        onChange: (e) => setFestivalCostPrice(e.target.value),
+        placeholder: "1200"
+      }
+    )), /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Selling Price"), /* @__PURE__ */ import_react3.default.createElement(
+      "input",
+      {
+        className: "input",
+        type: "number",
+        min: "0",
+        value: safeText(hasCol("price") ? form.price : festivalPricing.selling),
+        readOnly: true,
+        placeholder: "1499"
+      }
+    ))) : null, !hasCol("pricing") && hasCol("price") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "field full" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Selling Price"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", type: "number", min: "0", value: safeText(form.price), readOnly: true })) : null)) : null) : null, isHotelForm ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "festival-form" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "form-section" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "section-title" }, "Stay Basics"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "form-grid" }, hasCol("name") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "field full" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Property Name"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(form.name), onChange: (e) => setField("name", e.target.value), placeholder: "Shree Ganga Cottages and Resort" })) : null, hasCol("description") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "field full" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Description"), /* @__PURE__ */ import_react3.default.createElement("textarea", { className: "textarea", value: safeText(form.description), onChange: (e) => setField("description", e.target.value), placeholder: "Describe the stay experience..." })) : null, hasCol("location") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Location"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(form.location), onChange: (e) => setField("location", e.target.value), placeholder: "Manali, Himachal Pradesh" })) : null, hasCol("category") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Category"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(form.category), onChange: (e) => setField("category", e.target.value), placeholder: "hotel / cottage" })) : null, hasCol("vendor_mobile") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Vendor Mobile"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(form.vendor_mobile), onChange: (e) => setField("vendor_mobile", e.target.value), placeholder: "+91-00000-00000" })) : null, hasCol("additional_comments") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "field full" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Additional Comments"), /* @__PURE__ */ import_react3.default.createElement("textarea", { className: "textarea", value: safeText(form.additional_comments), onChange: (e) => setField("additional_comments", e.target.value), placeholder: "Any extra notes..." })) : null)), hasCol("hero_image") || hasCol("images") || hasCol("image_titles") || hasCol("image_descriptions") || hasCol("image_meta") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "form-section" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "section-title" }, "Media"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "form-grid" }, hasCol("hero_image") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "field full" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Hero Image"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex-gap10-center" }, form.hero_image ? /* @__PURE__ */ import_react3.default.createElement("img", { className: "thumb", src: safeText(form.hero_image), alt: "" }) : null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "small" }, form.hero_image ? `Current: ${safeText(form.hero_image).slice(0, 80)}` : "No image yet."), /* @__PURE__ */ import_react3.default.createElement("label", { className: "btn small pointer" }, /* @__PURE__ */ import_react3.default.createElement(FaDownload, null), " Upload", /* @__PURE__ */ import_react3.default.createElement(
+      "input",
+      {
+        type: "file",
+        accept: "image/*",
+        className: "hidden-input",
+        onChange: async (e) => {
+          const file = e.target.files && e.target.files[0];
+          e.target.value = "";
+          try {
+            await uploadForField("hero_image", file);
+          } catch (err) {
+            alert(String(err?.message || err));
+          }
+        }
+      }
+    )))) : null, /* @__PURE__ */ import_react3.default.createElement(
+      FestivalGalleryEditor,
+      {
+        images: form.images,
+        titles: form.image_titles,
+        descriptions: form.image_descriptions,
+        onChange: (next) => {
+          if (hasCol("images")) setField("images", next.images);
+          if (hasCol("image_titles")) setField("image_titles", next.image_titles);
+          if (hasCol("image_descriptions")) setField("image_descriptions", next.image_descriptions);
+          if (hasCol("image_meta")) setField("image_meta", next.image_meta);
+        }
+      }
+    ))) : null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "form-section" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "section-title" }, "Rooms & Pricing"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "form-grid" }, hasCol("price_per_night") || hasCol("pricePerNight") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Base Price / Night"), /* @__PURE__ */ import_react3.default.createElement(
+      "input",
+      {
+        className: "input",
+        type: "number",
+        min: "0",
+        value: safeText(form.price_per_night ?? form.pricePerNight),
+        onChange: (e) => setField(hasCol("price_per_night") ? "price_per_night" : "pricePerNight", e.target.value),
+        placeholder: "2800"
+      }
+    )) : null, hasCol("rating") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Rating"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", type: "number", min: "0", max: "5", value: safeText(form.rating), onChange: (e) => setField("rating", e.target.value), placeholder: "4.5" })) : null, hasCol("reviews") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Review Count"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", type: "number", min: "0", value: safeText(form.reviews), onChange: (e) => setField("reviews", e.target.value), placeholder: "120" })) : null, hasCol("room_types") ? /* @__PURE__ */ import_react3.default.createElement(
+      ObjectListEditor,
+      {
+        title: "Room Types",
+        items: normalizeObjectList(form.room_types),
+        onChange: (next) => setField("room_types", next),
+        addLabel: "Add Room Type",
+        fields: [
+          { key: "type", label: "Type", placeholder: "Standard Room" },
+          { key: "price", label: "Price / Night", type: "number", placeholder: "2800" },
+          { key: "capacity", label: "Capacity", type: "number", placeholder: "2" }
+        ]
+      }
+    ) : null)), /* @__PURE__ */ import_react3.default.createElement("div", { className: "form-section" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "section-title" }, "Policies & Timing"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "form-grid" }, hasCol("check_in_time") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Check-in Time"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(form.check_in_time), onChange: (e) => setField("check_in_time", e.target.value), placeholder: "14:00" })) : null, hasCol("check_out_time") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Check-out Time"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", value: safeText(form.check_out_time), onChange: (e) => setField("check_out_time", e.target.value), placeholder: "11:00" })) : null, hasCol("min_nights") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Min Nights"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", type: "number", min: "1", value: safeText(form.min_nights), onChange: (e) => setField("min_nights", e.target.value), placeholder: "1" })) : null, hasCol("max_nights") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Max Nights"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", type: "number", min: "1", value: safeText(form.max_nights), onChange: (e) => setField("max_nights", e.target.value), placeholder: "30" })) : null, hasCol("child_policy") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "field full" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Child Policy"), /* @__PURE__ */ import_react3.default.createElement("textarea", { className: "textarea", value: safeText(form.child_policy), onChange: (e) => setField("child_policy", e.target.value) })) : null)), hasCol("availability") || hasCol("seasonal_pricing") || hasCol("date_overrides") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "form-section" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "section-title" }, "Availability"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "form-grid" }, hasCol("availability") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "field full" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Closed Dates"), /* @__PURE__ */ import_react3.default.createElement(
+      ListEditor,
+      {
+        title: "Closed Dates",
+        values: normalizeStringList(form.availability?.closedDates || form.availability?.closed_dates || []),
+        onChange: (list) => setField("availability", { ...form.availability || {}, closedDates: list }),
+        placeholder: "2026-12-25"
+      }
+    ), /* @__PURE__ */ import_react3.default.createElement("div", { className: "field full" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Rooms By Type (JSON)"), /* @__PURE__ */ import_react3.default.createElement(
+      "textarea",
+      {
+        className: "textarea gallery-textarea",
+        value: JSON.stringify(form.availability && form.availability.roomsByType || {}, null, 2),
+        onChange: (e) => {
+          const parsed = safeJsonParse(e.target.value);
+          if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
+            setField("availability", { ...form.availability || {}, roomsByType: parsed });
+          }
+        }
+      }
+    ))) : null, hasCol("seasonal_pricing") ? /* @__PURE__ */ import_react3.default.createElement(
+      ObjectListEditor,
+      {
+        title: "Seasonal Pricing",
+        items: normalizeObjectList(form.seasonal_pricing),
+        onChange: (next) => setField("seasonal_pricing", next),
+        addLabel: "Add Season",
+        fields: [
+          { key: "label", label: "Label", placeholder: "Peak Season" },
+          { key: "start", label: "Start Date", placeholder: "2026-12-10" },
+          { key: "end", label: "End Date", placeholder: "2027-01-05" },
+          { key: "price", label: "Price / Night", type: "number", placeholder: "3500" }
+        ]
+      }
+    ) : null, hasCol("date_overrides") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "field full" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Date Overrides (JSON)"), /* @__PURE__ */ import_react3.default.createElement(
+      "textarea",
+      {
+        className: "textarea gallery-textarea",
+        value: JSON.stringify(form.date_overrides || {}, null, 2),
+        onChange: (e) => {
+          const parsed = safeJsonParse(e.target.value);
+          if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
+            setField("date_overrides", parsed);
+          }
+        }
+      }
+    )) : null)) : null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "form-section" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "section-title" }, "Spaces & Facilities"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "form-grid" }, hasCol("private_spaces") ? /* @__PURE__ */ import_react3.default.createElement(ListEditor, { title: "Private Spaces", values: normalizeStringList(form.private_spaces), onChange: (list) => setField("private_spaces", list), placeholder: "Private Balcony" }) : null, hasCol("shared_spaces") ? /* @__PURE__ */ import_react3.default.createElement(ListEditor, { title: "Shared Spaces", values: normalizeStringList(form.shared_spaces), onChange: (list) => setField("shared_spaces", list), placeholder: "Shared Lounge" }) : null, hasCol("room_amenities") ? /* @__PURE__ */ import_react3.default.createElement(ListEditor, { title: "Room Amenities", values: normalizeStringList(form.room_amenities), onChange: (list) => setField("room_amenities", list), placeholder: "Room Heater" }) : null, hasCol("popular_with_guests") ? /* @__PURE__ */ import_react3.default.createElement(ListEditor, { title: "Popular With Guests", values: normalizeStringList(form.popular_with_guests), onChange: (list) => setField("popular_with_guests", list), placeholder: "Mountain View" }) : null, hasCol("room_features") ? /* @__PURE__ */ import_react3.default.createElement(ListEditor, { title: "Room Features", values: normalizeStringList(form.room_features), onChange: (list) => setField("room_features", list), placeholder: "Valley View" }) : null, hasCol("basic_facilities") ? /* @__PURE__ */ import_react3.default.createElement(ListEditor, { title: "Basic Facilities", values: normalizeStringList(form.basic_facilities), onChange: (list) => setField("basic_facilities", list), placeholder: "WiFi" }) : null, hasCol("beds_and_blanket") ? /* @__PURE__ */ import_react3.default.createElement(ListEditor, { title: "Beds & Blanket", values: normalizeStringList(form.beds_and_blanket), onChange: (list) => setField("beds_and_blanket", list), placeholder: "Extra Pillows" }) : null, hasCol("food_and_drinks") ? /* @__PURE__ */ import_react3.default.createElement(ListEditor, { title: "Food & Drinks", values: normalizeStringList(form.food_and_drinks), onChange: (list) => setField("food_and_drinks", list), placeholder: "In-room Dining" }) : null, hasCol("safety_and_security") ? /* @__PURE__ */ import_react3.default.createElement(ListEditor, { title: "Safety & Security", values: normalizeStringList(form.safety_and_security), onChange: (list) => setField("safety_and_security", list), placeholder: "CCTV" }) : null, hasCol("media_and_entertainment") ? /* @__PURE__ */ import_react3.default.createElement(ListEditor, { title: "Media & Entertainment", values: normalizeStringList(form.media_and_entertainment), onChange: (list) => setField("media_and_entertainment", list), placeholder: "Smart TV" }) : null, hasCol("bathroom") ? /* @__PURE__ */ import_react3.default.createElement(ListEditor, { title: "Bathroom", values: normalizeStringList(form.bathroom), onChange: (list) => setField("bathroom", list), placeholder: "Geyser" }) : null, hasCol("other_facilities") ? /* @__PURE__ */ import_react3.default.createElement(ListEditor, { title: "Other Facilities", values: normalizeStringList(form.other_facilities), onChange: (list) => setField("other_facilities", list), placeholder: "Bonfire Area" }) : null, hasCol("inclusion") ? /* @__PURE__ */ import_react3.default.createElement(ListEditor, { title: "Inclusions", values: normalizeStringList(form.inclusion), onChange: (list) => setField("inclusion", list), placeholder: "WiFi" }) : null, hasCol("exclusion") ? /* @__PURE__ */ import_react3.default.createElement(ListEditor, { title: "Exclusions", values: normalizeStringList(form.exclusion), onChange: (list) => setField("exclusion", list), placeholder: "Meals unless included" }) : null)), hasCol("available") || hasCol("price_dropped") || hasCol("price_drop_percent") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "form-section" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "section-title" }, "Status"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "form-grid" }, hasCol("available") ? /* @__PURE__ */ import_react3.default.createElement("label", { className: `pill-toggle ${form.available !== false ? "on" : ""}` }, /* @__PURE__ */ import_react3.default.createElement("input", { type: "checkbox", checked: form.available !== false, onChange: (e) => setField("available", e.target.checked) }), "Available") : null, hasCol("price_dropped") ? /* @__PURE__ */ import_react3.default.createElement("label", { className: `pill-toggle ${form.price_dropped ? "on" : ""}` }, /* @__PURE__ */ import_react3.default.createElement("input", { type: "checkbox", checked: !!form.price_dropped, onChange: (e) => setField("price_dropped", e.target.checked) }), "Price Dropped") : null, hasCol("price_drop_percent") ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "field" }, /* @__PURE__ */ import_react3.default.createElement("label", null, "Price Drop %"), /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", type: "number", min: "0", max: "100", value: safeText(form.price_drop_percent), onChange: (e) => setField("price_drop_percent", e.target.value) })) : null)) : null) : null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "form-grid" }, (table.columns || []).map((col) => {
+      if (isFestivalForm && festivalHandledCols.has(col.name)) return null;
+      if (isTourForm && tourHandledCols.has(col.name)) return null;
+      if (isHotelForm && hotelHandledCols.has(col.name)) return null;
+      const raw = form[col.name] ?? "";
       const asText = typeof raw === "object" ? JSON.stringify(raw, null, 2) : String(raw);
       const longText = asText.length > 120 || col.type === "object" || col.type === "array";
       const canUpload = !longText && isUploadableField(col.name);
-      return /* @__PURE__ */ import_react3.default.createElement("div", { key: col.name, className: `field ${longText ? "full" : ""}` }, /* @__PURE__ */ import_react3.default.createElement("label", null, columnLabel(table.name, col.name)), longText ? /* @__PURE__ */ import_react3.default.createElement("textarea", { className: "textarea", value: asText, onChange: (e) => setField(col.name, e.target.value) }) : /* @__PURE__ */ import_react3.default.createElement("div", { style: { display: "flex", gap: 10, alignItems: "center" } }, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input", style: { flex: 1 }, value: asText, onChange: (e) => setField(col.name, e.target.value) }), canUpload ? /* @__PURE__ */ import_react3.default.createElement("label", { className: "btn small", style: { cursor: "pointer" } }, /* @__PURE__ */ import_react3.default.createElement(FaDownload, null), " Upload", /* @__PURE__ */ import_react3.default.createElement(
+      return /* @__PURE__ */ import_react3.default.createElement("div", { key: col.name, className: `field ${longText ? "full" : ""}` }, /* @__PURE__ */ import_react3.default.createElement("label", null, columnLabel(table.name, col.name)), longText ? /* @__PURE__ */ import_react3.default.createElement("textarea", { className: "textarea", value: asText, onChange: (e) => setField(col.name, e.target.value) }) : /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex-gap10-center" }, /* @__PURE__ */ import_react3.default.createElement("input", { className: "input flex-1", value: asText, onChange: (e) => setField(col.name, e.target.value) }), canUpload ? /* @__PURE__ */ import_react3.default.createElement("label", { className: "btn small pointer" }, /* @__PURE__ */ import_react3.default.createElement(FaDownload, null), " Upload", /* @__PURE__ */ import_react3.default.createElement(
         "input",
         {
           type: "file",
           accept: "image/*",
-          style: { display: "none" },
+          className: "hidden-input",
           onChange: async (e) => {
             const file = e.target.files && e.target.files[0];
             e.target.value = "";
             try {
               await uploadForField(col.name, file);
             } catch (err) {
-              alert(String((err == null ? void 0 : err.message) || err));
+              alert(String(err?.message || err));
             }
           }
         }
       )) : null));
-    })), /* @__PURE__ */ import_react3.default.createElement("div", { style: { marginTop: 12 } }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn primary", onClick: () => {
+    })), /* @__PURE__ */ import_react3.default.createElement("div", { className: "mt-12" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn primary", onClick: () => {
       const row = {};
-      Object.entries(form).forEach(([k, v]) => {
-        row[k] = parseValue(v);
+      (table.columns || []).forEach((c) => {
+        if (!tableColSet.has(c.name)) return;
+        row[c.name] = parseValueForColumn(c, form[c.name]);
       });
       const keyCol = keyColumnForTable(table);
       if ((row[keyCol] === null || row[keyCol] === void 0 || String(row[keyCol]).trim() === "") && keyCol) {
-        const prefix = contextPage === "cottages" && table.name === "ev_hotels" && keyCol === "id" ? "cottage_" : "";
+        const prefix = contextPage === "cottages" && table.name === TABLES.HOTELS && keyCol === "id" ? "cottage_" : "";
         row[keyCol] = `${prefix}${makeUuid()}`;
       }
       onSave(row);
@@ -25068,19 +27406,18 @@
     const [busyId, setBusyId] = (0, import_react3.useState)("");
     const [err, setErr] = (0, import_react3.useState)("");
     const resolveItem = (row) => {
-      var _a, _b;
-      const type = safeText((row == null ? void 0 : row.type) || "").toLowerCase();
-      const itemId = safeText((row == null ? void 0 : row.item_id) || (row == null ? void 0 : row.itemId) || "");
+      const type = safeText(row?.type || "").toLowerCase();
+      const itemId = safeText(row?.item_id || row?.itemId || "");
       if (!type || !itemId) return null;
-      if (type === "tour") return ((_a = catalogLookup == null ? void 0 : catalogLookup.toursById) == null ? void 0 : _a.get(itemId)) || null;
-      if (type === "hotel") return ((_b = catalogLookup == null ? void 0 : catalogLookup.hotelsById) == null ? void 0 : _b.get(itemId)) || null;
+      if (type === "tour") return catalogLookup?.toursById?.get(itemId) || null;
+      if (type === "hotel") return catalogLookup?.hotelsById?.get(itemId) || null;
       return null;
     };
     const setStatus = async (id, nextStatus) => {
       setBusyId(id);
       setErr("");
       try {
-        await onUpsert("ev_bookings", [{ id, status: nextStatus }]);
+        await onUpsert(TABLES.BOOKINGS, [{ id, status: nextStatus }]);
         await onReload();
       } catch (e) {
         setErr(String(e.message || e));
@@ -25089,13 +27426,13 @@
       }
     };
     const refund = async (row) => {
-      const id = safeText(row == null ? void 0 : row.id);
+      const id = safeText(row?.id);
       if (!id) return;
       setBusyId(id);
       setErr("");
       try {
-        await onUpsert("ev_bookings", [{ id, status: "cancelled" }]);
-        await onUpsert("ev_audit_log", [{
+        await onUpsert(TABLES.BOOKINGS, [{ id, status: "cancelled" }]);
+        await onUpsert(TABLES.AUDIT_LOG, [{
           id: makeUuid(),
           at: (/* @__PURE__ */ new Date()).toISOString(),
           action: "refund",
@@ -25111,14 +27448,13 @@
       }
     };
     const amountFromPricing = (pricing) => {
-      var _a, _b, _c;
       if (!pricing) return "";
       const p = typeof pricing === "string" ? safeJsonParse(pricing) || {} : pricing;
-      const total = (_c = (_b = (_a = p == null ? void 0 : p.totalAmount) != null ? _a : p == null ? void 0 : p.total_amount) != null ? _b : p == null ? void 0 : p.total) != null ? _c : null;
+      const total = p?.totalAmount ?? p?.total_amount ?? p?.total ?? null;
       return total === null || total === void 0 ? "" : String(total);
     };
-    return /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, null, err ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "warn", style: { marginBottom: 10 } }, err) : null, /* @__PURE__ */ import_react3.default.createElement("table", { className: "table" }, /* @__PURE__ */ import_react3.default.createElement("thead", null, /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("th", null, "ID"), /* @__PURE__ */ import_react3.default.createElement("th", { className: "thumb-cell" }, "image"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Status"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Name"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Item"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Guests"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Amount"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Actions"))), /* @__PURE__ */ import_react3.default.createElement("tbody", null, (rows || []).map((row, idx) => {
-      const id = safeText((row == null ? void 0 : row.id) || idx);
+    return /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, null, err ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "warn mb-10" }, err) : null, /* @__PURE__ */ import_react3.default.createElement("table", { className: "table" }, /* @__PURE__ */ import_react3.default.createElement("thead", null, /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("th", null, "ID"), /* @__PURE__ */ import_react3.default.createElement("th", { className: "thumb-cell" }, "image"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Status"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Name"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Item"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Guests"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Amount"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Actions"))), /* @__PURE__ */ import_react3.default.createElement("tbody", null, (rows || []).map((row, idx) => {
+      const id = safeText(row?.id || idx);
       const item = resolveItem(row);
       const itemUrls = item ? extractImageUrlsFromRow(item) : [];
       const bookingUrls = extractImageUrlsFromRow(row);
@@ -25128,7 +27464,7 @@
         "select",
         {
           className: "select",
-          value: safeText((row == null ? void 0 : row.status) || "pending"),
+          value: safeText(row?.status || "pending"),
           disabled: busy,
           onChange: (e) => setStatus(id, e.target.value)
         },
@@ -25136,13 +27472,13 @@
         /* @__PURE__ */ import_react3.default.createElement("option", { value: "confirmed" }, "confirmed"),
         /* @__PURE__ */ import_react3.default.createElement("option", { value: "cancelled" }, "cancelled"),
         /* @__PURE__ */ import_react3.default.createElement("option", { value: "completed" }, "completed")
-      )), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText((row == null ? void 0 : row.user_name) || (row == null ? void 0 : row.userName)).slice(0, 60)), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText((row == null ? void 0 : row.item_id) || (row == null ? void 0 : row.itemId)).slice(0, 60)), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(row == null ? void 0 : row.guests)), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(amountFromPricing(row == null ? void 0 : row.pricing))), /* @__PURE__ */ import_react3.default.createElement("td", { onClick: (e) => e.stopPropagation() }, /* @__PURE__ */ import_react3.default.createElement("div", { style: { display: "flex", gap: 8, flexWrap: "wrap" } }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small", disabled: busy, onClick: () => setStatus(id, "cancelled") }, "Cancel"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small danger", disabled: busy, onClick: () => refund(row) }, "Refund"))));
+      )), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(row?.user_name || row?.userName).slice(0, 60)), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(row?.item_id || row?.itemId).slice(0, 60)), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(row?.guests)), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(amountFromPricing(row?.pricing))), /* @__PURE__ */ import_react3.default.createElement("td", { onClick: (e) => e.stopPropagation() }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex-gap8-wrap" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small", disabled: busy, onClick: () => setStatus(id, "cancelled") }, "Cancel"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "btn small danger", disabled: busy, onClick: () => refund(row) }, "Refund"))));
     }))));
   }
   function TrackingTable({ rows }) {
     const sorted = (0, import_react3.useMemo)(() => {
       const list = Array.isArray(rows) ? rows.slice() : [];
-      list.sort((a, b) => new Date((b == null ? void 0 : b.at) || 0).getTime() - new Date((a == null ? void 0 : a.at) || 0).getTime());
+      list.sort((a, b) => new Date(b?.at || 0).getTime() - new Date(a?.at || 0).getTime());
       return list;
     }, [rows]);
     const getMeta = (row) => {
@@ -25163,7 +27499,7 @@
       const b = safeText(meta.browser || "");
       return b.length > 64 ? `${b.slice(0, 61)}...` : b;
     };
-    return /* @__PURE__ */ import_react3.default.createElement("table", { className: "table" }, /* @__PURE__ */ import_react3.default.createElement("thead", null, /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("th", null, "At"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Type"), /* @__PURE__ */ import_react3.default.createElement("th", null, "User"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Phone"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Email"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Page"), /* @__PURE__ */ import_react3.default.createElement("th", null, "IP"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Browser"))), /* @__PURE__ */ import_react3.default.createElement("tbody", null, sorted.map((row, idx) => /* @__PURE__ */ import_react3.default.createElement("tr", { key: safeText((row == null ? void 0 : row.id) || idx) }, /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(row == null ? void 0 : row.at).slice(0, 19).replace("T", " ")), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(row == null ? void 0 : row.type)), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText((row == null ? void 0 : row.user_id) || (row == null ? void 0 : row.userId))), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(row == null ? void 0 : row.phone)), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(row == null ? void 0 : row.email)), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(pageText(row))), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(ipText(row))), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(browserText(row)))))));
+    return /* @__PURE__ */ import_react3.default.createElement("table", { className: "table" }, /* @__PURE__ */ import_react3.default.createElement("thead", null, /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("th", null, "At"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Type"), /* @__PURE__ */ import_react3.default.createElement("th", null, "User"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Phone"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Email"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Page"), /* @__PURE__ */ import_react3.default.createElement("th", null, "IP"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Browser"))), /* @__PURE__ */ import_react3.default.createElement("tbody", null, sorted.map((row, idx) => /* @__PURE__ */ import_react3.default.createElement("tr", { key: safeText(row?.id || idx) }, /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(row?.at).slice(0, 19).replace("T", " ")), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(row?.type)), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(row?.user_id || row?.userId)), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(row?.phone)), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(row?.email)), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(pageText(row))), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(ipText(row))), /* @__PURE__ */ import_react3.default.createElement("td", null, displayText(browserText(row)))))));
   }
   var root = (0, import_client.createRoot)(document.getElementById("root"));
   root.render(/* @__PURE__ */ import_react3.default.createElement(App, null));

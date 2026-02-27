@@ -1,5 +1,0 @@
-runtime: nodejs20
-
-# App Engine will run `npm start`.
-# A `gcp-build` script is provided in package.json to build `web-dist` during deploy.
-

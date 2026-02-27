@@ -1,4 +1,4 @@
-import "dotenv/config";
+import * as dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
@@ -25,12 +25,14 @@ import { refundRouter } from "./routes/refund";
 import { cartRouter } from "./routes/cart";
 import { profileRouter } from "./routes/profile";
 
+// Load env from both project root and server/.env so runtime is stable regardless of cwd.
+dotenv.config();
+dotenv.config({ path: path.resolve(process.cwd(), "server/.env") });
+
 const PORT = Number(process.env.PORT || 8082);
 const HOST = (process.env.HOST || "0.0.0.0").trim() || "0.0.0.0";
 
-// CORS:
-// - Frontend (App Engine default service) calls backend (api-dot-*) cross-origin.
-// - Ensure preflight (OPTIONS) succeeds even when other middleware (rate limiting) is enabled.
+// Ensure preflight (OPTIONS) succeeds even when other middleware (rate limiting) is enabled.
 const corsMiddleware = cors({
   origin: true, // reflect request origin
   credentials: true, // allow cookies/auth headers
@@ -47,7 +49,7 @@ const ADMIN_CHAT_IDS = parseAdminChatIds(process.env.ADMIN_CHAT_IDS);
 const TELEGRAM_MODE = (process.env.TELEGRAM_MODE || "").trim().toLowerCase(); // "polling" | "webhook" | "off"
 const TELEGRAM_WEBHOOK_BASE_URL = (process.env.TELEGRAM_WEBHOOK_BASE_URL || "").trim();
 const TELEGRAM_WEBHOOK_SECRET = (process.env.TELEGRAM_WEBHOOK_SECRET || "").trim();
-const IS_PROD_RUNTIME = process.env.NODE_ENV === "production" || Boolean(process.env.GAE_ENV);
+const IS_PROD_RUNTIME = process.env.NODE_ENV === "production";
 
 const receiverMode = TELEGRAM_MODE || (IS_PROD_RUNTIME ? "off" : "polling");
 const enablePolling = receiverMode === "polling";

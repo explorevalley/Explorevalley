@@ -14,13 +14,7 @@ function resolveBaseUrl() {
       // IP-based hosts typically do not have TLS configured. Force http to avoid mixed-content/SSL failures.
       return `http://${host}:8082`;
     }
-
-    // App Engine pattern: frontend is typically `${project}.{region}.r.appspot.com`
-    // and backend service is `api-dot-${project}.{region}.r.appspot.com`.
-    if (host.startsWith("api-dot-")) {
-      return `${protocol}//${host}`;
-    }
-    return `${protocol}//api-dot-${host}`;
+    return `${protocol}//${host}`;
   }
 
   return "http://localhost:8082";

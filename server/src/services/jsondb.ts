@@ -188,12 +188,6 @@ async function supabaseUpsertWithOptionalPriceFields(table: string, rows: any[],
   }
 }
 
-async function supabaseDeleteAll(table: string, keyColumn = "id") {
-  const url = `${SUPABASE_URL}/rest/v1/${table}?${encodeURIComponent(keyColumn)}=not.is.null`;
-  const r = await fetch(url, { method: "DELETE", headers: supabaseHeaders({ Prefer: "return=minimal" }) });
-  if (!r.ok) throw new Error(`${table}_DELETE_FAILED:${r.status}:${await r.text()}`);
-}
-
 function buildImageMeta(images: string[], titles: string[], descriptions: string[]) {
   const maxLen = Math.max(images.length, titles.length, descriptions.length);
   const out: Array<{ url: string; title: string; description: string }> = [];
@@ -870,49 +864,7 @@ async function writeSupabaseDatabase(db: Database) {
     refund_window_hours: Number(db.payments?.refundWindowHours || 72)
   }]);
 
-  await supabaseDeleteAll("ev_tours");
-  await supabaseDeleteAll("ev_festivals");
-  await supabaseDeleteAll("ev_hotels");
-  await supabaseDeleteAll("ev_restaurants");
-  await supabaseDeleteAll("ev_menu_items");
-  await supabaseDeleteAll("ev_bookings");
-  await supabaseDeleteAll("ev_cab_bookings");
-  try {
-    await supabaseDeleteAll("ev_buses");
-    await supabaseDeleteAll("ev_bus_bookings");
-  } catch (err) {
-    if (!isMissingTableError(err)) throw err;
-  }
-  await supabaseDeleteAll("ev_food_orders");
-  try {
-    await supabaseDeleteAll("ev_food_carts");
-  } catch (err) {
-    if (!isMissingTableError(err)) throw err;
-  }
-  await supabaseDeleteAll("ev_queries");
-  await supabaseDeleteAll("ev_cab_providers");
-  await supabaseDeleteAll("ev_service_areas");
-  await supabaseDeleteAll("ev_coupons", "code");
-  try {
-    await supabaseDeleteAll("ev_user_profiles");
-  } catch (err) {
-    if (!isMissingTableError(err)) throw err;
-  }
-  try {
-    await supabaseDeleteAll("ev_user_behavior_profiles");
-  } catch (err) {
-    if (!isMissingTableError(err)) throw err;
-  }
-  try {
-    await supabaseDeleteAll("ev_vendor_menus", "restaurant_id");
-  } catch (err) {
-    if (!isMissingTableError(err)) throw err;
-  }
-  try {
-    await supabaseDeleteAll("ev_site_pages", "slug");
-  } catch (err) {
-    if (!isMissingTableError(err)) throw err;
-  }
+  // Safety: never perform blanket deletes during sync. We only upsert rows.
 
   if (db.tours.length) {
     await supabaseUpsertWithOptionalPriceFields("ev_tours", db.tours.map((x) => ({

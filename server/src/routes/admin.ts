@@ -17,6 +17,13 @@ function safeText(v: any) {
   return v === undefined || v === null ? "" : String(v).trim();
 }
 
+function encodePath(value: string) {
+  return String(value || "")
+    .split("/")
+    .map((x) => encodeURIComponent(x))
+    .join("/");
+}
+
 function normalizeEmail(email: string) {
   return safeText(email).toLowerCase();
 }
@@ -424,6 +431,7 @@ adminRouter.post("/supabase/delete", async (req, res) => {
     const table = safeText(req.body?.table || "");
     const id = safeText(req.body?.id || "");
     const keyColumn = safeText(req.body?.keyColumn || defaultConflictColumnForTable(table));
+    const confirmText = safeText(req.body?.confirmText || "");
 
     if (!table || !/^ev_[a-z0-9_]+$/i.test(table)) {
       return res.status(400).json({ error: "INVALID_TABLE_NAME" });
@@ -433,6 +441,12 @@ adminRouter.post("/supabase/delete", async (req, res) => {
     }
     if (!id) {
       return res.status(400).json({ error: "ID_REQUIRED" });
+    }
+    if (confirmText !== "DELETE") {
+      return res.status(400).json({
+        error: "DELETE_CONFIRMATION_REQUIRED",
+        message: "Deletion requires explicit confirmation text."
+      });
     }
 
     const { url } = assertSupabaseAdminConfigured();
@@ -678,24 +692,64 @@ adminRouter.put("/catalog/:type/:id", async (req, res) => {
 });
 
 adminRouter.post("/upload-image", upload.single("image"), async (req, res) => {
-  if (!req.file) return res.status(400).json({ error: "IMAGE_FILE_REQUIRED" });
-  const folder = String(req.body?.folder || "admin").replace(/[^a-zA-Z0-9/_-]/g, "");
-  const ts = Date.now();
-  const filename = `${ts}_${Math.random().toString(36).slice(2, 8)}.webp`;
-  const relDir = path.join("uploads", folder);
-  const relPath = path.join(relDir, filename).replace(/\\/g, "/");
-  const outPath = path.join(process.cwd(), "..", "public", relPath);
-  await fs.ensureDir(path.dirname(outPath));
-  const webp = await sharp(req.file.buffer).rotate().webp({ quality: 85 }).toBuffer();
-  await fs.writeFile(outPath, webp);
-  const proto = safeText(req.headers["x-forwarded-proto"] || (req.secure ? "https" : "http")) || "http";
-  const host = safeText(req.headers["x-forwarded-host"] || req.headers.host || "localhost");
-  const absoluteUrl = `${proto}://${host}/${relPath}`.replace(/([^:]\/)\/+/g, "$1");
-  res.json({
-    ok: true,
-    path: `/${relPath}`,
-    url: absoluteUrl
-  });
+  try {
+    if (!req.file) return res.status(400).json({ error: "IMAGE_FILE_REQUIRED" });
+    const folder = String(req.body?.folder || "admin").replace(/[^a-zA-Z0-9/_-]/g, "");
+    const ts = Date.now();
+    const filename = `${ts}_${Math.random().toString(36).slice(2, 8)}.webp`;
+    const relDir = path.join("uploads", folder);
+    const relPath = path.join(relDir, filename).replace(/\\/g, "/");
+    const webp = await sharp(req.file.buffer).rotate().webp({ quality: 85 }).toBuffer();
+
+    const supabaseUrlRaw = safeText(process.env.SUPABASE_URL || "").replace(/\/+$/, "");
+    const supabaseKey = safeText(process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SECRET_KEY || "");
+    const supabaseBucket = safeText(process.env.SUPABASE_STORAGE_BUCKET || "explorevalley-uploads");
+
+    if (supabaseUrlRaw && supabaseKey && supabaseBucket) {
+      const objectPath = path.join(folder, filename).replace(/\\/g, "/");
+      const uploadUrl = `${supabaseUrlRaw}/storage/v1/object/${encodePath(supabaseBucket)}/${encodePath(objectPath)}`;
+      const uploadResp = await fetch(uploadUrl, {
+        method: "POST",
+        headers: {
+          apikey: supabaseKey,
+          Authorization: `Bearer ${supabaseKey}`,
+          "Content-Type": "image/webp",
+          "x-upsert": "true"
+        },
+        body: webp as any
+      });
+      if (!uploadResp.ok) {
+        return res.status(500).json({
+          error: "SUPABASE_UPLOAD_FAILED",
+          message: await uploadResp.text()
+        });
+      }
+      const publicUrl = `${supabaseUrlRaw}/storage/v1/object/public/${encodePath(supabaseBucket)}/${encodePath(objectPath)}`;
+      return res.json({
+        ok: true,
+        path: `/${relPath}`,
+        url: publicUrl,
+        storage: "supabase",
+        bucket: supabaseBucket,
+        objectPath
+      });
+    }
+
+    const outPath = path.join(process.cwd(), "..", "public", relPath);
+    await fs.ensureDir(path.dirname(outPath));
+    await fs.writeFile(outPath, webp);
+    const proto = safeText(req.headers["x-forwarded-proto"] || (req.secure ? "https" : "http")) || "http";
+    const host = safeText(req.headers["x-forwarded-host"] || req.headers.host || "localhost");
+    const absoluteUrl = `${proto}://${host}/${relPath}`.replace(/([^:]\/)\/+/g, "$1");
+    return res.json({
+      ok: true,
+      path: `/${relPath}`,
+      url: absoluteUrl,
+      storage: "local"
+    });
+  } catch (err: any) {
+    return res.status(500).json({ error: "UPLOAD_FAILED", message: String(err?.message || err) });
+  }
 });
 
 async function supabaseAdminDeleteWhere(table: string, where: Record<string, string>, keyColumn = "id") {
@@ -711,11 +765,18 @@ async function supabaseAdminDeleteWhere(table: string, where: Record<string, str
   return { ok: true, table, keyColumn };
 }
 
-// Purpose-built endpoints for Food Vendors workspace (safer than generic deleteWhere from the browser).
+// Purpose-built endpoints for Food Vendors workspace.
 adminRouter.post("/food-vendors/delete-vendor", async (req, res) => {
   try {
     const restaurantId = safeText(req.body?.restaurantId || "");
+    const confirmText = safeText(req.body?.confirmText || "");
     if (!restaurantId) return res.status(400).json({ error: "RESTAURANT_ID_REQUIRED" });
+    if (confirmText !== "DELETE_VENDOR") {
+      return res.status(400).json({
+        error: "DELETE_CONFIRMATION_REQUIRED",
+        message: "Vendor deletion requires explicit confirmation text."
+      });
+    }
 
     // Cascade delete menu items + vendor menus, then vendor row itself.
     await supabaseAdminDeleteWhere("ev_menu_items", { restaurant_id: restaurantId }, "id");
@@ -734,8 +795,7 @@ adminRouter.post("/food-vendors/replace-menu", async (req, res) => {
     if (!restaurantId) return res.status(400).json({ error: "RESTAURANT_ID_REQUIRED" });
     if (!items.length) return res.status(400).json({ error: "ITEMS_REQUIRED" });
 
-    // Replace semantics: delete all existing items for vendor then upsert incoming list.
-    await supabaseAdminDeleteWhere("ev_menu_items", { restaurant_id: restaurantId }, "id");
+    // Non-destructive semantics: only upsert provided rows; never delete existing rows.
     const normalized = items.map((x: any) => ({
       ...x,
       id: safeText(x?.id || ""),
@@ -751,7 +811,7 @@ adminRouter.post("/food-vendors/replace-menu", async (req, res) => {
       body: JSON.stringify(normalized)
     });
     if (!r.ok) return res.status(500).json({ error: "REPLACE_MENU_FAILED", message: await r.text() });
-    return res.json({ ok: true, replaced: normalized.length });
+    return res.json({ ok: true, upserted: normalized.length });
   } catch (err: any) {
     return res.status(500).json({ error: "REPLACE_MENU_FAILED", message: String(err?.message || err) });
   }
