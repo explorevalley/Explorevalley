@@ -538,19 +538,15 @@ export default function HomeScreen() {
         image: MART_CATEGORY_IMAGES[key] || MART_CATEGORY_IMAGES.uncategorized
       }));
   }, [martProductsRaw]);
-  const martProductsByCategory = useMemo(() => {
-    const grouped = new Map<string, MartProduct[]>();
-    martProductsRaw.forEach((item) => {
-      const key = normalizeMartCategoryId(item.categoryKey || item.categoryId);
-      const list = grouped.get(key) || [];
-      list.push(item);
-      grouped.set(key, list);
-    });
-    return grouped;
-  }, [martProductsRaw]);
   const martProducts = useMemo(
-    () => martProductsByCategory.get(martCategoryId) || [],
-    [martCategoryId, martProductsByCategory]
+    () => {
+      const selected = normalizeMartCategoryId(martCategoryId);
+      if (!selected) return [];
+      return martProductsRaw.filter(
+        (item) => normalizeMartCategoryId(item.categoryKey || item.categoryId) === selected
+      );
+    },
+    [martCategoryId, martProductsRaw]
   );
   const isMartDesktop = width >= 980;
 
@@ -658,7 +654,7 @@ export default function HomeScreen() {
             </ScrollView>
           </View>
           <ScrollView style={styles.martProductsPane} contentContainerStyle={styles.martProductsPaneContent} showsVerticalScrollIndicator={false}>
-            <View style={styles.martGrid}>
+            <View key={`mart-grid-${martCategoryId}`} style={styles.martGrid}>
               {martProducts.map((product) => {
                 const discount = Math.max(0, product.mrp - product.price);
                 const hasDiscount = product.price < product.mrp;
@@ -699,7 +695,7 @@ export default function HomeScreen() {
               );
             })}
           </ScrollView>
-          <View style={styles.martGridMobile}>
+          <View key={`mart-grid-mobile-${martCategoryId}`} style={styles.martGridMobile}>
             {martProducts.map((product) => {
               const discount = Math.max(0, product.mrp - product.price);
               const hasDiscount = product.price < product.mrp;
