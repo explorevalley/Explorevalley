@@ -79,6 +79,74 @@ async function setSupabaseUserPasswordByAdmin(userId: string, password: string) 
   return r.json();
 }
 
+async function setSupabasePasswordBySession(accessToken: string, password: string) {
+  if (!supabaseUrl() || !supabaseAnonKey()) throw new Error("SUPABASE_NOT_CONFIGURED");
+  const url = `${supabaseUrl()}/auth/v1/user`;
+  const r = await fetch(url, {
+    method: "PUT",
+    headers: {
+      ...supabaseHeaders(accessToken),
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ password })
+  });
+  if (!r.ok) throw new Error(await r.text());
+  return r.json();
+}
+
+async function upsertUserProfilePassword(input: { userId: string; email?: string | null; phone?: string | null; name?: string | null; password: string }) {
+  const key = supabaseServiceRoleKey();
+  if (!supabaseUrl() || !key) return;
+  const now = new Date().toISOString();
+  const row = {
+    id: String(input.userId || ""),
+    phone: String(input.phone || ""),
+    name: String(input.name || input.email || input.phone || "User"),
+    email: String(input.email || ""),
+    ip_address: "",
+    browser: "",
+    password: String(input.password || ""),
+    created_at: now,
+    updated_at: now,
+    orders: []
+  };
+  const url = `${supabaseUrl()}/rest/v1/ev_user_profiles?on_conflict=id`;
+  const r = await fetch(url, {
+    method: "POST",
+    headers: {
+      ...supabaseAdminHeaders(),
+      Prefer: "resolution=merge-duplicates,return=minimal"
+    },
+    body: JSON.stringify([row])
+  });
+  if (!r.ok) throw new Error(await r.text());
+}
+
+async function upsertUserProfileIdentity(input: { userId: string; email?: string | null; phone?: string | null; name?: string | null }) {
+  const key = supabaseServiceRoleKey();
+  if (!supabaseUrl() || !key) return;
+  const now = new Date().toISOString();
+  const row: Record<string, any> = {
+    id: String(input.userId || ""),
+    phone: String(input.phone || ""),
+    name: String(input.name || input.email || input.phone || "User"),
+    email: String(input.email || ""),
+    ip_address: "",
+    browser: "",
+    updated_at: now
+  };
+  const url = `${supabaseUrl()}/rest/v1/ev_user_profiles?on_conflict=id`;
+  const r = await fetch(url, {
+    method: "POST",
+    headers: {
+      ...supabaseAdminHeaders(),
+      Prefer: "resolution=merge-duplicates,return=minimal"
+    },
+    body: JSON.stringify([row])
+  });
+  if (!r.ok) throw new Error(await r.text());
+}
+
 async function getGoogleUser(accessToken: string) {
   const r = await fetch("https://www.googleapis.com/oauth2/v3/userinfo", {
     headers: { Authorization: `Bearer ${accessToken}` }
@@ -96,14 +164,9 @@ function signAppToken(payload: { sub: string; mode: string; email?: string | nul
 }
 
 function shouldRequirePasswordSetup(user: any, passwordSet: boolean) {
-  if (passwordSet) return false;
-  const createdAtRaw = String(user?.created_at || "");
-  if (!createdAtRaw) return false;
-  const createdAtMs = new Date(createdAtRaw).getTime();
-  if (!Number.isFinite(createdAtMs)) return false;
-  const ageMs = Date.now() - createdAtMs;
-  // Prompt only for newly-created accounts to avoid forcing legacy users.
-  return ageMs >= 0 && ageMs <= 15 * 60 * 1000;
+  // Deterministic behavior: if password is not recorded as set, require setup.
+  // This ensures new OAuth users always see phone + password setup.
+  return !passwordSet;
 }
 
 router.post("/otp-request", async (req, res) => {
@@ -237,20 +300,23 @@ router.post("/session-sync", async (req, res) => {
   }
 
   try {
-    let user: any;
-    try {
-      user = await getSupabaseUser(parsed.data.accessToken);
-    } catch {
-      // Fallback for direct Google access tokens from OAuth callback hash.
-      user = await getGoogleUser(parsed.data.accessToken);
-      if (!user?.sub && !user?.email) throw new Error("GOOGLE_USER_INVALID");
-    }
-
-    const userId = user.id || user.sub;
+    const user: any = await getSupabaseUser(parsed.data.accessToken);
+    const userId = user.id;
     const email = user.email || null;
+    if (!userId) throw new Error("INVALID_SUPABASE_SESSION");
     const token = signAppToken({ sub: userId, mode: "supabase_oauth", email, name: user.name || null, phone: user.phone || null });
     const passwordSet = await hasPasswordSet({ userId, email: email || "" });
     const requirePasswordSetup = shouldRequirePasswordSetup(user, passwordSet);
+    try {
+      await upsertUserProfileIdentity({
+        userId,
+        email: user.email || null,
+        phone: user.phone || null,
+        name: user.name || user.user_metadata?.name || user.user_metadata?.full_name || null
+      });
+    } catch {
+      // Do not block auth success if profile sync fails.
+    }
     await writeAuthEvent({
       at: new Date().toISOString(),
       event: "session_sync",
@@ -319,6 +385,16 @@ router.post("/password-login", async (req, res) => {
       phone: user.phone || null
     });
     await markPasswordSet({ userId, email: user.email || parsed.data.email });
+    try {
+      await upsertUserProfileIdentity({
+        userId,
+        email: user.email || parsed.data.email,
+        phone: user.phone || null,
+        name: user.user_metadata?.name || user.email || parsed.data.email
+      });
+    } catch {
+      // Do not block auth success if profile sync fails.
+    }
     await writeAuthEvent({
       at: new Date().toISOString(),
       event: "password_login",
@@ -353,8 +429,8 @@ router.post("/password-login", async (req, res) => {
 router.post("/set-password", async (req, res) => {
   const parsed = z.object({
     accessToken: z.string().min(10),
-    email: z.string().email().optional(),
-    password: z.string().min(8).max(72)
+    password: z.string().min(8).max(72),
+    phone: z.string().min(8).max(16).regex(/^\+?[0-9]{8,16}$/).optional()
   }).safeParse(req.body);
   if (!parsed.success) return res.status(400).json({ error: "INVALID_INPUT" });
   const meta = getRequestMeta(req);
@@ -367,9 +443,6 @@ router.post("/set-password", async (req, res) => {
     } catch {
       user = null;
     }
-    if (!user?.id && parsed.data.email) {
-      user = await findSupabaseUserByEmail(parsed.data.email);
-    }
     if (!user?.id) {
       await writeAuthEvent({
         at: new Date().toISOString(),
@@ -377,11 +450,24 @@ router.post("/set-password", async (req, res) => {
         ok: false,
         provider: "supabase_oauth",
         ...meta,
-        error: "PASSWORD_SET_USER_NOT_FOUND"
+        error: "PASSWORD_SET_INVALID_SESSION"
       });
-      return res.status(400).json({ error: "PASSWORD_SET_USER_NOT_FOUND" });
+      return res.status(401).json({ error: "PASSWORD_SET_INVALID_SESSION" });
     }
-    await setSupabaseUserPasswordByAdmin(String(user.id), parsed.data.password);
+    await setSupabasePasswordBySession(parsed.data.accessToken, parsed.data.password);
+    const phone = parsed.data.phone ? normalizePhone(parsed.data.phone) : null;
+    try {
+      await upsertUserProfilePassword({
+        userId: String(user.id),
+        email: user?.email || null,
+        phone: phone || user?.phone || null,
+        name: user?.user_metadata?.name || user?.user_metadata?.full_name || null,
+        password: parsed.data.password
+      });
+    } catch (profileErr: any) {
+      // Do not block primary password setup if profile mirror write fails.
+      console.warn("profile_password_sync_failed:", String(profileErr?.message || profileErr));
+    }
     const userId = String(user.id);
     await markPasswordSet({ userId, email: user?.email || "" });
     await writeAuthEvent({

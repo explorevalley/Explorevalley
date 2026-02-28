@@ -7,6 +7,7 @@
   "home": {
     "loading": "Loading ExploreValley…",
     "empty": "No content yet. Add tours/hotels from Admin Dashboard or via Telegram bot: /addtour or /addhotel",
+    "loadError": "We couldn't load ExploreValley right now. Please try again.",
     "retry": "Retry"
   },
   "food": {
@@ -133,16 +134,15 @@
     },
     "activeTabTitles": {
       "travel": "🗺️ Explore Amazing Places",
-      "cabs": "🚕 Book Your Ride",
+      "taxi": "🚕 Book Your Ride",
       "food": "🍽️ Delicious Food",
       "profile": "👤 Your Profile"
     },
     "activeTabDescriptions": {
       "travel": "Discover beautiful destinations, hotels, and cottages in the valley.",
-      "cabs": "Quick and reliable cab booking service. 2 pending bookings.",
+      "taxi": "Quick and reliable cab booking service. 2 pending bookings.",
       "food": "Order from the best restaurants. 5 items in your cart.",
       "profile": "Manage your account, bookings, and preferences."
     }
   }
 }
-

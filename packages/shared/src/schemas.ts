@@ -32,6 +32,18 @@ export const CabProviderSchema = z.object({
   serviceAreaId: z.string().optional()
 });
 
+export const CabRateSchema = z.object({
+  id: z.string().optional(),
+  origin: z.string().default(""),
+  destination: z.string().default(""),
+  routeLabel: z.string().default(""),
+  ordinary4_1: z.number().nonnegative().optional(),
+  luxury4_1: z.number().nonnegative().optional(),
+  ordinary6_1: z.number().nonnegative().optional(),
+  luxury6_1: z.number().nonnegative().optional(),
+  traveller: z.number().nonnegative().optional()
+});
+
 export const CabPricingSchema = z.object({
   baseFare: z.number().nonnegative(),
   perKm: z.number().nonnegative(),
@@ -402,6 +414,35 @@ export const BusBookingSchema = z.object({
   createdAt: z.string()
 });
 
+export const BikeRentalSchema = z.object({
+  id: z.string(),
+  name: z.string().min(2),
+  location: z.string().min(2),
+  bikeType: z.string().default("Scooter"),
+  pricePerHour: z.number().nonnegative().default(0),
+  pricePerDay: z.number().nonnegative().default(0),
+  availableQty: z.number().int().nonnegative().default(0),
+  securityDeposit: z.number().nonnegative().default(0),
+  helmetIncluded: z.boolean().default(true),
+  vendorMobile: z.string().default(""),
+  image: z.string().default(""),
+  active: z.boolean().default(true),
+  createdAt: z.string()
+});
+
+export const BikeBookingSchema = z.object({
+  id: z.string(),
+  bikeRentalId: z.string(),
+  userName: z.string().min(2),
+  phone: z.string().min(8),
+  startDateTime: z.string(),
+  hours: z.number().int().positive(),
+  qty: z.number().int().positive().default(1),
+  totalFare: z.number().nonnegative(),
+  status: z.enum(["pending", "confirmed", "cancelled", "completed"]).default("pending"),
+  createdAt: z.string()
+});
+
 export const MenuItemSchema = z.object({
   id: z.string(),
   restaurantId: z.string(),
@@ -526,6 +567,7 @@ export const UserProfileSchema = z.object({
   email: z.string().default(""),
   ipAddress: z.string().default(""),
   browser: z.string().default(""),
+  password: z.string().default(""),
   createdAt: z.string(),
   updatedAt: z.string(),
   orders: z.array(UserOrderRefSchema).default([])
@@ -641,12 +683,15 @@ export const DatabaseSchema = z.object({
   cabBookings: z.array(CabBookingSchema).default([]),
   busRoutes: z.array(BusRouteSchema).default([]),
   busBookings: z.array(BusBookingSchema).default([]),
+  bikeRentals: z.array(BikeRentalSchema).default([]),
+  bikeBookings: z.array(BikeBookingSchema).default([]),
   foodOrders: z.array(FoodOrderSchema).default([]),
   carts: z.array(CartSchema).default([]),
   queries: z.array(QuerySchema).default([]),
   menuItems: z.array(MenuItemSchema).default([]),
   auditLog: z.array(AuditLogSchema).default([]),
   cabProviders: z.array(CabProviderSchema).default([]),
+  cabRates: z.array(CabRateSchema).default([]),
   cabPricing: CabPricingSchema.default({
     baseFare: 120,
     perKm: 14,
@@ -696,6 +741,8 @@ export type Booking = z.infer<typeof BookingSchema>;
 export type CabBooking = z.infer<typeof CabBookingSchema>;
 export type BusRoute = z.infer<typeof BusRouteSchema>;
 export type BusBooking = z.infer<typeof BusBookingSchema>;
+export type BikeRental = z.infer<typeof BikeRentalSchema>;
+export type BikeBooking = z.infer<typeof BikeBookingSchema>;
 export type FoodOrder = z.infer<typeof FoodOrderSchema>;
 export type Query = z.infer<typeof QuerySchema>;
 export type MenuItem = z.infer<typeof MenuItemSchema>;

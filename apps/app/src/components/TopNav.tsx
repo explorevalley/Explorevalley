@@ -1,45 +1,36 @@
 import React, { useEffect, useRef } from "react";
-import { Animated, View, TextInput, Pressable, Text, Platform, useWindowDimensions } from "react-native";
+import { Animated, View, Pressable, Text, Platform, useWindowDimensions } from "react-native";
 
 const PRIMARY_NAV = [
   { key: "travel", label: "Travel", icon: "🗺️" },
-  { key: "cabs", label: "Cabs", icon: "🚕" },
+  { key: "taxi", label: "Taxi", icon: "🚕" },
+  { key: "bike", label: "Bike", icon: "🏍️" },
   { key: "food", label: "Food", icon: "🍽️" },
-  { key: "festivals", label: "Fest", icon: "🎉" },
-  { key: "rescue", label: "Info", icon: "ℹ️" },
+  { key: "mart", label: "Mart", icon: "🛒" },
 ] as const;
 
 const FILTERS = [
   { key: "all", label: "All" },
-  { key: "tour", label: "Tour" },
   { key: "hotel", label: "Hotels" },
   { key: "cottages", label: "Cottages" },
+  { key: "tour", label: "Tour" },
 ] as const;
 
-export default function TopNav({ query, setQuery, onFilter, typeFilter, onTypeChange, primaryTab, onPrimaryChange, authMode, authUser, onAuthPress, onLogout, onProfilePress }: any) {
+export default function TopNav({ typeFilter, onTypeChange, primaryTab, onPrimaryChange, authMode, authUser, onAuthPress, onLogout, onProfilePress }: any) {
   const { width: windowWidth } = useWindowDimensions();
   const isMobile = windowWidth < 768;
   const isTablet = windowWidth >= 768 && windowWidth < 1024;
 
   const navAnim = useRef(new Animated.Value(0)).current;
-  const searchFocusAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
     Animated.spring(navAnim, { toValue: 1, useNativeDriver: Platform.OS !== "web", friction: 8, tension: 40 }).start();
   }, [navAnim]);
 
-  function onSearchFocus() {
-    Animated.timing(searchFocusAnim, { toValue: 1, duration: 200, useNativeDriver: false }).start();
-  }
-  function onSearchBlur() {
-    Animated.timing(searchFocusAnim, { toValue: 0, duration: 200, useNativeDriver: false }).start();
-  }
-
   const fontSize = {
     logo: isMobile ? 12.5 : isTablet ? 17.5 : 25.3,
     nav: isMobile ? 13.75 : isTablet ? 17.5 : 22.5,
     filter: isMobile ? 13.75 : isTablet ? 16.25 : 19.7,
-    search: isMobile ? 16.25 : isTablet ? 17.5 : 22.5,
     sideFilter: isMobile ? 13.75 : isTablet ? 22.5 : 28.125,
   };
   const userLabel = String(authUser?.name || authUser?.email || authUser?.phone || "User");
@@ -93,38 +84,6 @@ export default function TopNav({ query, setQuery, onFilter, typeFilter, onTypeCh
                   ExploreValley
                 </Text>
               </View>
-
-              <Animated.View
-                style={{
-                  flex: 1,
-                  flexDirection: "row",
-                  alignItems: "center",
-                  backgroundColor: "rgba(30, 30, 30, 0.8)",
-                  borderRadius: 12,
-                  borderWidth: 1.5,
-                  borderColor: searchFocusAnim.interpolate({
-                    inputRange: [0, 1],
-                    outputRange: ["rgba(245, 242, 232, 0.15)", "rgba(245, 242, 232, 0.4)"]
-                  }),
-                  paddingHorizontal: 12.5,
-                  paddingVertical: 7.5,
-                }}
-              >
-                <TextInput
-                  value={query}
-                  onChangeText={setQuery}
-                  onFocus={onSearchFocus}
-                  onBlur={onSearchBlur}
-                  placeholder="Search..."
-                  placeholderTextColor="rgba(255,255,255,0.4)"
-                  style={{ flex: 1, color: "#fff", paddingVertical: 0, fontSize: fontSize.search - 2, fontWeight: "500" }}
-                />
-                {query.length > 0 && (
-                  <Pressable onPress={() => setQuery("")} style={{ padding: 2.5 }}>
-                    <Text style={{ color: "rgba(255,255,255,0.6)", fontSize: 17.5, fontWeight: "700" }}>✕</Text>
-                  </Pressable>
-                )}
-              </Animated.View>
 
               <HoverScale
                 onPress={authMode === "authenticated" ? onLogout : onAuthPress}
@@ -351,30 +310,6 @@ export default function TopNav({ query, setQuery, onFilter, typeFilter, onTypeCh
 
         <View style={{ flex: 1 }} />
 
-        <Animated.View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            backgroundColor: "#121212",
-            borderRadius: 999,
-            borderWidth: 1,
-            borderColor: searchFocusAnim.interpolate({ inputRange: [0, 1], outputRange: ["#242424", "#f5f2e8"] }),
-            paddingHorizontal: 15,
-            paddingVertical: 7.5,
-            minWidth: 187.5,
-          }}
-        >
-          <TextInput
-            value={query}
-            onChangeText={setQuery}
-            onFocus={onSearchFocus}
-            onBlur={onSearchBlur}
-            placeholder="Search..."
-            placeholderTextColor="#999"
-            style={{ flex: 1, color: "#fff", paddingVertical: 0, fontSize: fontSize.search }}
-          />
-        </Animated.View>
-
         {authMode === "authenticated" ? (
           <Pressable
             onPress={onProfilePress}
@@ -427,42 +362,63 @@ export default function TopNav({ query, setQuery, onFilter, typeFilter, onTypeCh
         </HoverScale>
       </Animated.View>
 
-      {/* Side Filters - show on Travel/hero only */}
       {primaryTab === "travel" ? (
         <View
           pointerEvents="box-none"
           style={{
-            flexDirection: "column",
-            gap: 11.25,
             alignItems: "center",
             justifyContent: "center",
-            position: "absolute",
-            top: 390,
-            bottom: 0,
-            right: 50,
+            marginTop: 4,
           }}
         >
-          {FILTERS.map(f => {
-            const active = typeFilter === f.key;
-            return (
-              <HoverScale
-                key={f.key}
-                onPress={() => onTypeChange?.(f.key)}
-                style={{
-                  paddingHorizontal: 11.25,
-                  paddingVertical: 7.5,
-                  borderRadius: 999,
-                  borderWidth: 1,
-                  borderColor: active ? "#f5f2e8" : "#2a2a2a",
-                  backgroundColor: active ? "#f5f2e8" : "rgba(0,0,0,0.25)",
-                }}
-              >
-                <Text style={{ color: active ? "#1c1c1c" : "#fff", fontWeight: "800", fontSize: fontSize.sideFilter }}>
-                  {f.label}
-                </Text>
-              </HoverScale>
-            );
-          })}
+          <View
+            pointerEvents="auto"
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 6,
+              backgroundColor: "#101010",
+              borderColor: "#1f1f1f",
+              borderWidth: 1,
+              borderRadius: 999,
+              paddingHorizontal: 8,
+              paddingVertical: 8,
+            }}
+          >
+            {FILTERS.map((f) => {
+              const active = typeFilter === f.key;
+              return (
+                <Pressable
+                  key={f.key}
+                  onPress={() => onTypeChange?.(f.key)}
+                  style={({ pressed }) => [
+                    {
+                      alignItems: "center",
+                      justifyContent: "center",
+                      paddingVertical: 8,
+                      paddingHorizontal: 10,
+                      borderRadius: 999,
+                      borderWidth: 1,
+                      borderColor: active ? "#f5f2e8" : "rgba(245, 242, 232, 0.25)",
+                      backgroundColor: active ? "#f5f2e8" : "transparent",
+                    },
+                    pressed ? { opacity: 0.9 } : null,
+                  ]}
+                >
+                  <Text
+                    style={{
+                      color: active ? "#1c1c1c" : "#fff",
+                      fontWeight: "800",
+                      fontSize: fontSize.filter,
+                    }}
+                  >
+                    {f.label}
+                  </Text>
+                </Pressable>
+              );
+            })}
+          </View>
         </View>
       ) : null}
     </View>

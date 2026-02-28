@@ -1,6 +1,5 @@
 import React from "react";
 import { View, Text, ScrollView, Pressable, Linking, useWindowDimensions } from "react-native";
-import { BASE_URL } from "../lib/api";
 
 type ContactNumber = {
   label: string;
@@ -73,14 +72,6 @@ const AMBULANCE_SERVICES: AmbulanceService[] = [
   }
 ];
 
-const INFO_PAGES = [
-  { title: "Affiliate Program", slug: "affiliate-program" },
-  { title: "Contact Us", slug: "contact-us" },
-  { title: "Privacy Policy", slug: "privacy-policy" },
-  { title: "Refund Policy", slug: "refund-policy" },
-  { title: "Terms and Conditions", slug: "terms-and-conditions" }
-];
-
 function canCall(value: string) {
   return Boolean(value && value !== "TBD");
 }
@@ -88,10 +79,6 @@ function canCall(value: string) {
 function callNumber(value: string) {
   if (!canCall(value)) return;
   Linking.openURL(`tel:${value}`);
-}
-
-function openInfoPage(slug: string) {
-  Linking.openURL(`${BASE_URL}/api/pages/${slug}`);
 }
 
 export default function RescueScreen() {
@@ -104,7 +91,7 @@ export default function RescueScreen() {
         paddingTop: 110,
         paddingHorizontal: isMobile ? 16 : 32,
         paddingBottom: 40,
-        backgroundColor: "#000",
+        backgroundColor: "transparent",
         minHeight: "100%"
       }}
     >
@@ -236,24 +223,6 @@ export default function RescueScreen() {
         <Text style={{ color: "#bdbdbd", marginTop: 8, lineHeight: 20 }}>
           Share your live location, keep a power bank ready, and stay on marked routes. In case of emergency, call the nearest control room first.
         </Text>
-        <View style={{ marginTop: 14, flexDirection: "row", flexWrap: "wrap", gap: 8 }}>
-          {INFO_PAGES.map((page) => (
-            <Pressable
-              key={page.slug}
-              onPress={() => openInfoPage(page.slug)}
-              style={{
-                borderRadius: 999,
-                borderWidth: 1,
-                borderColor: "rgba(34, 197, 94, 0.45)",
-                backgroundColor: "rgba(34, 197, 94, 0.16)",
-                paddingVertical: 7,
-                paddingHorizontal: 12
-              }}
-            >
-              <Text style={{ color: "#dcfce7", fontWeight: "700", fontSize: 12 }}>{page.title}</Text>
-            </Pressable>
-          ))}
-        </View>
       </View>
     </ScrollView>
   );

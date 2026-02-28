@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { View, Text, ScrollView, Pressable, useWindowDimensions, ActivityIndicator, Image } from "react-native";
-import { apiGet, BASE_URL } from "../lib/api";
+import { apiGet, resolveAssetUrl } from "../lib/api";
 
 type Festival = {
   id: string;
@@ -47,7 +47,7 @@ export default function FestivalScreen() {
             vibe: x.vibe || x.description || x.duration || "Live events and cultural experiences",
             ticket: x.ticket || x.price || x.starting_price || "On request",
             color: COLORS[idx % COLORS.length],
-            image: image && !image.startsWith("http") ? `${BASE_URL}${image}` : image
+            image: resolveAssetUrl(image || "")
           } as Festival;
         });
         setItems(mapped);
@@ -64,7 +64,7 @@ export default function FestivalScreen() {
 
   return (
     <ScrollView
-      style={{ flex: 1, backgroundColor: "#f3f5f9" }}
+      style={{ flex: 1, backgroundColor: "transparent" }}
       contentContainerStyle={{ paddingTop: 110, paddingHorizontal: isMobile ? 14 : 24, paddingBottom: 32 }}
       showsVerticalScrollIndicator={false}
     >

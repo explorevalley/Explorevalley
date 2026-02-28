@@ -152,7 +152,7 @@ export default function HomeScreen() {
         onTabChange={setPrimaryTab}
         items={[
           { key: 'travel', label: 'Explore', icon: '🗺️' },
-          { key: 'cabs', label: 'Cabs', icon: '🚕' },
+          { key: 'taxi', label: 'Taxi', icon: '🚕' },
           { key: 'food', label: 'Food', icon: '🍽️' },
           { key: 'profile', label: 'Profile', icon: '👤' },
         ]}

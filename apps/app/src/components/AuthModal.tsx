@@ -1,204 +1,369 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Modal, View, Text, Pressable, Platform, TextInput } from "react-native";
-import { apiPost } from "../lib/api";
+import { Modal, Platform, Pressable, Text, TextInput, View } from "react-native";
+import { apiPost, supabaseGetUser, supabasePasswordLogin, supabaseUpdatePassword, trackEvent } from "../lib/api";
 import { getSupabaseAccessToken, setAuthMode, setAuthToken, setAuthUser, setSupabaseAccessToken } from "../lib/auth";
-import { trackEvent } from "../lib/api";
 
-const SUPABASE_URL = "https://pmqlpbqwyxmfuvcrwoan.supabase.co";
+type AuthModalProps = {
+  visible: boolean;
+  onClose?: () => void;
+  onAuthed?: (mode: "authenticated" | "none") => void;
+};
 
-function friendlyAuthError(input: any) {
-  const raw = String(input?.message || input || "");
+type AuthUserPayload = {
+  id?: string | null;
+  email?: string | null;
+  phone?: string | null;
+  name?: string | null;
+};
+
+type PendingGoogleState = {
+  accessToken: string;
+  user: AuthUserPayload;
+  requirePasswordSetup?: boolean;
+};
+
+const SUPABASE_URL = String(
+  process.env.SUPABASE_URL ||
+    process.env.EXPO_PUBLIC_SUPABASE_URL ||
+    "https://pmqlpbqwyxmfuvcrwoan.supabase.co"
+).replace(/\/+$/, "");
+
+function formatAuthError(error: unknown) {
+  const raw = String((error as any)?.message || error || "");
   const upper = raw.toUpperCase();
-  if (upper.includes("SUPABASE_NOT_CONFIGURED")) return "Server auth is not configured yet. Add Supabase URL and publishable key in server .env.";
-  if (upper.includes("INVALID_SUPABASE_SESSION")) return "Login session is invalid. Please sign in with Google again.";
-  if (upper.includes("PASSWORD_LOGIN_FAILED")) return "Email or password is invalid.";
-  if (upper.includes("PASSWORD_SET_FAILED")) return "Could not set password. Please retry.";
-  if (upper.includes("REDIRECT_URI_MISMATCH")) return "Google sign-in redirect is misconfigured. Please check OAuth redirect URLs.";
-  if (upper.includes("FAILED TO FETCH")) return "Could not reach auth service. Check server and internet, then try again.";
+
+  if (upper.includes("SUPABASE_NOT_CONFIGURED")) return "Supabase is not configured.";
+  if (upper.includes("PASSWORD_LOGIN_FAILED") || upper.includes("INVALID_LOGIN_CREDENTIALS")) {
+    return "Invalid email or password.";
+  }
+  if (upper.includes("PASSWORD_SET_FAILED")) return "Failed to update password. Please try again.";
+  if (upper.includes("PASSWORD_SET_INVALID_SESSION")) return "Session expired. Please login with Google again and retry password setup.";
+  if (upper.includes("INVALID_INPUT")) return "Please check phone number and password fields.";
+  if (upper.includes("REDIRECT_URI_MISMATCH")) return "Google redirect URL is not configured correctly.";
+  if (upper.includes("BAD_OAUTH_CALLBACK")) return "Google callback failed. Please try login again.";
+  if (upper.includes("OAUTH STATE PARAMETER MISSING")) return "OAuth state mismatch. Google callback is misconfigured.";
+  if (upper.includes("INVALID_SUPABASE_SESSION")) return "Session expired. Please sign in again.";
+  if (upper.includes("FAILED TO FETCH") || upper.includes("NETWORK")) return "Network error. Please retry.";
+
   if (raw.trim().startsWith("{")) {
     try {
       const parsed = JSON.parse(raw);
-      const msg = parsed?.error_description || parsed?.error || parsed?.message;
-      if (msg) return String(msg);
+      const message = parsed?.error_description || parsed?.error || parsed?.message;
+      if (message) return String(message);
     } catch {
-      // ignore json parse failure
+      // ignore parse errors
     }
   }
-  return "Sign in failed. Please try again.";
+
+  return "Login failed. Please try again.";
 }
 
-type PendingGoogleSession = {
-  token: string;
-  accessToken: string;
-  user?: any;
-};
+function passwordFlagKey(user: AuthUserPayload | null | undefined) {
+  return `ev_pw_set_${String(user?.id || user?.email || "anon")}`;
+}
 
-export default function AuthModal({ visible, onClose, onAuthed }: any) {
+function clearUrlHash() {
+  if (typeof window === "undefined") return;
+  const params = new URLSearchParams(window.location.search || "");
+  params.delete("access_token");
+  params.delete("refresh_token");
+  params.delete("expires_in");
+  params.delete("expires_at");
+  params.delete("token_type");
+  params.delete("error_code");
+  params.delete("error");
+  params.delete("error_description");
+  const nextSearch = params.toString();
+  const nextUrl = `${window.location.pathname}${nextSearch ? `?${nextSearch}` : ""}`;
+  window.history.replaceState({}, document.title, nextUrl);
+}
+
+export default function AuthModal({ visible, onClose, onAuthed }: AuthModalProps) {
   const [busy, setBusy] = useState(false);
-  const [msg, setMsg] = useState<string | null>(null);
-  const [err, setErr] = useState<string | null>(null);
-  const [setupPassword, setSetupPassword] = useState("");
-  const [setupPassword2, setSetupPassword2] = useState("");
+  const [errorText, setErrorText] = useState<string | null>(null);
+  const [successText, setSuccessText] = useState<string | null>(null);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [needSetupPassword, setNeedSetupPassword] = useState(false);
-  const [pendingGoogle, setPendingGoogle] = useState<PendingGoogleSession | null>(null);
-  const syncingRef = useRef(false);
 
-  useEffect(() => {
-    if (visible) return;
-    setNeedSetupPassword(false);
-    setPendingGoogle(null);
+  const [setupPassword, setSetupPassword] = useState("");
+  const [setupPasswordConfirm, setSetupPasswordConfirm] = useState("");
+  const [setupPhone, setSetupPhone] = useState("");
+  const [pendingGoogle, setPendingGoogle] = useState<PendingGoogleState | null>(null);
+  const isPasswordSetupStep = !!pendingGoogle;
+
+  const syncInProgressRef = useRef(false);
+
+  const resetMessages = () => {
+    setErrorText(null);
+    setSuccessText(null);
+  };
+
+  const resetSensitiveState = () => {
     setSetupPassword("");
-    setSetupPassword2("");
-    setErr(null);
-    setMsg(null);
-  }, [visible]);
+    setSetupPasswordConfirm("");
+    setSetupPhone("");
+    setPendingGoogle(null);
+  };
 
-  function finalizeAuth(payload: { token: string; user?: any; accessToken?: string | null }) {
-    setAuthToken(payload.token);
-    setSupabaseAccessToken(payload.accessToken || null);
+  const finalizeAuth = (params: {
+    token: string;
+    accessToken: string;
+    user: AuthUserPayload;
+    method: "google" | "password";
+  }) => {
+    setAuthToken(params.token);
+    setSupabaseAccessToken(params.accessToken);
     setAuthUser({
-      id: payload.user?.id || null,
-      email: payload.user?.email || null,
-      phone: payload.user?.phone || null,
-      name: payload.user?.name || payload.user?.email || payload.user?.phone || "User"
+      id: params.user?.id || null,
+      email: params.user?.email || null,
+      phone: params.user?.phone || null,
+      name: params.user?.name || params.user?.email || params.user?.phone || "User"
     });
     setAuthMode("authenticated");
+
     trackEvent({
       type: "auth_login",
       category: "core",
-      name: payload.user?.name,
-      email: payload.user?.email,
-      phone: payload.user?.phone,
+      name: params.user?.name,
+      email: params.user?.email,
+      phone: params.user?.phone,
       meta: {
-        method: payload.accessToken ? "google" : "password",
+        method: params.method,
         path: typeof window !== "undefined" ? String(window.location.pathname || "") : "",
         url: typeof window !== "undefined" ? String(window.location.href || "") : ""
       }
     });
+
     onAuthed?.("authenticated");
-  }
+  };
+
+  const syncSession = async (accessToken: string) => {
+    try {
+      const response = await apiPost<{
+        token?: string;
+        accessToken?: string | null;
+        user?: AuthUserPayload;
+        requirePasswordSetup?: boolean;
+      }>("/api/auth/session-sync", { accessToken });
+      return {
+        token: String(response?.token || accessToken),
+        accessToken: String(response?.accessToken || accessToken),
+        user: response?.user || {},
+        requirePasswordSetup: !!response?.requirePasswordSetup
+      };
+    } catch (err: any) {
+      const msg = String(err?.message || err || "").toUpperCase();
+      const canFallback =
+        msg.includes("UNSUPPORTED_ENDPOINT") ||
+        msg.includes("NOT FOUND") ||
+        msg.includes("404") ||
+        msg.includes("FAILED TO FETCH") ||
+        msg.includes("NETWORK");
+      if (!canFallback) throw err;
+      const user = await supabaseGetUser(accessToken);
+      return {
+        token: accessToken,
+        accessToken,
+        user,
+        requirePasswordSetup: false
+      };
+    }
+  };
 
   useEffect(() => {
-    if (Platform.OS !== "web") return;
-    const hash = window.location.hash || "";
-    const params = new URLSearchParams(hash.startsWith("#") ? hash.slice(1) : hash);
-    const accessToken = params.get("access_token");
-    if (!accessToken || syncingRef.current) return;
-    syncingRef.current = true;
+    if (visible) return;
+    resetMessages();
+    resetSensitiveState();
+  }, [visible]);
+
+  useEffect(() => {
+    if (Platform.OS !== "web" || !visible) return;
+    if (syncInProgressRef.current) return;
+
+    const hash = String(window.location.hash || "");
+    const search = String(window.location.search || "");
+    if (!hash && !search) return;
+
+    const hashParams = new URLSearchParams(hash.startsWith("#") ? hash.slice(1) : hash);
+    const searchParams = new URLSearchParams(search.startsWith("?") ? search.slice(1) : search);
+    const accessToken = String(hashParams.get("access_token") || searchParams.get("access_token") || "").trim();
+    const oauthError = String(
+      hashParams.get("error_description") ||
+        hashParams.get("error_code") ||
+        searchParams.get("error_description") ||
+        searchParams.get("error_code") ||
+        hashParams.get("error") ||
+        searchParams.get("error") ||
+        ""
+    ).trim();
+    if (oauthError) {
+      setErrorText(formatAuthError(oauthError));
+      resetSensitiveState();
+      clearUrlHash();
+      return;
+    }
+    if (!accessToken) {
+      return;
+    }
+
+    syncInProgressRef.current = true;
+    setBusy(true);
+    resetMessages();
 
     (async () => {
-      setErr(null);
-      setMsg(null);
-      setNeedSetupPassword(false);
-      setPendingGoogle(null);
-      setBusy(true);
       try {
-        const r = await apiPost<{ token: string; user?: any; requirePasswordSetup?: boolean; accessToken?: string }>("/api/auth/session-sync", { accessToken });
-        if (r.requirePasswordSetup) {
-          setNeedSetupPassword(true);
+        const session = await syncSession(accessToken);
+        clearUrlHash();
+
+        if (session.requirePasswordSetup) {
           setPendingGoogle({
-            token: r.token,
-            user: r.user,
-            accessToken: r.accessToken || accessToken
+            accessToken: session.accessToken,
+            user: session.user,
+            requirePasswordSetup: session.requirePasswordSetup
           });
-          setMsg("First-time sign in detected. Please set a password for future email login.");
-          if (r.user?.email) setEmail(String(r.user.email));
-        } else {
-          finalizeAuth({ token: r.token, user: r.user, accessToken: r.accessToken || accessToken });
-          setMsg("Logged in.");
-          if (visible) onClose?.();
+          setSuccessText("Set a password to complete login.");
+          return;
         }
-        window.history.replaceState({}, document.title, window.location.pathname);
-      } catch (e: any) {
-        setErr(friendlyAuthError(e));
+
+        finalizeAuth({
+          token: session.token,
+          accessToken: session.accessToken,
+          user: session.user,
+          method: "google"
+        });
+        setSuccessText("Logged in.");
+        onClose?.();
+      } catch (error) {
+        setErrorText(formatAuthError(error));
       } finally {
         setBusy(false);
-        syncingRef.current = false;
+        syncInProgressRef.current = false;
       }
     })();
-  }, [visible, onAuthed, onClose]);
+  }, [visible]);
 
-  function loginWithGoogle() {
-    setErr(null);
+  const handleGoogleLogin = () => {
+    resetMessages();
+
     if (Platform.OS !== "web") {
-      setErr("Google login is currently enabled for web in this build.");
+      setErrorText("Google login is only available on web in this build.");
       return;
     }
-    // Use the current page as the redirect target for both local and production web.
-    // This must be added to Supabase Auth Redirect URLs.
-    const redirectTo = `${window.location.origin}${window.location.pathname}`;
-    const url = `${SUPABASE_URL}/auth/v1/authorize?provider=google&redirect_to=${encodeURIComponent(redirectTo)}&response_type=token`;
-    window.location.href = url;
-  }
 
-  async function loginWithEmailPassword() {
-    setErr(null);
-    setMsg(null);
-    if (!email || !password) {
-      setErr("Enter email and password.");
+    const redirectTo = `${window.location.origin}/`;
+    const authUrl =
+      `${SUPABASE_URL}/auth/v1/authorize` +
+      `?provider=google` +
+      `&redirect_to=${encodeURIComponent(redirectTo)}`;
+    window.location.assign(authUrl);
+  };
+
+  const handleEmailPasswordLogin = async () => {
+    resetMessages();
+
+    const normalizedEmail = email.trim();
+    if (!normalizedEmail || !password) {
+      setErrorText("Enter email and password.");
       return;
     }
+
     setBusy(true);
     try {
-      const r = await apiPost<{ token: string; user?: any; accessToken?: string | null }>("/api/auth/password-login", {
-        email: email.trim(),
-        password
+      let session: { access_token: string; user: AuthUserPayload };
+      try {
+        const response = await apiPost<{ token?: string; accessToken?: string | null; user?: AuthUserPayload }>(
+          "/api/auth/password-login",
+          { email: normalizedEmail, password }
+        );
+        session = {
+          access_token: String(response?.accessToken || response?.token || ""),
+          user: response?.user || {}
+        };
+      } catch {
+        session = await supabasePasswordLogin(normalizedEmail, password);
+      }
+      if (!session.access_token) throw new Error("PASSWORD_LOGIN_FAILED");
+      finalizeAuth({
+        token: session.access_token,
+        accessToken: session.access_token,
+        user: session.user,
+        method: "password"
       });
-      finalizeAuth({ token: r.token, user: r.user, accessToken: r.accessToken || null });
-      setMsg("Logged in.");
+      setSuccessText("Logged in.");
       onClose?.();
-    } catch (e: any) {
-      setErr(friendlyAuthError(e));
+    } catch (error) {
+      setErrorText(formatAuthError(error));
     } finally {
       setBusy(false);
     }
-  }
+  };
 
-  async function submitPasswordSetup() {
-    setErr(null);
-    setMsg(null);
+  const handlePasswordSetup = async () => {
+    resetMessages();
+
     const accessToken = pendingGoogle?.accessToken || getSupabaseAccessToken();
     if (!accessToken) {
-      setErr("Missing auth session. Please sign in with Google again.");
+      setErrorText("Session missing. Please sign in with Google again.");
       return;
     }
+
     if (setupPassword.length < 8) {
-      setErr("Password must be at least 8 characters.");
+      setErrorText("Password must be at least 8 characters.");
       return;
     }
-    if (setupPassword !== setupPassword2) {
-      setErr("Passwords do not match.");
+
+    if (setupPassword !== setupPasswordConfirm) {
+      setErrorText("Passwords do not match.");
+      return;
+    }
+    const normalizedPhone = setupPhone.trim();
+    if (!/^\+?[0-9]{8,16}$/.test(normalizedPhone)) {
+      setErrorText("Enter a valid phone number.");
       return;
     }
 
     setBusy(true);
     try {
-      await apiPost("/api/auth/set-password", {
-        accessToken,
-        email: pendingGoogle?.user?.email || email || undefined,
-        password: setupPassword
-      });
+      try {
+        await apiPost("/api/auth/set-password", {
+          accessToken,
+          password: setupPassword,
+          phone: normalizedPhone
+        });
+      } catch (apiErr: any) {
+        const msg = String(apiErr?.message || apiErr || "").toUpperCase();
+        const canFallback =
+          msg.includes("UNSUPPORTED_ENDPOINT") ||
+          msg.includes("NOT FOUND") ||
+          msg.includes("404") ||
+          msg.includes("FAILED TO FETCH") ||
+          msg.includes("NETWORK");
+        if (!canFallback) throw apiErr;
+        await supabaseUpdatePassword(accessToken, setupPassword);
+      }
+      if (typeof window !== "undefined" && pendingGoogle?.user) {
+        window.localStorage.setItem(passwordFlagKey(pendingGoogle.user), "1");
+      }
+
       if (pendingGoogle) {
         finalizeAuth({
-          token: pendingGoogle.token,
-          user: pendingGoogle.user,
-          accessToken: pendingGoogle.accessToken
+          token: accessToken,
+          accessToken,
+          user: { ...pendingGoogle.user, phone: normalizedPhone },
+          method: "google"
         });
       }
-      setNeedSetupPassword(false);
-      setPendingGoogle(null);
-      setSetupPassword("");
-      setSetupPassword2("");
-      setMsg("Password set. You can now login using Google or email/password.");
+
+      resetSensitiveState();
+      setSuccessText("Password saved. Login complete.");
       onClose?.();
-    } catch (e: any) {
-      setErr(friendlyAuthError(e));
+    } catch (error) {
+      setErrorText(formatAuthError(error));
     } finally {
       setBusy(false);
     }
-  }
+  };
 
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
@@ -208,7 +373,7 @@ export default function AuthModal({ visible, onClose, onAuthed }: any) {
           backgroundColor: "rgba(0,0,0,0.58)",
           alignItems: "center",
           justifyContent: "center",
-          padding: 16,
+          padding: 16
         }}
       >
         <View
@@ -219,46 +384,77 @@ export default function AuthModal({ visible, onClose, onAuthed }: any) {
             borderWidth: 1,
             borderColor: "#2a2a2a",
             borderRadius: 16,
-            padding: 16,
+            padding: 16
           }}
         >
           <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
-            <Text style={{ color: "#fff", fontSize: 18, fontWeight: "700" }}>{needSetupPassword ? "Set Password" : "Login"}</Text>
+            <Text style={{ color: "#fff", fontSize: 18, fontWeight: "700" }}>
+              {isPasswordSetupStep ? "Set Password" : "Login"}
+            </Text>
             <Pressable onPress={onClose} style={{ paddingHorizontal: 8, paddingVertical: 4 }}>
               <Text style={{ color: "#fff", fontWeight: "700" }}>Close</Text>
             </Pressable>
           </View>
 
-          {needSetupPassword ? (
+          {isPasswordSetupStep ? (
             <View style={{ marginTop: 10, gap: 10 }}>
               <Text style={{ color: "#bbb" }}>
-                Set your password once. Next time you can log in with either Google or email/password.
+                Set your password once. Next time you can login with either Google or email/password.
               </Text>
+              <TextInput
+                value={setupPhone}
+                onChangeText={setSetupPhone}
+                keyboardType="phone-pad"
+                placeholder="Phone number"
+                placeholderTextColor="#7a7a7a"
+                style={{
+                  borderWidth: 1,
+                  borderColor: "#333",
+                  borderRadius: 10,
+                  paddingHorizontal: 12,
+                  paddingVertical: 10,
+                  color: "#fff"
+                }}
+              />
               <TextInput
                 value={setupPassword}
                 onChangeText={setSetupPassword}
                 secureTextEntry
                 placeholder="New password"
                 placeholderTextColor="#7a7a7a"
-                style={{ borderWidth: 1, borderColor: "#333", borderRadius: 10, paddingHorizontal: 12, paddingVertical: 10, color: "#fff" }}
+                style={{
+                  borderWidth: 1,
+                  borderColor: "#333",
+                  borderRadius: 10,
+                  paddingHorizontal: 12,
+                  paddingVertical: 10,
+                  color: "#fff"
+                }}
               />
               <TextInput
-                value={setupPassword2}
-                onChangeText={setSetupPassword2}
+                value={setupPasswordConfirm}
+                onChangeText={setSetupPasswordConfirm}
                 secureTextEntry
                 placeholder="Confirm password"
                 placeholderTextColor="#7a7a7a"
-                style={{ borderWidth: 1, borderColor: "#333", borderRadius: 10, paddingHorizontal: 12, paddingVertical: 10, color: "#fff" }}
+                style={{
+                  borderWidth: 1,
+                  borderColor: "#333",
+                  borderRadius: 10,
+                  paddingHorizontal: 12,
+                  paddingVertical: 10,
+                  color: "#fff"
+                }}
               />
               <Pressable
                 disabled={busy}
-                onPress={submitPasswordSetup}
+                onPress={handlePasswordSetup}
                 style={{
                   backgroundColor: "#fff",
                   paddingVertical: 12,
                   borderRadius: 12,
                   alignItems: "center",
-                  opacity: busy ? 0.75 : 1,
+                  opacity: busy ? 0.75 : 1
                 }}
               >
                 <Text style={{ fontWeight: "800" }}>{busy ? "Please wait..." : "Save Password"}</Text>
@@ -267,15 +463,16 @@ export default function AuthModal({ visible, onClose, onAuthed }: any) {
           ) : (
             <View style={{ marginTop: 10, gap: 10 }}>
               <Text style={{ color: "#bbb" }}>Continue with Google or use email/password.</Text>
+
               <Pressable
                 disabled={busy}
-                onPress={loginWithGoogle}
+                onPress={handleGoogleLogin}
                 style={{
                   backgroundColor: "#fff",
                   paddingVertical: 12,
                   borderRadius: 12,
                   alignItems: "center",
-                  opacity: busy ? 0.75 : 1,
+                  opacity: busy ? 0.75 : 1
                 }}
               >
                 <Text style={{ fontWeight: "800" }}>{busy ? "Please wait..." : "Continue with Google"}</Text>
@@ -290,19 +487,35 @@ export default function AuthModal({ visible, onClose, onAuthed }: any) {
                 keyboardType="email-address"
                 placeholder="Email"
                 placeholderTextColor="#7a7a7a"
-                style={{ borderWidth: 1, borderColor: "#333", borderRadius: 10, paddingHorizontal: 12, paddingVertical: 10, color: "#fff" }}
+                style={{
+                  borderWidth: 1,
+                  borderColor: "#333",
+                  borderRadius: 10,
+                  paddingHorizontal: 12,
+                  paddingVertical: 10,
+                  color: "#fff"
+                }}
               />
+
               <TextInput
                 value={password}
                 onChangeText={setPassword}
                 secureTextEntry
                 placeholder="Password"
                 placeholderTextColor="#7a7a7a"
-                style={{ borderWidth: 1, borderColor: "#333", borderRadius: 10, paddingHorizontal: 12, paddingVertical: 10, color: "#fff" }}
+                style={{
+                  borderWidth: 1,
+                  borderColor: "#333",
+                  borderRadius: 10,
+                  paddingHorizontal: 12,
+                  paddingVertical: 10,
+                  color: "#fff"
+                }}
               />
+
               <Pressable
                 disabled={busy}
-                onPress={loginWithEmailPassword}
+                onPress={handleEmailPasswordLogin}
                 style={{
                   borderWidth: 1,
                   borderColor: "#5b5b5b",
@@ -312,13 +525,15 @@ export default function AuthModal({ visible, onClose, onAuthed }: any) {
                   opacity: busy ? 0.75 : 1
                 }}
               >
-                <Text style={{ color: "#fff", fontWeight: "800" }}>{busy ? "Please wait..." : "Login with Email & Password"}</Text>
+                <Text style={{ color: "#fff", fontWeight: "800" }}>
+                  {busy ? "Please wait..." : "Login with Email & Password"}
+                </Text>
               </Pressable>
             </View>
           )}
 
-          {msg ? <Text style={{ color: "#9ef1a6", marginTop: 10 }}>{msg}</Text> : null}
-          {err ? <Text style={{ color: "#ff6b6b", marginTop: 10 }}>{err}</Text> : null}
+          {successText ? <Text style={{ color: "#9ef1a6", marginTop: 10 }}>{successText}</Text> : null}
+          {errorText ? <Text style={{ color: "#ff6b6b", marginTop: 10 }}>{errorText}</Text> : null}
         </View>
       </View>
     </Modal>

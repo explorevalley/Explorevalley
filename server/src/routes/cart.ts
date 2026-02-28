@@ -2,7 +2,7 @@ import { Router } from "express";
 import { z } from "zod";
 import { requireAuth, getAuthClaims } from "../middleware/auth";
 import { readData, mutateData } from "../services/jsondb";
-import { makeId } from "@explorevalley/shared";
+import { makeId, type MenuItem } from "@explorevalley/shared";
 
 const MAX_CART_ITEMS = 100;
 const MAX_PER_ITEM = 50;
@@ -71,8 +71,8 @@ function presentCart(db: any, cart: any) {
 }
 
 function normalizeIncomingItems(db: any, payload: Array<{ menuItemId: string; quantity: number }>, explicitRestaurantId?: string) {
-  const menuItems = db.menuItems || [];
-  const byId = new Map(menuItems.map((m: any) => [norm(m.id), m]));
+  const menuItems = (db.menuItems || []) as MenuItem[];
+  const byId = new Map(menuItems.map((m) => [norm(m.id), m]));
   const now = new Date().toISOString();
   const merged = new Map<string, { menuItemId: string; restaurantId: string; name: string; price: number; quantity: number; isVeg: boolean; addedAt: string }>();
   let restaurantId = norm(explicitRestaurantId);

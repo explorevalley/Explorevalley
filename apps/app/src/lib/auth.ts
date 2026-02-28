@@ -22,11 +22,25 @@ function isWeb() {
   return Platform.OS === "web";
 }
 
+function isJwt(value: string | null) {
+  if (!value) return false;
+  const parts = value.split(".");
+  return parts.length === 3 && parts.every((p) => p.length > 0);
+}
+
 export function loadAuth() {
   if (!isWeb()) return;
   token = localStorage.getItem(TOKEN_KEY);
   supabaseAccessToken = localStorage.getItem(SUPABASE_ACCESS_TOKEN_KEY);
-  mode = token ? "authenticated" : "none";
+  if (token && !isJwt(token)) {
+    token = null;
+    supabaseAccessToken = null;
+    mode = "none";
+    localStorage.removeItem(TOKEN_KEY);
+    localStorage.removeItem(SUPABASE_ACCESS_TOKEN_KEY);
+  } else {
+    mode = token ? "authenticated" : "none";
+  }
   try {
     const raw = localStorage.getItem(USER_KEY);
     user = raw ? JSON.parse(raw) : null;

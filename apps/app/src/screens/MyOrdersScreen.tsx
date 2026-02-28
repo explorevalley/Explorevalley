@@ -151,7 +151,7 @@ export default function MyOrdersScreen({
 
   if (loading) {
     return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: "#f3f5f9" }}>
+      <View style={{ flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: "transparent" }}>
         <ActivityIndicator color="#f4511e" size="large" />
         <Text style={{ color: "#6b7280", marginTop: 8 }}>Loading your orders...</Text>
       </View>
@@ -159,7 +159,7 @@ export default function MyOrdersScreen({
   }
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#f3f5f9" }}>
+    <View style={{ flex: 1, backgroundColor: "transparent" }}>
       {/* Header */}
       <View style={{ margin: 14, marginBottom: 10, paddingHorizontal: 16, paddingVertical: 14, borderWidth: 1, borderColor: "#1d3258", backgroundColor: "#0f1a2d", borderRadius: 16 }}>
         <Text style={{ color: "#fff", fontWeight: "800", fontSize: 20 }}>My Orders</Text>

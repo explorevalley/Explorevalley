@@ -1,34 +1,60 @@
 {
   "settings": {
     "currency": "INR",
+    "pageSlugs": {
+      "affiliateProgram": "affiliate-program",
+      "contactUs": "contact-us",
+      "privacyPolicy": "privacy-policy",
+      "refundPolicy": "refund-policy",
+      "termsAndConditions": "terms-and-conditions"
+    },
     "taxRules": {
       "hotel": {
         "slabs": [
-          { "min": 0, "max": 999, "gst": 0 },
-          { "min": 1000, "max": 7500, "gst": 0.05 },
-          { "min": 7500.01, "max": null, "gst": 0.18 }
+          {
+            "min": 0,
+            "max": 999,
+            "gst": 0
+          },
+          {
+            "min": 1000,
+            "max": 7500,
+            "gst": 0.05
+          },
+          {
+            "min": 7500.01,
+            "max": null,
+            "gst": 0.18
+          }
         ]
       },
-      "tour": { "gst": 0.05, "mode": "NO_ITC" },
-      "food": { "gst": 0.05, "mode": "DEFAULT" },
-      "cab": { "gst": 0.05, "mode": "DEFAULT" }
+      "tour": {
+        "gst": 0.05,
+        "mode": "NO_ITC"
+      },
+      "food": {
+        "gst": 0.05,
+        "mode": "DEFAULT"
+      },
+      "cab": {
+        "gst": 0.05,
+        "mode": "DEFAULT"
+      }
     },
     "pricingTiers": [
-      { "name": "Economic", "multiplier": 0.85 },
-      { "name": "Premium", "multiplier": 1.15 },
-      { "name": "Luxury", "multiplier": 1.4 }
+      {
+        "name": "Economic",
+        "multiplier": 0.85
+      },
+      {
+        "name": "Premium",
+        "multiplier": 1.15
+      },
+      {
+        "name": "Luxury",
+        "multiplier": 1.4
+      }
     ]
-  },
-  "policies": {
-    "hotel": { "freeCancelHours": 24, "feeAfter": 0.5 },
-    "tour": { "freeCancelHours": 24, "feeAfter": 0.5 },
-    "cab": { "freeCancelMinutes": 15, "feeAfter": 50 },
-    "food": { "allowCancelMinutes": 5, "feeAfter": 20 }
-  },
-  "payments": {
-    "walletEnabled": false,
-    "refundMethod": "original",
-    "refundWindowHours": 72
   },
   "tours": [
     {
@@ -36,13 +62,44 @@
       "title": "Solang Valley Adventure",
       "description": "Experience the thrill of Solang Valley with paragliding, zorbing, and stunning Himalayan views. A full-day adventure tour perfect for families and thrill seekers.",
       "price": 2500,
+      "vendorMobile": "",
+      "additionalComments": "",
+      "priceDropped": false,
+      "priceDropPercent": 0,
+      "heroImage": "",
       "duration": "Full Day",
       "images": [],
-      "highlights": ["Paragliding", "Zorbing", "Snow Activities", "Mountain Views"],
+      "imageTitles": [],
+      "imageDescriptions": [],
+      "imageMeta": [],
+      "highlights": [
+        "Paragliding",
+        "Zorbing",
+        "Snow Activities",
+        "Mountain Views"
+      ],
       "itinerary": "Morning pickup from hotel → Drive to Solang Valley → Adventure activities → Lunch break → More activities → Return by evening",
-      "inclusions": ["Transport", "Lunch", "Activity charges", "Guide"],
-      "exclusions": ["Personal expenses", "Tips"],
+      "mapEmbedUrl": "",
+      "faqs": [],
+      "itineraryItems": [],
+      "facts": [],
+      "contentBlocks": {},
+      "i18n": {},
+      "inclusions": [
+        "Transport",
+        "Lunch",
+        "Activity charges",
+        "Guide"
+      ],
+      "exclusions": [
+        "Personal expenses",
+        "Tips"
+      ],
       "maxGuests": 20,
+      "availability": {
+        "closedDates": [],
+        "capacityByDate": {}
+      },
       "available": true,
       "createdAt": "2026-01-01T00:00:00.000Z"
     },
@@ -51,13 +108,43 @@
       "title": "Rohtang Pass Day Trip",
       "description": "Visit the iconic Rohtang Pass at 13,050 ft with breathtaking views of glaciers, peaks, and the Lahaul Valley. Snow activities available year-round.",
       "price": 3500,
+      "vendorMobile": "",
+      "additionalComments": "",
+      "priceDropped": false,
+      "priceDropPercent": 0,
+      "heroImage": "",
       "duration": "Full Day",
       "images": [],
-      "highlights": ["Rohtang Pass", "Snow Point", "Glacier Views", "Photo Stops"],
+      "imageTitles": [],
+      "imageDescriptions": [],
+      "imageMeta": [],
+      "highlights": [
+        "Rohtang Pass",
+        "Snow Point",
+        "Glacier Views",
+        "Photo Stops"
+      ],
       "itinerary": "Early morning departure → Rohtang Pass → Snow activities → Lunch at Marhi → Return via Gulaba → Evening arrival",
-      "inclusions": ["Transport", "Permit fees", "Lunch"],
-      "exclusions": ["Snow gear rental", "Personal expenses"],
+      "mapEmbedUrl": "",
+      "faqs": [],
+      "itineraryItems": [],
+      "facts": [],
+      "contentBlocks": {},
+      "i18n": {},
+      "inclusions": [
+        "Transport",
+        "Permit fees",
+        "Lunch"
+      ],
+      "exclusions": [
+        "Snow gear rental",
+        "Personal expenses"
+      ],
       "maxGuests": 15,
+      "availability": {
+        "closedDates": [],
+        "capacityByDate": {}
+      },
       "available": true,
       "createdAt": "2026-01-02T00:00:00.000Z"
     },
@@ -66,13 +153,43 @@
       "title": "Old Manali Heritage Walk",
       "description": "Explore the charming lanes of Old Manali, visit ancient temples, local cafes, and enjoy the bohemian vibe of this beautiful hillside town.",
       "price": 800,
+      "vendorMobile": "",
+      "additionalComments": "",
+      "priceDropped": false,
+      "priceDropPercent": 0,
+      "heroImage": "",
       "duration": "Half Day",
       "images": [],
-      "highlights": ["Hadimba Temple", "Manu Temple", "Old Manali Market", "Riverside Walk"],
+      "imageTitles": [],
+      "imageDescriptions": [],
+      "imageMeta": [],
+      "highlights": [
+        "Hadimba Temple",
+        "Manu Temple",
+        "Old Manali Market",
+        "Riverside Walk"
+      ],
       "itinerary": "Meet at Mall Road → Walk to Hadimba Temple → Old Manali exploration → Cafe stop → Manu Temple → Return",
-      "inclusions": ["Guide", "Temple entry fees", "Tea/snack"],
-      "exclusions": ["Lunch", "Shopping"],
+      "mapEmbedUrl": "",
+      "faqs": [],
+      "itineraryItems": [],
+      "facts": [],
+      "contentBlocks": {},
+      "i18n": {},
+      "inclusions": [
+        "Guide",
+        "Temple entry fees",
+        "Tea/snack"
+      ],
+      "exclusions": [
+        "Lunch",
+        "Shopping"
+      ],
       "maxGuests": 25,
+      "availability": {
+        "closedDates": [],
+        "capacityByDate": {}
+      },
       "available": true,
       "createdAt": "2026-01-03T00:00:00.000Z"
     },
@@ -81,13 +198,44 @@
       "title": "Kullu River Rafting",
       "description": "White water rafting on the Beas River in Kullu. An adrenaline-pumping experience through rapids surrounded by lush green mountains.",
       "price": 1800,
+      "vendorMobile": "",
+      "additionalComments": "",
+      "priceDropped": false,
+      "priceDropPercent": 0,
+      "heroImage": "",
       "duration": "Half Day",
       "images": [],
-      "highlights": ["Grade 2-3 Rapids", "14km Stretch", "Safety Gear Provided", "Trained Instructors"],
+      "imageTitles": [],
+      "imageDescriptions": [],
+      "imageMeta": [],
+      "highlights": [
+        "Grade 2-3 Rapids",
+        "14km Stretch",
+        "Safety Gear Provided",
+        "Trained Instructors"
+      ],
       "itinerary": "Drive to Pirdi → Safety briefing → Rafting 14km stretch → End at Jhiri → Return to Manali",
-      "inclusions": ["Transport", "Rafting equipment", "Life jacket", "Instructor"],
-      "exclusions": ["Photos/Videos", "Tips"],
+      "mapEmbedUrl": "",
+      "faqs": [],
+      "itineraryItems": [],
+      "facts": [],
+      "contentBlocks": {},
+      "i18n": {},
+      "inclusions": [
+        "Transport",
+        "Rafting equipment",
+        "Life jacket",
+        "Instructor"
+      ],
+      "exclusions": [
+        "Photos/Videos",
+        "Tips"
+      ],
       "maxGuests": 8,
+      "availability": {
+        "closedDates": [],
+        "capacityByDate": {}
+      },
       "available": true,
       "createdAt": "2026-01-04T00:00:00.000Z"
     }
@@ -98,12 +246,25 @@
       "title": "Manali Winter Carnival",
       "description": "Annual winter festival featuring cultural performances, folk dances, local music, handicraft exhibitions, and adventure sports competitions.",
       "location": "Mall Road, Manali",
+      "vendorMobile": "",
+      "additionalComments": "",
+      "priceDropped": false,
+      "priceDropPercent": 0,
+      "heroImage": "",
       "month": "January",
       "date": "2026-01-02",
       "vibe": "Cultural & Festive",
       "ticket": "Free Entry",
       "images": [],
-      "highlights": ["Folk Dance", "Music Performances", "Handicraft Fair", "Food Stalls"],
+      "imageTitles": [],
+      "imageDescriptions": [],
+      "imageMeta": [],
+      "highlights": [
+        "Folk Dance",
+        "Music Performances",
+        "Handicraft Fair",
+        "Food Stalls"
+      ],
       "available": true,
       "createdAt": "2026-01-01T00:00:00.000Z"
     },
@@ -112,12 +273,25 @@
       "title": "Kullu Dussehra",
       "description": "The world-famous week-long Kullu Dussehra festival where over 200 local deities are brought in processions to the Dhalpur Maidan.",
       "location": "Dhalpur Maidan, Kullu",
+      "vendorMobile": "",
+      "additionalComments": "",
+      "priceDropped": false,
+      "priceDropPercent": 0,
+      "heroImage": "",
       "month": "October",
       "date": "2026-10-02",
       "vibe": "Religious & Cultural",
       "ticket": "Free Entry",
       "images": [],
-      "highlights": ["Deity Processions", "Rath Yatra", "Folk Performances", "Local Market"],
+      "imageTitles": [],
+      "imageDescriptions": [],
+      "imageMeta": [],
+      "highlights": [
+        "Deity Processions",
+        "Rath Yatra",
+        "Folk Performances",
+        "Local Market"
+      ],
       "available": true,
       "createdAt": "2026-01-02T00:00:00.000Z"
     },
@@ -126,11 +300,24 @@
       "title": "Spring Festival",
       "description": "Celebrate the arrival of spring in the valley with flower exhibitions, live music, trekking events, and local food festivals.",
       "location": "Manali",
+      "vendorMobile": "",
+      "additionalComments": "",
+      "priceDropped": false,
+      "priceDropPercent": 0,
+      "heroImage": "",
       "month": "March",
       "vibe": "Nature & Celebration",
       "ticket": "Free Entry",
       "images": [],
-      "highlights": ["Flower Exhibition", "Live Music", "Food Festival", "Trekking Events"],
+      "imageTitles": [],
+      "imageDescriptions": [],
+      "imageMeta": [],
+      "highlights": [
+        "Flower Exhibition",
+        "Live Music",
+        "Food Festival",
+        "Trekking Events"
+      ],
       "available": true,
       "createdAt": "2026-01-03T00:00:00.000Z"
     }
@@ -141,18 +328,54 @@
       "name": "Mountain View Resort",
       "description": "A premium resort overlooking the snow-capped Himalayas with luxurious rooms, a spa, and multi-cuisine restaurant. Perfect for a relaxing mountain getaway.",
       "location": "Log Huts Area, Manali",
+      "vendorMobile": "",
+      "additionalComments": "",
       "pricePerNight": 4500,
+      "priceDropped": false,
+      "priceDropPercent": 0,
+      "heroImage": "",
       "images": [],
-      "amenities": ["WiFi", "Spa", "Restaurant", "Room Service", "Parking", "Mountain View"],
+      "imageTitles": [],
+      "imageDescriptions": [],
+      "imageMeta": [],
+      "amenities": [
+        "WiFi",
+        "Spa",
+        "Restaurant",
+        "Room Service",
+        "Parking",
+        "Mountain View"
+      ],
       "roomTypes": [
-        { "type": "Deluxe Room", "price": 4500, "capacity": 2 },
-        { "type": "Super Deluxe", "price": 6000, "capacity": 3 },
-        { "type": "Suite", "price": 9000, "capacity": 4 }
+        {
+          "type": "Deluxe Room",
+          "price": 4500,
+          "capacity": 2
+        },
+        {
+          "type": "Super Deluxe",
+          "price": 6000,
+          "capacity": 3
+        },
+        {
+          "type": "Suite",
+          "price": 9000,
+          "capacity": 4
+        }
       ],
       "rating": 4.5,
       "reviews": 128,
       "checkInTime": "14:00",
       "checkOutTime": "11:00",
+      "availability": {
+        "closedDates": [],
+        "roomsByType": {}
+      },
+      "seasonalPricing": [],
+      "dateOverrides": {},
+      "minNights": 1,
+      "maxNights": 30,
+      "childPolicy": "Children allowed with extra bedding charges if required.",
       "available": true,
       "createdAt": "2026-01-01T00:00:00.000Z"
     },
@@ -161,17 +384,48 @@
       "name": "Riverside Cottages",
       "description": "Cozy wooden cottages right by the Beas River with private balconies, bonfire area, and the soothing sound of flowing water. A nature lover's paradise.",
       "location": "Club House Road, Manali",
+      "vendorMobile": "",
+      "additionalComments": "",
       "pricePerNight": 3200,
+      "priceDropped": false,
+      "priceDropPercent": 0,
+      "heroImage": "",
       "images": [],
-      "amenities": ["WiFi", "Bonfire", "River View", "Parking", "Garden"],
+      "imageTitles": [],
+      "imageDescriptions": [],
+      "imageMeta": [],
+      "amenities": [
+        "WiFi",
+        "Bonfire",
+        "River View",
+        "Parking",
+        "Garden"
+      ],
       "roomTypes": [
-        { "type": "Standard Cottage", "price": 3200, "capacity": 2 },
-        { "type": "Premium Cottage", "price": 4800, "capacity": 4 }
+        {
+          "type": "Standard Cottage",
+          "price": 3200,
+          "capacity": 2
+        },
+        {
+          "type": "Premium Cottage",
+          "price": 4800,
+          "capacity": 4
+        }
       ],
       "rating": 4.3,
       "reviews": 95,
       "checkInTime": "13:00",
       "checkOutTime": "11:00",
+      "availability": {
+        "closedDates": [],
+        "roomsByType": {}
+      },
+      "seasonalPricing": [],
+      "dateOverrides": {},
+      "minNights": 1,
+      "maxNights": 30,
+      "childPolicy": "Children allowed with extra bedding charges if required.",
       "available": true,
       "createdAt": "2026-01-02T00:00:00.000Z"
     },
@@ -180,17 +434,47 @@
       "name": "Snow Peak Inn",
       "description": "Budget-friendly hotel in the heart of Manali with clean rooms, hot water, and easy access to Mall Road and local attractions.",
       "location": "Mall Road, Manali",
+      "vendorMobile": "",
+      "additionalComments": "",
       "pricePerNight": 1800,
+      "priceDropped": false,
+      "priceDropPercent": 0,
+      "heroImage": "",
       "images": [],
-      "amenities": ["WiFi", "Hot Water", "TV", "Room Service"],
-      "roomTypes": [
-        { "type": "Standard", "price": 1800, "capacity": 2 },
-        { "type": "Deluxe", "price": 2500, "capacity": 3 }
+      "imageTitles": [],
+      "imageDescriptions": [],
+      "imageMeta": [],
+      "amenities": [
+        "WiFi",
+        "Hot Water",
+        "TV",
+        "Room Service"
       ],
-      "rating": 4.0,
+      "roomTypes": [
+        {
+          "type": "Standard",
+          "price": 1800,
+          "capacity": 2
+        },
+        {
+          "type": "Deluxe",
+          "price": 2500,
+          "capacity": 3
+        }
+      ],
+      "rating": 4,
       "reviews": 210,
       "checkInTime": "12:00",
       "checkOutTime": "11:00",
+      "availability": {
+        "closedDates": [],
+        "roomsByType": {}
+      },
+      "seasonalPricing": [],
+      "dateOverrides": {},
+      "minNights": 1,
+      "maxNights": 30,
+      "childPolicy": "Children allowed with extra bedding charges if required.",
       "available": true,
       "createdAt": "2026-01-03T00:00:00.000Z"
     },
@@ -199,17 +483,48 @@
       "name": "Apple Orchard Homestay",
       "description": "Traditional Himachali homestay surrounded by apple orchards with home-cooked meals, cultural experiences, and panoramic valley views.",
       "location": "Naggar Road, Manali",
+      "vendorMobile": "",
+      "additionalComments": "",
       "pricePerNight": 2200,
+      "priceDropped": false,
+      "priceDropPercent": 0,
+      "heroImage": "",
       "images": [],
-      "amenities": ["Home-cooked Meals", "Orchard Walk", "Valley View", "WiFi", "Parking"],
+      "imageTitles": [],
+      "imageDescriptions": [],
+      "imageMeta": [],
+      "amenities": [
+        "Home-cooked Meals",
+        "Orchard Walk",
+        "Valley View",
+        "WiFi",
+        "Parking"
+      ],
       "roomTypes": [
-        { "type": "Traditional Room", "price": 2200, "capacity": 2 },
-        { "type": "Family Room", "price": 3500, "capacity": 4 }
+        {
+          "type": "Traditional Room",
+          "price": 2200,
+          "capacity": 2
+        },
+        {
+          "type": "Family Room",
+          "price": 3500,
+          "capacity": 4
+        }
       ],
       "rating": 4.7,
       "reviews": 67,
       "checkInTime": "14:00",
       "checkOutTime": "10:00",
+      "availability": {
+        "closedDates": [],
+        "roomsByType": {}
+      },
+      "seasonalPricing": [],
+      "dateOverrides": {},
+      "minNights": 1,
+      "maxNights": 30,
+      "childPolicy": "Children allowed with extra bedding charges if required.",
       "available": true,
       "createdAt": "2026-01-04T00:00:00.000Z"
     }
@@ -219,150 +534,106 @@
       "id": "rest_himalayan_kitchen",
       "name": "Himalayan Kitchen",
       "description": "Authentic Himachali and North Indian cuisine with a cozy mountain ambiance. Famous for thali meals and local specialties.",
-      "cuisine": ["North Indian", "Himachali"],
+      "vendorMobile": "",
+      "additionalComments": "",
+      "cuisine": [
+        "North Indian",
+        "Himachali"
+      ],
       "rating": 4.4,
       "reviewCount": 180,
       "deliveryTime": "30-45 min",
       "minimumOrder": 200,
+      "priceDropped": false,
+      "priceDropPercent": 0,
+      "heroImage": "",
       "images": [],
+      "imageTitles": [],
+      "imageDescriptions": [],
+      "imageMeta": [],
       "available": true,
       "isVeg": false,
-      "tags": ["Local Favorite", "Family Friendly"],
+      "tags": [
+        "Local Favorite",
+        "Family Friendly"
+      ],
       "location": "Old Manali",
+      "serviceRadiusKm": 0,
+      "deliveryZones": [],
       "openHours": "08:00",
-      "closingHours": "22:00"
+      "closingHours": "22:00",
+      "menu": []
     },
     {
       "id": "rest_cafe_1947",
       "name": "Cafe 1947",
       "description": "Iconic cafe in Old Manali serving Italian, Continental, and Israeli cuisine with live music evenings and a bohemian vibe.",
-      "cuisine": ["Italian", "Continental", "Israeli"],
+      "vendorMobile": "",
+      "additionalComments": "",
+      "cuisine": [
+        "Italian",
+        "Continental",
+        "Israeli"
+      ],
       "rating": 4.6,
       "reviewCount": 320,
       "deliveryTime": "25-35 min",
       "minimumOrder": 300,
+      "priceDropped": false,
+      "priceDropPercent": 0,
+      "heroImage": "",
       "images": [],
+      "imageTitles": [],
+      "imageDescriptions": [],
+      "imageMeta": [],
       "available": true,
       "isVeg": false,
-      "tags": ["Live Music", "Cafe", "Popular"],
+      "tags": [
+        "Live Music",
+        "Cafe",
+        "Popular"
+      ],
       "location": "Old Manali",
+      "serviceRadiusKm": 0,
+      "deliveryZones": [],
       "openHours": "09:00",
-      "closingHours": "23:00"
+      "closingHours": "23:00",
+      "menu": []
     },
     {
       "id": "rest_green_leaf",
       "name": "Green Leaf Veg Restaurant",
       "description": "Pure vegetarian restaurant offering South Indian, Chinese, and North Indian dishes. Known for crispy dosas and paneer specials.",
-      "cuisine": ["South Indian", "Chinese", "North Indian"],
+      "vendorMobile": "",
+      "additionalComments": "",
+      "cuisine": [
+        "South Indian",
+        "Chinese",
+        "North Indian"
+      ],
       "rating": 4.2,
       "reviewCount": 145,
       "deliveryTime": "20-30 min",
       "minimumOrder": 150,
+      "priceDropped": false,
+      "priceDropPercent": 0,
+      "heroImage": "",
       "images": [],
+      "imageTitles": [],
+      "imageDescriptions": [],
+      "imageMeta": [],
       "available": true,
       "isVeg": true,
-      "tags": ["Pure Veg", "Family Friendly"],
+      "tags": [
+        "Pure Veg",
+        "Family Friendly"
+      ],
       "location": "Mall Road",
+      "serviceRadiusKm": 0,
+      "deliveryZones": [],
       "openHours": "07:30",
-      "closingHours": "22:00"
-    }
-  ],
-  "menuItems": [
-    {
-      "id": "menu_hk_thali",
-      "restaurantId": "rest_himalayan_kitchen",
-      "category": "Main Course",
-      "name": "Himachali Thali",
-      "description": "Traditional Himachali meal with dal, rice, roti, sabzi, raita, and pickle",
-      "price": 350,
-      "available": true,
-      "isVeg": true,
-      "stock": 50,
-      "maxPerOrder": 5
-    },
-    {
-      "id": "menu_hk_trout",
-      "restaurantId": "rest_himalayan_kitchen",
-      "category": "Main Course",
-      "name": "River Trout Fry",
-      "description": "Fresh Beas river trout marinated in local spices and pan fried to perfection",
-      "price": 450,
-      "available": true,
-      "isVeg": false,
-      "stock": 20,
-      "maxPerOrder": 3
-    },
-    {
-      "id": "menu_hk_momos",
-      "restaurantId": "rest_himalayan_kitchen",
-      "category": "Starters",
-      "name": "Steamed Momos",
-      "description": "Tibetan style steamed dumplings with spicy chutney (8 pcs)",
-      "price": 180,
-      "available": true,
-      "isVeg": true,
-      "stock": 100,
-      "maxPerOrder": 10
-    },
-    {
-      "id": "menu_cf_pizza",
-      "restaurantId": "rest_cafe_1947",
-      "category": "Main Course",
-      "name": "Wood Fired Margherita Pizza",
-      "description": "Classic margherita with fresh mozzarella, basil, and homemade sauce",
-      "price": 380,
-      "available": true,
-      "isVeg": true,
-      "stock": 30,
-      "maxPerOrder": 5
-    },
-    {
-      "id": "menu_cf_pasta",
-      "restaurantId": "rest_cafe_1947",
-      "category": "Main Course",
-      "name": "Penne Arrabiata",
-      "description": "Penne pasta in spicy tomato sauce with garlic bread on the side",
-      "price": 320,
-      "available": true,
-      "isVeg": true,
-      "stock": 40,
-      "maxPerOrder": 5
-    },
-    {
-      "id": "menu_cf_shakshuka",
-      "restaurantId": "rest_cafe_1947",
-      "category": "Breakfast",
-      "name": "Shakshuka",
-      "description": "Middle Eastern style eggs poached in spiced tomato sauce with pita bread",
-      "price": 280,
-      "available": true,
-      "isVeg": false,
-      "stock": 25,
-      "maxPerOrder": 3
-    },
-    {
-      "id": "menu_gl_dosa",
-      "restaurantId": "rest_green_leaf",
-      "category": "South Indian",
-      "name": "Masala Dosa",
-      "description": "Crispy dosa filled with spiced potato masala, served with sambar and chutney",
-      "price": 160,
-      "available": true,
-      "isVeg": true,
-      "stock": 80,
-      "maxPerOrder": 5
-    },
-    {
-      "id": "menu_gl_paneer",
-      "restaurantId": "rest_green_leaf",
-      "category": "Main Course",
-      "name": "Paneer Butter Masala",
-      "description": "Cottage cheese cubes in rich tomato and butter gravy with naan",
-      "price": 280,
-      "available": true,
-      "isVeg": true,
-      "stock": 50,
-      "maxPerOrder": 5
+      "closingHours": "22:00",
+      "menu": []
     }
   ],
   "bookings": [],
@@ -383,15 +654,119 @@
       "fare": 8,
       "totalSeats": 26,
       "seatLayout": [
-        { "code": "A1", "seatType": "regular" }, { "code": "B1", "seatType": "regular" }, { "code": "C1", "seatType": "regular" }, { "code": "D1", "seatType": "regular" },
-        { "code": "A2", "seatType": "regular" }, { "code": "B2", "seatType": "regular" }, { "code": "C2", "seatType": "regular" }, { "code": "D2", "seatType": "regular" },
-        { "code": "A3", "seatType": "regular" }, { "code": "B3", "seatType": "regular" }, { "code": "C3", "seatType": "regular" }, { "code": "D3", "seatType": "regular" },
-        { "code": "A4", "seatType": "regular" }, { "code": "B4", "seatType": "regular" }, { "code": "C4", "seatType": "regular" }, { "code": "D4", "seatType": "regular" },
-        { "code": "A5", "seatType": "regular" }, { "code": "B5", "seatType": "regular" }, { "code": "C5", "seatType": "regular" }, { "code": "D5", "seatType": "regular" },
-        { "code": "A6", "seatType": "regular" }, { "code": "B6", "seatType": "regular" }, { "code": "C6", "seatType": "regular" }, { "code": "D6", "seatType": "regular" },
-        { "code": "C7", "seatType": "regular" }, { "code": "D7", "seatType": "regular" }
+        {
+          "code": "A1",
+          "seatType": "regular"
+        },
+        {
+          "code": "B1",
+          "seatType": "regular"
+        },
+        {
+          "code": "C1",
+          "seatType": "regular"
+        },
+        {
+          "code": "D1",
+          "seatType": "regular"
+        },
+        {
+          "code": "A2",
+          "seatType": "regular"
+        },
+        {
+          "code": "B2",
+          "seatType": "regular"
+        },
+        {
+          "code": "C2",
+          "seatType": "regular"
+        },
+        {
+          "code": "D2",
+          "seatType": "regular"
+        },
+        {
+          "code": "A3",
+          "seatType": "regular"
+        },
+        {
+          "code": "B3",
+          "seatType": "regular"
+        },
+        {
+          "code": "C3",
+          "seatType": "regular"
+        },
+        {
+          "code": "D3",
+          "seatType": "regular"
+        },
+        {
+          "code": "A4",
+          "seatType": "regular"
+        },
+        {
+          "code": "B4",
+          "seatType": "regular"
+        },
+        {
+          "code": "C4",
+          "seatType": "regular"
+        },
+        {
+          "code": "D4",
+          "seatType": "regular"
+        },
+        {
+          "code": "A5",
+          "seatType": "regular"
+        },
+        {
+          "code": "B5",
+          "seatType": "regular"
+        },
+        {
+          "code": "C5",
+          "seatType": "regular"
+        },
+        {
+          "code": "D5",
+          "seatType": "regular"
+        },
+        {
+          "code": "A6",
+          "seatType": "regular"
+        },
+        {
+          "code": "B6",
+          "seatType": "regular"
+        },
+        {
+          "code": "C6",
+          "seatType": "regular"
+        },
+        {
+          "code": "D6",
+          "seatType": "regular"
+        },
+        {
+          "code": "C7",
+          "seatType": "regular"
+        },
+        {
+          "code": "D7",
+          "seatType": "regular"
+        }
       ],
-      "serviceDates": ["2026-02-24", "2026-02-25", "2026-02-26", "2026-02-27", "2026-02-28", "2026-03-01"],
+      "serviceDates": [
+        "2026-02-24",
+        "2026-02-25",
+        "2026-02-26",
+        "2026-02-27",
+        "2026-02-28",
+        "2026-03-01"
+      ],
       "seatsBookedByDate": {},
       "heroImage": "",
       "active": true,
@@ -412,13 +787,87 @@
       "fare": 8,
       "totalSeats": 18,
       "seatLayout": [
-        { "code": "A1", "seatType": "regular" }, { "code": "B1", "seatType": "regular" }, { "code": "C1", "seatType": "regular" }, { "code": "D1", "seatType": "regular" },
-        { "code": "A2", "seatType": "regular" }, { "code": "B2", "seatType": "regular" }, { "code": "C2", "seatType": "regular" }, { "code": "D2", "seatType": "regular" },
-        { "code": "A3", "seatType": "regular" }, { "code": "B3", "seatType": "regular" }, { "code": "C3", "seatType": "regular" }, { "code": "D3", "seatType": "regular" },
-        { "code": "A4", "seatType": "regular" }, { "code": "B4", "seatType": "regular" }, { "code": "C4", "seatType": "regular" }, { "code": "D4", "seatType": "regular" },
-        { "code": "A5", "seatType": "regular" }, { "code": "B5", "seatType": "regular" }
+        {
+          "code": "A1",
+          "seatType": "regular"
+        },
+        {
+          "code": "B1",
+          "seatType": "regular"
+        },
+        {
+          "code": "C1",
+          "seatType": "regular"
+        },
+        {
+          "code": "D1",
+          "seatType": "regular"
+        },
+        {
+          "code": "A2",
+          "seatType": "regular"
+        },
+        {
+          "code": "B2",
+          "seatType": "regular"
+        },
+        {
+          "code": "C2",
+          "seatType": "regular"
+        },
+        {
+          "code": "D2",
+          "seatType": "regular"
+        },
+        {
+          "code": "A3",
+          "seatType": "regular"
+        },
+        {
+          "code": "B3",
+          "seatType": "regular"
+        },
+        {
+          "code": "C3",
+          "seatType": "regular"
+        },
+        {
+          "code": "D3",
+          "seatType": "regular"
+        },
+        {
+          "code": "A4",
+          "seatType": "regular"
+        },
+        {
+          "code": "B4",
+          "seatType": "regular"
+        },
+        {
+          "code": "C4",
+          "seatType": "regular"
+        },
+        {
+          "code": "D4",
+          "seatType": "regular"
+        },
+        {
+          "code": "A5",
+          "seatType": "regular"
+        },
+        {
+          "code": "B5",
+          "seatType": "regular"
+        }
       ],
-      "serviceDates": ["2026-02-24", "2026-02-25", "2026-02-26", "2026-02-27", "2026-02-28", "2026-03-01"],
+      "serviceDates": [
+        "2026-02-24",
+        "2026-02-25",
+        "2026-02-26",
+        "2026-02-27",
+        "2026-02-28",
+        "2026-03-01"
+      ],
       "seatsBookedByDate": {},
       "heroImage": "",
       "active": true,
@@ -427,7 +876,178 @@
   ],
   "busBookings": [],
   "foodOrders": [],
+  "carts": [],
   "queries": [],
+  "menuItems": [
+    {
+      "id": "menu_hk_thali",
+      "restaurantId": "rest_himalayan_kitchen",
+      "category": "Main Course",
+      "name": "Himachali Thali",
+      "description": "Traditional Himachali meal with dal, rice, roti, sabzi, raita, and pickle",
+      "price": 350,
+      "priceDropped": false,
+      "priceDropPercent": 0,
+      "heroImage": "",
+      "imageTitles": [],
+      "imageDescriptions": [],
+      "imageMeta": [],
+      "available": true,
+      "isVeg": true,
+      "tags": [],
+      "stock": 50,
+      "maxPerOrder": 5,
+      "addons": [],
+      "variants": []
+    },
+    {
+      "id": "menu_hk_trout",
+      "restaurantId": "rest_himalayan_kitchen",
+      "category": "Main Course",
+      "name": "River Trout Fry",
+      "description": "Fresh Beas river trout marinated in local spices and pan fried to perfection",
+      "price": 450,
+      "priceDropped": false,
+      "priceDropPercent": 0,
+      "heroImage": "",
+      "imageTitles": [],
+      "imageDescriptions": [],
+      "imageMeta": [],
+      "available": true,
+      "isVeg": false,
+      "tags": [],
+      "stock": 20,
+      "maxPerOrder": 3,
+      "addons": [],
+      "variants": []
+    },
+    {
+      "id": "menu_hk_momos",
+      "restaurantId": "rest_himalayan_kitchen",
+      "category": "Starters",
+      "name": "Steamed Momos",
+      "description": "Tibetan style steamed dumplings with spicy chutney (8 pcs)",
+      "price": 180,
+      "priceDropped": false,
+      "priceDropPercent": 0,
+      "heroImage": "",
+      "imageTitles": [],
+      "imageDescriptions": [],
+      "imageMeta": [],
+      "available": true,
+      "isVeg": true,
+      "tags": [],
+      "stock": 100,
+      "maxPerOrder": 10,
+      "addons": [],
+      "variants": []
+    },
+    {
+      "id": "menu_cf_pizza",
+      "restaurantId": "rest_cafe_1947",
+      "category": "Main Course",
+      "name": "Wood Fired Margherita Pizza",
+      "description": "Classic margherita with fresh mozzarella, basil, and homemade sauce",
+      "price": 380,
+      "priceDropped": false,
+      "priceDropPercent": 0,
+      "heroImage": "",
+      "imageTitles": [],
+      "imageDescriptions": [],
+      "imageMeta": [],
+      "available": true,
+      "isVeg": true,
+      "tags": [],
+      "stock": 30,
+      "maxPerOrder": 5,
+      "addons": [],
+      "variants": []
+    },
+    {
+      "id": "menu_cf_pasta",
+      "restaurantId": "rest_cafe_1947",
+      "category": "Main Course",
+      "name": "Penne Arrabiata",
+      "description": "Penne pasta in spicy tomato sauce with garlic bread on the side",
+      "price": 320,
+      "priceDropped": false,
+      "priceDropPercent": 0,
+      "heroImage": "",
+      "imageTitles": [],
+      "imageDescriptions": [],
+      "imageMeta": [],
+      "available": true,
+      "isVeg": true,
+      "tags": [],
+      "stock": 40,
+      "maxPerOrder": 5,
+      "addons": [],
+      "variants": []
+    },
+    {
+      "id": "menu_cf_shakshuka",
+      "restaurantId": "rest_cafe_1947",
+      "category": "Breakfast",
+      "name": "Shakshuka",
+      "description": "Middle Eastern style eggs poached in spiced tomato sauce with pita bread",
+      "price": 280,
+      "priceDropped": false,
+      "priceDropPercent": 0,
+      "heroImage": "",
+      "imageTitles": [],
+      "imageDescriptions": [],
+      "imageMeta": [],
+      "available": true,
+      "isVeg": false,
+      "tags": [],
+      "stock": 25,
+      "maxPerOrder": 3,
+      "addons": [],
+      "variants": []
+    },
+    {
+      "id": "menu_gl_dosa",
+      "restaurantId": "rest_green_leaf",
+      "category": "South Indian",
+      "name": "Masala Dosa",
+      "description": "Crispy dosa filled with spiced potato masala, served with sambar and chutney",
+      "price": 160,
+      "priceDropped": false,
+      "priceDropPercent": 0,
+      "heroImage": "",
+      "imageTitles": [],
+      "imageDescriptions": [],
+      "imageMeta": [],
+      "available": true,
+      "isVeg": true,
+      "tags": [],
+      "stock": 80,
+      "maxPerOrder": 5,
+      "addons": [],
+      "variants": []
+    },
+    {
+      "id": "menu_gl_paneer",
+      "restaurantId": "rest_green_leaf",
+      "category": "Main Course",
+      "name": "Paneer Butter Masala",
+      "description": "Cottage cheese cubes in rich tomato and butter gravy with naan",
+      "price": 280,
+      "priceDropped": false,
+      "priceDropPercent": 0,
+      "heroImage": "",
+      "imageTitles": [],
+      "imageDescriptions": [],
+      "imageMeta": [],
+      "available": true,
+      "isVeg": true,
+      "tags": [],
+      "stock": 50,
+      "maxPerOrder": 5,
+      "addons": [],
+      "variants": []
+    }
+  ],
   "auditLog": [],
   "cabProviders": [
     {
@@ -473,12 +1093,237 @@
       "serviceAreaId": "area_kullu"
     }
   ],
+  "cabPricing": {
+    "baseFare": 120,
+    "perKm": 14,
+    "perMin": 2,
+    "surgeRules": [],
+    "nightCharges": {
+      "start": "22:00",
+      "end": "06:00",
+      "multiplier": 1.25
+    },
+    "tolls": {
+      "enabled": false,
+      "defaultFee": 0
+    }
+  },
   "serviceAreas": [
-    { "id": "area_manali", "name": "Manali", "city": "Manali", "enabled": true },
-    { "id": "area_kullu", "name": "Kullu", "city": "Kullu", "enabled": true },
-    { "id": "area_chandigarh", "name": "Chandigarh", "city": "Chandigarh", "enabled": true },
-    { "id": "area_dallas", "name": "Dallas", "city": "Dallas", "enabled": true },
-    { "id": "area_chicago", "name": "Chicago", "city": "Chicago", "enabled": true }
+    {
+      "id": "area_manali",
+      "name": "Manali",
+      "city": "Manali",
+      "enabled": true
+    },
+    {
+      "id": "area_kullu",
+      "name": "Kullu",
+      "city": "Kullu",
+      "enabled": true
+    },
+    {
+      "id": "area_chandigarh",
+      "name": "Chandigarh",
+      "city": "Chandigarh",
+      "enabled": true
+    },
+    {
+      "id": "area_dallas",
+      "name": "Dallas",
+      "city": "Dallas",
+      "enabled": true
+    },
+    {
+      "id": "area_chicago",
+      "name": "Chicago",
+      "city": "Chicago",
+      "enabled": true
+    }
   ],
-  "coupons": []
+  "coupons": [],
+  "policies": {
+    "hotel": {
+      "freeCancelHours": 24,
+      "feeAfter": 0.5
+    },
+    "tour": {
+      "freeCancelHours": 24,
+      "feeAfter": 0.5
+    },
+    "cab": {
+      "freeCancelMinutes": 15,
+      "feeAfter": 50
+    },
+    "food": {
+      "allowCancelMinutes": 5,
+      "feeAfter": 20
+    }
+  },
+  "payments": {
+    "walletEnabled": false,
+    "refundMethod": "original",
+    "refundWindowHours": 72
+  },
+  "userProfiles": [],
+  "userBehaviorProfiles": [
+    {
+      "id": "behavior_user_127.0.0.1",
+      "userId": "user_127.0.0.1",
+      "phone": "",
+      "name": "",
+      "email": "",
+      "coreIdentity": {
+        "profilePhoto": "",
+        "accountId": "user_127.0.0.1",
+        "linkedSocialAccounts": [],
+        "kycData": {},
+        "referralCode": "",
+        "referralHistory": []
+      },
+      "deviceFingerprinting": {
+        "deviceId": "",
+        "osVersion": "",
+        "appVersion": "",
+        "screenSize": "",
+        "language": "",
+        "timezone": "",
+        "ipAddress": "",
+        "ipHistory": [],
+        "networkType": "",
+        "isp": "",
+        "rootJailbreakSignals": []
+      },
+      "locationMobility": {
+        "realtimeGps": {},
+        "pickupDropLocations": [],
+        "savedAddresses": [],
+        "routeHistory": [],
+        "localityPatterns": [],
+        "travelFrequency": 0,
+        "travelDistanceKm": 0
+      },
+      "behavioralAnalytics": {
+        "appOpenFrequency": 0,
+        "timeSpentPerScreen": {},
+        "clicksScrollsHesitations": {},
+        "searchQueries": [],
+        "abandonedCarts": 0,
+        "cancelledRides": 0,
+        "retryBehavior": {}
+      },
+      "transactionPayment": {
+        "orderHistory": [],
+        "bookingTimestamps": [],
+        "paymentMethods": [],
+        "failedPayments": 0,
+        "refunds": 0,
+        "chargebacks": 0,
+        "tipBehavior": {},
+        "promoCouponUsage": []
+      },
+      "preferencePersonalization": {
+        "cuisinePreferences": [],
+        "preferredVendors": [],
+        "priceSensitivity": "",
+        "timeBasedHabits": [],
+        "rideTypePreference": ""
+      },
+      "ratingsReviewsFeedback": {
+        "ratingsGiven": [],
+        "ratingsReceived": [],
+        "complaintCategories": [],
+        "supportChatLogs": [],
+        "callRecordingRefs": []
+      },
+      "marketingAttribution": {
+        "adSource": "",
+        "campaignId": "",
+        "pushInteraction": {},
+        "emailOpenClicks": {},
+        "inAppBannerClicks": 0,
+        "abTestGroups": []
+      },
+      "trustSafetyFraud": {
+        "suspiciousBehaviorPatterns": [],
+        "multipleAccountDetection": false,
+        "locationSpoofingSignals": [],
+        "couponAbuseFlags": [],
+        "fakeReviewFlags": [],
+        "accountBansFlags": [],
+        "lawEnforcementMetadata": []
+      },
+      "derivedInferred": {
+        "spendingCapacityScore": 0,
+        "loyaltyScore": 0,
+        "churnProbability": 0,
+        "fraudRiskScore": 0,
+        "priceElasticity": 0,
+        "deliveryDelayTolerance": 0,
+        "surgeAcceptanceLikelihood": 0
+      },
+      "orders": [],
+      "createdAt": "2026-02-28T05:05:13.838Z",
+      "updatedAt": "2026-02-28T05:05:18.173Z"
+    }
+  ],
+  "analyticsEvents": [
+    {
+      "id": "evt_1772255113838_uw49oy",
+      "type": "malicious_bot_detected",
+      "category": "security",
+      "userId": "user_127.0.0.1",
+      "phone": "",
+      "email": "",
+      "at": "2026-02-28T05:05:13.838Z",
+      "meta": {
+        "ipAddress": "127.0.0.1",
+        "browser": "node",
+        "malicious": true,
+        "source": "tc"
+      }
+    },
+    {
+      "id": "evt_1772255118173_2gq00w",
+      "type": "malicious_bot_detected",
+      "category": "security",
+      "userId": "user_127.0.0.1",
+      "phone": "",
+      "email": "",
+      "at": "2026-02-28T05:05:18.173Z",
+      "meta": {
+        "ipAddress": "127.0.0.1",
+        "browser": "node",
+        "clientAt": "2099-01-01T00:00:00.000Z",
+        "malicious": true,
+        "source": "tc"
+      }
+    }
+  ],
+  "sitePages": {
+    "affiliateProgram": {
+      "title": "Affiliate Program",
+      "slug": "affiliate-program",
+      "content": ""
+    },
+    "contactUs": {
+      "title": "Contact Us",
+      "slug": "contact-us",
+      "content": ""
+    },
+    "privacyPolicy": {
+      "title": "Privacy Policy",
+      "slug": "privacy-policy",
+      "content": ""
+    },
+    "refundPolicy": {
+      "title": "Refund Policy",
+      "slug": "refund-policy",
+      "content": ""
+    },
+    "termsAndConditions": {
+      "title": "Terms and Conditions",
+      "slug": "terms-and-conditions",
+      "content": ""
+    }
+  }
 }

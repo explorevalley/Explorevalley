@@ -24,6 +24,11 @@ function defaultSeatLayout(totalSeats: number) {
 export function busRouter() {
   const r = Router();
 
+  r.get("/", async (_req, res) => {
+    const db = await readData();
+    res.json((db as any).busRoutes || []);
+  });
+
   r.get("/search", async (req, res) => {
     const from = safeText(req.query.from || req.query.fromCity);
     const to = safeText(req.query.to || req.query.toCity);
@@ -163,4 +168,3 @@ export function busRouter() {
 
   return r;
 }
-

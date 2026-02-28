@@ -145,24 +145,30 @@ export default function AIChatWidget({
         pointerEvents="box-none"
         style={{ position: "absolute", bottom: 0, right: 0, left: 0, top: 0, zIndex: 9000 }}
       >
-        <Animated.View style={{ position: "absolute", bottom: 18, right: 16, transform: [{ scale: pulseAnim }] }}>
+        <Animated.View
+          style={{
+            position: "absolute",
+            right: 16,
+            top: "50%",
+            marginTop: -28,
+            transform: [{ scale: pulseAnim }],
+          }}
+        >
           <Pressable
             onPress={() => open("mini")}
             style={{
-              flexDirection: "row",
-              alignItems: "center",
-              backgroundColor: "#16a34a",
-              paddingHorizontal: 16,
-              paddingVertical: 12,
+              width: 56,
+              height: 56,
               borderRadius: 28,
-              gap: 8,
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "#16a34a",
               ...(Platform.OS === "web"
                 ? { boxShadow: "0 4px 20px rgba(0,0,0,0.4)" }
                 : { shadowColor: "#000", shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.35, shadowRadius: 10, elevation: 8 }),
             }}
           >
-            <Text style={{ fontSize: 18 }}>🤖</Text>
-            <Text style={{ color: "#fff", fontWeight: "800", fontSize: 13 }}>AI Orders</Text>
+            <Text style={{ color: "#fff", fontWeight: "800", fontSize: 14 }}>AI</Text>
             {unread > 0 ? (
               <View
                 style={{

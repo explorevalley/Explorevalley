@@ -135,10 +135,45 @@ async function run() {
       }
     ];
 
+    const bikeRentals = [
+      {
+        id: "bike_manali_01",
+        name: "Old Manali Riders",
+        location: "Manali",
+        bikeType: "Scooter",
+        pricePerHour: 120,
+        pricePerDay: 900,
+        availableQty: 8,
+        securityDeposit: 2000,
+        helmetIncluded: true,
+        vendorMobile: "+914444444444",
+        image: "",
+        active: true,
+        createdAt: now
+      },
+      {
+        id: "bike_kullu_02",
+        name: "Valley Wheels",
+        location: "Kullu",
+        bikeType: "Royal Enfield",
+        pricePerHour: 240,
+        pricePerDay: 1800,
+        availableQty: 5,
+        securityDeposit: 4000,
+        helmetIncluded: true,
+        vendorMobile: "+915555555555",
+        image: "",
+        active: true,
+        createdAt: now
+      }
+    ];
+
     db.serviceAreas = upsertById(Array.isArray(db.serviceAreas) ? db.serviceAreas : [], serviceAreas);
     db.cabProviders = upsertById(Array.isArray(db.cabProviders) ? db.cabProviders : [], cabProviders);
     db.busRoutes = upsertById(Array.isArray(db.busRoutes) ? db.busRoutes : [], busRoutes);
+    db.bikeRentals = upsertById(Array.isArray(db.bikeRentals) ? db.bikeRentals : [], bikeRentals);
     if (!Array.isArray(db.busBookings)) db.busBookings = [];
+    if (!Array.isArray(db.bikeBookings)) db.bikeBookings = [];
     db.cabPricing = {
       ...(db.cabPricing || {}),
       baseFare: 90,
@@ -148,11 +183,10 @@ async function run() {
     };
   }, "seed_transport_data");
 
-  console.log("Seeded transport data: service areas, cab providers, bus routes.");
+  console.log("Seeded transport data: service areas, cab providers, bus routes, bike rentals.");
 }
 
 run().catch((err) => {
   console.error("seedTransport failed:", err?.message || err);
   process.exit(1);
 });
-

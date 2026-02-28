@@ -47,6 +47,85 @@ function menuItemImage(m: any) {
   return "";
 }
 
+function supabaseUrl() {
+  return String(process.env.SUPABASE_URL || "").replace(/\/+$/, "");
+}
+
+function supabaseServiceRoleKey() {
+  return String(process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SECRET_KEY || "").trim();
+}
+
+function supabaseHeaders() {
+  const key = supabaseServiceRoleKey();
+  return {
+    apikey: key,
+    Authorization: `Bearer ${key}`,
+    "Content-Type": "application/json"
+  };
+}
+
+function parseMoney(v: any) {
+  const n = Number(v);
+  if (!Number.isFinite(n)) return 0;
+  return Math.max(0, n);
+}
+
+function martImage(row: any) {
+  const candidates = [
+    row?.image,
+    row?.image_url,
+    row?.imageUrl,
+    row?.photo,
+    row?.heroImage
+  ];
+  for (const item of candidates) {
+    const out = safeText(item);
+    if (out) return out;
+  }
+  return "";
+}
+
+async function fetchMartProductsFromSupabase(martId: string) {
+  if (!supabaseUrl() || !supabaseServiceRoleKey()) return [] as any[];
+  const pageSize = 1000;
+  const allRows: any[] = [];
+  let offset = 0;
+
+  while (true) {
+    const query =
+      `select=*` +
+      `&mart_partner_id=eq.${encodeURIComponent(martId)}` +
+      `&order=created_at.desc.nullslast` +
+      `&limit=${pageSize}` +
+      `&offset=${offset}`;
+    const url = `${supabaseUrl()}/rest/v1/ev_mart_products?${query}`;
+    const r = await fetch(url, { headers: supabaseHeaders() });
+    if (!r.ok) {
+      const msg = await r.text();
+      throw new Error(msg || "MART_PRODUCTS_FETCH_FAILED");
+    }
+    const rows = (await r.json()) as any[];
+    const page = Array.isArray(rows) ? rows : [];
+    allRows.push(...page);
+    if (page.length < pageSize) break;
+    offset += pageSize;
+    if (offset > 50000) break;
+  }
+
+  return allRows
+    .filter((x: any) => x && x.available !== false)
+    .map((x: any) => ({
+      id: safeText(x?.id) || makeId("mart"),
+      martId: safeText(x?.mart_partner_id || x?.mart_id || martId),
+      categoryId: safeText(x?.category_id || "uncategorized"),
+      name: safeText(x?.name || "Product"),
+      price: parseMoney(x?.price),
+      mrp: parseMoney(x?.mrp),
+      image: martImage(x),
+      raw: x
+    }));
+}
+
 publicRouter.get("/tours", async (_req, res) => {
   const db = await readData();
   res.json(db.tours.filter(t => t.available).map(stripInternalFields));
@@ -268,6 +347,11 @@ publicRouter.get("/meta", async (_req, res) => {
       .flatMap((b: any) => [safeText(b?.fromCity), safeText(b?.toCity)])
       .filter(Boolean)
   )).sort((a, b) => a.localeCompare(b));
+  const bikeLocations = Array.from(new Set(
+    ((anyDb.bikeRentals || []) as any[])
+      .map((b: any) => safeText(b?.location))
+      .filter(Boolean)
+  )).sort((a, b) => a.localeCompare(b));
 
   res.json({
     settings,
@@ -276,8 +360,46 @@ publicRouter.get("/meta", async (_req, res) => {
     serviceAreas,
     cabLocations,
     busLocations,
+    bikeLocations,
+    bikeRentals: ((anyDb.bikeRentals || []) as any[]).filter((x: any) => x && x.active !== false).map(stripInternalFields),
     coupons: (db.coupons || [])
   });
+});
+
+publicRouter.get("/mart-products", async (req, res) => {
+  const defaultMartId = safeText(process.env.EV_MART_DEFAULT_ID || "mart_1772223284995_3e5e8585525848");
+  const forceDefault = safeText(process.env.EV_MART_FORCE_DEFAULT_ID || "1") !== "0";
+  const requestedMartId = safeText(req.query.martId);
+  const activeMartId = forceDefault ? defaultMartId : (requestedMartId || defaultMartId);
+
+  try {
+    const rows = await fetchMartProductsFromSupabase(activeMartId);
+    if (rows.length > 0) return res.json({ martId: activeMartId, source: "supabase", items: rows });
+  } catch {
+    // fall through to local fallback
+  }
+
+  const db = await readData();
+  const all = Array.isArray((db as any).martProducts) ? (db as any).martProducts : [];
+  const items = all
+    .filter((x: any) => x && safeText(x?.martId || x?.mart_partner_id || x?.mart_id || defaultMartId) === activeMartId && x?.available !== false)
+    .map((x: any) => ({
+      id: safeText(x?.id) || makeId("mart"),
+      martId: safeText(x?.martId || x?.mart_partner_id || x?.mart_id || activeMartId),
+      categoryId: safeText(x?.categoryId || x?.category_id || "uncategorized"),
+      name: safeText(x?.name || "Product"),
+      price: parseMoney(x?.price),
+      mrp: parseMoney(x?.mrp),
+      image: martImage(x),
+      raw: x
+    }));
+
+  return res.json({ martId: activeMartId, source: "local", items });
+});
+
+publicRouter.get("/cab-rates", async (_req, res) => {
+  const db = await readData();
+  res.json(db.cabRates || []);
 });
 
 publicRouter.get("/pages", async (_req, res) => {

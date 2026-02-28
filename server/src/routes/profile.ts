@@ -52,6 +52,7 @@ export function profileRouter() {
         email: safeText(claims.email || ""),
         ipAddress: "",
         browser: "",
+        password: "",
         createdAt: now,
         updatedAt: now,
         orders: [],
@@ -95,6 +96,7 @@ export function profileRouter() {
         profilePhoto: parsed.data.profilePhoto !== undefined ? safeText(parsed.data.profilePhoto) : safeText(existing?.profilePhoto || ""),
         ipAddress: safeText(existing?.ipAddress || ""),
         browser: safeText(existing?.browser || ""),
+        password: safeText(existing?.password || ""),
         createdAt: safeText(existing?.createdAt || now),
         updatedAt: now,
         orders: Array.isArray(existing?.orders) ? existing.orders : [],
@@ -118,4 +120,3 @@ export function profileRouter() {
 
   return r;
 }
-

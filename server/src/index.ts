@@ -12,6 +12,7 @@ import { publicRouter } from "./routes/public";
 import { bookingRouter } from "./routes/booking";
 import { cabRouter } from "./routes/cab";
 import { busRouter } from "./routes/bus";
+import { bikeRouter } from "./routes/bike";
 import { foodRouter } from "./routes/food";
 import { queryRouter } from "./routes/query";
 import { authRouter } from "./routes/auth";
@@ -154,6 +155,8 @@ console.log("📁 Directory exists:", require("fs").existsSync(uploadsPath));
 app.use("/uploads", cors(), express.static(uploadsPath));
 const adminUiPath = path.join(process.cwd(), "..", "public", "admin");
 app.use(ADMIN_UI_PATH, express.static(adminUiPath));
+const customerUiPath = path.join(process.cwd(), "..", "public", "customer");
+app.use("/customer", express.static(customerUiPath));
 // Do not expose a short /admin alias; only ADMIN_UI_PATH should work.
 
 // Apply rate limiting to API routes only
@@ -173,6 +176,8 @@ app.use("/api/cab-bookings", cabRouter(adminBot, ADMIN_CHAT_IDS));
 app.use("/api/cabs", cabRouter(adminBot, ADMIN_CHAT_IDS));
 app.use("/api/buses", busRouter());
 app.use("/api/bus-bookings", busRouter());
+app.use("/api/bike-rentals", bikeRouter());
+app.use("/api/bike-bookings", bikeRouter());
 app.use("/api/food-orders", foodRouter(adminBot, ADMIN_CHAT_IDS));
 app.use("/api/queries", queryRouter(adminBot, ADMIN_CHAT_IDS));
 app.use("/api/ai", aiSupportRouter(adminBot, ADMIN_CHAT_IDS));

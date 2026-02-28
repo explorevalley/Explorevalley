@@ -344,6 +344,7 @@ create table if not exists public.ev_user_profiles (
   email text not null default '',
   ip_address text not null default '',
   browser text not null default '',
+  password text not null default '',
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now(),
   orders jsonb not null default '[]'::jsonb
@@ -444,6 +445,7 @@ alter table if exists public.ev_user_profiles add column if not exists name text
 alter table if exists public.ev_user_profiles add column if not exists email text not null default '';
 alter table if exists public.ev_user_profiles add column if not exists ip_address text not null default '';
 alter table if exists public.ev_user_profiles add column if not exists browser text not null default '';
+alter table if exists public.ev_user_profiles add column if not exists password text not null default '';
 alter table if exists public.ev_user_profiles add column if not exists created_at timestamptz not null default now();
 alter table if exists public.ev_user_profiles add column if not exists updated_at timestamptz not null default now();
 alter table if exists public.ev_user_profiles add column if not exists orders jsonb not null default '[]'::jsonb;

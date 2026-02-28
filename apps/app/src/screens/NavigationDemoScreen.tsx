@@ -15,7 +15,7 @@ export default function NavigationDemoScreen() {
   // Custom navigation items with badges
   const navItems = [
     { key: "travel", label: "Explore", icon: "🗺️" },
-    { key: "cabs", label: "Cabs", icon: "🚕", badge: 2 },
+    { key: "taxi", label: "Taxi", icon: "🚕", badge: 2 },
     { key: "food", label: "Food", icon: "🍽️", badge: 5 },
     { key: "profile", label: "Profile", icon: "👤" },
   ];
@@ -63,14 +63,14 @@ export default function NavigationDemoScreen() {
         <View style={styles.card}>
           <Text style={styles.cardTitle}>
             {activeTab === "travel" && "🗺️ Explore Amazing Places"}
-            {activeTab === "cabs" && "🚕 Book Your Ride"}
+            {activeTab === "taxi" && "🚕 Book Your Ride"}
             {activeTab === "food" && "🍽️ Delicious Food"}
             {activeTab === "profile" && "👤 Your Profile"}
           </Text>
           <Text style={styles.cardDescription}>
             {activeTab === "travel" &&
               "Discover beautiful destinations, hotels, and cottages in the valley."}
-            {activeTab === "cabs" &&
+            {activeTab === "taxi" &&
               "Quick and reliable cab booking service. 2 pending bookings."}
             {activeTab === "food" &&
               "Order from the best restaurants. 5 items in your cart."}
@@ -159,7 +159,7 @@ export default function NavigationDemoScreen() {
           <Pressable
             style={styles.button}
             onPress={() => {
-              const tabs = ["travel", "cabs", "food", "profile"];
+              const tabs = ["travel", "taxi", "food", "profile"];
               const currentIndex = tabs.indexOf(activeTab);
               const nextIndex = (currentIndex + 1) % tabs.length;
               setActiveTab(tabs[nextIndex]);

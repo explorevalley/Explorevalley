@@ -17,12 +17,56 @@ const BACKUP_SKIP_PREFIXES = String(process.env.EV_BACKUP_SKIP_PREFIXES || "anal
 const lastBackupAtByLabel = new Map<string, number>();
 const SUPABASE_URL = (process.env.SUPABASE_URL || "").replace(/\/+$/, "");
 const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SECRET_KEY || "";
+const LOCAL_DB_PATH = path.join(process.cwd(), "..", "data", "data.json");
+const FORCE_SUPABASE = String(process.env.EV_FORCE_SUPABASE || "").trim() === "1";
+let warnedLocal = false;
 
 function nowISO() { return new Date().toISOString(); }
 function assertSupabaseConfigured() {
   if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
     throw new Error("SUPABASE_NOT_CONFIGURED: set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY");
   }
+}
+
+function shouldUseSupabase() {
+  return FORCE_SUPABASE || (!!SUPABASE_URL && !!SUPABASE_SERVICE_ROLE_KEY);
+}
+
+async function loadLocalDatabase(): Promise<Database> {
+  if (!warnedLocal) {
+    warnedLocal = true;
+    // eslint-disable-next-line no-console
+    console.warn("[jsondb] Supabase not configured. Falling back to local data.json.");
+  }
+
+  await fs.ensureDir(path.dirname(LOCAL_DB_PATH));
+  const exists = await fs.pathExists(LOCAL_DB_PATH);
+  if (!exists) {
+    const seed = DatabaseSchema.parse({
+      settings: DEFAULT_SETTINGS,
+      policies: DEFAULT_POLICIES,
+      payments: DEFAULT_PAYMENTS,
+      sitePages: DEFAULT_SITE_PAGES
+    });
+    await fs.writeFile(LOCAL_DB_PATH, JSON.stringify(seed, null, 2), "utf8");
+    return seed;
+  }
+
+  const raw = await fs.readFile(LOCAL_DB_PATH, "utf8");
+  const parsed = raw.trim() ? JSON.parse(raw) : {};
+  const normalized = DatabaseSchema.parse({
+    settings: parsed.settings || DEFAULT_SETTINGS,
+    policies: parsed.policies || DEFAULT_POLICIES,
+    payments: parsed.payments || DEFAULT_PAYMENTS,
+    sitePages: parsed.sitePages || DEFAULT_SITE_PAGES,
+    ...parsed
+  });
+  return normalized;
+}
+
+async function writeLocalDatabase(db: Database) {
+  await fs.ensureDir(path.dirname(LOCAL_DB_PATH));
+  await fs.writeFile(LOCAL_DB_PATH, JSON.stringify(db, null, 2), "utf8");
 }
 
 const DEFAULT_SETTINGS = {
@@ -344,11 +388,14 @@ async function loadSupabaseDatabase(): Promise<Database> {
     cabBookings,
     busRoutes,
     busBookings,
+    bikeRentals,
+    bikeBookings,
     foodOrders,
     foodCarts,
     queries,
     auditLog,
     cabProviders,
+    cabRates,
     serviceAreas,
     coupons,
     vendorMenus,
@@ -369,12 +416,15 @@ async function loadSupabaseDatabase(): Promise<Database> {
     supabaseSelectAll<any>("ev_cab_bookings"),
     supabaseSelectAllIfExists<any>("ev_buses"),
     supabaseSelectAllIfExists<any>("ev_bus_bookings"),
+    supabaseSelectAllIfExists<any>("ev_bike_rentals"),
+    supabaseSelectAllIfExists<any>("ev_bike_bookings"),
     supabaseSelectAll<any>("ev_food_orders"),
     supabaseSelectAllIfExists<any>("ev_food_carts"),
     supabaseSelectAll<any>("ev_queries"),
     supabaseSelectAll<any>("ev_audit_log"),
-    supabaseSelectAll<any>("ev_cab_providers"),
-    supabaseSelectAll<any>("ev_service_areas"),
+    supabaseSelectAllIfExists<any>("ev_cab_providers"),
+    supabaseSelectAllIfExists<any>("ev_cab_rates"),
+    supabaseSelectAllIfExists<any>("ev_service_areas"),
     supabaseSelectAll<any>("ev_coupons", 1000, "code"),
     supabaseSelectAllIfExists<any>("ev_vendor_menus", 1000, "restaurant_id"),
     supabaseSelectAllIfExists<any>("ev_site_pages", 1000, "slug"),
@@ -710,6 +760,33 @@ async function loadSupabaseDatabase(): Promise<Database> {
       status: String(x.status || "pending"),
       createdAt: toIsoStringOrNow(x.created_at)
     })),
+    bikeRentals: bikeRentals.map((x: any) => ({
+      id: String(x.id || ""),
+      name: String(x.name || ""),
+      location: String(x.location || ""),
+      bikeType: String(x.bike_type || "Scooter"),
+      pricePerHour: Number(x.price_per_hour || 0),
+      pricePerDay: Number(x.price_per_day || 0),
+      availableQty: Number(x.available_qty || 0),
+      securityDeposit: Number(x.security_deposit || 0),
+      helmetIncluded: x.helmet_included !== false,
+      vendorMobile: String(x.vendor_mobile || ""),
+      image: String(x.image || ""),
+      active: x.active !== false,
+      createdAt: toIsoStringOrNow(x.created_at)
+    })),
+    bikeBookings: bikeBookings.map((x: any) => ({
+      id: String(x.id || ""),
+      bikeRentalId: String(x.bike_rental_id || ""),
+      userName: String(x.user_name || ""),
+      phone: String(x.phone || ""),
+      startDateTime: String(x.start_datetime || ""),
+      hours: Number(x.hours || 1),
+      qty: Number(x.qty || 1),
+      totalFare: Number(x.total_fare || 0),
+      status: String(x.status || "pending"),
+      createdAt: toIsoStringOrNow(x.created_at)
+    })),
     foodOrders: foodOrders.map((x: any) => ({
       id: x.id,
       userId: String(x.user_id || ""),
@@ -765,6 +842,17 @@ async function loadSupabaseDatabase(): Promise<Database> {
       active: x.active !== false,
       serviceAreaId: nullableText(x.service_area_id)
     })),
+    cabRates: cabRates.map((x: any) => ({
+      id: nullableText(x.id),
+      origin: String(x.origin || ""),
+      destination: String(x.destination || ""),
+      routeLabel: String(x.route_label || ""),
+      ordinary4_1: x.ordinary_4_1 === null || x.ordinary_4_1 === undefined ? undefined : Number(x.ordinary_4_1),
+      luxury4_1: x.luxury_4_1 === null || x.luxury_4_1 === undefined ? undefined : Number(x.luxury_4_1),
+      ordinary6_1: x.ordinary_6_1 === null || x.ordinary_6_1 === undefined ? undefined : Number(x.ordinary_6_1),
+      luxury6_1: x.luxury_6_1 === null || x.luxury_6_1 === undefined ? undefined : Number(x.luxury_6_1),
+      traveller: x.traveller === null || x.traveller === undefined ? undefined : Number(x.traveller)
+    })),
     serviceAreas: serviceAreas.map((x: any) => ({
       id: x.id,
       name: x.name,
@@ -787,6 +875,7 @@ async function loadSupabaseDatabase(): Promise<Database> {
       email: String(x.email || ""),
       ipAddress: String(x.ip_address || ""),
       browser: String(x.browser || ""),
+      password: String(x.password || ""),
       createdAt: toIsoStringOrNow(x.created_at),
       updatedAt: toIsoStringOrNow(x.updated_at),
       orders: Array.isArray(x.orders) ? x.orders : []
@@ -1055,6 +1144,45 @@ async function writeSupabaseDatabase(db: Database) {
       if (!isMissingTableError(err)) throw err;
     }
   }
+  if ((db as any).bikeRentals?.length) {
+    try {
+      await supabaseUpsert("ev_bike_rentals", (db as any).bikeRentals.map((x: any) => ({
+        id: String(x.id || ""),
+        name: String(x.name || ""),
+        location: String(x.location || ""),
+        bike_type: String(x.bikeType || "Scooter"),
+        price_per_hour: Number(x.pricePerHour || 0),
+        price_per_day: Number(x.pricePerDay || 0),
+        available_qty: Number(x.availableQty || 0),
+        security_deposit: Number(x.securityDeposit || 0),
+        helmet_included: x.helmetIncluded !== false,
+        vendor_mobile: String(x.vendorMobile || ""),
+        image: String(x.image || ""),
+        active: x.active !== false,
+        created_at: x.createdAt || nowISO()
+      })));
+    } catch (err) {
+      if (!isMissingTableError(err)) throw err;
+    }
+  }
+  if ((db as any).bikeBookings?.length) {
+    try {
+      await supabaseUpsert("ev_bike_bookings", (db as any).bikeBookings.map((x: any) => ({
+        id: String(x.id || ""),
+        bike_rental_id: String(x.bikeRentalId || ""),
+        user_name: String(x.userName || ""),
+        phone: String(x.phone || ""),
+        start_datetime: String(x.startDateTime || ""),
+        hours: Number(x.hours || 1),
+        qty: Number(x.qty || 1),
+        total_fare: Number(x.totalFare || 0),
+        status: String(x.status || "pending"),
+        created_at: x.createdAt || nowISO()
+      })));
+    } catch (err) {
+      if (!isMissingTableError(err)) throw err;
+    }
+  }
   if (db.foodOrders.length) {
     await supabaseUpsertWithOptionalPriceFields("ev_food_orders", db.foodOrders.map((x) => ({
       id: x.id, user_id: String((x as any).userId || ""), restaurant_id: String((x as any).restaurantId || ""),
@@ -1097,6 +1225,23 @@ async function writeSupabaseDatabase(db: Database) {
       service_area_id: x.serviceAreaId || null
     })));
   }
+  if ((db as any).cabRates?.length) {
+    try {
+      await supabaseUpsert("ev_cab_rates", (db as any).cabRates.map((x: any) => ({
+        id: x.id || undefined,
+        origin: x.origin,
+        destination: x.destination,
+        route_label: x.routeLabel || "",
+        ordinary_4_1: x.ordinary4_1 ?? null,
+        luxury_4_1: x.luxury4_1 ?? null,
+        ordinary_6_1: x.ordinary6_1 ?? null,
+        luxury_6_1: x.luxury6_1 ?? null,
+        traveller: x.traveller ?? null
+      })));
+    } catch (err) {
+      if (!isMissingTableError(err)) throw err;
+    }
+  }
   if (db.serviceAreas.length) {
     await supabaseUpsert("ev_service_areas", db.serviceAreas.map((x) => ({
       id: x.id, name: x.name, city: x.city, enabled: x.enabled !== false
@@ -1117,6 +1262,7 @@ async function writeSupabaseDatabase(db: Database) {
         email: String(x.email || ""),
         ip_address: String(x.ipAddress || ""),
         browser: String(x.browser || ""),
+        password: String(x.password || ""),
         created_at: x.createdAt || nowISO(),
         updated_at: x.updatedAt || nowISO(),
         orders: Array.isArray(x.orders) ? x.orders : []
@@ -1191,8 +1337,11 @@ async function writeSupabaseDatabase(db: Database) {
 }
 
 export async function readData(): Promise<Database> {
-  assertSupabaseConfigured();
-  return loadSupabaseDatabase();
+  if (shouldUseSupabase()) {
+    assertSupabaseConfigured();
+    return loadSupabaseDatabase();
+  }
+  return loadLocalDatabase();
 }
 
 function parseBackupStampFromName(name: string) {
@@ -1269,6 +1418,22 @@ async function writeBackupSnapshot(db: Database, label?: string) {
 }
 
 export async function mutateData(mutator: (db: Database) => void, backupLabel?: string) {
+  if (!shouldUseSupabase()) {
+    const db = await loadLocalDatabase();
+    const before = DatabaseSchema.parse(JSON.parse(JSON.stringify(db)));
+    await writeBackupSnapshot(db, backupLabel);
+    mutator(db);
+    const skipOperationalRules = String(backupLabel || "").toLowerCase().startsWith("analytics");
+    if (!skipOperationalRules) {
+      applyOperationalRules(before, db);
+    }
+    syncUserProfilesFromOrders(db);
+    syncUserBehaviorProfilesFromData(db);
+    const validated = DatabaseSchema.parse(db);
+    await writeLocalDatabase(validated);
+    return validated;
+  }
+
   assertSupabaseConfigured();
   const db = await loadSupabaseDatabase();
   const before = DatabaseSchema.parse(JSON.parse(JSON.stringify(db)));
@@ -1287,6 +1452,14 @@ export async function mutateData(mutator: (db: Database) => void, backupLabel?: 
 
 // retained for scripts/tests to force full DB write through same path
 export async function writeData(db: Database) {
+  if (!shouldUseSupabase()) {
+    syncUserProfilesFromOrders(db);
+    syncUserBehaviorProfilesFromData(db);
+    const validated = DatabaseSchema.parse(db);
+    await writeLocalDatabase(validated);
+    return validated;
+  }
+
   assertSupabaseConfigured();
   syncUserProfilesFromOrders(db);
   syncUserBehaviorProfilesFromData(db);

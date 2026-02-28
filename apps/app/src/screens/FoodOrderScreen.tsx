@@ -302,7 +302,7 @@ export default function FoodOrderScreen({
     return (
       <View style={{
         flex: 1,
-        backgroundColor: "#f3f5f9",
+        backgroundColor: "transparent",
         alignItems: "center",
         justifyContent: "center"
       }}>
@@ -322,7 +322,7 @@ export default function FoodOrderScreen({
     return (
       <View style={{
         flex: 1,
-        backgroundColor: "#f3f5f9",
+        backgroundColor: "transparent",
         alignItems: "center",
         justifyContent: "center",
         padding: 20
@@ -361,7 +361,7 @@ export default function FoodOrderScreen({
 
   if (step === "vendors") {
     return (
-      <View style={{ flex: 1, backgroundColor: "#f3f5f9" }}>
+        <View style={{ flex: 1, backgroundColor: "transparent" }}>
         <ScrollView style={{ flex: 1 }}>
           <View style={{ padding: isMobile ? 14 : 20, gap: isMobile ? 16 : 20 }}>
             <View style={{ backgroundColor: "#0f1a2d", borderRadius: 18, borderWidth: 1, borderColor: "#1d3258", padding: isMobile ? 14 : 18 }}>
@@ -481,7 +481,7 @@ export default function FoodOrderScreen({
 
   if (step === "menu") {
     return (
-      <View style={{ flex: 1, backgroundColor: "#f3f5f9" }}>
+      <View style={{ flex: 1, backgroundColor: "transparent" }}>
         <View style={{
           backgroundColor: "#ffffff",
           borderBottomWidth: 1,
@@ -622,7 +622,7 @@ export default function FoodOrderScreen({
 
   if (step === "checkout") {
     return (
-      <View style={{ flex: 1, backgroundColor: "#f3f5f9" }}>
+      <View style={{ flex: 1, backgroundColor: "transparent" }}>
         <ScrollView style={{ flex: 1 }}>
           <View style={{ padding: isMobile ? 14 : 20, gap: isMobile ? 20 : 24 }}>
             <View style={{ flexDirection: "row", alignItems: "center", gap: 12 }}>
@@ -707,7 +707,7 @@ export default function FoodOrderScreen({
     return (
       <View style={{
         flex: 1,
-        backgroundColor: "#f3f5f9",
+        backgroundColor: "transparent",
         alignItems: "center",
         justifyContent: "center",
         padding: 20

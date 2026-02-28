@@ -1,8 +1,8 @@
 import React, { useMemo, useState, useEffect, useCallback, useRef } from "react";
 import { Modal, View, Text, Pressable, TextInput, Platform, Image, ScrollView, useWindowDimensions } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { apiGet, apiPost, BASE_URL, trackEvent } from "../lib/api";
-import { getAuthMode, getAuthToken } from "../lib/auth";
+import { apiGet, apiPost, resolveAssetUrl, trackEvent, uploadAadhaar } from "../lib/api";
+import { getAuthMode } from "../lib/auth";
 import { trackOrder } from "../lib/orders";
 import { autoCapitalizeNewLineStarts } from "../lib/text";
 
@@ -218,7 +218,7 @@ export default function BookingModal({ visible, onClose, item }: any) {
   const resolvedImages = useMemo(
     () =>
       rawImages.map((src: string) =>
-        src.startsWith("http") ? src : src.startsWith("/") ? `${BASE_URL}${src}` : src
+        resolveAssetUrl(src)
       ),
     [rawImages]
   );
@@ -262,16 +262,7 @@ export default function BookingModal({ visible, onClose, item }: any) {
     setAadhaarError(null);
     setAadhaarUploading(true);
     try {
-      const form = new FormData();
-      form.append("file", file);
-      const token = getAuthToken();
-      const r = await fetch(`${BASE_URL}/api/bookings/aadhaar`, {
-        method: "POST",
-        headers: token ? { Authorization: `Bearer ${token}` } : undefined,
-        body: form
-      });
-      if (!r.ok) throw new Error(await r.text());
-      const data = await r.json();
+      const data = await uploadAadhaar(file);
       setAadhaarUrl(String(data?.url || ""));
       setAadhaarFileName(file.name || "Aadhaar card");
     } catch (e: any) {
@@ -1488,4 +1479,3 @@ function Field({ label, ...props }: any) {
     </View>
   );
 }
-

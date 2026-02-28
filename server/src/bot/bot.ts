@@ -5,7 +5,7 @@ import path from "path";
 import fs from "fs-extra";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
-import { userStates } from "./state";
+import { userStates, type Flow } from "./state";
 import { isAdmin } from "./acl";
 import { mutateData, readData } from "../services/jsondb";
 import { makeId } from "@explorevalley/shared";
@@ -282,9 +282,9 @@ export function registerBot(bot: BotLike, adminChatIds: number[], opts: Register
     const key = stateKey(chatId);
     const now = new Date().toISOString();
     const existing = userStates.get(key);
-    const state = existing?.kind === "agent_chat"
+    const state: Flow = existing?.kind === "agent_chat"
       ? existing
-      : { kind: "agent_chat", data: { conversationId: makeId("conv"), messages: [], role } };
+      : { kind: "agent_chat", data: { conversationId: makeId("conv"), messages: [] as AgentMessage[], role } };
     const history = (state.data.messages || []) as AgentMessage[];
 
     const db = await readData();
@@ -841,7 +841,8 @@ export function registerBot(bot: BotLike, adminChatIds: number[], opts: Register
     }
 
     /* --- Natural edits after auto-fill --- */
-    if (state?.awaitingJson && (state.kind === "addtour" || state.kind === "addhotel" || state.kind === "addmenu")) {
+    const isAddFlow = state && (state.kind === "addtour" || state.kind === "addhotel" || state.kind === "addmenu");
+    if (isAddFlow && state.awaitingJson) {
       const lastPath = state.data?._lastImagePath;
       if (shouldRescan(text) && lastPath) {
         const rawText = await extractRawTextFromImage(lastPath);
@@ -917,7 +918,7 @@ export function registerBot(bot: BotLike, adminChatIds: number[], opts: Register
       }
     }
 
-    if (state?.allowNaturalEdits && (state.kind === "addtour" || state.kind === "addhotel" || state.kind === "addmenu")) {
+    if (isAddFlow && state.allowNaturalEdits) {
       const lastPath = state.data?._lastImagePath;
       if (shouldRescan(text) && lastPath) {
         if (state.kind === "addtour") {
