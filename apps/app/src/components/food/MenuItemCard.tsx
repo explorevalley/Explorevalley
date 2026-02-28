@@ -2,6 +2,8 @@ import { View, Text, Image, useWindowDimensions, ActivityIndicator } from "react
 import { useState } from "react";
 import type { MenuItem } from "@explorevalley/shared";
 import QuantitySelector from "./QuantitySelector";
+import { foodComponentsColors, menuItemCardDynamicStyles as ds, menuItemCardStyles as styles } from "../../styles/FoodComponents.styles";
+import { menuItemCardData as t } from "../../staticData/menuItemCard.staticData";
 
 interface MenuItemCardProps {
   item: MenuItem;
@@ -20,42 +22,18 @@ export default function MenuItemCard({ item, quantity, onQuantityChange }: MenuI
   const outOfStock = (item.stock ?? 0) <= 0 || !item.available;
 
   return (
-    <View style={{
-      flexDirection: "row",
-      backgroundColor: "#fff",
-      borderRadius: 12,
-      borderWidth: 1,
-      borderColor: "#d5deeb",
-      padding: isMobile ? 10 : 12,
-      gap: isMobile ? 10 : 12,
-      opacity: outOfStock ? 0.65 : 1
-    }}>
-      <View style={{
-        width: imageSize,
-        height: imageSize,
-        borderRadius: 8,
-        overflow: "hidden",
-        backgroundColor: "#eef2f7",
-        position: "relative"
-      }}>
+    <View style={[styles.card, ds.card(isMobile, outOfStock)]}>
+      <View style={[styles.imageWrap, ds.imageSize(imageSize)]}>
         {item.image && !imageError ? (
           <>
             {imageLoading && (
-              <View style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                alignItems: "center",
-                justifyContent: "center"
-              }}>
-                <ActivityIndicator size="small" color="#7b8798" />
+              <View style={styles.absoluteFillCenter}>
+                <ActivityIndicator size="small" color={foodComponentsColors.imageSpinner} />
               </View>
             )}
             <Image
               source={{ uri: item.image }}
-              style={{ width: "100%", height: "100%" }}
+              style={styles.imageFull}
               resizeMode="cover"
               onLoad={() => setImageLoading(false)}
               onError={() => {
@@ -65,78 +43,41 @@ export default function MenuItemCard({ item, quantity, onQuantityChange }: MenuI
             />
           </>
         ) : (
-          <View style={{
-            flex: 1,
-            alignItems: "center",
-            justifyContent: "center"
-          }}>
-            <Text style={{ color: "#7b8798", fontSize: isMobile ? 10 : 11, textAlign: "center" }}>
-              No Image
+          <View style={styles.fallbackImage}>
+            <Text style={[styles.stockText, ds.tinyText(isMobile)]}>
+              {t.noImage}
             </Text>
           </View>
         )}
 
-        <View style={{
-          position: "absolute",
-          top: 4,
-          left: 4,
-          width: isMobile ? 16 : 18,
-          height: isMobile ? 16 : 18,
-          borderRadius: 2,
-          borderWidth: 2,
-          borderColor: item.isVeg ? "#4caf50" : "#f44336",
-          backgroundColor: "#fff",
-          alignItems: "center",
-          justifyContent: "center"
-        }}>
-          <View style={{
-            width: isMobile ? 6 : 7,
-            height: isMobile ? 6 : 7,
-            borderRadius: isMobile ? 3 : 3.5,
-            backgroundColor: item.isVeg ? "#4caf50" : "#f44336"
-          }} />
+        <View style={[styles.vegBadgeOuter, ds.vegBadgeOuter(isMobile, item.isVeg)]}>
+          <View style={ds.vegBadgeInner(isMobile, item.isVeg)} />
         </View>
       </View>
 
-      <View style={{ flex: 1, justifyContent: "space-between" }}>
-        <View style={{ gap: 4 }}>
-          <View style={{ flexDirection: "row", alignItems: "flex-start", justifyContent: "space-between" }}>
-            <Text style={{
-              color: "#111827",
-              fontSize: isMobile ? 14 : 16,
-              fontWeight: "700",
-              flex: 1
-            }}>
+      <View style={styles.body}>
+        <View style={styles.sectionGap}>
+          <View style={styles.titleRow}>
+            <Text style={[styles.title, ds.titleSize(isMobile)]}>
               {item.name}
             </Text>
           </View>
 
           {item.description && (
-            <Text style={{
-              color: "#6b7280",
-              fontSize: isMobile ? 12 : 13,
-              lineHeight: isMobile ? 16 : 18
-            }} numberOfLines={2}>
+            <Text style={[styles.description, ds.descriptionSize(isMobile)]} numberOfLines={2}>
               {item.description}
             </Text>
           )}
 
           {item.variants && item.variants.length > 0 && (
-            <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 6 }}>
+            <View style={styles.rowWrap}>
               {item.variants.map((v, index) => (
                 <View
                   key={`variant_${index}`}
-                  style={{
-                    backgroundColor: "#f7f9fc",
-                    paddingHorizontal: 6,
-                    paddingVertical: 2,
-                    borderRadius: 4,
-                    borderWidth: 1,
-                    borderColor: "#d8e1ee"
-                  }}
+                  style={styles.chip}
                 >
-                  <Text style={{ color: "#4b5565", fontSize: isMobile ? 10 : 11 }}>
-                    {v.name} · ₹{v.price}
+                  <Text style={[styles.variantText, ds.tinyText(isMobile)]}>
+                    {t.formatVariant(v.name, v.price)}
                   </Text>
                 </View>
               ))}
@@ -144,58 +85,36 @@ export default function MenuItemCard({ item, quantity, onQuantityChange }: MenuI
           )}
 
           {item.addons && item.addons.length > 0 && (
-            <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 6 }}>
+            <View style={styles.rowWrap}>
               {item.addons.map((a, index) => (
                 <View
                   key={`addon_${index}`}
-                  style={{
-                    backgroundColor: "#f8fafd",
-                    paddingHorizontal: 6,
-                    paddingVertical: 2,
-                    borderRadius: 4,
-                    borderWidth: 1,
-                    borderColor: "#e2e8f2"
-                  }}
+                  style={styles.addonChip}
                 >
-                  <Text style={{ color: "#6b7280", fontSize: isMobile ? 10 : 11 }}>
-                    + {a.name} · ₹{a.price}
+                  <Text style={[styles.addonText, ds.tinyText(isMobile)]}>
+                    {t.formatAddon(a.name, a.price)}
                   </Text>
                 </View>
               ))}
             </View>
           )}
 
-          <View style={{ flexDirection: "row", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-            <Text style={{
-              color: "#f4511e",
-              fontSize: isMobile ? 16 : 18,
-              fontWeight: "800"
-            }}>
-              ₹{item.price}
+          <View style={styles.priceRow}>
+            <Text style={[styles.priceText, ds.priceSize(isMobile)]}>
+              {t.formatPrice(item.price)}
             </Text>
 
-            <Text style={{ color: "#7b8798", fontSize: isMobile ? 11 : 12 }}>
-              Stock: {item.stock ?? 0} · Max {maxOrder}
+            <Text style={[styles.stockText, ds.stockSize(isMobile)]}>
+              {t.formatStock(item.stock ?? 0, maxOrder)}
             </Text>
 
             {item.tags && item.tags.length > 0 && (
               item.tags.map((tag, index) => (
                 <View
                   key={index}
-                  style={{
-                    backgroundColor: "#f7f9fc",
-                    paddingHorizontal: 6,
-                    paddingVertical: 2,
-                    borderRadius: 4,
-                    borderWidth: 1,
-                    borderColor: "#d8e1ee"
-                  }}
+                  style={styles.chip}
                 >
-                  <Text style={{
-                    color: tag.toLowerCase().includes("bestseller") ? "#9a3412" : "#4b5565",
-                    fontSize: isMobile ? 10 : 11,
-                    fontWeight: tag.toLowerCase().includes("bestseller") ? "700" : "600"
-                  }}>
+                  <Text style={[styles.tagText, ds.tagText(tag, isMobile)]}>
                     {tag}
                   </Text>
                 </View>
@@ -204,27 +123,11 @@ export default function MenuItemCard({ item, quantity, onQuantityChange }: MenuI
           </View>
         </View>
 
-        <View style={{
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "space-between",
-          marginTop: isMobile ? 8 : 10
-        }}>
+        <View style={[styles.footerRow, ds.footerMargin(isMobile)]}>
           {outOfStock ? (
-            <View style={{
-              backgroundColor: "#fff1f1",
-              paddingHorizontal: 10,
-              paddingVertical: 6,
-              borderRadius: 6,
-              borderWidth: 1,
-              borderColor: "#ffd0d0"
-            }}>
-              <Text style={{
-                color: "#ff6b6b",
-                fontSize: isMobile ? 12 : 13,
-                fontWeight: "700"
-              }}>
-                OUT OF STOCK
+            <View style={styles.outBadge}>
+              <Text style={[styles.outBadgeText, ds.outTextSize(isMobile)]}>
+                {t.outOfStock}
               </Text>
             </View>
           ) : (
@@ -238,23 +141,9 @@ export default function MenuItemCard({ item, quantity, onQuantityChange }: MenuI
       </View>
 
       {outOfStock && (
-        <View style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          backgroundColor: "rgba(255, 255, 255, 0.65)",
-          borderRadius: 12,
-          alignItems: "center",
-          justifyContent: "center"
-        }}>
-          <Text style={{
-            color: "#ff6b6b",
-            fontSize: isMobile ? 14 : 16,
-            fontWeight: "700"
-          }}>
-            OUT OF STOCK
+        <View style={styles.overlay}>
+          <Text style={[styles.overlayText, ds.overlayTextSize(isMobile)]}>
+            {t.outOfStock}
           </Text>
         </View>
       )}

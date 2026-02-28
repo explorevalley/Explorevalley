@@ -1,6 +1,8 @@
 import { View, Text, TextInput, Pressable, useWindowDimensions, ActivityIndicator } from "react-native";
 import { useState } from "react";
 import { autoCapitalizeNewLineStarts } from "../../lib/text";
+import { deliveryFormDynamicStyles as ds, deliveryFormStyles as styles, foodComponentsColors } from "../../styles/FoodComponents.styles";
+import { deliveryFormData as t } from "../../staticData/deliveryForm.staticData";
 
 interface OrderData {
   userName: string;
@@ -23,27 +25,13 @@ function Field({ label, ...props }: any) {
 
   return (
     <View>
-      <Text style={{
-        color: "#5f6b81",
-        marginBottom: 6,
-        fontSize: isMobile ? 12 : 14,
-        fontWeight: "600"
-      }}>
+      <Text style={[styles.fieldLabel, ds.fieldLabel(isMobile)]}>
         {label}
       </Text>
       <TextInput
         {...props}
-        placeholderTextColor="#96a0b2"
-        style={{
-          backgroundColor: "#fff",
-          color: "#111827",
-          paddingHorizontal: 12,
-          paddingVertical: isMobile ? 10 : 12,
-          borderRadius: 12,
-          borderWidth: 1,
-          borderColor: "#d5deeb",
-          fontSize: isMobile ? 14 : 16
-        }}
+        placeholderTextColor={foodComponentsColors.placeholder}
+        style={[styles.fieldInput, ds.fieldInput(isMobile)]}
       />
     </View>
   );
@@ -70,22 +58,22 @@ export default function DeliveryForm({ onSubmit, cartTotal, minimumOrder = 0, co
     setError(null);
 
     if (!userName.trim()) {
-      setError("Please enter your name");
+      setError(t.errors.nameRequired);
       return;
     }
 
     if (!phone.trim() || phone.length < 10) {
-      setError("Please enter a valid 10-digit phone number");
+      setError(t.errors.phoneInvalid);
       return;
     }
 
     if (!deliveryAddress.trim() || deliveryAddress.length < 10) {
-      setError("Please enter a valid delivery address");
+      setError(t.errors.addressInvalid);
       return;
     }
 
     if (belowMinimum) {
-      setError(`Minimum order amount is ₹${minimumOrder}`);
+      setError(t.errors.minOrder(minimumOrder));
       return;
     }
 
@@ -98,57 +86,52 @@ export default function DeliveryForm({ onSubmit, cartTotal, minimumOrder = 0, co
         specialInstructions: specialInstructions.trim()
       });
     } catch (e: any) {
-      setError(e.message || "Failed to place order");
+      setError(e.message || t.errors.failedSubmit);
     } finally {
       setBusy(false);
     }
   };
 
   return (
-    <View style={{ gap: isMobile ? 16 : 18 }}>
+    <View style={[styles.formRoot, ds.formGap(isMobile)]}>
       <View>
-        <Text style={{
-          color: "#111827",
-          fontSize: isMobile ? 18 : 22,
-          fontWeight: "800",
-          marginBottom: isMobile ? 12 : 16
-        }}>
-          Delivery Details
+        <Text style={[styles.sectionTitle, ds.sectionTitle(isMobile)]}>
+          {t.sectionTitle}
         </Text>
 
-        <View style={{ gap: isMobile ? 12 : 14 }}>
+        <View style={[styles.fieldsWrap, ds.fieldsGap(isMobile)]}>
           <Field
-            label="Name *"
+            label={t.fields.nameLabel}
             value={userName}
             onChangeText={setUserName}
-            placeholder="Enter your name"
+            placeholder={t.fields.namePlaceholder}
             autoCapitalize="words"
           />
 
           <Field
-            label="Phone *"
+            label={t.fields.phoneLabel}
             value={phone}
             onChangeText={setPhone}
-            placeholder="10-digit mobile number"
+            placeholder={t.fields.phonePlaceholder}
             keyboardType="phone-pad"
             maxLength={10}
           />
 
           <Field
-            label="Delivery Address *"
+            label={t.fields.addressLabel}
             value={deliveryAddress}
             onChangeText={(v: string) => setDeliveryAddress(autoCapitalizeNewLineStarts(v))}
-            placeholder="Enter complete delivery address"
+            placeholder={t.fields.addressPlaceholder}
             multiline
             numberOfLines={3}
             textAlignVertical="top"
           />
 
           <Field
-            label="Special Instructions (Optional)"
+            label={t.fields.instructionsLabel}
             value={specialInstructions}
             onChangeText={(v: string) => setSpecialInstructions(autoCapitalizeNewLineStarts(v))}
-            placeholder="E.g., Extra spicy, no onions, etc."
+            placeholder={t.fields.instructionsPlaceholder}
             multiline
             numberOfLines={2}
             textAlignVertical="top"
@@ -156,118 +139,68 @@ export default function DeliveryForm({ onSubmit, cartTotal, minimumOrder = 0, co
         </View>
       </View>
 
-      <View style={{
-        backgroundColor: "#ffffff",
-        padding: isMobile ? 14 : 16,
-        borderRadius: 12,
-        borderWidth: 1,
-        borderColor: "#d5deeb",
-        gap: isMobile ? 10 : 12
-      }}>
-        <Text style={{
-          color: "#111827",
-          fontSize: isMobile ? 16 : 18,
-          fontWeight: "700"
-        }}>
-          Price Breakdown
+      <View style={[styles.card, ds.card(isMobile)]}>
+        <Text style={[styles.cardTitle, ds.textSize(isMobile, 16, 18)]}>
+          {t.priceBreakdown.title}
         </Text>
 
-        <View style={{ gap: 8 }}>
-          <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-            <Text style={{ color: "#5f6b81", fontSize: isMobile ? 13 : 14 }}>
-              Subtotal
+        <View style={styles.gap8}>
+          <View style={styles.rowBetween}>
+            <Text style={[styles.labelText, ds.textSize(isMobile, 13, 14)]}>
+              {t.priceBreakdown.subtotal}
             </Text>
-            <Text style={{ color: "#111827", fontSize: isMobile ? 13 : 14, fontWeight: "600" }}>
+            <Text style={[styles.valueText, ds.textSize(isMobile, 13, 14)]}>
               ₹{cartTotal.toFixed(2)}
             </Text>
           </View>
 
-          <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-            <Text style={{ color: "#5f6b81", fontSize: isMobile ? 13 : 14 }}>
-              GST (5%)
+          <View style={styles.rowBetween}>
+            <Text style={[styles.labelText, ds.textSize(isMobile, 13, 14)]}>
+              {t.priceBreakdown.gst}
             </Text>
-            <Text style={{ color: "#111827", fontSize: isMobile ? 13 : 14, fontWeight: "600" }}>
+            <Text style={[styles.valueText, ds.textSize(isMobile, 13, 14)]}>
               ₹{gstAmount.toFixed(2)}
             </Text>
           </View>
 
-          <View style={{
-            height: 1,
-            backgroundColor: "#e9edf5",
-            marginVertical: 4
-          }} />
+          <View style={styles.divider} />
 
-          <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-            <Text style={{
-              color: "#111827",
-              fontSize: isMobile ? 16 : 18,
-              fontWeight: "800"
-            }}>
-              Total
+          <View style={styles.rowBetween}>
+            <Text style={[styles.totalLabel, ds.textSize(isMobile, 16, 18)]}>
+              {t.priceBreakdown.total}
             </Text>
-            <Text style={{
-              color: "#f4511e",
-              fontSize: isMobile ? 16 : 18,
-              fontWeight: "800"
-            }}>
+            <Text style={[styles.totalValue, ds.textSize(isMobile, 16, 18)]}>
               ₹{totalAmount.toFixed(2)}
             </Text>
           </View>
         </View>
 
         {belowMinimum && (
-          <View style={{
-            backgroundColor: "#fff5f5",
-            padding: isMobile ? 10 : 12,
-            borderRadius: 8,
-            borderWidth: 1,
-            borderColor: "#ff6b6b"
-          }}>
-            <Text style={{
-              color: "#ff6b6b",
-              fontSize: isMobile ? 12 : 13,
-              textAlign: "center"
-            }}>
-              Add ₹{(minimumOrder - cartTotal).toFixed(0)} more to meet minimum order
+          <View style={[styles.warningCard, ds.warningCard(isMobile)]}>
+            <Text style={[styles.warningText, ds.warningText(isMobile)]}>
+              {t.priceBreakdown.addMorePrefix} ₹{(minimumOrder - cartTotal).toFixed(0)} {t.priceBreakdown.addMoreSuffix}
             </Text>
           </View>
         )}
       </View>
 
       {(coupons.length > 0 || policyText) && (
-        <View style={{
-          backgroundColor: "#ffffff",
-          padding: isMobile ? 14 : 16,
-          borderRadius: 12,
-          borderWidth: 1,
-          borderColor: "#d5deeb",
-          gap: 8
-        }}>
-          <Text style={{ color: "#111827", fontSize: isMobile ? 15 : 16, fontWeight: "700" }}>Offers & Policy</Text>
+        <View style={[styles.card, ds.card(isMobile), styles.gap8]}>
+          <Text style={[styles.offerTitle, ds.textSize(isMobile, 15, 16)]}>{t.offersTitle}</Text>
           {coupons.slice(0, 3).map(c => (
-            <Text key={c.code} style={{ color: "#5f6b81", fontSize: isMobile ? 12 : 13 }}>
-              {c.code} · {c.type === "flat" ? `₹${c.amount}` : `${c.amount}%`} off · Min ₹{c.minCart}
+            <Text key={c.code} style={[styles.offerText, ds.textSize(isMobile, 12, 13)]}>
+              {c.code} {t.coupon.separator} {c.type === "flat" ? `₹${c.amount}` : `${c.amount}%`} {t.coupon.offSuffix} {t.coupon.separator} {t.coupon.minPrefix} ₹{c.minCart}
             </Text>
           ))}
           {policyText ? (
-            <Text style={{ color: "#7c8698", fontSize: isMobile ? 12 : 13 }}>{policyText}</Text>
+            <Text style={[styles.policyText, ds.textSize(isMobile, 12, 13)]}>{policyText}</Text>
           ) : null}
         </View>
       )}
 
       {error && (
-        <View style={{
-          backgroundColor: "#fff5f5",
-          padding: isMobile ? 12 : 14,
-          borderRadius: 8,
-          borderWidth: 1,
-          borderColor: "#ff6b6b"
-        }}>
-          <Text style={{
-            color: "#ff6b6b",
-            fontSize: isMobile ? 13 : 14,
-            textAlign: "center"
-          }}>
+        <View style={[styles.warningCard, ds.errorCard(isMobile)]}>
+          <Text style={[styles.warningText, ds.errorText(isMobile)]}>
             {error}
           </Text>
         </View>
@@ -277,25 +210,15 @@ export default function DeliveryForm({ onSubmit, cartTotal, minimumOrder = 0, co
         onPress={handleSubmit}
         disabled={busy || belowMinimum}
         style={({ pressed, hovered }) => [
-          {
-            backgroundColor: busy || belowMinimum ? "#c9d1de" : hovered ? "#d73f11" : "#f4511e",
-            paddingVertical: isMobile ? 14 : 16,
-            borderRadius: 14,
-            alignItems: "center",
-            opacity: busy || belowMinimum ? 0.6 : 1,
-            transform: [{ scale: pressed ? 0.98 : 1 }]
-          }
+          styles.submitBtn,
+          ds.submitBtn(isMobile, busy, belowMinimum, hovered, pressed),
         ]}
       >
-        {({ hovered }) => (
-          <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
-            {busy && <ActivityIndicator size="small" color="#fff" />}
-            <Text style={{
-              color: busy || belowMinimum ? "#eef2f7" : "#fff",
-              fontSize: isMobile ? 16 : 18,
-              fontWeight: "800"
-            }}>
-              {busy ? "Placing Order..." : "Place Order"}
+        {() => (
+          <View style={styles.submitRow}>
+            {busy && <ActivityIndicator size="small" color={foodComponentsColors.spinner} />}
+            <Text style={[styles.submitText, ds.submitText(isMobile, busy || belowMinimum)]}>
+              {busy ? t.submit.placing : t.submit.place}
             </Text>
           </View>
         )}

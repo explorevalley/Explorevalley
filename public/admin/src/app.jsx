@@ -293,13 +293,32 @@ function normalizeObjectList(raw) {
   return [];
 }
 
-function ListEditor({ title, values, onChange, placeholder = "Add item..." }) {
+const HOTEL_SPACE_FACILITY_OPTIONS = Object.freeze({
+  private_spaces: ["Private Bedroom", "Attached Bathroom", "Private Balcony", "Private Sitout"],
+  shared_spaces: ["Shared Lounge"],
+  room_amenities: ["King Bed", "Wardrobe", "Work Desk", "Electric Kettle", "Room Heater"],
+  popular_with_guests: ["Mountain View", "Family Friendly", "Peaceful Stay", "Couple Friendly", "Scenic Location"],
+  room_features: ["Valley View", "Large Windows", "Wooden Interiors", "Soundproof Room"],
+  basic_facilities: ["WiFi", "Power Backup", "Housekeeping", "Parking", "Hot Water"],
+  beds_and_blanket: ["Extra Blanket", "Comforter", "Premium Mattress", "Extra Pillows"],
+  food_and_drinks: ["Restaurant", "In-room Dining"],
+  safety_and_security: ["CCTV", "First Aid Kit", "Fire Extinguisher", "24x7 Caretaker"],
+  media_and_entertainment: ["Smart TV", "Streaming Apps", "Bluetooth Speaker", "Board Games"],
+  bathroom: ["Geyser", "Towels", "Toiletries", "Mirror"],
+  other_facilities: ["Bonfire Area", "Garden", "Airport Pickup", "Laundry", "Pet Friendly"],
+  inclusion: ["WiFi", "Parking"]
+});
+
+function ListEditor({ title, values, onChange, placeholder = "Add item...", quickAddItems = [] }) {
   const [draft, setDraft] = useState("");
   const list = Array.isArray(values) ? values : [];
-  const add = () => {
-    const v = safeText(draft).trim();
+  const addValue = (raw) => {
+    const v = safeText(raw).trim();
     if (!v) return;
-    onChange([...(list || []), v]);
+    onChange(uniqStrings([...(list || []), v]));
+  };
+  const add = () => {
+    addValue(draft);
     setDraft("");
   };
   const removeAt = (idx) => {
@@ -323,6 +342,24 @@ function ListEditor({ title, values, onChange, placeholder = "Add item..." }) {
         />
         <button type="button" className="btn small" onClick={add}><FaPlus /> Add</button>
       </div>
+      {quickAddItems.length ? (
+        <div className="chip-wrap">
+          {quickAddItems.map((item) => {
+            const exists = list.some((x) => safeText(x).trim().toLowerCase() === safeText(item).trim().toLowerCase());
+            return (
+              <button
+                key={`quick-${title}-${item}`}
+                type="button"
+                className="chip quick-add-chip"
+                disabled={exists}
+                onClick={() => addValue(item)}
+              >
+                {item}
+              </button>
+            );
+          })}
+        </div>
+      ) : null}
       <div className="chip-wrap">
         {(list || []).map((item, idx) => (
           <span key={`${item}-${idx}`} className="chip">
@@ -5659,43 +5696,43 @@ function FormEditor({ table, selectedRow, onSave, onOpenImages, onUpsertPartial,
             <div className="section-title">Spaces & Facilities</div>
             <div className="form-grid">
               {hasCol("private_spaces") ? (
-                <ListEditor title="Private Spaces" values={normalizeStringList(form.private_spaces)} onChange={(list) => setField("private_spaces", list)} placeholder="Private Balcony" />
+                <ListEditor title="Private Spaces" values={normalizeStringList(form.private_spaces)} onChange={(list) => setField("private_spaces", list)} placeholder="Private Balcony" quickAddItems={HOTEL_SPACE_FACILITY_OPTIONS.private_spaces} />
               ) : null}
               {hasCol("shared_spaces") ? (
-                <ListEditor title="Shared Spaces" values={normalizeStringList(form.shared_spaces)} onChange={(list) => setField("shared_spaces", list)} placeholder="Shared Lounge" />
+                <ListEditor title="Shared Spaces" values={normalizeStringList(form.shared_spaces)} onChange={(list) => setField("shared_spaces", list)} placeholder="Shared Lounge" quickAddItems={HOTEL_SPACE_FACILITY_OPTIONS.shared_spaces} />
               ) : null}
               {hasCol("room_amenities") ? (
-                <ListEditor title="Room Amenities" values={normalizeStringList(form.room_amenities)} onChange={(list) => setField("room_amenities", list)} placeholder="Room Heater" />
+                <ListEditor title="Room Amenities" values={normalizeStringList(form.room_amenities)} onChange={(list) => setField("room_amenities", list)} placeholder="Room Heater" quickAddItems={HOTEL_SPACE_FACILITY_OPTIONS.room_amenities} />
               ) : null}
               {hasCol("popular_with_guests") ? (
-                <ListEditor title="Popular With Guests" values={normalizeStringList(form.popular_with_guests)} onChange={(list) => setField("popular_with_guests", list)} placeholder="Mountain View" />
+                <ListEditor title="Popular With Guests" values={normalizeStringList(form.popular_with_guests)} onChange={(list) => setField("popular_with_guests", list)} placeholder="Mountain View" quickAddItems={HOTEL_SPACE_FACILITY_OPTIONS.popular_with_guests} />
               ) : null}
               {hasCol("room_features") ? (
-                <ListEditor title="Room Features" values={normalizeStringList(form.room_features)} onChange={(list) => setField("room_features", list)} placeholder="Valley View" />
+                <ListEditor title="Room Features" values={normalizeStringList(form.room_features)} onChange={(list) => setField("room_features", list)} placeholder="Valley View" quickAddItems={HOTEL_SPACE_FACILITY_OPTIONS.room_features} />
               ) : null}
               {hasCol("basic_facilities") ? (
-                <ListEditor title="Basic Facilities" values={normalizeStringList(form.basic_facilities)} onChange={(list) => setField("basic_facilities", list)} placeholder="WiFi" />
+                <ListEditor title="Basic Facilities" values={normalizeStringList(form.basic_facilities)} onChange={(list) => setField("basic_facilities", list)} placeholder="WiFi" quickAddItems={HOTEL_SPACE_FACILITY_OPTIONS.basic_facilities} />
               ) : null}
               {hasCol("beds_and_blanket") ? (
-                <ListEditor title="Beds & Blanket" values={normalizeStringList(form.beds_and_blanket)} onChange={(list) => setField("beds_and_blanket", list)} placeholder="Extra Pillows" />
+                <ListEditor title="Beds & Blanket" values={normalizeStringList(form.beds_and_blanket)} onChange={(list) => setField("beds_and_blanket", list)} placeholder="Extra Pillows" quickAddItems={HOTEL_SPACE_FACILITY_OPTIONS.beds_and_blanket} />
               ) : null}
               {hasCol("food_and_drinks") ? (
-                <ListEditor title="Food & Drinks" values={normalizeStringList(form.food_and_drinks)} onChange={(list) => setField("food_and_drinks", list)} placeholder="In-room Dining" />
+                <ListEditor title="Food & Drinks" values={normalizeStringList(form.food_and_drinks)} onChange={(list) => setField("food_and_drinks", list)} placeholder="In-room Dining" quickAddItems={HOTEL_SPACE_FACILITY_OPTIONS.food_and_drinks} />
               ) : null}
               {hasCol("safety_and_security") ? (
-                <ListEditor title="Safety & Security" values={normalizeStringList(form.safety_and_security)} onChange={(list) => setField("safety_and_security", list)} placeholder="CCTV" />
+                <ListEditor title="Safety & Security" values={normalizeStringList(form.safety_and_security)} onChange={(list) => setField("safety_and_security", list)} placeholder="CCTV" quickAddItems={HOTEL_SPACE_FACILITY_OPTIONS.safety_and_security} />
               ) : null}
               {hasCol("media_and_entertainment") ? (
-                <ListEditor title="Media & Entertainment" values={normalizeStringList(form.media_and_entertainment)} onChange={(list) => setField("media_and_entertainment", list)} placeholder="Smart TV" />
+                <ListEditor title="Media & Entertainment" values={normalizeStringList(form.media_and_entertainment)} onChange={(list) => setField("media_and_entertainment", list)} placeholder="Smart TV" quickAddItems={HOTEL_SPACE_FACILITY_OPTIONS.media_and_entertainment} />
               ) : null}
               {hasCol("bathroom") ? (
-                <ListEditor title="Bathroom" values={normalizeStringList(form.bathroom)} onChange={(list) => setField("bathroom", list)} placeholder="Geyser" />
+                <ListEditor title="Bathroom" values={normalizeStringList(form.bathroom)} onChange={(list) => setField("bathroom", list)} placeholder="Geyser" quickAddItems={HOTEL_SPACE_FACILITY_OPTIONS.bathroom} />
               ) : null}
               {hasCol("other_facilities") ? (
-                <ListEditor title="Other Facilities" values={normalizeStringList(form.other_facilities)} onChange={(list) => setField("other_facilities", list)} placeholder="Bonfire Area" />
+                <ListEditor title="Other Facilities" values={normalizeStringList(form.other_facilities)} onChange={(list) => setField("other_facilities", list)} placeholder="Bonfire Area" quickAddItems={HOTEL_SPACE_FACILITY_OPTIONS.other_facilities} />
               ) : null}
               {hasCol("inclusion") ? (
-                <ListEditor title="Inclusions" values={normalizeStringList(form.inclusion)} onChange={(list) => setField("inclusion", list)} placeholder="WiFi" />
+                <ListEditor title="Inclusions" values={normalizeStringList(form.inclusion)} onChange={(list) => setField("inclusion", list)} placeholder="WiFi" quickAddItems={HOTEL_SPACE_FACILITY_OPTIONS.inclusion} />
               ) : null}
               {hasCol("exclusion") ? (
                 <ListEditor title="Exclusions" values={normalizeStringList(form.exclusion)} onChange={(list) => setField("exclusion", list)} placeholder="Meals unless included" />

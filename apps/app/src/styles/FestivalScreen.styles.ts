@@ -1,0 +1,60 @@
+import { StyleSheet } from "react-native";
+
+export const festivalStyles = StyleSheet.create({
+  screen: { flex: 1, backgroundColor: "transparent" },
+  hero: { borderRadius: 18, borderWidth: 1, borderColor: "#1d3258", backgroundColor: "#0f1a2d", marginBottom: 16 },
+  heroKicker: { color: "#eaf2ff", fontWeight: "800", letterSpacing: 1.1 },
+  heroTitle: { color: "#fff", fontWeight: "800", marginTop: 6 },
+  heroSubtitle: { color: "#9db0d6", marginTop: 8 },
+  pillsRow: { flexDirection: "row", flexWrap: "wrap", gap: 10, marginBottom: 18 },
+  loadingWrap: { paddingVertical: 30, alignItems: "center" },
+  loadingText: { color: "#6b7280", marginTop: 8 },
+  emptyWrap: { paddingVertical: 20 },
+  emptyTitle: { color: "#111827", fontSize: 16, fontWeight: "700" },
+  errorText: { color: "#ff8b8b", marginTop: 6, fontSize: 12 },
+  cardList: { gap: 12 },
+  card: {
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: "#d8e1ee",
+    backgroundColor: "#ffffff",
+    shadowColor: "#1d2c49",
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 2,
+  },
+  cardHead: { flexDirection: "row", justifyContent: "space-between", alignItems: "center" },
+  cardTitle: { color: "#111827", fontWeight: "800", flex: 1, marginRight: 8 },
+  monthBadge: { backgroundColor: "#fff1e8", borderWidth: 1, borderColor: "#ffd8c2", borderRadius: 999, paddingHorizontal: 10, paddingVertical: 4 },
+  monthText: { color: "#9a3412", fontWeight: "700" },
+  image: { width: "100%", borderRadius: 10, marginTop: 8 },
+  locationText: { color: "#6b7280", marginTop: 6 },
+  vibeText: { color: "#4b5563", marginTop: 8 },
+  ticketText: { color: "#f4511e", marginTop: 8, fontWeight: "800" },
+  actionsRow: { flexDirection: "row", gap: 10, marginTop: 12 },
+  pill: { borderRadius: 999, borderWidth: 1, borderColor: "#f4511e", backgroundColor: "#fff1e8", paddingHorizontal: 12, paddingVertical: 7 },
+  pillText: { color: "#9a3412", fontSize: 12, fontWeight: "700" },
+  primaryButton: { borderRadius: 999, borderWidth: 1, borderColor: "#f4511e", backgroundColor: "#f4511e", paddingHorizontal: 14, paddingVertical: 8 },
+  primaryButtonText: { color: "#fff", fontSize: 12, fontWeight: "800" },
+  secondaryButton: { borderRadius: 999, borderWidth: 1, borderColor: "#d8e1ee", backgroundColor: "#f8fafc", paddingHorizontal: 14, paddingVertical: 8 },
+  secondaryButtonText: { color: "#334155", fontSize: 12, fontWeight: "800" },
+});
+
+export const festivalDynamicStyles = {
+  contentPad: (isMobile: boolean) => ({ paddingTop: 110, paddingHorizontal: isMobile ? 14 : 24, paddingBottom: 32 }),
+  heroPad: (isMobile: boolean) => ({ padding: isMobile ? 16 : 22 }),
+  heroKickerSize: (isMobile: boolean) => ({ fontSize: isMobile ? 12 : 13 }),
+  heroTitleSize: (isMobile: boolean) => ({ fontSize: isMobile ? 25 : 34 }),
+  heroSubtitleSize: (isMobile: boolean) => ({ fontSize: isMobile ? 13 : 16 }),
+  cardPad: (isMobile: boolean) => ({ padding: isMobile ? 14 : 18 }),
+  cardTitleSize: (isMobile: boolean) => ({ fontSize: isMobile ? 20 : 24 }),
+  monthTextSize: (isMobile: boolean) => ({ fontSize: isMobile ? 12 : 13 }),
+  imageHeight: (isMobile: boolean) => ({ height: isMobile ? 120 : 170 }),
+  bodyText: (isMobile: boolean) => ({ fontSize: isMobile ? 13 : 14 }),
+  ticketSize: (isMobile: boolean) => ({ fontSize: isMobile ? 15 : 16 }),
+};
+
+export const festivalColors = {
+  spinner: "#f4511e",
+} as const;

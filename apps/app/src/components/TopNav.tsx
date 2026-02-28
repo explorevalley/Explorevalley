@@ -1,20 +1,8 @@
 import React, { useEffect, useRef } from "react";
-import { Animated, View, Pressable, Text, Platform, useWindowDimensions } from "react-native";
-
-const PRIMARY_NAV = [
-  { key: "travel", label: "Travel", icon: "🗺️" },
-  { key: "taxi", label: "Taxi", icon: "🚕" },
-  { key: "bike", label: "Bike", icon: "🏍️" },
-  { key: "food", label: "Food", icon: "🍽️" },
-  { key: "mart", label: "Mart", icon: "🛒" },
-] as const;
-
-const FILTERS = [
-  { key: "all", label: "All" },
-  { key: "hotel", label: "Hotels" },
-  { key: "cottages", label: "Cottages" },
-  { key: "tour", label: "Tour" },
-] as const;
+import { Animated, View, Pressable, Text, Platform, useWindowDimensions, Image } from "react-native";
+import { FaBell, FaClipboardList, FaUserCog } from "react-icons/fa";
+import { topNavColors, topNavDynamicStyles, topNavStyles } from "../styles/TopNav.styles";
+import { topNavData as t } from "../staticData/topNav.staticData";
 
 export default function TopNav({ typeFilter, onTypeChange, primaryTab, onPrimaryChange, authMode, authUser, onAuthPress, onLogout, onProfilePress }: any) {
   const { width: windowWidth } = useWindowDimensions();
@@ -33,196 +21,89 @@ export default function TopNav({ typeFilter, onTypeChange, primaryTab, onPrimary
     filter: isMobile ? 13.75 : isTablet ? 16.25 : 19.7,
     sideFilter: isMobile ? 13.75 : isTablet ? 22.5 : 28.125,
   };
-  const userLabel = String(authUser?.name || authUser?.email || authUser?.phone || "User");
+  const userLabel = String(authUser?.name || authUser?.email || authUser?.phone || t.userFallback);
 
-  // Mobile Layout
   if (isMobile) {
     return (
-      <View pointerEvents="box-none" style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }}>
-        {/* Top Bar - Fixed at top */}
+      <View pointerEvents="box-none" style={topNavStyles.absoluteFill}>
         <Animated.View
-          style={{
-            position: "absolute",
-            top: 8,
-            left: 8,
-            right: 8,
-            zIndex: 100,
-            transform: [{ translateY: navAnim.interpolate({ inputRange: [0, 1], outputRange: [-50, 0] }) }],
-            opacity: navAnim,
-          }}
+          style={[topNavStyles.mobileContainer, topNavDynamicStyles.mobileAnimated(navAnim)]}
           pointerEvents="box-none"
         >
-          <View
-            pointerEvents="auto"
-            style={{
-              backgroundColor: "rgba(16, 16, 16, 0.95)",
-              borderColor: "rgba(245, 242, 232, 0.1)",
-              borderWidth: 1,
-              borderRadius: 16,
-              padding: 10,
-              gap: 8,
-              ...Platform.select({
-                ios: { shadowColor: "#000", shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.3, shadowRadius: 12 },
-                android: { elevation: 6 },
-                web: { backdropFilter: "blur(20px)", boxShadow: "0 4px 24px rgba(0,0,0,0.3)" },
-              }),
-            }}
-          >
-            {/* Logo, Search and Filter Row */}
-            <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
-              <View
-                style={{
-                  paddingHorizontal: 15,
-                  paddingVertical: 7.5,
-                  borderRadius: 999,
-                  backgroundColor: "#f5f2e8",
-                  borderWidth: 1,
-                  borderColor: "#e9e3d4",
-                }}
-              >
-                <Text style={{ color: "#1c1c1c", fontWeight: "800", fontSize: fontSize.logo, letterSpacing: 0.5 }}>
-                  ExploreValley
-                </Text>
+          <View pointerEvents="auto" style={[topNavStyles.mobileCard, topNavDynamicStyles.mobileCardPlatform()]}>
+            <View style={topNavStyles.mobileHeaderRow}>
+              <View style={topNavStyles.logoWrap}>
+                <View style={[topNavStyles.logoCircleMobile, topNavDynamicStyles.mobileLogoCircle(isMobile)]}>
+                  <Image source={{ uri: t.logoUrl }} style={topNavStyles.logoSizeMobile} resizeMode="contain" />
+                </View>
+                <Text style={[topNavStyles.evTextMobile, topNavDynamicStyles.evTextMobilePos(isMobile)]}>{t.evMark}</Text>
               </View>
+              <View style={topNavStyles.flex1} />
 
-              <HoverScale
-                onPress={authMode === "authenticated" ? onLogout : onAuthPress}
-                style={{
-                  paddingHorizontal: 12.5,
-                  paddingVertical: 7.5,
-                  borderRadius: 999,
-                  borderWidth: 1,
-                  borderColor: "rgba(245, 242, 232, 0.2)",
-                  backgroundColor: "rgba(245, 242, 232, 0.1)",
-                }}
-              >
-                <Text style={{ color: "#fff", fontWeight: "700", fontSize: fontSize.filter }}>
-                  {authMode === "authenticated" ? "Logout" : "Login"}
+              {authMode === "authenticated" ? (
+                <View style={topNavStyles.mobileIconRow}>
+                  <Pressable
+                    onPress={() => onPrimaryChange?.(t.ordersTab)}
+                    style={({ hovered, pressed }) => topNavDynamicStyles.mobileIconBtn(!!hovered, !!pressed)}
+                  >
+                    <FaClipboardList size={12} color={topNavColors.icon} />
+                  </Pressable>
+                  <Pressable
+                    onPress={() => onPrimaryChange?.(t.ordersTab)}
+                    style={({ hovered, pressed }) => topNavDynamicStyles.mobileIconBtn(!!hovered, !!pressed)}
+                  >
+                    <FaBell size={12} color={topNavColors.icon} />
+                  </Pressable>
+                  <Pressable
+                    onPress={onProfilePress}
+                    style={({ hovered, pressed }) => topNavDynamicStyles.mobileIconBtn(!!hovered, !!pressed)}
+                  >
+                    <FaUserCog size={12} color={topNavColors.icon} />
+                  </Pressable>
+                </View>
+              ) : null}
+
+              <HoverScale onPress={authMode === "authenticated" ? onLogout : onAuthPress} style={topNavStyles.mobileAuthBtn}>
+                <Text style={topNavDynamicStyles.authText(fontSize.filter)}>
+                  {authMode === "authenticated" ? t.authLogout : t.authLogin}
                 </Text>
               </HoverScale>
             </View>
-            {authMode === "authenticated" ? (
-              <View style={{ flexDirection: "row", justifyContent: "flex-end", alignItems: "center", gap: 8 }}>
-                <Pressable
-                  onPress={() => onPrimaryChange?.("orders")}
-                  style={({ hovered, pressed }) => ({
-                    paddingHorizontal: 10,
-                    paddingVertical: 6,
-                    borderRadius: 999,
-                    borderWidth: 1,
-                    borderColor: hovered ? "#f5f2e8" : "rgba(245, 242, 232, 0.2)",
-                    backgroundColor: hovered ? "#f5f2e8" : "rgba(245, 242, 232, 0.08)",
-                    opacity: pressed ? 0.9 : 1
-                  })}
-                >
-                  <Text style={{ color: "#fff", fontSize: 12, fontWeight: "800" }}>📋</Text>
-                </Pressable>
-                <Pressable onPress={onProfilePress} style={{ maxWidth: 230 }}>
-                  <Text numberOfLines={1} style={{ color: "#9ef1a6", fontSize: 12, fontWeight: "700", textAlign: "right" }}>
-                    {userLabel}
-                  </Text>
-                </Pressable>
-              </View>
-            ) : null}
 
-            {/* Primary Navigation Row */}
-            <View style={{
-              flexDirection: "row",
-              gap: 6,
-              justifyContent: "center"
-            }}>
-              {PRIMARY_NAV.map(f => {
+            <View style={topNavStyles.mobilePrimaryRow}>
+              {t.primaryNav.map((f) => {
                 const active = primaryTab === f.key;
                 return (
                   <Pressable
                     key={f.key}
                     onPress={() => onPrimaryChange?.(f.key)}
-                    style={({ hovered }) => [
-                      {
-                        flex: 1,
-                        paddingHorizontal: 12.5,
-                        paddingVertical: 7.5,
-                        borderRadius: 999,
-                        borderWidth: 1,
-                        borderColor: active ? "#f5f2e8" : "rgba(245, 242, 232, 0.2)",
-                        backgroundColor: active ? "#f5f2e8" : "transparent",
-                        alignItems: "center",
-                      },
-                      hovered ? { backgroundColor: "#007c00", borderColor: "#007c00" } : null
-                    ]}
+                    style={({ hovered }) => topNavDynamicStyles.mobilePrimaryBtn(active, !!hovered)}
                   >
-                    <Text style={{
-                      color: active ? "#1c1c1c" : "#fff",
-                      fontWeight: "700",
-                      fontSize: fontSize.nav
-                    }}>
+                    <Text style={topNavDynamicStyles.mobilePrimaryText(active, fontSize.nav)}>
                       {f.label}
                     </Text>
                   </Pressable>
                 );
               })}
             </View>
-            {null}
           </View>
         </Animated.View>
 
         {primaryTab === "travel" ? (
           <Animated.View
             pointerEvents="auto"
-            style={{
-              position: "absolute",
-              left: 8,
-              right: 8,
-              bottom: 8,
-              zIndex: 120,
-              transform: [{ translateY: navAnim.interpolate({ inputRange: [0, 1], outputRange: [24, 0] }) }],
-              opacity: navAnim,
-            }}
+            style={[topNavStyles.mobileFilterDock, topNavDynamicStyles.mobileFilterAnimated(navAnim)]}
           >
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "space-between",
-                gap: 6,
-                backgroundColor: "rgba(16, 16, 16, 0.95)",
-                borderColor: "rgba(245, 242, 232, 0.15)",
-                borderWidth: 1,
-                borderRadius: 999,
-                paddingHorizontal: 8,
-                paddingVertical: 8,
-              }}
-            >
-              {FILTERS.map(f => {
+            <View style={topNavStyles.mobileFilterCard}>
+              {t.filters.map((f) => {
                 const active = typeFilter === f.key;
                 return (
                   <Pressable
                     key={f.key}
                     onPress={() => onTypeChange?.(f.key)}
-                    style={({ pressed }) => [
-                      {
-                        flex: 1,
-                        alignItems: "center",
-                        justifyContent: "center",
-                        paddingVertical: 8,
-                        paddingHorizontal: 6,
-                        borderRadius: 999,
-                        borderWidth: 1,
-                        borderColor: active ? "#f5f2e8" : "rgba(245, 242, 232, 0.25)",
-                        backgroundColor: active ? "#f5f2e8" : "transparent",
-                      },
-                      pressed ? { opacity: 0.9 } : null,
-                    ]}
+                    style={({ pressed }) => topNavDynamicStyles.mobileFilterBtn(active, !!pressed)}
                   >
-                    <Text
-                      style={{
-                        color: active ? "#1c1c1c" : "#fff",
-                        fontWeight: "800",
-                        fontSize: 15,
-                      }}
-                    >
-                      {f.label}
-                    </Text>
+                    <Text style={topNavDynamicStyles.mobileFilterText(active)}>{f.label}</Text>
                   </Pressable>
                 );
               })}
@@ -233,188 +114,74 @@ export default function TopNav({ typeFilter, onTypeChange, primaryTab, onPrimary
     );
   }
 
-  // Desktop/Tablet Layout (unchanged)
   return (
-    <View
-      pointerEvents="box-none"
-      style={{
-        paddingHorizontal: 14,
-        paddingTop: 10,
-        paddingBottom: 8,
-        gap: 10,
-        backgroundColor: "transparent"
-      }}
-    >
-      <Animated.View
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          gap: 9.375,
-          backgroundColor: "#101010",
-          borderColor: "#1f1f1f",
-          borderWidth: 1,
-          borderRadius: 999,
-          paddingHorizontal: 11.25,
-          paddingVertical: 7.5,
-          shadowColor: "transparent",
-          shadowOpacity: 0,
-          shadowRadius: 0,
-          shadowOffset: { width: 0, height: 0 },
-          elevation: 0,
-          position: "relative",
-          transform: [{ translateY: navAnim.interpolate({ inputRange: [0, 1], outputRange: [-12, 0] }) }],
-          opacity: navAnim,
-        }}
-        pointerEvents="auto"
-      >
-        <View
-          style={{
-            paddingHorizontal: 11.25,
-            paddingVertical: 5.625,
-            borderRadius: 999,
-            backgroundColor: "#f5f2e8",
-            borderWidth: 1,
-            borderColor: "#e9e3d4",
-          }}
-        >
-          <Text style={{ color: "#1c1c1c", fontWeight: "800", fontSize: fontSize.logo, letterSpacing: 0.3 }}>
-            ExploreValley
-          </Text>
+    <View pointerEvents="box-none" style={topNavStyles.desktopOuter}>
+      <Animated.View style={[topNavStyles.desktopBar, topNavDynamicStyles.desktopAnimated(navAnim)]} pointerEvents="auto">
+        <View style={topNavStyles.logoWrap}>
+          <View style={[topNavStyles.logoCircleDesktop, topNavDynamicStyles.desktopLogoCircle(isTablet)]}>
+            <Image source={{ uri: t.logoUrl }} style={topNavDynamicStyles.desktopLogoSize(isTablet)} resizeMode="contain" />
+          </View>
+          <Text style={[topNavStyles.evTextDesktop, topNavDynamicStyles.evTextDesktopPos(isTablet)]}>{t.evMark}</Text>
         </View>
 
-        <View style={{ flex: 1 }} />
+        <View style={topNavStyles.flex1} />
 
-        <View style={{ flexDirection: "row", alignItems: "center", gap: 5.625 }}>
-          {PRIMARY_NAV.map(f => {
+        <View style={topNavStyles.desktopNavRow}>
+          {t.primaryNav.map((f) => {
             const active = primaryTab === f.key;
             return (
-              <HoverScale
-                key={f.key}
-                onPress={() => onPrimaryChange?.(f.key)}
-                style={{
-                  paddingHorizontal: isTablet ? 10 : 11.25,
-                  paddingVertical: isTablet ? 7.5 : 7.5,
-                  borderRadius: 999,
-                  borderWidth: 1,
-                  borderColor: active ? "#f5f2e8" : "transparent",
-                  backgroundColor: active ? "#f5f2e8" : "transparent"
-                }}
-              >
-                <Text style={{ color: active ? "#1c1c1c" : "#fff", fontWeight: "800", fontSize: fontSize.nav }}>
-                  {f.label}
-                </Text>
+              <HoverScale key={f.key} onPress={() => onPrimaryChange?.(f.key)} style={topNavDynamicStyles.desktopPrimaryBtn(active, isTablet)}>
+                <Text style={topNavDynamicStyles.desktopPrimaryText(active, fontSize.nav)}>{f.label}</Text>
               </HoverScale>
             );
           })}
         </View>
 
-        <View style={{ flex: 1 }} />
+        <View style={topNavStyles.flex1} />
 
         {authMode === "authenticated" ? (
-          <Pressable
-            onPress={onProfilePress}
-            style={{
-              paddingHorizontal: 11.25,
-              paddingVertical: 7.5,
-              borderRadius: 999,
-              borderWidth: 1,
-              borderColor: "rgba(158, 241, 166, 0.35)",
-              backgroundColor: "rgba(25, 60, 32, 0.4)",
-              maxWidth: 230
-            }}
-          >
-            <Text numberOfLines={1} style={{ color: "#9ef1a6", fontWeight: "700", fontSize: 14 }}>
-              {userLabel}
-            </Text>
+          <Pressable onPress={onProfilePress} style={topNavStyles.desktopUserBtn}>
+            <Text numberOfLines={1} style={topNavStyles.desktopUserText}>{userLabel}</Text>
           </Pressable>
         ) : null}
 
         {authMode === "authenticated" ? (
-          <HoverScale
-            onPress={() => onPrimaryChange?.("orders")}
-            style={{
-              paddingHorizontal: 10,
-              paddingVertical: 7.5,
-              borderRadius: 999,
-              borderWidth: 1,
-              borderColor: "rgba(245, 242, 232, 0.2)",
-              backgroundColor: "rgba(245, 242, 232, 0.08)",
-            }}
-          >
-            <Text style={{ color: "#fff", fontWeight: "800", fontSize: fontSize.filter }}>📋</Text>
+          <HoverScale onPress={() => onPrimaryChange?.(t.ordersTab)} style={topNavStyles.desktopIconBtnBase}>
+            <FaClipboardList size={14} color={topNavColors.icon} />
           </HoverScale>
         ) : null}
 
-        <HoverScale
-          onPress={authMode === "authenticated" ? onLogout : onAuthPress}
-          style={{
-            paddingHorizontal: 11.25,
-            paddingVertical: 7.5,
-            borderRadius: 999,
-            borderWidth: 1,
-            borderColor: "rgba(245, 242, 232, 0.2)",
-            backgroundColor: "transparent",
-          }}
-        >
-          <Text style={{ color: "#fff", fontWeight: "700", fontSize: fontSize.filter }}>
-            {authMode === "authenticated" ? "Logout" : "Login"}
+        {authMode === "authenticated" ? (
+          <HoverScale onPress={() => onPrimaryChange?.(t.ordersTab)} style={topNavStyles.desktopIconBtnBase}>
+            <FaBell size={14} color={topNavColors.icon} />
+          </HoverScale>
+        ) : null}
+
+        {authMode === "authenticated" ? (
+          <HoverScale onPress={onProfilePress} style={topNavStyles.desktopIconBtnBase}>
+            <FaUserCog size={14} color={topNavColors.icon} />
+          </HoverScale>
+        ) : null}
+
+        <HoverScale onPress={authMode === "authenticated" ? onLogout : onAuthPress} style={topNavStyles.desktopAuthBtn}>
+          <Text style={topNavDynamicStyles.authText(fontSize.filter)}>
+            {authMode === "authenticated" ? t.authLogout : t.authLogin}
           </Text>
         </HoverScale>
       </Animated.View>
 
       {primaryTab === "travel" ? (
-        <View
-          pointerEvents="box-none"
-          style={{
-            alignItems: "center",
-            justifyContent: "center",
-            marginTop: 4,
-          }}
-        >
-          <View
-            pointerEvents="auto"
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: 6,
-              backgroundColor: "#101010",
-              borderColor: "#1f1f1f",
-              borderWidth: 1,
-              borderRadius: 999,
-              paddingHorizontal: 8,
-              paddingVertical: 8,
-            }}
-          >
-            {FILTERS.map((f) => {
+        <View pointerEvents="box-none" style={topNavStyles.desktopFilterDock}>
+          <View pointerEvents="auto" style={topNavStyles.desktopFilterCard}>
+            {t.filters.map((f) => {
               const active = typeFilter === f.key;
               return (
                 <Pressable
                   key={f.key}
                   onPress={() => onTypeChange?.(f.key)}
-                  style={({ pressed }) => [
-                    {
-                      alignItems: "center",
-                      justifyContent: "center",
-                      paddingVertical: 8,
-                      paddingHorizontal: 10,
-                      borderRadius: 999,
-                      borderWidth: 1,
-                      borderColor: active ? "#f5f2e8" : "rgba(245, 242, 232, 0.25)",
-                      backgroundColor: active ? "#f5f2e8" : "transparent",
-                    },
-                    pressed ? { opacity: 0.9 } : null,
-                  ]}
+                  style={({ pressed }) => topNavDynamicStyles.desktopFilterBtn(active, !!pressed)}
                 >
-                  <Text
-                    style={{
-                      color: active ? "#1c1c1c" : "#fff",
-                      fontWeight: "800",
-                      fontSize: fontSize.filter,
-                    }}
-                  >
-                    {f.label}
-                  </Text>
+                  <Text style={topNavDynamicStyles.desktopFilterText(active, fontSize.filter)}>{f.label}</Text>
                 </Pressable>
               );
             })}
@@ -434,24 +201,23 @@ function HoverScale({ children, onPress, style }: { children: React.ReactNode; o
     if (child.type === Text) {
       const typedChild = child as React.ReactElement<any>;
       return React.cloneElement(typedChild, {
-        style: [typedChild.props.style, hovered ? { color: "#fff" } : null],
+        style: [typedChild.props.style, topNavDynamicStyles.hoverText(hovered)],
       });
     }
     return child;
   });
   return (
-    <Animated.View style={{ transform: [{ scale }] }}>
+    <Animated.View style={topNavDynamicStyles.hoverScaleWrap(scale)}>
       <Pressable
         onPress={onPress}
         onHoverIn={() => { setHovered(true); to(1.04); }}
         onHoverOut={() => { setHovered(false); to(1); }}
         onPressIn={() => to(0.98)}
         onPressOut={() => to(1)}
-        style={[style, hovered ? { backgroundColor: "#007c00", borderColor: "#007c00" } : null]}
+        style={topNavDynamicStyles.hoverScalePressable(style, hovered)}
       >
         {withHoverText}
       </Pressable>
     </Animated.View>
   );
 }
-

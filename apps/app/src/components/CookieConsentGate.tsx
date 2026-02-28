@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Linking, Platform, Pressable, Text, View } from "react-native";
 import { apiGet } from "../lib/api";
+import { cookieConsentStyles as styles } from "../styles/CookieConsentGate.styles";
+import { cookieConsentData as t } from "../staticData/cookieConsentGate.staticData";
 
-const CONSENT_COOKIE_KEY = "ev_cookie_consent_v1";
-const CONSENT_VALUE = "accepted";
+const CONSENT_COOKIE_KEY = t.consentCookieKey;
+const CONSENT_VALUE = t.consentValue;
 
 function hasCookieConsent() {
   if (typeof window === "undefined") return true;
@@ -34,10 +36,10 @@ function persistCookieConsent() {
 
 async function openPolicyPage(slug: string) {
   try {
-    const page: any = await apiGet(`/api/pages/${slug}`);
+    const page: any = await apiGet(t.api.pages(slug));
     const title = String(page?.title || slug);
     const content = String(page?.content || "");
-    const html = `<!doctype html><html><head><meta charset=\"utf-8\" /><title>${title}</title></head><body>${content}</body></html>`;
+    const html = t.htmlTemplate(title, content);
     if (Platform.OS === "web" && typeof window !== "undefined") {
       const w = window.open("", "_blank", "noopener,noreferrer");
       if (w) {
@@ -75,15 +77,15 @@ export default function CookieConsentGate() {
     if (Platform.OS !== "web") return;
     (async () => {
       try {
-        const meta: any = await apiGet("/api/meta");
+        const meta: any = await apiGet(t.api.meta);
         const ps = meta?.settings?.pageSlugs || meta?.settings?.page_slugs || {};
         setSlugs({
-          affiliate: typeof ps.affiliateProgram === "string" ? ps.affiliateProgram : "affiliate-program",
-          contact: typeof ps.contactUs === "string" ? ps.contactUs : "contact-us",
-          privacy: typeof ps.privacyPolicy === "string" ? ps.privacyPolicy : "privacy-policy",
-          refund: typeof ps.refundPolicy === "string" ? ps.refundPolicy : "refund-policy",
-          terms: typeof ps.termsAndConditions === "string" ? ps.termsAndConditions : "terms-and-conditions",
-          emergency: typeof ps.emergency === "string" ? ps.emergency : "emergency"
+          affiliate: typeof ps.affiliateProgram === "string" ? ps.affiliateProgram : t.fallbackSlugs.affiliate,
+          contact: typeof ps.contactUs === "string" ? ps.contactUs : t.fallbackSlugs.contact,
+          privacy: typeof ps.privacyPolicy === "string" ? ps.privacyPolicy : t.fallbackSlugs.privacy,
+          refund: typeof ps.refundPolicy === "string" ? ps.refundPolicy : t.fallbackSlugs.refund,
+          terms: typeof ps.termsAndConditions === "string" ? ps.termsAndConditions : t.fallbackSlugs.terms,
+          emergency: typeof ps.emergency === "string" ? ps.emergency : t.fallbackSlugs.emergency,
         });
       } catch {
         // Fallback to defaults.
@@ -94,56 +96,35 @@ export default function CookieConsentGate() {
   if (!ready || accepted) return null;
 
   return (
-    <View
-      style={{
-        position: "absolute",
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
-        zIndex: 9999,
-        backgroundColor: "rgba(0,0,0,0.75)",
-        justifyContent: "flex-end",
-        padding: 14
-      }}
-    >
-      <View
-        style={{
-          borderRadius: 16,
-          borderWidth: 1,
-          borderColor: "rgba(255,255,255,0.16)",
-          backgroundColor: "#0f1112",
-          padding: 16
-        }}
-      >
-        <Text style={{ color: "#fff", fontSize: 18, fontWeight: "800" }}>ExploreValley Cookie Consent</Text>
-        <Text style={{ color: "#c6d1d9", marginTop: 8, lineHeight: 20 }}>
-          We use cookies to keep the site secure, improve performance, and personalize your experience.
-          By continuing, you must accept cookie consent.
+      <View style={styles.overlay}>
+      <View style={styles.card}>
+        <Text style={styles.title}>{t.title}</Text>
+        <Text style={styles.body}>
+          {t.body}
         </Text>
-        <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8, marginTop: 12 }}>
-          <Pressable onPress={() => openPolicyPage(slugs.affiliate || "affiliate-program")}>
-            <Text style={{ color: "#93c5fd", fontWeight: "700" }}>Affiliate Program</Text>
+        <View style={styles.linksRow}>
+          <Pressable onPress={() => openPolicyPage(slugs.affiliate || t.fallbackSlugs.affiliate)}>
+            <Text style={styles.linkText}>{t.linkLabels.affiliate}</Text>
           </Pressable>
-          <Text style={{ color: "#64748b" }}>•</Text>
-          <Pressable onPress={() => openPolicyPage(slugs.contact || "contact-us")}>
-            <Text style={{ color: "#93c5fd", fontWeight: "700" }}>Contact Us</Text>
+          <Text style={styles.dot}>{t.dot}</Text>
+          <Pressable onPress={() => openPolicyPage(slugs.contact || t.fallbackSlugs.contact)}>
+            <Text style={styles.linkText}>{t.linkLabels.contact}</Text>
           </Pressable>
-          <Text style={{ color: "#64748b" }}>•</Text>
-          <Pressable onPress={() => openPolicyPage(slugs.privacy || "privacy-policy")}>
-            <Text style={{ color: "#93c5fd", fontWeight: "700" }}>Privacy Policy</Text>
+          <Text style={styles.dot}>{t.dot}</Text>
+          <Pressable onPress={() => openPolicyPage(slugs.privacy || t.fallbackSlugs.privacy)}>
+            <Text style={styles.linkText}>{t.linkLabels.privacy}</Text>
           </Pressable>
-          <Text style={{ color: "#64748b" }}>•</Text>
-          <Pressable onPress={() => openPolicyPage(slugs.refund || "refund-policy")}>
-            <Text style={{ color: "#93c5fd", fontWeight: "700" }}>Refund Policy</Text>
+          <Text style={styles.dot}>{t.dot}</Text>
+          <Pressable onPress={() => openPolicyPage(slugs.refund || t.fallbackSlugs.refund)}>
+            <Text style={styles.linkText}>{t.linkLabels.refund}</Text>
           </Pressable>
-          <Text style={{ color: "#64748b" }}>•</Text>
-          <Pressable onPress={() => openPolicyPage(slugs.terms || "terms-and-conditions")}>
-            <Text style={{ color: "#93c5fd", fontWeight: "700" }}>Terms and Conditions</Text>
+          <Text style={styles.dot}>{t.dot}</Text>
+          <Pressable onPress={() => openPolicyPage(slugs.terms || t.fallbackSlugs.terms)}>
+            <Text style={styles.linkText}>{t.linkLabels.terms}</Text>
           </Pressable>
-          <Text style={{ color: "#64748b" }}>•</Text>
-          <Pressable onPress={() => openPolicyPage(slugs.emergency || "emergency")}>
-            <Text style={{ color: "#93c5fd", fontWeight: "700" }}>Emergency</Text>
+          <Text style={styles.dot}>{t.dot}</Text>
+          <Pressable onPress={() => openPolicyPage(slugs.emergency || t.fallbackSlugs.emergency)}>
+            <Text style={styles.linkText}>{t.linkLabels.emergency}</Text>
           </Pressable>
         </View>
         <Pressable
@@ -151,18 +132,9 @@ export default function CookieConsentGate() {
             persistCookieConsent();
             setAccepted(true);
           }}
-          style={{
-            marginTop: 14,
-            borderRadius: 999,
-            borderWidth: 1,
-            borderColor: "#22c55e",
-            backgroundColor: "rgba(34,197,94,0.2)",
-            alignItems: "center",
-            justifyContent: "center",
-            paddingVertical: 11
-          }}
+          style={styles.acceptBtn}
         >
-          <Text style={{ color: "#dcfce7", fontWeight: "800", fontSize: 14 }}>Accept Consent</Text>
+          <Text style={styles.acceptText}>{t.acceptLabel}</Text>
         </Pressable>
       </View>
     </View>

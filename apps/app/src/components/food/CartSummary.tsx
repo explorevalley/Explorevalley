@@ -1,4 +1,6 @@
 import { View, Text, Pressable, useWindowDimensions } from "react-native";
+import { cartSummaryDynamicStyles as ds, cartSummaryStyles as styles } from "../../styles/FoodComponents.styles";
+import { cartSummaryData as t } from "../../staticData/cartSummary.staticData";
 
 interface CartItem {
   id: string;
@@ -22,69 +24,27 @@ export default function CartSummary({ items, onCheckout }: CartSummaryProps) {
   const total = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
   return (
-    <View style={{
-      position: "absolute",
-      bottom: isMobile ? 20 : 30,
-      left: isMobile ? 14 : "auto",
-      right: isMobile ? 14 : 30,
-      zIndex: 1000
-    }}>
+    <View style={[styles.dock, ds.dock(isMobile)]}>
       <Pressable
         onPress={onCheckout}
-        style={({ pressed, hovered }) => [
-          {
-            backgroundColor: hovered ? "#d73f11" : "#f4511e",
-            paddingVertical: isMobile ? 14 : 16,
-            paddingHorizontal: isMobile ? 18 : 24,
-            borderRadius: 14,
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "space-between",
-            gap: isMobile ? 12 : 16,
-            shadowColor: "#f4511e",
-            shadowOffset: { width: 0, height: 4 },
-            shadowOpacity: 0.24,
-            shadowRadius: 8,
-            elevation: 8,
-            transform: [{ scale: pressed ? 0.98 : 1 }]
-          }
-        ]}
+        style={({ pressed, hovered }) => [styles.button, ds.button(isMobile, hovered, pressed)]}
       >
-        {({ hovered }) => (
+        {() => (
           <>
-            <View style={{
-              backgroundColor: "rgba(255,255,255,0.2)",
-              paddingHorizontal: isMobile ? 10 : 12,
-              paddingVertical: isMobile ? 4 : 6,
-              borderRadius: 8,
-              minWidth: isMobile ? 32 : 36,
-              alignItems: "center"
-            }}>
-              <Text style={{
-                color: "#fff",
-                fontSize: isMobile ? 14 : 16,
-                fontWeight: "800"
-              }}>
+            <View style={[styles.countBadge, ds.countBadge(isMobile)]}>
+              <Text style={[styles.countText, ds.countText(isMobile)]}>
                 {itemCount}
               </Text>
             </View>
 
-            <View style={{ flex: 1 }}>
-              <Text style={{
-                color: "#fff",
-                fontSize: isMobile ? 14 : 16,
-                fontWeight: "800"
-              }}>
-                View Cart
+            <View style={styles.flex1}>
+              <Text style={[styles.labelText, ds.labelText(isMobile)]}>
+                {t.viewCartLabel}
               </Text>
             </View>
 
-            <Text style={{
-              color: "#fff",
-              fontSize: isMobile ? 16 : 18,
-              fontWeight: "800"
-            }}>
-              ₹{total.toFixed(0)}
+            <Text style={[styles.totalText, ds.totalText(isMobile)]}>
+              {t.currency}{total.toFixed(0)}
             </Text>
           </>
         )}

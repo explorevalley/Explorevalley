@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Modal, View, Text, TextInput, Pressable, Switch, useWindowDimensions, ScrollView } from "react-native";
+import { filterModalColors, filterModalDynamicStyles as ds, filterModalStyles as styles } from "../styles/FilterModal.styles";
+import { filterModalData as t } from "../staticData/filterModal.staticData";
 
 export default function FilterModal({ visible, onClose, onApply, initial }: any) {
   const { width: windowWidth } = useWindowDimensions();
@@ -17,167 +19,82 @@ export default function FilterModal({ visible, onClose, onApply, initial }: any)
     onApply(payload);
   }
 
-  const fontSize = {
-    title: isMobile ? 18 : 22,
-    label: isMobile ? 14 : 16,
-    button: isMobile ? 14 : 16,
-    input: isMobile ? 14 : 16,
-  };
-
   return (
     <Modal visible={visible} animationType="slide" onRequestClose={onClose}>
-      <ScrollView style={{ flex: 1, backgroundColor: "#0b0b0b" }}>
-        <View style={{ padding: isMobile ? 14 : 18, paddingTop: isMobile ? 20 : 24 }}>
-          <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
-            <Text style={{ color: "#fff", fontSize: fontSize.title, fontWeight: "700" }}>Filters</Text>
+      <ScrollView style={styles.screen}>
+        <View style={[styles.body, ds.body(isMobile)]}>
+          <View style={styles.header}>
+            <Text style={[styles.title, ds.text(isMobile, "title")]}>{t.title}</Text>
             <Pressable onPress={onClose}>
-              <Text style={{ color: "#fff", fontSize: fontSize.title, fontWeight: "700" }}>Close</Text>
+              <Text style={[styles.title, ds.text(isMobile, "title")]}>{t.close}</Text>
             </Pressable>
           </View>
 
-          <View style={{ marginTop: isMobile ? 14 : 18 }}>
-            <Text style={{ color: "#ddd", marginBottom: 8, fontSize: fontSize.label, fontWeight: "700" }}>Type</Text>
-            <View style={{ flexDirection: isMobile ? "column" : "row", gap: 8 }}>
+          <View style={[styles.section, ds.section(isMobile)]}>
+            <Text style={[styles.label, ds.text(isMobile, "label")]}>{t.typeLabel}</Text>
+            <View style={[styles.typeRow, ds.rowDirection(isMobile)]}>
               <Pressable
                 onPress={() => setType("all")}
-                style={{
-                  flex: isMobile ? undefined : 1,
-                  padding: isMobile ? 12 : 14,
-                  borderRadius: 8,
-                  backgroundColor: type === "all" ? "#f5f2e8" : "#111",
-                  borderWidth: 1,
-                  borderColor: type === "all" ? "#f5f2e8" : "#222",
-                  alignItems: "center"
-                }}
+                style={[styles.typeBtn, ds.typeBtn(isMobile, type === "all")]}
               >
-                <Text style={{
-                  color: type === "all" ? "#1c1c1c" : "#fff",
-                  fontSize: fontSize.button,
-                  fontWeight: "700"
-                }}>All</Text>
+                <Text style={[styles.typeBtnText, ds.typeBtnText(isMobile, type === "all")]}>{t.typeAll}</Text>
               </Pressable>
               <Pressable
                 onPress={() => setType("tour")}
-                style={{
-                  flex: isMobile ? undefined : 1,
-                  padding: isMobile ? 12 : 14,
-                  borderRadius: 8,
-                  backgroundColor: type === "tour" ? "#f5f2e8" : "#111",
-                  borderWidth: 1,
-                  borderColor: type === "tour" ? "#f5f2e8" : "#222",
-                  alignItems: "center"
-                }}
+                style={[styles.typeBtn, ds.typeBtn(isMobile, type === "tour")]}
               >
-                <Text style={{
-                  color: type === "tour" ? "#1c1c1c" : "#fff",
-                  fontSize: fontSize.button,
-                  fontWeight: "700"
-                }}>Tours</Text>
+                <Text style={[styles.typeBtnText, ds.typeBtnText(isMobile, type === "tour")]}>{t.typeTours}</Text>
               </Pressable>
               <Pressable
                 onPress={() => setType("hotel")}
-                style={{
-                  flex: isMobile ? undefined : 1,
-                  padding: isMobile ? 12 : 14,
-                  borderRadius: 8,
-                  backgroundColor: type === "hotel" ? "#f5f2e8" : "#111",
-                  borderWidth: 1,
-                  borderColor: type === "hotel" ? "#f5f2e8" : "#222",
-                  alignItems: "center"
-                }}
+                style={[styles.typeBtn, ds.typeBtn(isMobile, type === "hotel")]}
               >
-                <Text style={{
-                  color: type === "hotel" ? "#1c1c1c" : "#fff",
-                  fontSize: fontSize.button,
-                  fontWeight: "700"
-                }}>Hotels</Text>
+                <Text style={[styles.typeBtnText, ds.typeBtnText(isMobile, type === "hotel")]}>{t.typeHotels}</Text>
               </Pressable>
             </View>
           </View>
 
-          <View style={{ marginTop: isMobile ? 14 : 18 }}>
-            <Text style={{ color: "#ddd", marginBottom: 8, fontSize: fontSize.label, fontWeight: "700" }}>
-              Price Range (₹)
+          <View style={[styles.section, ds.section(isMobile)]}>
+            <Text style={[styles.label, ds.text(isMobile, "label")]}>
+              {t.priceLabel}
             </Text>
-            <View style={{ flexDirection: isMobile ? "column" : "row", gap: 8 }}>
+            <View style={[styles.inputRow, ds.rowDirection(isMobile)]}>
               <TextInput
                 value={minPrice}
                 onChangeText={setMinPrice}
                 keyboardType="numeric"
-                placeholder="Min"
-                placeholderTextColor="#666"
-                style={{
-                  flex: 1,
-                  backgroundColor: "#111",
-                  color: "#fff",
-                  padding: isMobile ? 12 : 14,
-                  borderRadius: 8,
-                  fontSize: fontSize.input,
-                  borderWidth: 1,
-                  borderColor: "#222"
-                }}
+                placeholder={t.minPlaceholder}
+                placeholderTextColor={filterModalColors.placeholder}
+                style={[styles.input, ds.input(isMobile)]}
               />
               <TextInput
                 value={maxPrice}
                 onChangeText={setMaxPrice}
                 keyboardType="numeric"
-                placeholder="Max"
-                placeholderTextColor="#666"
-                style={{
-                  flex: 1,
-                  backgroundColor: "#111",
-                  color: "#fff",
-                  padding: isMobile ? 12 : 14,
-                  borderRadius: 8,
-                  fontSize: fontSize.input,
-                  borderWidth: 1,
-                  borderColor: "#222"
-                }}
+                placeholder={t.maxPlaceholder}
+                placeholderTextColor={filterModalColors.placeholder}
+                style={[styles.input, ds.input(isMobile)]}
               />
             </View>
           </View>
 
-          <View style={{
-            marginTop: isMobile ? 14 : 18,
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "space-between",
-            backgroundColor: "#111",
-            padding: isMobile ? 12 : 14,
-            borderRadius: 8,
-            borderWidth: 1,
-            borderColor: "#222"
-          }}>
-            <Text style={{ color: "#ddd", fontSize: fontSize.label, fontWeight: "700" }}>Veg only</Text>
+          <View style={[styles.switchRow, ds.switchRow(isMobile)]}>
+            <Text style={[styles.label, styles.labelNoMargin, ds.text(isMobile, "label")]}>{t.vegOnly}</Text>
             <Switch value={vegOnly} onValueChange={setVegOnly} />
           </View>
 
-          <View style={{ marginTop: isMobile ? 18 : 24, flexDirection: isMobile ? "column" : "row", gap: 12 }}>
+          <View style={[styles.actionsRow, ds.actionsRow(isMobile)]}>
             <Pressable
               onPress={apply}
-              style={{
-                flex: 1,
-                backgroundColor: "#f5f2e8",
-                padding: isMobile ? 14 : 16,
-                borderRadius: 12,
-                alignItems: "center"
-              }}
+              style={[styles.applyBtn, ds.actionBtn(isMobile)]}
             >
-              <Text style={{ fontWeight: "800", fontSize: fontSize.button, color: "#1c1c1c" }}>Apply Filters</Text>
+              <Text style={[styles.applyBtnText, ds.text(isMobile, "button")]}>{t.apply}</Text>
             </Pressable>
             <Pressable
               onPress={onClose}
-              style={{
-                flex: 1,
-                backgroundColor: "#222",
-                padding: isMobile ? 14 : 16,
-                borderRadius: 12,
-                alignItems: "center",
-                borderWidth: 1,
-                borderColor: "#333"
-              }}
+              style={[styles.cancelBtn, ds.actionBtn(isMobile)]}
             >
-              <Text style={{ color: "#fff", fontSize: fontSize.button, fontWeight: "700" }}>Cancel</Text>
+              <Text style={[styles.cancelBtnText, ds.text(isMobile, "button")]}>{t.cancel}</Text>
             </Pressable>
           </View>
         </View>

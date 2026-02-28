@@ -1,4 +1,6 @@
 import { View, Text, Pressable, useWindowDimensions } from "react-native";
+import { quantitySelectorDynamicStyles as ds, quantitySelectorStyles as styles } from "../../styles/FoodComponents.styles";
+import { quantitySelectorData as t } from "../../staticData/quantitySelector.staticData";
 
 interface QuantitySelectorProps {
   quantity: number;
@@ -26,69 +28,31 @@ export default function QuantitySelector({ quantity, onChange, min = 0, max = 99
   const buttonSize = isMobile ? 32 : 36;
 
   return (
-    <View style={{ flexDirection: "row", alignItems: "center", gap: isMobile ? 8 : 12 }}>
+    <View style={[styles.row, ds.rowGap(isMobile)]}>
       <Pressable
         onPress={handleDecrement}
         disabled={quantity <= min}
-        style={({ pressed, hovered }) => [
-          {
-            width: buttonSize,
-            height: buttonSize,
-            borderRadius: buttonSize / 2,
-            backgroundColor: quantity <= min ? "#f1f4f9" : pressed ? "#d73f11" : hovered ? "#f4511e" : "#f4511e",
-            borderWidth: 1,
-            borderColor: quantity <= min ? "#d8e1ee" : "#f4511e",
-            alignItems: "center",
-            justifyContent: "center"
-          }
-        ]}
+        style={({ pressed, hovered }) => [styles.btn, ds.button(buttonSize, quantity <= min, pressed, hovered)]}
       >
-        {({ hovered }) => (
-          <Text style={{
-            color: quantity <= min ? "#96a0b2" : "#fff",
-            fontSize: isMobile ? 18 : 20,
-            fontWeight: "700",
-            lineHeight: isMobile ? 18 : 20
-          }}>
-            −
+        {() => (
+          <Text style={[styles.btnText, ds.buttonText(isMobile, quantity <= min)]}>
+            {t.decrement}
           </Text>
         )}
       </Pressable>
 
-      <Text style={{
-        color: "#111827",
-        fontSize: isMobile ? 16 : 18,
-        fontWeight: "700",
-        minWidth: isMobile ? 24 : 28,
-        textAlign: "center"
-      }}>
+      <Text style={[styles.countText, ds.countText(isMobile)]}>
         {quantity}
       </Text>
 
       <Pressable
         onPress={handleIncrement}
         disabled={quantity >= max}
-        style={({ pressed, hovered }) => [
-          {
-            width: buttonSize,
-            height: buttonSize,
-            borderRadius: buttonSize / 2,
-            backgroundColor: quantity >= max ? "#f1f4f9" : pressed ? "#d73f11" : hovered ? "#f4511e" : "#f4511e",
-            borderWidth: 1,
-            borderColor: quantity >= max ? "#d8e1ee" : "#f4511e",
-            alignItems: "center",
-            justifyContent: "center"
-          }
-        ]}
+        style={({ pressed, hovered }) => [styles.btn, ds.button(buttonSize, quantity >= max, pressed, hovered)]}
       >
-        {({ hovered }) => (
-          <Text style={{
-            color: quantity >= max ? "#96a0b2" : "#fff",
-            fontSize: isMobile ? 18 : 20,
-            fontWeight: "700",
-            lineHeight: isMobile ? 18 : 20
-          }}>
-            +
+        {() => (
+          <Text style={[styles.btnText, ds.buttonText(isMobile, quantity >= max)]}>
+            {t.increment}
           </Text>
         )}
       </Pressable>

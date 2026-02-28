@@ -1,0 +1,26 @@
+export const authModalData = {
+  setPasswordTitle: "Set Password",
+  loginTitle: "Login",
+  close: "Close",
+  setupHint: "Set your password once. Next time you can login with either Google or email/password.",
+  phonePlaceholder: "Phone number",
+  newPasswordPlaceholder: "New password",
+  confirmPasswordPlaceholder: "Confirm password",
+  busyLabel: "Please wait...",
+  savePassword: "Save Password",
+  loginHint: "Continue with Google or use email/password.",
+  continueWithGoogle: "Continue with Google",
+  emailPlaceholder: "Email",
+  passwordPlaceholder: "Password",
+  loginWithEmailPassword: "Login with Email & Password",
+  defaultSupabaseUrl: "https://pmqlpbqwyxmfuvcrwoan.supabase.co",
+  api: {
+    sessionSync: "/api/auth/session-sync",
+    passwordLogin: "/api/auth/password-login",
+    setPassword: "/api/auth/set-password",
+  },
+  storageKeys: {
+    passwordFlagPrefix: "ev_pw_set_",
+    passwordFlagValue: "1",
+  },
+} as const;

@@ -5,4 +5,10 @@ export const cxAppStyles = StyleSheet.create({
     flex: 1,
     backgroundColor: "transparent",
   },
+  background: {
+    flex: 1,
+  },
+  backgroundImage: {
+    opacity: 0.6,
+  },
 });

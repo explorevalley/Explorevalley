@@ -1,0 +1,67 @@
+export const myOrdersScreenData = {
+  statuses: {
+    colors: {
+      pending: "#f59e0b",
+      confirmed: "#3b82f6",
+      preparing: "#8b5cf6",
+      ready: "#06b6d4",
+      picked_up: "#6366f1",
+      in_transit: "#6366f1",
+      delivered: "#16a34a",
+      completed: "#16a34a",
+      cancelled: "#ef4444",
+      fallback: "#888",
+    },
+    emoji: {
+      pending: "\u23f3",
+      confirmed: "\u2705",
+      preparing: "\ud83d\udc68\u200d\ud83c\udf73",
+      ready: "\ud83d\udce6",
+      picked_up: "\ud83d\ude9a",
+      in_transit: "\ud83d\ude9a",
+      delivered: "\u2705",
+      completed: "\u2705",
+      cancelled: "\u274c",
+      fallback: "\u2022",
+    },
+  },
+  tabs: {
+    all: "all",
+    booking: "booking",
+    food: "food",
+    cab: "cab",
+  },
+  labels: {
+    loading: "Loading your orders...",
+    headerTitle: "My Orders",
+    headerSub: "Track all your bookings, food orders and cab rides",
+    filters: [
+      { key: "all", label: "All" },
+      { key: "booking", label: "Bookings" },
+      { key: "food", label: "Food" },
+      { key: "cab", label: "Cabs" },
+    ],
+    retry: "Retry",
+    empty: "No orders yet. Explore Fest and place your first order.",
+    refund: "Request Refund",
+    rate: "Rate Experience",
+  },
+  order: {
+    bookingFallback: "Tour/Hotel Booking",
+    foodFallbackRestaurant: "Restaurant",
+    foodPrefix: "Food Order \u2014",
+    cabPrefix: "Cab:",
+    orderFallback: "Order",
+  },
+  misc: {
+    currency: "\u20b9",
+    dot: "\u00b7",
+  },
+  rawPreviewLimit: 600,
+  api: {
+    myOrders: "/api/ai/my-orders",
+  },
+  errors: {
+    loadOrders: "Failed to load orders",
+  },
+};

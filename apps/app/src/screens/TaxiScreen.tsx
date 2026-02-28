@@ -1,7 +1,9 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { View, Text, Pressable, ScrollView, Platform, TextInput, StyleSheet } from "react-native";
+import { View, Text, Pressable, ScrollView, Platform, TextInput } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { apiGet } from "../lib/api";
+import { styles } from "../styles/TaxiScreen.styles";
+import { taxiScreenData as t } from "../staticData/taxiScreen.staticData";
 
 type CabRate = {
   id?: string;
@@ -61,20 +63,17 @@ export default function TaxiScreen({ onRequireAuth }: { onRequireAuth?: () => vo
 
   useEffect(() => {
     if (!isWeb || typeof document === "undefined") return;
-    if (document.getElementById("ev-datepicker-style")) return;
+    if (document.getElementById(t.datePicker.styleId)) return;
     const style = document.createElement("style");
-    style.id = "ev-datepicker-style";
-    style.textContent = `
-      .ev-datepicker { width: 100%; border: 0; outline: none; font-weight: 600; color: #111; }
-      .ev-datepicker-popper { z-index: 3000 !important; }
-    `;
+    style.id = t.datePicker.styleId;
+    style.textContent = t.datePicker.css;
     document.head.appendChild(style);
   }, [isWeb]);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const savedName = String(window.localStorage.getItem("ev_taxi_name") || "");
-    const savedPhone = String(window.localStorage.getItem("ev_taxi_phone") || "");
+    const savedName = String(window.localStorage.getItem(t.storageKeys.name) || "");
+    const savedPhone = String(window.localStorage.getItem(t.storageKeys.phone) || "");
     setCustomerName(savedName);
     setCustomerPhone(savedPhone);
   }, []);
@@ -82,7 +81,7 @@ export default function TaxiScreen({ onRequireAuth }: { onRequireAuth?: () => vo
   useEffect(() => {
     let alive = true;
     setLoading(true);
-    apiGet<CabRate[]>("/api/cab-rates")
+    apiGet<CabRate[]>(t.api.cabRates)
       .then((rows) => {
         if (!alive) return;
         setRates(Array.isArray(rows) ? rows : []);
@@ -136,13 +135,7 @@ export default function TaxiScreen({ onRequireAuth }: { onRequireAuth?: () => vo
   const fareOptions = useMemo(() => {
     if (!selectedRate) return [] as CabSelection[];
     const out: CabSelection[] = [];
-    const options = [
-      { key: "ordinary4_1", label: "Ordinary 4+1", maxPeople: 5 },
-      { key: "luxury4_1", label: "Luxury 4+1", maxPeople: 5 },
-      { key: "ordinary6_1", label: "Ordinary 6+1", maxPeople: 7 },
-      { key: "luxury6_1", label: "Luxury 6+1", maxPeople: 7 },
-      { key: "traveller", label: "Traveller", maxPeople: null }
-    ] as const;
+    const options = t.options;
 
     for (const opt of options) {
       const price = Number((selectedRate as any)[opt.key]);
@@ -177,34 +170,34 @@ export default function TaxiScreen({ onRequireAuth }: { onRequireAuth?: () => vo
       contentContainerStyle={[styles.content, isWeb ? styles.contentWeb : null]}
     >
       <View style={styles.headerCard}>
-        <Text style={styles.kicker}>TAXI</Text>
-        <Text style={styles.title}>Book a Taxi</Text>
-        <Text style={styles.subTitle}>Choose your origin, destination, and time to see live rates.</Text>
+        <Text style={styles.kicker}>{t.header.kicker}</Text>
+        <Text style={styles.title}>{t.header.title}</Text>
+        <Text style={styles.subTitle}>{t.header.subtitle}</Text>
       </View>
 
       <View style={[styles.formCard, datePickerOpen ? styles.formCardOpen : null]}>
-        <Text style={styles.sectionLabel}>Trip details</Text>
-        {loading ? <Text style={styles.muted}>Loading routes…</Text> : null}
+        <Text style={styles.sectionLabel}>{t.sections.tripDetails}</Text>
+        {loading ? <Text style={styles.muted}>{t.loadingRoutes}</Text> : null}
         {error ? <Text style={styles.error}>{error}</Text> : null}
 
         <SelectField
-          label="Origin"
+          label={t.selectOrigin}
           value={origin}
-          placeholder="Select origin"
+          placeholder={t.selectOrigin}
           options={origins}
           onSelect={setOrigin}
         />
         <SelectField
-          label="Destination"
+          label={t.selectDestination}
           value={destination}
-          placeholder={origin ? "Select destination" : "Select origin first"}
+          placeholder={origin ? t.selectDestination : t.selectOriginFirst}
           options={destinations}
           onSelect={setDestination}
           disabled={!origin}
         />
 
         <View style={styles.field}>
-          <Text style={styles.fieldLabel}>Date & time</Text>
+          <Text style={styles.fieldLabel}>{t.dateTimeLabel}</Text>
           {isWeb ? (
             DatePicker ? (
               <View style={styles.datePickerWrap}>
@@ -216,9 +209,9 @@ export default function TaxiScreen({ onRequireAuth }: { onRequireAuth?: () => vo
                     setDateTimeText(formatDateTime(d));
                   }}
                   showTimeSelect
-                  dateFormat="yyyy-MM-dd HH:mm"
-                  className="ev-datepicker"
-                  popperClassName="ev-datepicker-popper"
+                  dateFormat={t.datePicker.dateFormat}
+                  className={t.datePicker.className}
+                  popperClassName={t.datePicker.popperClassName}
                   onCalendarOpen={() => setDatePickerOpen(true)}
                   onCalendarClose={() => setDatePickerOpen(false)}
                 />
@@ -231,7 +224,7 @@ export default function TaxiScreen({ onRequireAuth }: { onRequireAuth?: () => vo
                   const d = new Date(v.replace(" ", "T"));
                   if (Number.isFinite(d.getTime())) setDateTime(d);
                 }}
-                placeholder="YYYY-MM-DD HH:mm"
+                placeholder={t.datePicker.placeholder}
                 style={styles.input}
               />
             )
@@ -262,11 +255,11 @@ export default function TaxiScreen({ onRequireAuth }: { onRequireAuth?: () => vo
       </View>
 
       <View style={styles.resultsCard}>
-        <Text style={styles.sectionLabel}>Rates</Text>
+        <Text style={styles.sectionLabel}>{t.sections.rates}</Text>
         {!origin || !destination ? (
-          <Text style={styles.muted}>Select an origin and destination to view rates.</Text>
+          <Text style={styles.muted}>{t.noSelectionRates}</Text>
         ) : !selectedRate ? (
-          <Text style={styles.muted}>No rates available for this route.</Text>
+          <Text style={styles.muted}>{t.noRouteRates}</Text>
         ) : (
               <>
             {safeText(selectedRate.routeLabel) ? (
@@ -288,56 +281,56 @@ export default function TaxiScreen({ onRequireAuth }: { onRequireAuth?: () => vo
       </View>
 
       {bookingOpen ? (
-        <View style={styles.modalOverlay}>
+          <View style={styles.modalOverlay}>
           <View style={styles.modalCard}>
-            <Text style={styles.modalTitle}>Confirm Booking</Text>
-            <Text style={styles.modalSub}>Please confirm selected cab and enter your details.</Text>
+            <Text style={styles.modalTitle}>{t.booking.title}</Text>
+            <Text style={styles.modalSub}>{t.booking.subtitle}</Text>
             {submitNote ? <Text style={styles.submitNote}>{submitNote}</Text> : null}
             <View style={styles.modalRow}>
-              <Text style={styles.modalRowLabel}>Cab type</Text>
-              <Text style={styles.modalRowValue}>{selectedCab?.label || "Not selected"}</Text>
+              <Text style={styles.modalRowLabel}>{t.booking.cabType}</Text>
+              <Text style={styles.modalRowValue}>{selectedCab?.label || t.rateCard.na}</Text>
             </View>
             <View style={styles.modalRow}>
-              <Text style={styles.modalRowLabel}>Route</Text>
+              <Text style={styles.modalRowLabel}>{t.booking.route}</Text>
               <Text style={styles.modalRowValue}>
                 {safeText(origin)} → {safeText(destination)}
               </Text>
             </View>
             <View style={styles.modalRow}>
-              <Text style={styles.modalRowLabel}>Fare</Text>
-              <Text style={styles.modalRowValue}>INR {selectedCab ? selectedCab.price : 0}</Text>
+              <Text style={styles.modalRowLabel}>{t.booking.fare}</Text>
+              <Text style={styles.modalRowValue}>{t.currency.inr} {selectedCab ? selectedCab.price : 0}</Text>
             </View>
             <View style={styles.modalRow}>
-              <Text style={styles.modalRowLabel}>Maximum people</Text>
+              <Text style={styles.modalRowLabel}>{t.booking.maxPeople}</Text>
               <Text style={styles.modalRowValue}>
-                {selectedCab?.maxPeople ? `${selectedCab.maxPeople} person(s)` : "As per vehicle capacity"}
+                {selectedCab?.maxPeople ? `${selectedCab.maxPeople} ${t.booking.maxPeopleSuffix}` : t.booking.maxPeopleFallback}
               </Text>
             </View>
             <View style={styles.field}>
-              <Text style={styles.fieldLabel}>Number of people</Text>
+              <Text style={styles.fieldLabel}>{t.booking.peopleCount}</Text>
               <TextInput
                 value={passengerCount}
                 onChangeText={(v) => setPassengerCount(v.replace(/[^0-9]/g, ""))}
-                placeholder="e.g. 2"
+                placeholder={t.booking.peoplePlaceholder}
                 keyboardType="number-pad"
                 style={styles.input}
               />
             </View>
             <View style={styles.field}>
-              <Text style={styles.fieldLabel}>Name</Text>
+              <Text style={styles.fieldLabel}>{t.booking.name}</Text>
               <TextInput
                 value={customerName}
                 onChangeText={setCustomerName}
-                placeholder="Your name"
+                placeholder={t.booking.namePlaceholder}
                 style={styles.input}
               />
             </View>
             <View style={styles.field}>
-              <Text style={styles.fieldLabel}>Phone</Text>
+              <Text style={styles.fieldLabel}>{t.booking.phone}</Text>
               <TextInput
                 value={customerPhone}
                 onChangeText={setCustomerPhone}
-                placeholder="Phone number"
+                placeholder={t.booking.phonePlaceholder}
                 keyboardType="phone-pad"
                 style={styles.input}
               />
@@ -350,35 +343,35 @@ export default function TaxiScreen({ onRequireAuth }: { onRequireAuth?: () => vo
                 }}
                 style={styles.modalBtnGhost}
               >
-                <Text style={styles.modalBtnGhostText}>Cancel</Text>
+                <Text style={styles.modalBtnGhostText}>{t.booking.cancel}</Text>
               </Pressable>
               <Pressable
                 onPress={() => {
                   if (!customerName.trim() || !customerPhone.trim()) {
-                    setSubmitNote("Please enter your name and phone.");
+                    setSubmitNote(t.errors.namePhoneRequired);
                     return;
                   }
                   const count = Number(passengerCount || "0");
                   if (!passengerCount || !Number.isFinite(count) || count < 1) {
-                    setSubmitNote("Please enter a valid number of people.");
+                    setSubmitNote(t.errors.invalidPeople);
                     return;
                   }
                   if (selectedCab?.maxPeople && count > selectedCab.maxPeople) {
-                    setSubmitNote(`Please choose up to ${selectedCab.maxPeople} people for this cab.`);
+                    setSubmitNote(t.errors.maxPeople(selectedCab.maxPeople));
                     return;
                   }
                   if (typeof window !== "undefined") {
-                    window.localStorage.setItem("ev_taxi_name", customerName.trim());
-                    window.localStorage.setItem("ev_taxi_phone", customerPhone.trim());
+                    window.localStorage.setItem(t.storageKeys.name, customerName.trim());
+                    window.localStorage.setItem(t.storageKeys.phone, customerPhone.trim());
                   }
                   setSubmitNote("");
                   setBookingOpen(false);
-                  setBookingNotice("Booking confirmed.");
+                  setBookingNotice(t.booking.confirmed);
                   setTimeout(() => setBookingNotice(""), 3500);
                 }}
                 style={styles.modalBtn}
               >
-                <Text style={styles.modalBtnText}>Confirm booking</Text>
+                <Text style={styles.modalBtnText}>{t.booking.confirm}</Text>
               </Pressable>
             </View>
           </View>
@@ -422,7 +415,7 @@ function SelectField({
       {open ? (
         <View style={styles.dropdown}>
           {options.length === 0 ? (
-            <Text style={styles.muted}>No options</Text>
+            <Text style={styles.muted}>{t.dropdown.noOptions}</Text>
           ) : (
             options.map((opt) => (
               <Pressable
@@ -458,298 +451,18 @@ function RateCard({
     return (
       <View style={[styles.rateCard, styles.rateCardMuted]}>
         <Text style={styles.rateTitle}>{title}</Text>
-        <Text style={styles.ratePriceMuted}>N/A</Text>
+        <Text style={styles.ratePriceMuted}>{t.rateCard.na}</Text>
       </View>
     );
   }
   return (
     <Pressable
       onPress={onPress}
-      style={({ pressed }) => [styles.rateCard, selected ? styles.rateCardSelected : null, pressed ? { opacity: 0.95 } : null]}
+      style={({ pressed }) => [styles.rateCard, selected ? styles.rateCardSelected : null, pressed ? styles.rateCardPressed : null]}
     >
       <Text style={styles.rateTitle}>{title}</Text>
-      <Text style={styles.ratePrice}>INR {Number(price)}</Text>
-      <Text style={styles.rateAction}>{selected ? "Selected" : "Tap to select"}</Text>
+      <Text style={styles.ratePrice}>{t.currency.inr} {Number(price)}</Text>
+      <Text style={styles.rateAction}>{selected ? t.rateCard.selected : t.rateCard.tapToSelect}</Text>
     </Pressable>
   );
 }
-
-const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    backgroundColor: "transparent"
-  },
-  content: {
-    paddingTop: 110,
-    paddingHorizontal: 18,
-    paddingBottom: 120,
-    gap: 14
-  },
-  contentWeb: {
-    maxWidth: 860,
-    alignSelf: "center",
-    width: "100%"
-  },
-  headerCard: {
-    borderWidth: 1,
-    borderColor: "#e6e6e6",
-    borderRadius: 18,
-    padding: 16,
-    backgroundColor: "#ffffff"
-  },
-  kicker: {
-    fontSize: 12,
-    letterSpacing: 1.4,
-    color: "#111",
-    fontWeight: "800"
-  },
-  title: {
-    fontSize: 26,
-    fontWeight: "800",
-    color: "#000"
-  },
-  subTitle: {
-    marginTop: 6,
-    color: "#333",
-    fontSize: 13.5
-  },
-  formCard: {
-    borderWidth: 1,
-    borderColor: "#e6e6e6",
-    borderRadius: 18,
-    padding: 16,
-    backgroundColor: "#ffffff",
-    gap: 10
-  },
-  formCardOpen: {
-    paddingBottom: 220
-  },
-  resultsCard: {
-    borderWidth: 1,
-    borderColor: "#e6e6e6",
-    borderRadius: 18,
-    padding: 16,
-    backgroundColor: "#ffffff",
-    gap: 10
-  },
-  sectionLabel: {
-    fontSize: 14,
-    fontWeight: "800",
-    color: "#000"
-  },
-  field: {
-    gap: 6
-  },
-  fieldLabel: {
-    color: "#222",
-    fontWeight: "700",
-    fontSize: 12
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: "#e6e6e6",
-    borderRadius: 12,
-    paddingHorizontal: 12,
-    paddingVertical: 10,
-    backgroundColor: "#fff"
-  },
-  datePickerWrap: {
-    borderWidth: 1,
-    borderColor: "#e6e6e6",
-    borderRadius: 12,
-    backgroundColor: "#fff",
-    paddingHorizontal: 8,
-    paddingVertical: 6,
-    zIndex: 5
-  },
-  inputText: {
-    color: "#111",
-    fontWeight: "600"
-  },
-  inputDisabled: {
-    backgroundColor: "#f5f5f5",
-    borderColor: "#ededed"
-  },
-  dropdown: {
-    borderWidth: 1,
-    borderColor: "#e6e6e6",
-    borderRadius: 12,
-    padding: 8,
-    backgroundColor: "#fff",
-    gap: 6
-  },
-  dropdownItem: {
-    paddingVertical: 8,
-    paddingHorizontal: 8,
-    borderRadius: 8,
-    backgroundColor: "#f7f7f7"
-  },
-  dropdownText: {
-    color: "#111",
-    fontWeight: "600"
-  },
-  muted: {
-    color: "#666",
-    fontSize: 12.5
-  },
-  bookBtn: {
-    marginTop: 6,
-    backgroundColor: "#000000",
-    borderRadius: 999,
-    paddingVertical: 8,
-    paddingHorizontal: 14,
-    alignSelf: "flex-start",
-    alignItems: "center"
-  },
-  bookBtnDisabled: {
-    backgroundColor: "#444444"
-  },
-  bookBtnText: {
-    color: "#ffffff",
-    fontWeight: "800",
-    fontSize: 12
-  },
-  submitNote: {
-    marginTop: 6,
-    color: "#0a7a45",
-    fontSize: 12.5
-  },
-  modalOverlay: {
-    position: "absolute",
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
-    backgroundColor: "rgba(0,0,0,0.35)",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 16
-  },
-  modalCard: {
-    width: "100%",
-    maxWidth: 420,
-    backgroundColor: "#ffffff",
-    borderRadius: 16,
-    padding: 16,
-    borderWidth: 1,
-    borderColor: "#e6e6e6",
-    gap: 10
-  },
-  modalTitle: {
-    fontSize: 18,
-    fontWeight: "800",
-    color: "#000000"
-  },
-  modalSub: {
-    fontSize: 12.5,
-    color: "#444444"
-  },
-  modalActions: {
-    flexDirection: "row",
-    justifyContent: "flex-end",
-    gap: 8,
-    marginTop: 6
-  },
-  modalBtn: {
-    backgroundColor: "#000000",
-    borderRadius: 999,
-    paddingVertical: 9,
-    paddingHorizontal: 14
-  },
-  modalBtnText: {
-    color: "#ffffff",
-    fontWeight: "800",
-    fontSize: 12.5
-  },
-  modalBtnGhost: {
-    borderWidth: 1,
-    borderColor: "#d1d1d1",
-    borderRadius: 999,
-    paddingVertical: 9,
-    paddingHorizontal: 14
-  },
-  modalBtnGhostText: {
-    color: "#111111",
-    fontWeight: "700",
-    fontSize: 12.5
-  },
-  notice: {
-    position: "absolute",
-    right: 18,
-    top: 120,
-    backgroundColor: "rgba(0,0,0,0.85)",
-    borderRadius: 10,
-    paddingHorizontal: 12,
-    paddingVertical: 8
-  },
-  noticeText: {
-    color: "#ffffff",
-    fontWeight: "700",
-    fontSize: 12.5
-  },
-  error: {
-    color: "#b42318",
-    fontSize: 12.5
-  },
-  routeLabel: {
-    color: "#0a7a45",
-    fontWeight: "800"
-  },
-  rateGrid: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    gap: 10
-  },
-  rateCard: {
-    flexBasis: 160,
-    flexGrow: 1,
-    borderWidth: 1,
-    borderColor: "#e6e6e6",
-    borderRadius: 14,
-    padding: 12,
-    backgroundColor: "#ffffff"
-  },
-  rateCardSelected: {
-    borderColor: "#111",
-    backgroundColor: "#f5f5f5"
-  },
-  rateAction: {
-    marginTop: 7,
-    color: "#666",
-    fontSize: 11,
-    fontWeight: "700"
-  },
-  rateCardMuted: {
-    backgroundColor: "#fafafa"
-  },
-  rateTitle: {
-    fontWeight: "800",
-    color: "#111",
-    fontSize: 12
-  },
-  ratePrice: {
-    marginTop: 6,
-    fontWeight: "800",
-    color: "#000"
-  },
-  ratePriceMuted: {
-    marginTop: 6,
-    fontWeight: "700",
-    color: "#777"
-  },
-  modalRow: {
-    borderTopWidth: 1,
-    borderTopColor: "#ececec",
-    paddingTop: 8,
-    gap: 2
-  },
-  modalRowLabel: {
-    color: "#666",
-    fontSize: 11,
-    fontWeight: "700"
-  },
-  modalRowValue: {
-    color: "#111",
-    fontWeight: "700"
-  }
-});

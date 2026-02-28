@@ -1,5 +1,7 @@
 import React from "react";
-import { Linking, Platform, Pressable, StyleSheet, Text, View } from "react-native";
+import { Linking, Platform, Pressable, Text, View } from "react-native";
+import { adminDashboardCardStyles as styles } from "../../styles/AdminDashboardCard.styles";
+import { adminCardsData as t } from "../../staticData/adminCards.staticData";
 
 type AdminDashboardCardProps = {
   adminUrl: string;
@@ -17,7 +19,7 @@ export default function AdminDashboardCard({ adminUrl, openLabel }: AdminDashboa
 
   return (
     <View style={styles.card}>
-      <Text style={styles.label}>Dashboard URL</Text>
+      <Text style={styles.label}>{t.dashboardLabel}</Text>
       <Text selectable style={styles.url}>
         {adminUrl}
       </Text>
@@ -27,36 +29,3 @@ export default function AdminDashboardCard({ adminUrl, openLabel }: AdminDashboa
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  card: {
-    backgroundColor: "#fff",
-    borderRadius: 14,
-    borderWidth: 1,
-    borderColor: "#d5deeb",
-    padding: 14,
-  },
-  label: {
-    color: "#5f6b81",
-    fontSize: 12,
-    marginBottom: 6,
-  },
-  url: {
-    color: "#111827",
-    fontSize: 13,
-    marginBottom: 12,
-  },
-  cta: {
-    borderWidth: 1,
-    borderColor: "#f4511e",
-    backgroundColor: "#f4511e",
-    paddingVertical: 11,
-    paddingHorizontal: 16,
-    borderRadius: 999,
-    alignSelf: "flex-start",
-  },
-  ctaText: {
-    color: "#fff",
-    fontWeight: "800",
-  },
-});

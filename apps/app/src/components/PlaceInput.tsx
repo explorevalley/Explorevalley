@@ -1,5 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Animated, View, Text, TextInput, Pressable, Platform } from "react-native";
+import { placeInputColors, placeInputDynamicStyles as ds, placeInputStyles as styles } from "../styles/PlaceInput.styles";
+import { placeInputData as t } from "../staticData/placeInput.staticData";
 
 const GOOGLE_MAPS_KEY = String(process.env.EXPO_PUBLIC_GOOGLE_MAPS_KEY || "").trim();
 const MAX_RESULTS = 6;
@@ -125,7 +127,7 @@ export default function PlaceInput({
 
   return (
     <View>
-      <Text style={[{ color: "#ddd", marginBottom: 6 }, labelStyle]}>{label}</Text>
+      <Text style={[styles.label, labelStyle]}>{label}</Text>
       <AnimatedTextInput
         value={value}
         onChangeText={(t) => {
@@ -137,18 +139,16 @@ export default function PlaceInput({
           Animated.timing(focusAnim, { toValue: 1, duration: 160, useNativeDriver: false }).start();
         }}
         onBlur={() => Animated.timing(focusAnim, { toValue: 0, duration: 160, useNativeDriver: false }).start()}
-        placeholder={placeholder || "Search location or type manually"}
-        placeholderTextColor="#666"
+        placeholder={placeholder || t.defaultPlaceholder}
+        placeholderTextColor={placeInputColors.placeholder}
         style={[
-          {
-          backgroundColor: "#141414",
-          color: "#fff",
-          paddingHorizontal: 12,
-          paddingVertical: 12,
-          borderRadius: 12,
-          borderWidth: 1,
-          borderColor: focusAnim.interpolate({ inputRange: [0, 1], outputRange: ["#222", "#f5f2e8"] }),
-          },
+          styles.inputBase,
+          ds.inputBorder(
+            focusAnim.interpolate({
+              inputRange: [0, 1],
+              outputRange: [placeInputColors.borderDefault, placeInputColors.borderActive],
+            })
+          ),
           inputStyle,
         ]}
       />
@@ -157,38 +157,20 @@ export default function PlaceInput({
         <Pressable
           onPress={onPickMap}
           style={({ hovered }) => [
-            {
-              marginTop: 6,
-              alignSelf: "flex-start",
-              paddingHorizontal: 14,
-              paddingVertical: 8,
-              borderRadius: 999,
-              borderWidth: 1,
-              borderColor: "#f5f2e8",
-              backgroundColor: "rgba(245,242,232,0.12)",
-            },
-            hovered ? { backgroundColor: "#007c00", borderColor: "#007c00" } : null,
+            styles.mapBtn,
+            hovered ? styles.mapBtnHover : null,
           ]}
         >
           {({ hovered }) => (
-            <Text style={{ color: hovered ? "#fff" : "#f5f2e8", fontWeight: "800", fontSize: 18 }}>
-              Pick on map
+            <Text style={[styles.mapBtnText, ds.mapBtnText(hovered)]}>
+              {t.mapButton}
             </Text>
           )}
         </Pressable>
       ) : null}
 
       {open && displayItems.length > 0 ? (
-        <View
-          style={{
-            marginTop: 6,
-            borderRadius: 12,
-            borderWidth: 1,
-            borderColor: "#222",
-            backgroundColor: "#0f0f0f",
-            overflow: "hidden",
-          }}
-        >
+        <View style={styles.dropdown}>
           {displayItems.map((p, i) => (
             <Pressable
               key={p.place_id}
@@ -196,14 +178,9 @@ export default function PlaceInput({
                 onChangeText(p.description);
                 setOpen(false);
               }}
-              style={{
-                paddingHorizontal: 12,
-                paddingVertical: 10,
-                borderTopWidth: i === 0 ? 0 : 1,
-                borderTopColor: "#1c1c1c",
-              }}
+              style={[styles.row, ds.rowBorder(i)]}
             >
-              <Text style={{ color: "#fff" }}>{p.description}</Text>
+              <Text style={styles.rowText}>{p.description}</Text>
             </Pressable>
           ))}
         </View>

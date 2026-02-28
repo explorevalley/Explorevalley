@@ -10,6 +10,12 @@ import {
 } from "react-native";
 import { apiPost } from "../lib/api";
 import { getAuthMode, getAuthUser } from "../lib/auth";
+import {
+  rateExperienceColors,
+  rateExperienceDynamicStyles,
+  rateExperienceStyles as styles,
+} from "../styles/RateExperienceModal.styles";
+import { rateExperienceModalData as t } from "../staticData/rateExperienceModal.staticData";
 
 type Props = {
   visible: boolean;
@@ -37,7 +43,7 @@ export default function RateExperienceModal({ visible, onClose, order, onRequire
     setSubmitting(true);
     try {
       const user = getAuthUser();
-      await apiPost("/api/admin/supabase/upsert", {
+      await apiPost(t.api.submitReview, {
         table: "ev_reviews",
         rows: [
           {
@@ -69,108 +75,62 @@ export default function RateExperienceModal({ visible, onClose, order, onRequire
   };
 
   const content = (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "rgba(0,0,0,0.8)",
-        padding: 20,
-      }}
-    >
-      <View
-        style={{
-          backgroundColor: "#111",
-          borderRadius: 16,
-          borderWidth: 1,
-          borderColor: "#333",
-          padding: 24,
-          width: "100%",
-          maxWidth: isMobile ? "100%" : 420,
-          alignItems: "center",
-        }}
-      >
+    <View style={styles.overlayCenter}>
+      <View style={[styles.modalCard, rateExperienceDynamicStyles.cardWidth(isMobile)]}>
         {submitted ? (
           <>
-            <Text style={{ fontSize: 48, marginBottom: 12 }}>🎉</Text>
-            <Text style={{ color: "#fff", fontWeight: "800", fontSize: 18, marginBottom: 6 }}>
-              Thank you!
+            <Text style={styles.successEmoji}>{t.successEmoji}</Text>
+            <Text style={styles.successTitle}>{t.successTitle}</Text>
+            <Text style={styles.successSubtitle}>
+              {t.successSubtitle}
             </Text>
-            <Text style={{ color: "#888", fontSize: 14, textAlign: "center", marginBottom: 20 }}>
-              Your review helps us improve our service.
-            </Text>
-            <Pressable
-              onPress={reset}
-              style={{
-                backgroundColor: "#16a34a",
-                paddingVertical: 12,
-                paddingHorizontal: 28,
-                borderRadius: 10,
-              }}
-            >
-              <Text style={{ color: "#fff", fontWeight: "700" }}>Done</Text>
+            <Pressable onPress={reset} style={styles.doneBtn}>
+              <Text style={styles.doneBtnText}>{t.doneLabel}</Text>
             </Pressable>
           </>
         ) : (
           <>
-            <Text style={{ color: "#fff", fontWeight: "800", fontSize: 18, marginBottom: 4 }}>
-              Rate your experience
-            </Text>
-            <Text style={{ color: "#888", fontSize: 12, marginBottom: 20, textAlign: "center" }}>
-              {order?.title || "How was your order?"}
+            <Text style={styles.heading}>{t.heading}</Text>
+            <Text style={styles.subheading}>
+              {order?.title || t.fallbackSubheading}
             </Text>
 
             {/* Star rating */}
-            <View style={{ flexDirection: "row", gap: 8, marginBottom: 20 }}>
+            <View style={styles.starsRow}>
               {[1, 2, 3, 4, 5].map((star) => (
                 <Pressable key={star} onPress={() => setRating(star)}>
-                  <Text style={{ fontSize: 36, color: star <= rating ? "#f59e0b" : "#333" }}>
-                    {star <= rating ? "★" : "☆"}
+                  <Text style={[styles.starIcon, rateExperienceDynamicStyles.starColor(star <= rating)]}>
+                    {star <= rating ? t.starFilled : t.starEmpty}
                   </Text>
                 </Pressable>
               ))}
             </View>
 
-            <Text style={{ color: "#888", fontSize: 12, marginBottom: 20 }}>
+            <Text style={styles.ratingHint}>
               {rating === 0
-                ? "Tap a star to rate"
+                ? t.ratingHints.none
                 : rating <= 2
-                ? "We're sorry to hear that"
+                ? t.ratingHints.low
                 : rating <= 3
-                ? "Thanks for your feedback"
+                ? t.ratingHints.mid
                 : rating <= 4
-                ? "Glad you enjoyed it!"
-                : "Awesome! 🎉"}
+                ? t.ratingHints.good
+                : t.ratingHints.great}
             </Text>
 
-            <View style={{ flexDirection: "row", gap: 10, width: "100%" }}>
-              <Pressable
-                onPress={reset}
-                style={{
-                  flex: 1,
-                  backgroundColor: "#1a1a1a",
-                  paddingVertical: 12,
-                  borderRadius: 10,
-                  alignItems: "center",
-                }}
-              >
-                <Text style={{ color: "#888", fontWeight: "700" }}>Skip</Text>
+            <View style={styles.actionRow}>
+              <Pressable onPress={reset} style={styles.secondaryBtn}>
+                <Text style={styles.secondaryBtnText}>{t.skipLabel}</Text>
               </Pressable>
               <Pressable
                 onPress={submit}
                 disabled={submitting || rating === 0}
-                style={{
-                  flex: 1,
-                  backgroundColor: rating > 0 ? "#f59e0b" : "#333",
-                  paddingVertical: 12,
-                  borderRadius: 10,
-                  alignItems: "center",
-                }}
+                style={[styles.primaryBtn, rateExperienceDynamicStyles.submitBtnBg(rating > 0)]}
               >
                 {submitting ? (
-                  <ActivityIndicator color="#fff" size="small" />
+                  <ActivityIndicator color={rateExperienceColors.spinner} size="small" />
                 ) : (
-                  <Text style={{ color: "#fff", fontWeight: "700" }}>Submit</Text>
+                  <Text style={styles.primaryBtnText}>{t.submitLabel}</Text>
                 )}
               </Pressable>
             </View>
@@ -183,7 +143,7 @@ export default function RateExperienceModal({ visible, onClose, order, onRequire
   if (Platform.OS === "web") {
     if (!visible) return null;
     return (
-      <View style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, zIndex: 5000 }}>
+      <View style={styles.webRoot}>
         {content}
       </View>
     );

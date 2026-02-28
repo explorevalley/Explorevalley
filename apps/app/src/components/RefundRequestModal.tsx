@@ -8,10 +8,11 @@ import {
   Platform,
   useWindowDimensions,
   Modal,
-  StyleSheet,
 } from "react-native";
 import { apiPost } from "../lib/api";
 import { getAuthMode } from "../lib/auth";
+import { refundRequestModalColors, refundRequestModalStyles as styles } from "../styles/RefundRequestModal.styles";
+import { refundRequestModalData as t } from "../staticData/refundRequestModal.staticData";
 
 type Props = {
   visible: boolean;
@@ -39,17 +40,17 @@ export default function RefundRequestModal({ visible, onClose, order, onRequireA
     setSubmitting(true);
     setResult(null);
     try {
-      await apiPost("/api/refunds/request", {
+      await apiPost(t.api.requestRefund, {
         orderId: order.id,
         orderType: order.type === "booking" ? "booking" : order.type === "cab" ? "cab" : "food",
         reason: reason.trim(),
         amount: amount ? parseFloat(amount) : undefined,
       });
-      setResult({ success: true, message: "Refund request submitted! Our team will review it shortly." });
+      setResult({ success: true, message: t.successMessage });
       setReason("");
       setAmount("");
     } catch (err: any) {
-      setResult({ success: false, message: err.message || "Failed to submit refund request" });
+      setResult({ success: false, message: err.message || t.fallbackError });
     } finally {
       setSubmitting(false);
     }
@@ -58,39 +59,39 @@ export default function RefundRequestModal({ visible, onClose, order, onRequireA
   const content = (
     <View style={styles.overlay}>
       <View style={[styles.card, { maxWidth: isMobile ? "100%" : 480 }]}>
-        <Text style={styles.title}>🔄 Request Refund</Text>
-        <Text style={styles.subtitle}>Order: {order?.title || order?.id || "—"}</Text>
+        <Text style={styles.title}>{t.title}</Text>
+        <Text style={styles.subtitle}>{t.orderPrefix} {order?.title || order?.id || t.fallbackOrder}</Text>
 
         {result ? (
           <>
             <View style={[styles.resultBox, result.success ? styles.resultSuccess : styles.resultError]}>
               <Text style={[styles.resultText, result.success ? styles.successText : styles.errorText]}>
-                {result.success ? "✅" : "⚠️"} {result.message}
+                {result.success ? t.successPrefix : t.errorPrefix} {result.message}
               </Text>
             </View>
             <Pressable onPress={onClose} style={styles.closeButton}>
-              <Text style={styles.closeText}>Close</Text>
+              <Text style={styles.closeText}>{t.close}</Text>
             </Pressable>
           </>
         ) : (
           <>
-            <Text style={styles.label}>Reason for refund *</Text>
+            <Text style={styles.label}>{t.reasonLabel}</Text>
             <TextInput
               value={reason}
               onChangeText={setReason}
-              placeholder="Describe why you need a refund..."
-              placeholderTextColor="#555"
+              placeholder={t.reasonPlaceholder}
+              placeholderTextColor={refundRequestModalColors.placeholder}
               multiline
               numberOfLines={4}
               style={styles.inputArea}
             />
 
-            <Text style={styles.label}>Refund amount (optional)</Text>
+            <Text style={styles.label}>{t.amountLabel}</Text>
             <TextInput
               value={amount}
               onChangeText={setAmount}
-              placeholder="₹ Amount"
-              placeholderTextColor="#555"
+              placeholder={t.amountPlaceholder}
+              placeholderTextColor={refundRequestModalColors.placeholder}
               keyboardType="numeric"
               style={styles.input}
             />
@@ -100,7 +101,7 @@ export default function RefundRequestModal({ visible, onClose, order, onRequireA
                 onPress={onClose}
                 style={styles.cancelButton}
               >
-                <Text style={styles.cancelText}>Cancel</Text>
+                <Text style={styles.cancelText}>{t.cancel}</Text>
               </Pressable>
               <Pressable
                 onPress={submit}
@@ -108,9 +109,9 @@ export default function RefundRequestModal({ visible, onClose, order, onRequireA
                 style={[styles.submitButton, reason.trim() ? styles.submitEnabled : styles.submitDisabled]}
               >
                 {submitting ? (
-                  <ActivityIndicator color="#fff" size="small" />
+                  <ActivityIndicator color={refundRequestModalColors.spinner} size="small" />
                 ) : (
-                  <Text style={styles.submitText}>Submit Request</Text>
+                  <Text style={styles.submitText}>{t.submit}</Text>
                 )}
               </Pressable>
             </View>
@@ -131,141 +132,3 @@ export default function RefundRequestModal({ visible, onClose, order, onRequireA
     </Modal>
   );
 }
-
-const styles = StyleSheet.create({
-  overlay: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "rgba(0,0,0,0.8)",
-    padding: 20,
-  },
-  webOverlay: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    zIndex: 5000,
-  },
-  card: {
-    backgroundColor: "#111",
-    borderRadius: 16,
-    borderWidth: 1,
-    borderColor: "#333",
-    padding: 20,
-    width: "100%",
-  },
-  title: {
-    color: "#fff",
-    fontWeight: "800",
-    fontSize: 18,
-    marginBottom: 4,
-  },
-  subtitle: {
-    color: "#888",
-    fontSize: 12,
-    marginBottom: 16,
-  },
-  resultBox: {
-    borderRadius: 10,
-    padding: 14,
-    marginBottom: 16,
-  },
-  resultSuccess: {
-    backgroundColor: "#16a34a22",
-  },
-  resultError: {
-    backgroundColor: "#ef444422",
-  },
-  resultText: {
-    fontSize: 14,
-    fontWeight: "600",
-  },
-  successText: {
-    color: "#4ade80",
-  },
-  errorText: {
-    color: "#f87171",
-  },
-  closeButton: {
-    backgroundColor: "#1a1a1a",
-    paddingVertical: 12,
-    borderRadius: 10,
-    alignItems: "center",
-  },
-  closeText: {
-    color: "#fff",
-    fontWeight: "700",
-  },
-  label: {
-    color: "#ccc",
-    fontSize: 13,
-    marginBottom: 6,
-  },
-  inputBase: {
-    backgroundColor: "#1a1a1a",
-    color: "#fff",
-    borderRadius: 10,
-    padding: 12,
-    fontSize: 14,
-    borderWidth: 1,
-    borderColor: "#333",
-    ...(Platform.OS === "web" ? { outlineStyle: "none" } : {}),
-  },
-  inputArea: {
-    backgroundColor: "#1a1a1a",
-    color: "#fff",
-    borderRadius: 10,
-    padding: 12,
-    fontSize: 14,
-    borderWidth: 1,
-    borderColor: "#333",
-    minHeight: 80,
-    textAlignVertical: "top",
-    marginBottom: 12,
-    ...(Platform.OS === "web" ? { outlineStyle: "none" } : {}),
-  },
-  input: {
-    backgroundColor: "#1a1a1a",
-    color: "#fff",
-    borderRadius: 10,
-    padding: 12,
-    fontSize: 14,
-    borderWidth: 1,
-    borderColor: "#333",
-    marginBottom: 16,
-    ...(Platform.OS === "web" ? { outlineStyle: "none" } : {}),
-  },
-  buttonRow: {
-    flexDirection: "row",
-    gap: 10,
-  },
-  cancelButton: {
-    flex: 1,
-    backgroundColor: "#1a1a1a",
-    paddingVertical: 12,
-    borderRadius: 10,
-    alignItems: "center",
-  },
-  cancelText: {
-    color: "#888",
-    fontWeight: "700",
-  },
-  submitButton: {
-    flex: 1,
-    paddingVertical: 12,
-    borderRadius: 10,
-    alignItems: "center",
-  },
-  submitEnabled: {
-    backgroundColor: "#ef4444",
-  },
-  submitDisabled: {
-    backgroundColor: "#333",
-  },
-  submitText: {
-    color: "#fff",
-    fontWeight: "700",
-  },
-});

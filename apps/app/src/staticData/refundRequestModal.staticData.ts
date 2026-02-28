@@ -1,0 +1,20 @@
+export const refundRequestModalData = {
+  title: "🔄 Request Refund",
+  orderPrefix: "Order:",
+  close: "Close",
+  reasonLabel: "Reason for refund *",
+  reasonPlaceholder: "Describe why you need a refund...",
+  amountLabel: "Refund amount (optional)",
+  amountPlaceholder: "₹ Amount",
+  cancel: "Cancel",
+  submit: "Submit Request",
+  submitting: "Uploading...",
+  successPrefix: "✅",
+  errorPrefix: "⚠️",
+  successMessage: "Refund request submitted! Our team will review it shortly.",
+  fallbackOrder: "—",
+  fallbackError: "Failed to submit refund request",
+  api: {
+    requestRefund: "/api/refunds/request",
+  },
+} as const;

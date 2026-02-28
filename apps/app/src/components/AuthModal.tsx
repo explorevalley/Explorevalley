@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { Modal, Platform, Pressable, Text, TextInput, View } from "react-native";
 import { apiPost, supabaseGetUser, supabasePasswordLogin, supabaseUpdatePassword, trackEvent } from "../lib/api";
 import { getSupabaseAccessToken, setAuthMode, setAuthToken, setAuthUser, setSupabaseAccessToken } from "../lib/auth";
+import { authModalColors, authModalDynamicStyles as ds, authModalStyles as styles } from "../styles/AuthModal.styles";
+import { authModalData as t } from "../staticData/authModal.staticData";
 
 type AuthModalProps = {
   visible: boolean;
@@ -25,7 +27,7 @@ type PendingGoogleState = {
 const SUPABASE_URL = String(
   process.env.SUPABASE_URL ||
     process.env.EXPO_PUBLIC_SUPABASE_URL ||
-    "https://pmqlpbqwyxmfuvcrwoan.supabase.co"
+    t.defaultSupabaseUrl
 ).replace(/\/+$/, "");
 
 function formatAuthError(error: unknown) {
@@ -59,7 +61,7 @@ function formatAuthError(error: unknown) {
 }
 
 function passwordFlagKey(user: AuthUserPayload | null | undefined) {
-  return `ev_pw_set_${String(user?.id || user?.email || "anon")}`;
+  return `${t.storageKeys.passwordFlagPrefix}${String(user?.id || user?.email || "anon")}`;
 }
 
 function clearUrlHash() {
@@ -145,7 +147,7 @@ export default function AuthModal({ visible, onClose, onAuthed }: AuthModalProps
         accessToken?: string | null;
         user?: AuthUserPayload;
         requirePasswordSetup?: boolean;
-      }>("/api/auth/session-sync", { accessToken });
+      }>(t.api.sessionSync, { accessToken });
       return {
         token: String(response?.token || accessToken),
         accessToken: String(response?.accessToken || accessToken),
@@ -273,7 +275,7 @@ export default function AuthModal({ visible, onClose, onAuthed }: AuthModalProps
       let session: { access_token: string; user: AuthUserPayload };
       try {
         const response = await apiPost<{ token?: string; accessToken?: string | null; user?: AuthUserPayload }>(
-          "/api/auth/password-login",
+          t.api.passwordLogin,
           { email: normalizedEmail, password }
         );
         session = {
@@ -326,7 +328,7 @@ export default function AuthModal({ visible, onClose, onAuthed }: AuthModalProps
     setBusy(true);
     try {
       try {
-        await apiPost("/api/auth/set-password", {
+        await apiPost(t.api.setPassword, {
           accessToken,
           password: setupPassword,
           phone: normalizedPhone
@@ -343,7 +345,7 @@ export default function AuthModal({ visible, onClose, onAuthed }: AuthModalProps
         await supabaseUpdatePassword(accessToken, setupPassword);
       }
       if (typeof window !== "undefined" && pendingGoogle?.user) {
-        window.localStorage.setItem(passwordFlagKey(pendingGoogle.user), "1");
+        window.localStorage.setItem(passwordFlagKey(pendingGoogle.user), t.storageKeys.passwordFlagValue);
       }
 
       if (pendingGoogle) {
@@ -367,173 +369,101 @@ export default function AuthModal({ visible, onClose, onAuthed }: AuthModalProps
 
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: "rgba(0,0,0,0.58)",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: 16
-        }}
-      >
-        <View
-          style={{
-            width: "100%",
-            maxWidth: 440,
-            backgroundColor: "#111214",
-            borderWidth: 1,
-            borderColor: "#2a2a2a",
-            borderRadius: 16,
-            padding: 16
-          }}
-        >
-          <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
-            <Text style={{ color: "#fff", fontSize: 18, fontWeight: "700" }}>
-              {isPasswordSetupStep ? "Set Password" : "Login"}
+      <View style={styles.overlay}>
+        <View style={styles.card}>
+          <View style={styles.headerRow}>
+            <Text style={styles.title}>
+              {isPasswordSetupStep ? t.setPasswordTitle : t.loginTitle}
             </Text>
-            <Pressable onPress={onClose} style={{ paddingHorizontal: 8, paddingVertical: 4 }}>
-              <Text style={{ color: "#fff", fontWeight: "700" }}>Close</Text>
+            <Pressable onPress={onClose} style={styles.closeBtn}>
+              <Text style={styles.closeText}>{t.close}</Text>
             </Pressable>
           </View>
 
           {isPasswordSetupStep ? (
-            <View style={{ marginTop: 10, gap: 10 }}>
-              <Text style={{ color: "#bbb" }}>
-                Set your password once. Next time you can login with either Google or email/password.
+            <View style={styles.formWrap}>
+              <Text style={styles.hintText}>
+                {t.setupHint}
               </Text>
               <TextInput
                 value={setupPhone}
                 onChangeText={setSetupPhone}
                 keyboardType="phone-pad"
-                placeholder="Phone number"
-                placeholderTextColor="#7a7a7a"
-                style={{
-                  borderWidth: 1,
-                  borderColor: "#333",
-                  borderRadius: 10,
-                  paddingHorizontal: 12,
-                  paddingVertical: 10,
-                  color: "#fff"
-                }}
+                placeholder={t.phonePlaceholder}
+                placeholderTextColor={authModalColors.placeholder}
+                style={styles.input}
               />
               <TextInput
                 value={setupPassword}
                 onChangeText={setSetupPassword}
                 secureTextEntry
-                placeholder="New password"
-                placeholderTextColor="#7a7a7a"
-                style={{
-                  borderWidth: 1,
-                  borderColor: "#333",
-                  borderRadius: 10,
-                  paddingHorizontal: 12,
-                  paddingVertical: 10,
-                  color: "#fff"
-                }}
+                placeholder={t.newPasswordPlaceholder}
+                placeholderTextColor={authModalColors.placeholder}
+                style={styles.input}
               />
               <TextInput
                 value={setupPasswordConfirm}
                 onChangeText={setSetupPasswordConfirm}
                 secureTextEntry
-                placeholder="Confirm password"
-                placeholderTextColor="#7a7a7a"
-                style={{
-                  borderWidth: 1,
-                  borderColor: "#333",
-                  borderRadius: 10,
-                  paddingHorizontal: 12,
-                  paddingVertical: 10,
-                  color: "#fff"
-                }}
+                placeholder={t.confirmPasswordPlaceholder}
+                placeholderTextColor={authModalColors.placeholder}
+                style={styles.input}
               />
               <Pressable
                 disabled={busy}
                 onPress={handlePasswordSetup}
-                style={{
-                  backgroundColor: "#fff",
-                  paddingVertical: 12,
-                  borderRadius: 12,
-                  alignItems: "center",
-                  opacity: busy ? 0.75 : 1
-                }}
+                style={[styles.primaryBtn, ds.busyOpacity(busy)]}
               >
-                <Text style={{ fontWeight: "800" }}>{busy ? "Please wait..." : "Save Password"}</Text>
+                <Text style={styles.primaryText}>{busy ? t.busyLabel : t.savePassword}</Text>
               </Pressable>
             </View>
           ) : (
-            <View style={{ marginTop: 10, gap: 10 }}>
-              <Text style={{ color: "#bbb" }}>Continue with Google or use email/password.</Text>
+            <View style={styles.formWrap}>
+              <Text style={styles.hintText}>{t.loginHint}</Text>
 
               <Pressable
                 disabled={busy}
                 onPress={handleGoogleLogin}
-                style={{
-                  backgroundColor: "#fff",
-                  paddingVertical: 12,
-                  borderRadius: 12,
-                  alignItems: "center",
-                  opacity: busy ? 0.75 : 1
-                }}
+                style={[styles.primaryBtn, ds.busyOpacity(busy)]}
               >
-                <Text style={{ fontWeight: "800" }}>{busy ? "Please wait..." : "Continue with Google"}</Text>
+                <Text style={styles.primaryText}>{busy ? t.busyLabel : t.continueWithGoogle}</Text>
               </Pressable>
 
-              <View style={{ height: 1, backgroundColor: "#2a2a2a", marginVertical: 2 }} />
+              <View style={styles.divider} />
 
               <TextInput
                 value={email}
                 onChangeText={setEmail}
                 autoCapitalize="none"
                 keyboardType="email-address"
-                placeholder="Email"
-                placeholderTextColor="#7a7a7a"
-                style={{
-                  borderWidth: 1,
-                  borderColor: "#333",
-                  borderRadius: 10,
-                  paddingHorizontal: 12,
-                  paddingVertical: 10,
-                  color: "#fff"
-                }}
+                placeholder={t.emailPlaceholder}
+                placeholderTextColor={authModalColors.placeholder}
+                style={styles.input}
               />
 
               <TextInput
                 value={password}
                 onChangeText={setPassword}
                 secureTextEntry
-                placeholder="Password"
-                placeholderTextColor="#7a7a7a"
-                style={{
-                  borderWidth: 1,
-                  borderColor: "#333",
-                  borderRadius: 10,
-                  paddingHorizontal: 12,
-                  paddingVertical: 10,
-                  color: "#fff"
-                }}
+                placeholder={t.passwordPlaceholder}
+                placeholderTextColor={authModalColors.placeholder}
+                style={styles.input}
               />
 
               <Pressable
                 disabled={busy}
                 onPress={handleEmailPasswordLogin}
-                style={{
-                  borderWidth: 1,
-                  borderColor: "#5b5b5b",
-                  paddingVertical: 11,
-                  borderRadius: 12,
-                  alignItems: "center",
-                  opacity: busy ? 0.75 : 1
-                }}
+                style={[styles.secondaryBtn, ds.busyOpacity(busy)]}
               >
-                <Text style={{ color: "#fff", fontWeight: "800" }}>
-                  {busy ? "Please wait..." : "Login with Email & Password"}
+                <Text style={styles.secondaryText}>
+                  {busy ? t.busyLabel : t.loginWithEmailPassword}
                 </Text>
               </Pressable>
             </View>
           )}
 
-          {successText ? <Text style={{ color: "#9ef1a6", marginTop: 10 }}>{successText}</Text> : null}
-          {errorText ? <Text style={{ color: "#ff6b6b", marginTop: 10 }}>{errorText}</Text> : null}
+          {successText ? <Text style={styles.successText}>{successText}</Text> : null}
+          {errorText ? <Text style={styles.errorText}>{errorText}</Text> : null}
         </View>
       </View>
     </Modal>

@@ -3,17 +3,16 @@ import { SafeAreaView, StatusBar, ImageBackground } from "react-native";
 import HomeScreen from "./screens/HomeScreen";
 import CookieConsentGate from "./components/CookieConsentGate";
 import { cxAppStyles } from "./styles/cxAppStyles";
+import { appData as t } from "./staticData/app.staticData";
 
 export default function App() {
-  const appBackgroundImage = "https://upload.wikimedia.org/wikipedia/commons/c/c3/Chandrakhani_Pass_Malana_Kullu.jpg";
-
   return (
     <SafeAreaView style={cxAppStyles.root}>
-      <StatusBar barStyle="light-content" />
+      <StatusBar barStyle={t.statusBarStyle} />
       <ImageBackground
-        source={{ uri: appBackgroundImage }}
-        style={{ flex: 1 }}
-        imageStyle={{ opacity: 0.6 }}
+        source={{ uri: t.backgroundImageUrl }}
+        style={cxAppStyles.background}
+        imageStyle={cxAppStyles.backgroundImage}
         resizeMode="cover"
       >
         <HomeScreen />

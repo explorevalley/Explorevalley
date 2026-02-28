@@ -5,6 +5,8 @@ import { apiGet, apiPost, resolveAssetUrl, trackEvent, uploadAadhaar } from "../
 import { getAuthMode } from "../lib/auth";
 import { trackOrder } from "../lib/orders";
 import { autoCapitalizeNewLineStarts } from "../lib/text";
+import { bookingModalColors, bookingModalInlineStyles as bmIn } from "../styles/BookingModal.styles";
+import { bookingModalData as t } from "../staticData/bookingModal.staticData";
 
 export default function BookingModal({ visible, onClose, item }: any) {
   const { width: windowWidth } = useWindowDimensions();
@@ -18,12 +20,12 @@ export default function BookingModal({ visible, onClose, item }: any) {
   const [aadhaarFileName, setAadhaarFileName] = useState("");
   const [aadhaarUploading, setAadhaarUploading] = useState(false);
   const [aadhaarError, setAadhaarError] = useState<string | null>(null);
-  const [guests, setGuests] = useState("1");
-  const [numRooms, setNumRooms] = useState("1");
-  const [checkIn, setCheckIn] = useState("2026-03-15");
-  const [checkOut, setCheckOut] = useState("2026-03-18");
-  const [tourDate, setTourDate] = useState("2026-03-20");
-  const [roomType, setRoomType] = useState(item.kind === "hotel" ? (item.raw.roomTypes?.[0]?.type || "") : "");
+  const [guests, setGuests] = useState(t.defaults.guests);
+  const [numRooms, setNumRooms] = useState(t.defaults.numRooms);
+  const [checkIn, setCheckIn] = useState(t.defaults.checkIn);
+  const [checkOut, setCheckOut] = useState(t.defaults.checkOut);
+  const [tourDate, setTourDate] = useState(t.defaults.tourDate);
+  const [roomType, setRoomType] = useState(item.kind === "hotel" ? (item.raw.roomTypes?.[0]?.type || t.defaults.roomTypeFallback) : "");
   const [showCheckInPicker, setShowCheckInPicker] = useState(false);
   const [showCheckOutPicker, setShowCheckOutPicker] = useState(false);
   const [showTourDatePicker, setShowTourDatePicker] = useState(false);
@@ -47,17 +49,11 @@ export default function BookingModal({ visible, onClose, item }: any) {
   const isWeb = Platform.OS === "web";
   
   // Guest capacity based on room type
-  const maxGuestsByRoom: { [key: string]: number } = {
-    "Hall": 4,
-    "Standard": 2,
-    "Deluxe": 2,
-    "Suite": 3,
-    "Presidential": 4
-  };
-  const maxGuests = isHotel ? (maxGuestsByRoom[roomType] || 2) : 99;
+  const maxGuestsByRoom: { [key: string]: number } = t.maxGuestsByRoom;
+  const maxGuests = isHotel ? (maxGuestsByRoom[roomType] || t.defaults.maxGuestsFallback) : t.defaults.maxGuestsTourFallback;
   
   // Pricing calculation
-  const pricePerRoom = 5000; // Base price per room per night
+  const pricePerRoom = t.pricing.pricePerRoom; // Base price per room per night
   const dayMs = 1000 * 60 * 60 * 24;
   const parseDate = (value: string) => {
     const parsed = new Date(value);
@@ -104,10 +100,10 @@ export default function BookingModal({ visible, onClose, item }: any) {
     setCheckOut(nextCheckOut);
   };
   const openWebPicker = (target: "checkIn" | "checkOut" | "tourDate") => {
-    console.log("[BookingModal] openWebPicker called", { target, isWeb, isHotel });
+    console.log(t.logs.openWebPicker, { target, isWeb, isHotel });
     const currentValue = target === "checkIn" ? checkIn : target === "checkOut" ? checkOut : tourDate;
     const currentDate = parseDate(currentValue) || new Date();
-    console.log("[BookingModal] openWebPicker current value", { currentValue, currentDate: currentDate.toISOString() });
+    console.log(t.logs.openWebPickerValue, { currentValue, currentDate: currentDate.toISOString() });
     setWebPickerTarget(target);
     setWebPickerMonth(new Date(currentDate.getFullYear(), currentDate.getMonth(), 1));
     setWebPickerVisible(true);
@@ -170,7 +166,7 @@ export default function BookingModal({ visible, onClose, item }: any) {
       return raw.map((d: any, i: number) => ({
         day: Number(d?.day || i + 1),
         title: String(d?.title || `Day ${i + 1}`),
-        description: Array.isArray(d?.activities) ? d.activities.join(" <") : String(d?.description || "")
+        description: Array.isArray(d?.activities) ? d.activities.join(t.itinerary.activityJoiner) : String(d?.description || "")
       }));
     }
     if (typeof raw === "string" && raw.trim()) {
@@ -233,7 +229,7 @@ export default function BookingModal({ visible, onClose, item }: any) {
       const match = backendMeta.find((m: any) => String(m?.url || "").trim() === String(src).trim());
       return {
         src,
-        title: String(match?.title || backendTitles[i] || `${item?.title || "Image"} ${i + 1}`),
+        title: String(match?.title || backendTitles[i] || `${item?.title || t.labels.imageFallback} ${i + 1}`),
         description: String(match?.description || backendDescriptions[i] || item?.raw?.description || ""),
       };
     });
@@ -264,7 +260,7 @@ export default function BookingModal({ visible, onClose, item }: any) {
     try {
       const data = await uploadAadhaar(file);
       setAadhaarUrl(String(data?.url || ""));
-      setAadhaarFileName(file.name || "Aadhaar card");
+      setAadhaarFileName(file.name || t.labels.aadhaarFallbackName);
     } catch (e: any) {
       setAadhaarError(String(e?.message || e));
     } finally {
@@ -274,12 +270,12 @@ export default function BookingModal({ visible, onClose, item }: any) {
 
   const openAadhaarPicker = () => {
     if (!isWeb) {
-      setAadhaarError("Aadhaar upload is available on web only right now.");
+      setAadhaarError(t.errors.aadhaarWebOnly);
       return;
     }
     const input = document.createElement("input");
-    input.type = "file";
-    input.accept = "image/jpeg,image/png";
+    input.type = t.fields.fileInputType;
+    input.accept = t.fields.fileAccept;
     input.onchange = () => {
       const file = input.files && input.files[0];
       if (file) uploadAadhaarFile(file);
@@ -291,11 +287,11 @@ export default function BookingModal({ visible, onClose, item }: any) {
     setErr(null);
     setResult(null);
     if (getAuthMode() !== "authenticated") {
-      setErr("Please login with Google before placing a booking.");
+      setErr(t.errors.loginRequired);
       return;
     }
     if (!aadhaarUrl) {
-      setErr("Please upload your Aadhaar card to continue.");
+      setErr(t.errors.aadhaarRequired);
       return;
     }
     const locationLabel = isHotel
@@ -335,7 +331,7 @@ export default function BookingModal({ visible, onClose, item }: any) {
     }
     setBusy(true);
     try {
-      const r = await apiPost<{ success: boolean; id: string }>("/api/bookings", payload);
+      const r = await apiPost<{ success: boolean; id: string }>(t.api.bookings, payload);
       setResult(r);
       trackOrder("booking", r.id);
     } catch (e: any) {
@@ -359,7 +355,7 @@ export default function BookingModal({ visible, onClose, item }: any) {
 
   useEffect(() => {
     if (!visible) return;
-    apiGet<any>("/api/meta")
+    apiGet<any>(t.api.meta)
       .then((data) => {
         setMeta(data);
         const tiers = data?.settings?.pricingTiers || [];
@@ -378,16 +374,7 @@ export default function BookingModal({ visible, onClose, item }: any) {
 
   const WebDateField = ({ value, onPress, placeholder }: any) => (
     <View
-      style={{
-        backgroundColor: "#141414",
-        paddingHorizontal: 12,
-        paddingVertical: isMobile ? 10 : 12,
-        borderRadius: 8,
-        borderWidth: 1,
-        borderColor: "#007c00",
-        flexDirection: "row",
-        alignItems: "center"
-      }}
+      style={bmIn.s1({ isMobile })}
       pointerEvents="auto"
       onStartShouldSetResponder={() => true}
       onResponderRelease={onPress}
@@ -395,24 +382,18 @@ export default function BookingModal({ visible, onClose, item }: any) {
       <TextInput
         value={value}
         placeholder={placeholder}
-        placeholderTextColor="#666"
+        placeholderTextColor={bookingModalColors.placeholder}
         editable={false}
         onFocus={onPress}
         onPressIn={onPress}
-        style={{
-          flex: 1,
-          color: value ? "#fff" : "#666",
-          fontSize: isMobile ? 12 : 14,
-          fontWeight: "600",
-          padding: 0
-        }}
+        style={bmIn.s2({ isMobile, value })}
       />
-      <Text style={{ color: "#f5f2e8", fontSize: 16, marginLeft: 8 }}>ðŸ“…</Text>
+      <Text style={bmIn.s3()}>{t.icons.calendar}</Text>
     </View>
   );
 
   useEffect(() => {
-    console.log("[BookingModal] web picker state changed", {
+    console.log(t.logs.webPickerChanged, {
       webPickerVisible,
       webPickerTarget,
       webPickerMonth: webPickerMonth?.toISOString?.(),
@@ -421,112 +402,73 @@ export default function BookingModal({ visible, onClose, item }: any) {
 
   return (
     <Modal visible={visible} animationType="slide" onRequestClose={onClose}>
-      <View style={{ flex: 1, backgroundColor: "#0b0b0b" }}>
-        <ScrollView style={{ flex: 1 }}>
-          <View style={{
-            padding: isMobile ? 14 : 18,
-            paddingTop: Platform.select({ ios: 48, default: isMobile ? 14 : 18 })
-          }}>
-          <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
-            <Text style={{ color: "#fff", fontSize: isMobile ? 16 : 18, fontWeight: "700", flex: 1, marginRight: 12 }}>
-              Book: {item.title}
+      <View style={bmIn.s4()}>
+        <ScrollView style={bmIn.s5()}>
+          <View style={bmIn.s6({ Platform, isMobile })}>
+          <View style={bmIn.s7()}>
+            <Text style={bmIn.s8({ isMobile })}>
+              {t.labels.bookPrefix} {item.title}
             </Text>
             <Pressable
               onPress={onClose}
-              style={{
-                backgroundColor: "#007c00",
-                borderRadius: 999,
-                paddingHorizontal: isMobile ? 12 : 14,
-                paddingVertical: isMobile ? 6 : 7,
-                minWidth: isMobile ? 84 : 96,
-                alignItems: "center",
-                justifyContent: "center"
-              }}
+              style={bmIn.s9({ isMobile })}
             >
-              <Text style={{ color: "#fff", fontSize: isMobile ? 14 : 16, fontWeight: "800" }}>Close</Text>
+              <Text style={bmIn.s10({ isMobile })}>{t.labels.close}</Text>
             </Pressable>
           </View>
 
-          <Text style={{ color: "#aaa", fontSize: isMobile ? 12 : 14 }}>
-            GST is calculated server-side (Indian GST rules).
+          <Text style={bmIn.s11({ isMobile })}>
+            {t.labels.gstNote}
           </Text>
 
-          <View style={{
-            marginTop: 16,
-            gap: 16,
-            flexDirection: isMobile ? "column" : "row"
-          }}>
+          <View style={bmIn.s12({ isMobile })}>
             {/* Left Panel - Overview */}
-            <View style={{
-              flex: 1,
-              borderWidth: 1,
-              borderColor: "#1f1f1f",
-              borderRadius: 14,
-              padding: isMobile ? 12 : 14,
-              backgroundColor: "#0f0f0f"
-            }}>
-              <Text style={{ color: "#fff", fontSize: 16, fontWeight: "700" }}>Overview</Text>
+            <View style={bmIn.s13({ isMobile })}>
+              <Text style={bmIn.s14()}>{t.labels.overview}</Text>
 
-              <View style={{ marginTop: 8 }}>
-                <Text style={{ color: "#fff", fontSize: isMobile ? 18 : 20, fontWeight: "800" }}>
+              <View style={bmIn.s15()}>
+                <Text style={bmIn.s16({ isMobile })}>
                   {item.title || leftContent.title}
                 </Text>
                 {category === "tour" ? (
-                  <Text style={{ color: "#aaa", marginTop: 6, fontSize: isMobile ? 12 : 14 }}>
+                  <Text style={bmIn.s17({ isMobile })}>
                     {(item.raw?.destination || item.raw?.location) ?
-                      `Destination: ${item.raw?.destination || item.raw?.location}` : ""}
+                      `${t.labels.destination} ${item.raw?.destination || item.raw?.location}` : ""}
                   </Text>
                 ) : (
-                  <Text style={{ color: "#aaa", marginTop: 6, fontSize: isMobile ? 12 : 14 }}>
-                    {(item.raw?.location) ? `Location: ${item.raw?.location}` : ""}
+                  <Text style={bmIn.s18({ isMobile })}>
+                    {(item.raw?.location) ? `${t.labels.location} ${item.raw?.location}` : ""}
                   </Text>
                 )}
                 {(category === "tour" ? item.raw?.duration : leftContent.duration) ? (
-                  <Text style={{ color: "#aaa", marginTop: 4, fontSize: isMobile ? 12 : 14 }}>
-                    Duration: {category === "tour" ? item.raw?.duration : leftContent.duration}
+                  <Text style={bmIn.s19({ isMobile })}>
+                    {t.labels.duration} {category === "tour" ? item.raw?.duration : leftContent.duration}
                   </Text>
                 ) : null}
               </View>
 
-              <Text style={{ color: "#f5f2e8", fontWeight: "800", marginTop: 8, fontSize: isMobile ? 16 : 18 }}>
+              <Text style={bmIn.s20({ isMobile })}>
                 {item.priceLabel}
               </Text>
 
               {/* Image Gallery */}
-              <View style={{ marginTop: 10, marginBottom: 12 }}>
+              <View style={bmIn.s21()}>
                 {/* Main Image */}
-                <View style={{ position: "relative", marginBottom: 10 }}>
+                <View style={bmIn.s22()}>
                   {selectedImage ? (
                     <>
                       <Image
                         source={{ uri: selectedImage }}
                         resizeMode="cover"
                         onError={() => handleImageError(selectedImage)}
-                        style={{
-                          width: "100%",
-                          height: mainImageHeight,
-                          borderRadius: 12,
-                          backgroundColor: "#111",
-                          borderWidth: 1,
-                          borderColor: "#333"
-                        }}
+                        style={bmIn.s23({ mainImageHeight })}
                       />
                       {imageErrors.has(selectedImage) && (
-                        <View style={{
-                          position: "absolute",
-                          top: 0,
-                          left: 0,
-                          right: 0,
-                          bottom: 0,
-                          backgroundColor: "#1a1a1a",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          borderRadius: 12
-                        }}>
-                          <Text style={{ color: "#666", fontSize: 16, fontWeight: "700", letterSpacing: 1 }}>
+                        <View style={bmIn.s24()}>
+                          <Text style={bmIn.s25()}>
                             {category.toUpperCase()}
                           </Text>
-                          <Text style={{ color: "#555", fontSize: 12, marginTop: 4 }}>Preview unavailable</Text>
+                          <Text style={bmIn.s26()}>{t.labels.previewUnavailable}</Text>
                         </View>
                       )}
                     </>
@@ -535,11 +477,11 @@ export default function BookingModal({ visible, onClose, item }: any) {
 
                 {/* Image Info */}
                 {selectedMeta ? (
-                  <View style={{ marginBottom: 10, paddingHorizontal: 4 }}>
-                    <Text style={{ color: "#fff", fontWeight: "800", fontSize: isMobile ? 14 : 16 }}>
+                  <View style={bmIn.s27()}>
+                    <Text style={bmIn.s28({ isMobile })}>
                       {selectedMeta.title}
                     </Text>
-                    <Text style={{ color: "#aaa", marginTop: 4, fontSize: isMobile ? 12 : 14 }}>
+                    <Text style={bmIn.s29({ isMobile })}>
                       {selectedMeta.description}
                     </Text>
                   </View>
@@ -549,48 +491,30 @@ export default function BookingModal({ visible, onClose, item }: any) {
                 <ScrollView
                   horizontal
                   showsHorizontalScrollIndicator={false}
-                  contentContainerStyle={{ gap: 8, paddingRight: 16, paddingLeft: 4, flexGrow: 1 }}
+                  contentContainerStyle={bmIn.s209()}
                   scrollEventThrottle={16}
-                  style={{ minHeight: thumbnailHeight + 4 }}
+                  style={bmIn.s30({ thumbnailHeight })}
                 >
                   {imageMeta.map((img: any, i: number) => (
                     <Pressable 
                       key={`thumb_${i}_${img.src}`}
                       onPress={() => setSelectedImage(img.src)}
-                      style={{ cursor: "pointer" }}
+                      style={bmIn.s31()}
                       hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                     >
-                      <View style={{ position: "relative" }}>
+                      <View style={bmIn.s32()}>
                         <Image
                           source={{ uri: img.src }}
                           resizeMode="cover"
                           onError={() => handleImageError(img.src)}
-                          style={{
-                            width: thumbnailWidth,
-                            height: thumbnailHeight,
-                            borderRadius: 8,
-                            backgroundColor: "#111",
-                            borderWidth: 2,
-                            borderColor: selectedImage === img.src ? "#f5f2e8" : "#333",
-                          }}
+                          style={bmIn.s33({ img, selectedImage, thumbnailHeight, thumbnailWidth })}
                         />
                         {imageErrors.has(img.src) && (
-                          <View style={{
-                            position: "absolute",
-                            top: 0,
-                            left: 0,
-                            right: 0,
-                            bottom: 0,
-                            backgroundColor: "#1a1a1a",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            borderRadius: 8,
-                            pointerEvents: "none"
-                          }}>
-                            <Text style={{ color: "#666", fontSize: 10, fontWeight: "700" }}>
+                          <View style={bmIn.s34()}>
+                            <Text style={bmIn.s35()}>
                               {category.toUpperCase()}
                             </Text>
-                            <Text style={{ color: "#555", fontSize: 8, marginTop: 2 }}>Unavailable</Text>
+                            <Text style={bmIn.s36()}>{t.labels.unavailable}</Text>
                           </View>
                         )}
                       </View>
@@ -600,80 +524,58 @@ export default function BookingModal({ visible, onClose, item }: any) {
               </View>
 
               {(highlightsList.length > 0 || inclusionsList.length > 0 || exclusionsList.length > 0) ? (
-                <View style={{
-                  marginTop: 12,
-                  borderWidth: 1,
-                  borderColor: "#1f1f1f",
-                  borderRadius: 12,
-                  backgroundColor: "#101010",
-                  padding: 10
-                }}>
-                  <View style={{ flexDirection: isMobile ? "column" : "row", gap: 10 }}>
-                    <View style={{ flex: 1, backgroundColor: "#151515", borderRadius: 10, padding: 10, borderWidth: 1, borderColor: "#202020" }}>
-                      <Text style={{ color: "#fff", fontWeight: "700", fontSize: isMobile ? 13 : 14 }}>Highlights</Text>
+                <View style={bmIn.s37()}>
+                  <View style={bmIn.s38({ isMobile })}>
+                    <View style={bmIn.s39()}>
+                      <Text style={bmIn.s40({ isMobile })}>{t.labels.highlights}</Text>
                       {highlightsList.length ? highlightsList.map((h: string, i: number) => (
-                        <Text key={`hl_${h}_${i}`} style={{ color: "#aaa", marginTop: 4, fontSize: isMobile ? 11 : 12 }}>
-                          • {h}
+                        <Text key={`hl_${h}_${i}`} style={bmIn.s41({ isMobile })}>
+                          {t.badges.bullet} {h}
                         </Text>
-                      )) : <Text style={{ color: "#666", marginTop: 4, fontSize: isMobile ? 11 : 12 }}>-</Text>}
+                      )) : <Text style={bmIn.s42({ isMobile })}>{t.badges.empty}</Text>}
                     </View>
-                    <View style={{ flex: 1, backgroundColor: "#151515", borderRadius: 10, padding: 10, borderWidth: 1, borderColor: "#202020" }}>
-                      <Text style={{ color: "#fff", fontWeight: "700", fontSize: isMobile ? 13 : 14 }}>Inclusions</Text>
+                    <View style={bmIn.s43()}>
+                      <Text style={bmIn.s44({ isMobile })}>{t.labels.inclusions}</Text>
                       {inclusionsList.length ? inclusionsList.map((h: string, i: number) => (
-                        <Text key={`inc_${h}_${i}`} style={{ color: "#aaa", marginTop: 4, fontSize: isMobile ? 11 : 12 }}>
-                          • {h}
+                        <Text key={`inc_${h}_${i}`} style={bmIn.s45({ isMobile })}>
+                          {t.badges.bullet} {h}
                         </Text>
-                      )) : <Text style={{ color: "#666", marginTop: 4, fontSize: isMobile ? 11 : 12 }}>-</Text>}
+                      )) : <Text style={bmIn.s46({ isMobile })}>{t.badges.empty}</Text>}
                     </View>
-                    <View style={{ flex: 1, backgroundColor: "#151515", borderRadius: 10, padding: 10, borderWidth: 1, borderColor: "#202020" }}>
-                      <Text style={{ color: "#fff", fontWeight: "700", fontSize: isMobile ? 13 : 14 }}>Exclusions</Text>
+                    <View style={bmIn.s47()}>
+                      <Text style={bmIn.s48({ isMobile })}>{t.labels.exclusions}</Text>
                       {exclusionsList.length ? exclusionsList.map((h: string, i: number) => (
-                        <Text key={`exc_${h}_${i}`} style={{ color: "#aaa", marginTop: 4, fontSize: isMobile ? 11 : 12 }}>
-                          • {h}
+                        <Text key={`exc_${h}_${i}`} style={bmIn.s49({ isMobile })}>
+                          {t.badges.bullet} {h}
                         </Text>
-                      )) : <Text style={{ color: "#666", marginTop: 4, fontSize: isMobile ? 11 : 12 }}>-</Text>}
+                      )) : <Text style={bmIn.s50({ isMobile })}>{t.badges.empty}</Text>}
                     </View>
                   </View>
                 </View>
               ) : null}
 
               {Array.isArray(item.raw?.quick_info) && item.raw.quick_info.length > 0 ? (
-                <View style={{ marginTop: 12 }}>
-                  <Text style={{ color: "#fff", fontWeight: "700", fontSize: isMobile ? 14 : 16 }}>Quick Info</Text>
+                <View style={bmIn.s51()}>
+                  <Text style={bmIn.s52({ isMobile })}>{t.labels.quickInfo}</Text>
                   {item.raw.quick_info.map((h: string, i: number) => (
-                    <View key={`${h}_${i}`} style={{ flexDirection: "row", alignItems: "flex-start", marginTop: 6, gap: 8 }}>
-                      <Text style={{ color: "#f5f2e8", fontSize: isMobile ? 14 : 15, marginTop: 1 }}>â„¹</Text>
-                      <Text style={{ color: "#aaa", fontSize: isMobile ? 12 : 14, flex: 1 }}>{h}</Text>
+                    <View key={`${h}_${i}`} style={bmIn.s53()}>
+                      <Text style={bmIn.s54({ isMobile })}>{t.icons.info}</Text>
+                      <Text style={bmIn.s55({ isMobile })}>{h}</Text>
                     </View>
                   ))}
                 </View>
               ) : null}
 
               {itineraryCards.length > 0 ? (
-                <View style={{ marginTop: 12 }}>
-                  <Text style={{ color: "#fff", fontWeight: "700", fontSize: isMobile ? 14 : 16, marginBottom: 10 }}>Itinerary</Text>
-                  <View style={{ position: "relative" }}>
+                <View style={bmIn.s56()}>
+                  <Text style={bmIn.s57({ isMobile })}>{t.labels.itinerary}</Text>
+                  <View style={bmIn.s58()}>
                     {/* Left Arrow */}
                     <Pressable
                       onPress={scrollItineraryLeft}
-                      style={({ hovered }) => [
-                        {
-                          position: "absolute",
-                          left: 0,
-                          top: "50%",
-                          zIndex: 10,
-                          marginTop: -20,
-                          backgroundColor: "#007c00",
-                          width: 40,
-                          height: 40,
-                          borderRadius: 20,
-                          alignItems: "center",
-                          justifyContent: "center",
-                          opacity: hovered ? 0.8 : 1
-                        }
-                      ]}
+                      style={({ hovered }) => [bmIn.s210("left", !!hovered)]}
                     >
-                      <Text style={{ color: "#fff", fontSize: 20, fontWeight: "700" }}></Text>
+                      <Text style={bmIn.s59()}></Text>
                     </Pressable>
 
                     {/* Itinerary ScrollView */}
@@ -681,61 +583,28 @@ export default function BookingModal({ visible, onClose, item }: any) {
                       ref={itineraryScrollRef}
                       horizontal
                       showsHorizontalScrollIndicator={false}
-                      contentContainerStyle={{ paddingRight: 8, gap: 10, paddingHorizontal: 50 }}
+                      contentContainerStyle={bmIn.s211()}
                       scrollEventThrottle={16}
                     >
                       {itineraryCards.map((d: any, i: number) => (
                         <View
                           key={`day_card_${i}`}
-                          style={{
-                            minWidth: isMobile ? 130 : 155,
-                            backgroundColor: "#141414",
-                            borderWidth: 1,
-                            borderColor: "#1f1f1f",
-                            borderRadius: 12,
-                            padding: 10,
-                            paddingTop: 8,
-                            justifyContent: "flex-start",
-                            minHeight: isMobile ? 86 : 96,
-                            shadowColor: "#000",
-                            shadowOffset: { width: 0, height: 2 },
-                            shadowOpacity: 0.3,
-                            shadowRadius: 4,
-                            elevation: 3
-                          }}
+                          style={bmIn.s60({ isMobile })}
                         >
                           <View>
                             <Text
-                              style={{
-                                color: "#f5f2e8",
-                                fontWeight: "800",
-                                fontSize: isMobile ? 10 : 11,
-                                letterSpacing: 1,
-                                marginBottom: 4,
-                                textTransform: "uppercase"
-                              }}
+                              style={bmIn.s61({ isMobile })}
                             >
-                              Day {d.day}
+                              {t.itinerary.day(d.day)}
                             </Text>
                             <Text
-                              style={{
-                                color: "#fff",
-                                fontWeight: "600",
-                                fontSize: isMobile ? 11 : 12,
-                                lineHeight: 16,
-                                marginBottom: 6
-                              }}
+                              style={bmIn.s62({ isMobile })}
                               numberOfLines={2}
                             >
                               {d.title}
                             </Text>
                             <Text
-                              style={{
-                                color: "#aaa",
-                                fontWeight: "400",
-                                fontSize: isMobile ? 10 : 11,
-                                lineHeight: 14
-                              }}
+                              style={bmIn.s63({ isMobile })}
                               numberOfLines={3}
                             >
                               {d.description || ""}
@@ -748,37 +617,22 @@ export default function BookingModal({ visible, onClose, item }: any) {
                     {/* Right Arrow */}
                     <Pressable
                       onPress={scrollItineraryRight}
-                      style={({ hovered }) => [
-                        {
-                          position: "absolute",
-                          right: 0,
-                          top: "50%",
-                          zIndex: 10,
-                          marginTop: -20,
-                          backgroundColor: "#007c00",
-                          width: 40,
-                          height: 40,
-                          borderRadius: 20,
-                          alignItems: "center",
-                          justifyContent: "center",
-                          opacity: hovered ? 0.8 : 1
-                        }
-                      ]}
+                      style={({ hovered }) => [bmIn.s210("right", !!hovered)]}
                     >
-                      <Text style={{ color: "#fff", fontSize: 20, fontWeight: "700" }}></Text>
+                      <Text style={bmIn.s64()}></Text>
                     </Pressable>
                   </View>
                 </View>
               ) : null}
 
               {Array.isArray(item.raw?.amenities) && item.raw.amenities.length > 0 ? (
-                <View style={{ marginTop: 12 }}>
-                  <Text style={{ color: "#fff", fontWeight: "700", fontSize: isMobile ? 14 : 16, marginBottom: 8 }}>Amenities</Text>
-                  <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12 }}>
+                <View style={bmIn.s65()}>
+                  <Text style={bmIn.s66({ isMobile })}>{t.labels.amenities}</Text>
+                  <View style={bmIn.s67()}>
                     {item.raw.amenities.map((a: string, i: number) => (
-                      <View key={`${a}_${i}`} style={{ flexDirection: "row", alignItems: "center", gap: 6 }}>
-                        <Text style={{ color: "#f5f2e8", fontSize: isMobile ? 14 : 15 }}></Text>
-                        <Text style={{ color: "#aaa", fontSize: isMobile ? 12 : 14 }}>{a}</Text>
+                      <View key={`${a}_${i}`} style={bmIn.s68()}>
+                        <Text style={bmIn.s69({ isMobile })}></Text>
+                        <Text style={bmIn.s70({ isMobile })}>{a}</Text>
                       </View>
                     ))}
                   </View>
@@ -787,23 +641,16 @@ export default function BookingModal({ visible, onClose, item }: any) {
             </View>
 
             {/* Right Panel - Booking Form */}
-            <View style={{
-              flex: 1,
-              borderWidth: 1,
-              borderColor: "#1f1f1f",
-              borderRadius: 14,
-              padding: isMobile ? 12 : 14,
-              backgroundColor: "#0f0f0f"
-            }}>
-              <Text style={{ color: "#fff", fontSize: 16, fontWeight: "700", marginBottom: 12 }}>Booking Details</Text>
+            <View style={bmIn.s71({ isMobile })}>
+              <Text style={bmIn.s72()}>{t.labels.bookingDetails}</Text>
 
-              <View style={{ marginTop: 8, gap: 12 }}>
+              <View style={bmIn.s73()}>
                 {/* Guest Info Section */}
-                <View style={{ backgroundColor: "#0a0a0a", borderRadius: 10, padding: 12, borderLeftWidth: 3, borderLeftColor: "#007c00" }}>
-                  <Text style={{ color: "#f5f2e8", fontSize: 12, fontWeight: "700", marginBottom: 10, textTransform: "uppercase", letterSpacing: 0.5 }}>Guest Information</Text>
-                  <Field label="Full Name" value={userName} onChangeText={setUserName} />
-                  <Field label="Email" value={email} onChangeText={setEmail} style={{ marginTop: 8 }} />
-                  <Field label="Phone Number" value={phone} onChangeText={setPhone} style={{ marginTop: 8 }} />
+                <View style={bmIn.s74()}>
+                  <Text style={bmIn.s75()}>{t.labels.guestInfo}</Text>
+                  <Field label={t.labels.fullName} value={userName} onChangeText={setUserName} />
+                  <Field label={t.labels.email} value={email} onChangeText={setEmail} style={bmIn.s76()} />
+                  <Field label={t.labels.phoneNumber} value={phone} onChangeText={setPhone} style={bmIn.s77()} />
                 </View>
 
                 {/* Hotel Specific Fields */}
@@ -811,25 +658,19 @@ export default function BookingModal({ visible, onClose, item }: any) {
                   <>
                     {/* Room Selection */}
                     {item.raw?.roomTypes && item.raw.roomTypes.length > 0 && (
-                      <View style={{ backgroundColor: "#0a0a0a", borderRadius: 10, padding: 12, borderLeftWidth: 3, borderLeftColor: "#007c00" }}>
-                        <Text style={{ color: "#f5f2e8", fontSize: 12, fontWeight: "700", marginBottom: 8, textTransform: "uppercase", letterSpacing: 0.5 }}>Room Selection</Text>
-                        <View style={{ marginBottom: 10 }}>
-                          <Text style={{ color: "#ddd", marginBottom: 8, fontSize: isMobile ? 12 : 14, fontWeight: "600" }}>Room Type</Text>
-                          <View style={{ borderRadius: 8, borderWidth: 1, borderColor: "#222", backgroundColor: "#141414", overflow: "hidden" }}>
+                      <View style={bmIn.s78()}>
+                        <Text style={bmIn.s79()}>{t.labels.roomSelection}</Text>
+                        <View style={bmIn.s80()}>
+                          <Text style={bmIn.s81({ isMobile })}>{t.labels.roomType}</Text>
+                          <View style={bmIn.s82()}>
                             {item.raw.roomTypes.map((rt: any, i: number) => (
                               <Pressable
                                 key={i}
                                 onPress={() => setRoomType(rt.type)}
-                                style={{
-                                  paddingHorizontal: 12,
-                                  paddingVertical: 10,
-                                  borderBottomWidth: i < item.raw.roomTypes.length - 1 ? 1 : 0,
-                                  borderBottomColor: "#222",
-                                  backgroundColor: roomType === rt.type ? "#1a3a1a" : "transparent"
-                                }}
+                                style={bmIn.s83({ i, item, roomType, rt })}
                               >
-                                <Text style={{ color: roomType === rt.type ? "#f5f2e8" : "#aaa", fontWeight: roomType === rt.type ? "700" : "500", fontSize: isMobile ? 12 : 14 }}>
-                                  {rt.type} {rt.capacity ? `(${rt.capacity} person)` : ""}
+                                <Text style={bmIn.s84({ isMobile, roomType, rt })}>
+                                  {rt.type} {rt.capacity ? `(${rt.capacity} ${t.labels.person})` : ""}
                                 </Text>
                               </Pressable>
                             ))}
@@ -838,36 +679,22 @@ export default function BookingModal({ visible, onClose, item }: any) {
 
                         {/* Number of Rooms */}
                         <View>
-                          <Text style={{ color: "#ddd", marginBottom: 8, fontSize: isMobile ? 12 : 14, fontWeight: "600" }}>Number of Rooms</Text>
-                          <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
+                          <Text style={bmIn.s85({ isMobile })}>{t.labels.numberOfRooms}</Text>
+                          <View style={bmIn.s86()}>
                             <Pressable
                               onPress={() => setNumRooms(Math.max(1, parseInt(numRooms || "1", 10) - 1).toString())}
-                              style={{
-                                backgroundColor: "#007c00",
-                                width: 36,
-                                height: 36,
-                                borderRadius: 6,
-                                alignItems: "center",
-                                justifyContent: "center"
-                              }}
+                              style={bmIn.s87()}
                             >
-                              <Text style={{ color: "#fff", fontSize: 18, fontWeight: "700" }}>+</Text>
+                              <Text style={bmIn.s88()}>{t.icons.plus}</Text>
                             </Pressable>
-                            <Text style={{ color: "#fff", fontSize: 16, fontWeight: "700", flex: 1, textAlign: "center", backgroundColor: "#141414", paddingVertical: 8, borderRadius: 6 }}>
+                            <Text style={bmIn.s89()}>
                               {numRooms}
                             </Text>
                             <Pressable
                               onPress={() => setNumRooms((parseInt(numRooms || "1", 10) + 1).toString())}
-                              style={{
-                                backgroundColor: "#007c00",
-                                width: 36,
-                                height: 36,
-                                borderRadius: 6,
-                                alignItems: "center",
-                                justifyContent: "center"
-                              }}
+                              style={bmIn.s90()}
                             >
-                              <Text style={{ color: "#fff", fontSize: 18, fontWeight: "700" }}>+</Text>
+                              <Text style={bmIn.s91()}>{t.icons.plus}</Text>
                             </Pressable>
                           </View>
                         </View>
@@ -875,45 +702,38 @@ export default function BookingModal({ visible, onClose, item }: any) {
                     )}
 
                     {pricingTiers.length > 0 && (
-                      <View style={{ backgroundColor: "#0a0a0a", borderRadius: 10, padding: 12, borderLeftWidth: 3, borderLeftColor: "#007c00" }}>
-                        <Text style={{ color: "#f5f2e8", fontSize: 12, fontWeight: "700", marginBottom: 8, textTransform: "uppercase", letterSpacing: 0.5 }}>Pricing Tier (Preview)</Text>
-                        <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8 }}>
+                      <View style={bmIn.s92()}>
+                        <Text style={bmIn.s93()}>{t.labels.pricingTier}</Text>
+                        <View style={bmIn.s94()}>
                           {pricingTiers.map((tier: any) => (
                             <Pressable
                               key={tier.name}
                               onPress={() => setTierName(tier.name)}
-                              style={{
-                                paddingHorizontal: 10,
-                                paddingVertical: 8,
-                                borderRadius: 8,
-                                borderWidth: 1,
-                                borderColor: tierName === tier.name ? "#007c00" : "#222",
-                                backgroundColor: tierName === tier.name ? "#1a3a1a" : "#141414"
-                              }}
+                              style={bmIn.s95({ tier, tierName })}
                             >
-                              <Text style={{ color: "#f5f2e8", fontSize: isMobile ? 12 : 13, fontWeight: "700" }}>
-                                {tier.name} Â· {Math.round(tier.multiplier * 100)}%
+                              <Text style={bmIn.s96({ isMobile })}>
+                                {tier.name} {t.policy.couponSeparator} {Math.round(tier.multiplier * 100)}%
                               </Text>
                             </Pressable>
                           ))}
                         </View>
-                        <Text style={{ color: "#777", fontSize: 11, marginTop: 6 }}>
-                          Preview only. Final billing uses base pricing rules.
+                        <Text style={bmIn.s97()}>
+                          {t.labels.pricingTierNote}
                         </Text>
                       </View>
                     )}
 
                     {/* Dates Section */}
-                    <View style={{ backgroundColor: "#0a0a0a", borderRadius: 10, padding: 12, borderLeftWidth: 3, borderLeftColor: "#007c00" }}>
-                      <Text style={{ color: "#f5f2e8", fontSize: 12, fontWeight: "700", marginBottom: 12, textTransform: "uppercase", letterSpacing: 0.5 }}>Stay Dates</Text>
+                    <View style={bmIn.s98()}>
+                      <Text style={bmIn.s99()}>{t.labels.stayDates}</Text>
                       
                       {/* Check In and Check Out in Row */}
-                      <View style={{ flexDirection: "row", gap: 10 }}>
-                        <View style={{ flex: 1 }}>
-                          <Text style={{ color: "#ddd", marginBottom: 6, fontSize: isMobile ? 12 : 14, fontWeight: "600" }}>Check In</Text>
+                      <View style={bmIn.s100()}>
+                        <View style={bmIn.s101()}>
+                          <Text style={bmIn.s102({ isMobile })}>{t.labels.checkIn}</Text>
                           {isWeb ? (
                             <WebDateField
-                              placeholder="YYYY-MM-DD"
+                              placeholder={t.date.webPlaceholder}
                               value={checkIn}
                               onPress={() => openWebPicker("checkIn")}
                             />
@@ -921,20 +741,10 @@ export default function BookingModal({ visible, onClose, item }: any) {
                             <>
                               <Pressable
                                 onPress={() => setShowCheckInPicker(true)}
-                                style={{
-                                  backgroundColor: "#141414",
-                                  paddingHorizontal: 12,
-                                  paddingVertical: isMobile ? 10 : 12,
-                                  borderRadius: 8,
-                                  borderWidth: 1,
-                                  borderColor: "#007c00",
-                                  flexDirection: "row",
-                                  alignItems: "center",
-                                  justifyContent: "space-between"
-                                }}
+                                style={bmIn.s103({ isMobile })}
                               >
-                                <Text style={{ color: "#fff", fontSize: isMobile ? 12 : 14, fontWeight: "600" }}>{checkIn}</Text>
-                                <Text style={{ color: "#f5f2e8", fontSize: 16 }}>ðŸ“…</Text>
+                                <Text style={bmIn.s104({ isMobile })}>{checkIn}</Text>
+                                <Text style={bmIn.s105()}>{t.icons.calendar}</Text>
                               </Pressable>
                               {showCheckInPicker && (
                                 <DateTimePicker
@@ -954,11 +764,11 @@ export default function BookingModal({ visible, onClose, item }: any) {
                           )}
                         </View>
 
-                        <View style={{ flex: 1 }}>
-                          <Text style={{ color: "#ddd", marginBottom: 6, fontSize: isMobile ? 12 : 14, fontWeight: "600" }}>Check Out</Text>
+                        <View style={bmIn.s106()}>
+                          <Text style={bmIn.s107({ isMobile })}>{t.labels.checkOut}</Text>
                           {isWeb ? (
                             <WebDateField
-                              placeholder="YYYY-MM-DD"
+                              placeholder={t.date.webPlaceholder}
                               value={checkOut}
                               onPress={() => openWebPicker("checkOut")}
                             />
@@ -966,20 +776,10 @@ export default function BookingModal({ visible, onClose, item }: any) {
                             <>
                               <Pressable
                                 onPress={() => setShowCheckOutPicker(true)}
-                                style={{
-                                  backgroundColor: "#141414",
-                                  paddingHorizontal: 12,
-                                  paddingVertical: isMobile ? 10 : 12,
-                                  borderRadius: 8,
-                                  borderWidth: 1,
-                                  borderColor: "#007c00",
-                                  flexDirection: "row",
-                                  alignItems: "center",
-                                  justifyContent: "space-between"
-                                }}
+                                style={bmIn.s108({ isMobile })}
                               >
-                                <Text style={{ color: "#fff", fontSize: isMobile ? 12 : 14, fontWeight: "600" }}>{checkOut}</Text>
-                                <Text style={{ color: "#f5f2e8", fontSize: 16 }}>ðŸ“…</Text>
+                                <Text style={bmIn.s109({ isMobile })}>{checkOut}</Text>
+                                <Text style={bmIn.s110()}>{t.icons.calendar}</Text>
                               </Pressable>
                               {showCheckOutPicker && (
                                 <DateTimePicker
@@ -1002,90 +802,76 @@ export default function BookingModal({ visible, onClose, item }: any) {
 
                       {/* Calculate and show nights */}
                       {numNights > 0 && (
-                        <View style={{ marginTop: 10, backgroundColor: "#141414", borderRadius: 6, padding: 8 }}>
-                          <Text style={{ color: "#aaa", fontSize: 12 }}>
-                            Duration: <Text style={{ color: "#f5f2e8", fontWeight: "700" }}>{Math.ceil(numNights)} night{Math.ceil(numNights) !== 1 ? "s" : ""}</Text>
+                        <View style={bmIn.s111()}>
+                          <Text style={bmIn.s112()}>
+                            {t.labels.duration} <Text style={bmIn.s113()}>{Math.ceil(numNights)} {Math.ceil(numNights) !== 1 ? t.labels.nightsPlural : t.labels.nights}</Text>
                           </Text>
                         </View>
                       )}
 
                       {isHotelClosed && (
-                        <View style={{ marginTop: 8, backgroundColor: "#1a1a1a", borderRadius: 6, padding: 8, borderWidth: 1, borderColor: "#333" }}>
-                          <Text style={{ color: "#ffb4b4", fontSize: 12, fontWeight: "700" }}>
-                            Selected dates are closed for this property.
+                        <View style={bmIn.s114()}>
+                          <Text style={bmIn.s115()}>
+                            {t.labels.closedDates}
                           </Text>
                         </View>
                       )}
 
                       {typeof roomInventory === "number" && (
-                        <View style={{ marginTop: 8 }}>
-                          <Text style={{ color: "#aaa", fontSize: 12 }}>
-                            Rooms available for {roomType}: <Text style={{ color: "#f5f2e8", fontWeight: "700" }}>{roomInventory}</Text>
+                        <View style={bmIn.s116()}>
+                          <Text style={bmIn.s117()}>
+                            {t.labels.roomsAvailable(roomType)} <Text style={bmIn.s118()}>{roomInventory}</Text>
                           </Text>
                         </View>
                       )}
 
                       {(item?.raw?.minNights || item?.raw?.maxNights || item?.raw?.childPolicy) && (
-                        <View style={{ marginTop: 8 }}>
+                        <View style={bmIn.s119()}>
                           {item?.raw?.minNights ? (
-                            <Text style={{ color: "#aaa", fontSize: 12 }}>Min nights: {item.raw.minNights}</Text>
+                            <Text style={bmIn.s120()}>{t.labels.minNights} {item.raw.minNights}</Text>
                           ) : null}
                           {item?.raw?.maxNights ? (
-                            <Text style={{ color: "#aaa", fontSize: 12 }}>Max nights: {item.raw.maxNights}</Text>
+                            <Text style={bmIn.s121()}>{t.labels.maxNights} {item.raw.maxNights}</Text>
                           ) : null}
                           {item?.raw?.childPolicy ? (
-                            <Text style={{ color: "#777", fontSize: 11, marginTop: 4 }}>{item.raw.childPolicy}</Text>
+                            <Text style={bmIn.s122()}>{item.raw.childPolicy}</Text>
                           ) : null}
                         </View>
                       )}
                     </View>
 
                     {/* Guests Section */}
-                    <View style={{ backgroundColor: "#0a0a0a", borderRadius: 10, padding: 12, borderLeftWidth: 3, borderLeftColor: "#007c00" }}>
-                      <Text style={{ color: "#f5f2e8", fontSize: 12, fontWeight: "700", marginBottom: 10, textTransform: "uppercase", letterSpacing: 0.5 }}>Guests</Text>
-                      <Text style={{ color: "#aaa", fontSize: 12, marginBottom: 8 }}>Max capacity: {maxGuests} person{maxGuests !== 1 ? "s" : ""}</Text>
-                      <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
+                    <View style={bmIn.s123()}>
+                      <Text style={bmIn.s124()}>{t.labels.guests}</Text>
+                      <Text style={bmIn.s125()}>{t.labels.maxCapacity} {maxGuests} {maxGuests !== 1 ? t.labels.people : t.labels.person}</Text>
+                      <View style={bmIn.s126()}>
                         <Pressable
                           onPress={() => setGuests(Math.max(1, parseInt(guests || "1", 10) - 1).toString())}
-                          style={{
-                            backgroundColor: "#007c00",
-                            width: 36,
-                            height: 36,
-                            borderRadius: 6,
-                            alignItems: "center",
-                            justifyContent: "center"
-                          }}
+                          style={bmIn.s127()}
                         >
-                          <Text style={{ color: "#fff", fontSize: 18, fontWeight: "700" }}>+</Text>
+                          <Text style={bmIn.s128()}>{t.icons.plus}</Text>
                         </Pressable>
-                        <Text style={{ color: "#fff", fontSize: 16, fontWeight: "700", flex: 1, textAlign: "center", backgroundColor: "#141414", paddingVertical: 8, borderRadius: 6 }}>
+                        <Text style={bmIn.s129()}>
                           {guests}
                         </Text>
                         <Pressable
                           onPress={() => setGuests(Math.min(maxGuests, parseInt(guests || "1", 10) + 1).toString())}
-                          style={{
-                            backgroundColor: "#007c00",
-                            width: 36,
-                            height: 36,
-                            borderRadius: 6,
-                            alignItems: "center",
-                            justifyContent: "center"
-                          }}
+                          style={bmIn.s130()}
                         >
-                          <Text style={{ color: "#fff", fontSize: 18, fontWeight: "700" }}>+</Text>
+                          <Text style={bmIn.s131()}>{t.icons.plus}</Text>
                         </Pressable>
                       </View>
                     </View>
                   </>
                 ) : (
                   /* Tour Fields */
-                  <View style={{ backgroundColor: "#0a0a0a", borderRadius: 10, padding: 12, borderLeftWidth: 3, borderLeftColor: "#007c00" }}>
-                    <Text style={{ color: "#f5f2e8", fontSize: 12, fontWeight: "700", marginBottom: 10, textTransform: "uppercase", letterSpacing: 0.5 }}>Tour Date</Text>
+                  <View style={bmIn.s132()}>
+                    <Text style={bmIn.s133()}>{t.labels.tourDate}</Text>
                     {isWeb ? (
                       <View>
-                        <Text style={{ color: "#ddd", marginBottom: 6, fontSize: isMobile ? 12 : 14, fontWeight: "600" }}>Tour Date (YYYY-MM-DD)</Text>
+                        <Text style={bmIn.s134({ isMobile })}>{t.labels.tourDateHelp}</Text>
                         <WebDateField
-                          placeholder="YYYY-MM-DD"
+                          placeholder={t.date.tourDatePlaceholder}
                           value={tourDate}
                           onPress={() => openWebPicker("tourDate")}
                         />
@@ -1094,20 +880,10 @@ export default function BookingModal({ visible, onClose, item }: any) {
                       <>
                         <Pressable
                           onPress={() => setShowTourDatePicker(true)}
-                          style={{
-                            backgroundColor: "#141414",
-                            paddingHorizontal: 12,
-                            paddingVertical: isMobile ? 10 : 12,
-                            borderRadius: 8,
-                            borderWidth: 1,
-                            borderColor: "#007c00",
-                            flexDirection: "row",
-                            alignItems: "center",
-                            justifyContent: "space-between"
-                          }}
+                          style={bmIn.s135({ isMobile })}
                         >
-                          <Text style={{ color: "#fff", fontSize: isMobile ? 12 : 14, fontWeight: "600" }}>{tourDate}</Text>
-                          <Text style={{ color: "#f5f2e8", fontSize: 16 }}>ðŸ“…</Text>
+                          <Text style={bmIn.s136({ isMobile })}>{tourDate}</Text>
+                          <Text style={bmIn.s137()}>{t.icons.calendar}</Text>
                         </Pressable>
                         {showTourDatePicker && (
                           <DateTimePicker
@@ -1127,142 +903,113 @@ export default function BookingModal({ visible, onClose, item }: any) {
                     )}
 
                     {isTourClosed && (
-                      <View style={{ marginTop: 8, backgroundColor: "#1a1a1a", borderRadius: 6, padding: 8, borderWidth: 1, borderColor: "#333" }}>
-                        <Text style={{ color: "#ffb4b4", fontSize: 12, fontWeight: "700" }}>
-                          Tour is closed on the selected date.
+                      <View style={bmIn.s138()}>
+                        <Text style={[bmIn.s139(), bmIn.s212()]}>
+                          {t.labels.tourClosed}
                         </Text>
                       </View>
                     )}
 
                     {tourCapacity ? (
-                      <View style={{ marginTop: 8 }}>
-                        <Text style={{ color: "#aaa", fontSize: 12 }}>
-                          Capacity for {tourDate}: <Text style={{ color: "#f5f2e8", fontWeight: "700" }}>{tourCapacity}</Text>
+                      <View style={bmIn.s140()}>
+                        <Text style={bmIn.s141()}>
+                          {t.labels.capacityForDate(tourDate)} <Text style={bmIn.s142()}>{tourCapacity}</Text>
                         </Text>
                       </View>
                     ) : null}
                     
-                    <Text style={{ color: "#ddd", marginTop: 10, marginBottom: 6, fontSize: isMobile ? 12 : 14, fontWeight: "600" }}>Number of Guests</Text>
-                    <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
+                    <Text style={bmIn.s143({ isMobile })}>{t.labels.numberOfGuests}</Text>
+                    <View style={bmIn.s144()}>
                       <Pressable
                         onPress={() => setGuests(Math.max(1, parseInt(guests || "1", 10) - 1).toString())}
-                        style={{
-                          backgroundColor: "#007c00",
-                          width: 36,
-                          height: 36,
-                          borderRadius: 6,
-                          alignItems: "center",
-                          justifyContent: "center"
-                        }}
+                        style={bmIn.s145()}
                       >
-                        <Text style={{ color: "#fff", fontSize: 18, fontWeight: "700" }}>+</Text>
+                        <Text style={bmIn.s146()}>{t.icons.plus}</Text>
                       </Pressable>
-                      <Text style={{ color: "#fff", fontSize: 16, fontWeight: "700", flex: 1, textAlign: "center", backgroundColor: "#141414", paddingVertical: 8, borderRadius: 6 }}>
+                      <Text style={bmIn.s147()}>
                         {guests}
                       </Text>
                       <Pressable
                         onPress={() => setGuests((parseInt(guests || "1", 10) + 1).toString())}
-                        style={{
-                          backgroundColor: "#007c00",
-                          width: 36,
-                          height: 36,
-                          borderRadius: 6,
-                          alignItems: "center",
-                          justifyContent: "center"
-                        }}
+                        style={bmIn.s148()}
                       >
-                        <Text style={{ color: "#fff", fontSize: 18, fontWeight: "700" }}>+</Text>
+                        <Text style={bmIn.s149()}>{t.icons.plus}</Text>
                       </Pressable>
                     </View>
                   </View>
                 )}
 
                 {/* Aadhaar Upload */}
-                <View style={{ backgroundColor: "#0a0a0a", borderRadius: 10, padding: 12, borderLeftWidth: 3, borderLeftColor: "#007c00" }}>
-                  <Text style={{ color: "#f5f2e8", fontSize: 12, fontWeight: "700", marginBottom: 8, textTransform: "uppercase", letterSpacing: 0.5 }}>
-                    Aadhaar Card
+                <View style={bmIn.s150()}>
+                  <Text style={bmIn.s151()}>
+                    {t.labels.aadhaarCard}
                   </Text>
-                  <Text style={{ color: "#aaa", fontSize: 12, marginBottom: 8 }}>
-                    Required for all tour and hotel bookings.
+                  <Text style={bmIn.s152()}>
+                    {t.labels.aadhaarRequired}
                   </Text>
-                  <View style={{ flexDirection: "row", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+                  <View style={bmIn.s153()}>
                     <Pressable
                       onPress={openAadhaarPicker}
-                      style={{
-                        backgroundColor: "#f5f2e8",
-                        paddingHorizontal: 12,
-                        paddingVertical: 8,
-                        borderRadius: 8
-                      }}
+                      style={bmIn.s154()}
                       disabled={aadhaarUploading}
                     >
-                      <Text style={{ color: "#111", fontWeight: "800", fontSize: 12 }}>
-                        {aadhaarUploading ? "Uploading..." : aadhaarUrl ? "Replace Aadhaar" : "Upload Aadhaar"}
+                      <Text style={bmIn.s155()}>
+                        {aadhaarUploading ? t.labels.uploading : aadhaarUrl ? t.labels.replaceAadhaar : t.labels.uploadAadhaar}
                       </Text>
                     </Pressable>
                     {aadhaarUrl ? (
-                      <Text style={{ color: "#9ef1a6", fontSize: 12, fontWeight: "700" }}>
-                        Uploaded: {aadhaarFileName || "Aadhaar card"}
+                      <Text style={bmIn.s156()}>
+                        {t.labels.uploadedPrefix} {aadhaarFileName || t.labels.aadhaarFallbackName}
                       </Text>
                     ) : (
-                      <Text style={{ color: "#aaa", fontSize: 12 }}>JPG/PNG only, max 5MB.</Text>
+                      <Text style={bmIn.s157()}>{t.labels.aadhaarHint}</Text>
                     )}
                   </View>
                   {aadhaarError ? (
-                    <Text style={{ color: "#ff6b6b", fontSize: 12, marginTop: 6 }}>{aadhaarError}</Text>
+                    <Text style={bmIn.s158()}>{aadhaarError}</Text>
                   ) : null}
                 </View>
 
                 {/* Special Requests */}
-                <View style={{ backgroundColor: "#0a0a0a", borderRadius: 10, padding: 12, borderLeftWidth: 3, borderLeftColor: "#007c00" }}>
-                  <Text style={{ color: "#f5f2e8", fontSize: 12, fontWeight: "700", marginBottom: 8, textTransform: "uppercase", letterSpacing: 0.5 }}>Special Requests</Text>
+                <View style={bmIn.s159()}>
+                  <Text style={bmIn.s160()}>{t.labels.specialRequests}</Text>
                   <TextInput
                     value={specialRequests}
                     onChangeText={(v) => setSpecialRequests(autoCapitalizeNewLineStarts(v))}
-                    placeholder="Any special requirements..."
-                    placeholderTextColor="#666"
+                    placeholder={t.labels.specialRequestsPlaceholder}
+                    placeholderTextColor={bookingModalColors.placeholder}
                     multiline
                     numberOfLines={3}
-                    style={{
-                      backgroundColor: "#141414",
-                      color: "#fff",
-                      paddingHorizontal: 12,
-                      paddingVertical: 10,
-                      borderRadius: 8,
-                      borderWidth: 1,
-                      borderColor: "#222",
-                      fontSize: isMobile ? 12 : 14,
-                      textAlignVertical: "top"
-                    }}
+                    style={bmIn.s161({ isMobile })}
                   />
                 </View>
 
                 {(meta?.coupons?.length || meta?.policies) && (
-                  <View style={{ backgroundColor: "#0a0a0a", borderRadius: 10, padding: 12, borderLeftWidth: 3, borderLeftColor: "#007c00" }}>
-                    <Text style={{ color: "#f5f2e8", fontSize: 12, fontWeight: "700", marginBottom: 8, textTransform: "uppercase", letterSpacing: 0.5 }}>Offers & Policies</Text>
+                  <View style={bmIn.s162()}>
+                    <Text style={bmIn.s163()}>{t.labels.offersPolicies}</Text>
                     {meta?.coupons && (
-                      <View style={{ marginBottom: 8, gap: 6 }}>
-                        <Text style={{ color: "#aaa", fontSize: 12, fontWeight: "600" }}>Coupons</Text>
+                      <View style={bmIn.s164()}>
+                        <Text style={bmIn.s165()}>{t.labels.coupons}</Text>
                         {meta.coupons
                           .filter((c: any) => c.category === "all" || c.category === (isHotel ? "hotel" : "tour"))
                           .slice(0, 3)
                           .map((c: any) => (
-                            <Text key={c.code} style={{ color: "#ddd", fontSize: 12 }}>
-                              {c.code} Â· {c.type === "flat" ? `â‚¹${c.amount}` : `${c.amount}%`} off Â· Min â‚¹{c.minCart}
+                            <Text key={c.code} style={bmIn.s166()}>
+                              {c.code} {t.policy.couponSeparator} {c.type === "flat" ? `${t.policy.currencySymbol}${c.amount}` : `${c.amount}%`} {t.policy.offSuffix} {t.policy.couponSeparator} {t.policy.minPrefix} {t.policy.currencySymbol}{c.minCart}
                             </Text>
                           ))}
                       </View>
                     )}
                     {meta?.policies && (
-                      <View style={{ gap: 4 }}>
-                        <Text style={{ color: "#aaa", fontSize: 12, fontWeight: "600" }}>Cancellation</Text>
+                      <View style={bmIn.s167()}>
+                        <Text style={bmIn.s168()}>{t.labels.cancellation}</Text>
                         {isHotel ? (
-                          <Text style={{ color: "#ddd", fontSize: 12 }}>
-                            Free cancellation up to {meta.policies.hotel.freeCancelHours}h before check-in. Fee after: {Math.round(meta.policies.hotel.feeAfter * 100)}%.
+                          <Text style={bmIn.s169()}>
+                            {t.policy.hotelCancel(meta.policies.hotel.freeCancelHours, Math.round(meta.policies.hotel.feeAfter * 100))}
                           </Text>
                         ) : (
-                          <Text style={{ color: "#ddd", fontSize: 12 }}>
-                            Free cancellation up to {meta.policies.tour.freeCancelHours}h before departure. Fee after: {Math.round(meta.policies.tour.feeAfter * 100)}%.
+                          <Text style={bmIn.s170()}>
+                            {t.policy.tourCancel(meta.policies.tour.freeCancelHours, Math.round(meta.policies.tour.feeAfter * 100))}
                           </Text>
                         )}
                       </View>
@@ -1273,60 +1020,54 @@ export default function BookingModal({ visible, onClose, item }: any) {
 
               {/* Error and Success Messages */}
               {err ? (
-                <Text style={{ color: "#ff6b6b", marginTop: 12, fontSize: isMobile ? 12 : 14, fontWeight: "600" }}>{err}</Text>
+                <Text style={bmIn.s171({ isMobile })}>{err}</Text>
               ) : null}
               {result ? (
-                <Text style={{ color: "#9ef1a6", marginTop: 12, fontSize: isMobile ? 12 : 14, fontWeight: "600" }}>
-                   Submitted! ID: {result.id}
+                <Text style={bmIn.s172({ isMobile })}>
+                   {t.labels.submitted(result.id)}
                 </Text>
               ) : null}
 
               {/* Price Summary and Submit */}
               {isHotel && totalPrice > 0 && (
-                <View style={{
-                  marginTop: 14,
-                  backgroundColor: "#007c00",
-                  borderRadius: 10,
-                  padding: 14,
-                  shadowColor: "#000",
-                  shadowOffset: { width: 0, height: 4 },
-                  shadowOpacity: 0.3,
-                  shadowRadius: 8,
-                  elevation: 8
-                }}>
-                  <Text style={{ color: "#fff", fontSize: 12, fontWeight: "700", marginBottom: 10, textTransform: "uppercase", letterSpacing: 0.5 }}>Booking Summary</Text>
+                <View style={bmIn.s173()}>
+                  <Text style={bmIn.s174()}>{t.labels.bookingSummary}</Text>
                   
-                  <View style={{ gap: 8, marginBottom: 10 }}>
-                    <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-                      <Text style={{ color: "#f5f2e8", fontSize: isMobile ? 12 : 13 }}>â‚¹5,000 Ã— {Math.ceil(numNights)} night{Math.ceil(numNights) !== 1 ? "s" : ""}</Text>
-                      <Text style={{ color: "#f5f2e8", fontSize: isMobile ? 12 : 13, fontWeight: "600" }}>â‚¹{(5000 * Math.ceil(numNights)).toLocaleString()}</Text>
+                  <View style={bmIn.s175()}>
+                    <View style={bmIn.s176()}>
+                      <Text style={bmIn.s177({ isMobile })}>
+                        {t.summary.priceLine(t.pricing.pricePerRoom, Math.ceil(numNights), Math.ceil(numNights) !== 1 ? t.labels.nightsPlural : t.labels.nights)}
+                      </Text>
+                      <Text style={bmIn.s178({ isMobile })}>{t.summary.priceTotal(t.pricing.pricePerRoom * Math.ceil(numNights))}</Text>
                     </View>
                     
-                    <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-                      <Text style={{ color: "#f5f2e8", fontSize: isMobile ? 12 : 13 }}>Ã— {numRooms} room{Number(numRooms) !== 1 ? "s" : ""}</Text>
-                      <Text style={{ color: "#f5f2e8", fontSize: isMobile ? 12 : 13, fontWeight: "600" }}>Ã—{numRooms}</Text>
+                    <View style={bmIn.s179()}>
+                      <Text style={bmIn.s180({ isMobile })}>
+                        {t.summary.roomsLine(numRooms, Number(numRooms) !== 1 ? t.labels.rooms : t.labels.room)}
+                      </Text>
+                      <Text style={bmIn.s181({ isMobile })}>{t.summary.roomsCount(numRooms)}</Text>
                     </View>
                     {selectedTier && (
-                      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-                        <Text style={{ color: "#f5f2e8", fontSize: isMobile ? 12 : 13 }}>Tier: {selectedTier.name}</Text>
-                        <Text style={{ color: "#f5f2e8", fontSize: isMobile ? 12 : 13, fontWeight: "600" }}>
-                          {Math.round(tierMultiplier * 100)}%
+                      <View style={bmIn.s182()}>
+                        <Text style={bmIn.s183({ isMobile })}>{t.summary.tierLine(selectedTier.name)}</Text>
+                        <Text style={bmIn.s184({ isMobile })}>
+                          {t.summary.percent(Math.round(tierMultiplier * 100))}
                         </Text>
                       </View>
                     )}
                   </View>
                   
-                  <View style={{ borderTopWidth: 1, borderTopColor: "#f5f2e8", paddingTop: 10 }}>
-                    <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
+                  <View style={bmIn.s185()}>
+                    <View style={bmIn.s186()}>
                       <View>
-                        <Text style={{ color: "#fff", fontSize: isMobile ? 14 : 16, fontWeight: "700" }}>Total</Text>
+                        <Text style={bmIn.s187({ isMobile })}>{t.labels.total}</Text>
                         {selectedTier ? (
-                          <Text style={{ color: "#e7ffe7", fontSize: 11 }}>
-                            Preview: â‚¹{tierPreviewTotal.toLocaleString("en-IN")}
+                          <Text style={bmIn.s188()}>
+                            {t.labels.preview} {t.summary.previewPrice(tierPreviewTotal)}
                           </Text>
                         ) : null}
                       </View>
-                      <Text style={{ color: "#fff", fontSize: isMobile ? 24 : 28, fontWeight: "900" }}>â‚¹{totalPrice.toLocaleString("en-IN")}</Text>
+                      <Text style={bmIn.s189({ isMobile })}>{t.summary.totalPrice(totalPrice)}</Text>
                     </View>
                   </View>
                 </View>
@@ -1335,26 +1076,11 @@ export default function BookingModal({ visible, onClose, item }: any) {
               <Pressable
                 disabled={busy}
                 onPress={submit}
-                style={({ hovered }) => [
-                  {
-                    marginTop: 16,
-                    backgroundColor: "#fff",
-                    paddingVertical: isMobile ? 12 : 14,
-                    borderRadius: 10,
-                    alignItems: "center",
-                    opacity: busy ? 0.6 : 1,
-                    shadowColor: "#007c00",
-                    shadowOffset: { width: 0, height: 4 },
-                    shadowOpacity: hovered ? 0.4 : 0.2,
-                    shadowRadius: 8,
-                    elevation: 5
-                  },
-                  hovered ? { backgroundColor: "#007c00" } : null
-                ]}
+                style={({ hovered }) => [bmIn.s213({ isMobile, hovered, busy })]}
               >
                 {({ hovered }) => (
-                  <Text style={{ fontWeight: "800", fontSize: isMobile ? 14 : 16, color: hovered ? "#fff" : "#1c1c1c" }}>
-                    {busy ? "Booking..." : "Confirm Booking"}
+                  <Text style={bmIn.s190({ hovered, isMobile })}>
+                    {busy ? t.labels.booking : t.labels.confirmBooking}
                   </Text>
                 )}
               </Pressable>
@@ -1364,47 +1090,30 @@ export default function BookingModal({ visible, onClose, item }: any) {
         </ScrollView>
 
         {isWeb && webPickerVisible && (
-          <View style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: "rgba(0,0,0,0.6)",
-            alignItems: "center",
-            justifyContent: "center",
-            zIndex: 1000
-          }}>
-            <View style={{
-              backgroundColor: "#0f0f0f",
-              borderRadius: 12,
-              borderWidth: 1,
-              borderColor: "#1f1f1f",
-              padding: 14,
-              width: isMobile ? "90%" : 360
-            }}>
-              <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
+          <View style={bmIn.s191()}>
+            <View style={bmIn.s192({ isMobile })}>
+              <View style={bmIn.s193()}>
                 <Pressable
                   onPress={() => setWebPickerMonth(new Date(webPickerMonth.getFullYear(), webPickerMonth.getMonth() - 1, 1))}
-                  style={{ padding: 6, borderRadius: 6, backgroundColor: "#1a1a1a" }}
+                  style={bmIn.s194()}
                 >
-                  <Text style={{ color: "#fff", fontSize: 16 }}>{"<"}</Text>
+                  <Text style={bmIn.s195()}>{t.date.webPickerPrev}</Text>
                 </Pressable>
-                <Text style={{ color: "#fff", fontSize: 14, fontWeight: "700" }}>
-                  {webPickerMonth.toLocaleString("en-US", { month: "long", year: "numeric" })}
+                <Text style={bmIn.s196()}>
+                  {webPickerMonth.toLocaleString(t.monthsLocale, { month: "long", year: "numeric" })}
                 </Text>
                 <Pressable
                   onPress={() => setWebPickerMonth(new Date(webPickerMonth.getFullYear(), webPickerMonth.getMonth() + 1, 1))}
-                  style={{ padding: 6, borderRadius: 6, backgroundColor: "#1a1a1a" }}
+                  style={bmIn.s197()}
                 >
-                  <Text style={{ color: "#fff", fontSize: 16 }}>{">"}</Text>
+                  <Text style={bmIn.s198()}>{t.date.webPickerNext}</Text>
                 </Pressable>
               </View>
 
-              <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
-                {"Sun Mon Tue Wed Thu Fri Sat".split(" ").map((d) => (
-                  <View key={d} style={{ width: "14.285%", alignItems: "center", marginBottom: 6 }}>
-                    <Text style={{ color: "#777", fontSize: 11, fontWeight: "700" }}>{d}</Text>
+              <View style={bmIn.s199()}>
+                {t.date.webPickerDays.map((d) => (
+                  <View key={d} style={bmIn.s200()}>
+                    <Text style={bmIn.s201()}>{d}</Text>
                   </View>
                 ))}
                 {(() => {
@@ -1414,7 +1123,7 @@ export default function BookingModal({ visible, onClose, item }: any) {
                   const daysInMonth = new Date(year, month + 1, 0).getDate();
                   const cells = [] as any[];
                   for (let i = 0; i < firstDay; i += 1) {
-                    cells.push(<View key={`empty_${i}`} style={{ width: "14.285%", height: 32 }} />);
+                    cells.push(<View key={`empty_${i}`} style={bmIn.s202()} />);
                   }
                   for (let d = 1; d <= daysInMonth; d += 1) {
                     const dayDate = new Date(year, month, d);
@@ -1424,15 +1133,9 @@ export default function BookingModal({ visible, onClose, item }: any) {
                         key={`day_${d}`}
                         onPress={() => !disabled && applyWebDate(dayDate)}
                         disabled={disabled}
-                        style={{
-                          width: "14.285%",
-                          height: 32,
-                          alignItems: "center",
-                          justifyContent: "center",
-                          opacity: disabled ? 0.35 : 1
-                        }}
+                        style={bmIn.s203({ disabled })}
                       >
-                        <Text style={{ color: disabled ? "#555" : "#fff", fontSize: 12 }}>{d}</Text>
+                        <Text style={bmIn.s204({ disabled })}>{d}</Text>
                       </Pressable>
                     );
                   }
@@ -1442,9 +1145,9 @@ export default function BookingModal({ visible, onClose, item }: any) {
 
               <Pressable
                 onPress={() => setWebPickerVisible(false)}
-                style={{ marginTop: 10, paddingVertical: 8, borderRadius: 8, backgroundColor: "#1a1a1a", alignItems: "center" }}
+                style={bmIn.s205()}
               >
-                <Text style={{ color: "#fff", fontWeight: "700" }}>Close</Text>
+                <Text style={bmIn.s206()}>{t.labels.close}</Text>
               </Pressable>
             </View>
           </View>
@@ -1461,20 +1164,11 @@ function Field({ label, ...props }: any) {
 
   return (
     <View style={style}>
-      <Text style={{ color: "#ddd", marginBottom: 6, fontSize: isMobile ? 12 : 14, fontWeight: "600" }}>{label}</Text>
+      <Text style={bmIn.s207({ isMobile })}>{label}</Text>
       <TextInput
         {...inputProps}
-        placeholderTextColor="#666"
-        style={{
-          backgroundColor: "#141414",
-          color: "#fff",
-          paddingHorizontal: 12,
-          paddingVertical: isMobile ? 10 : 12,
-          borderRadius: 8,
-          borderWidth: 1,
-          borderColor: "#222",
-          fontSize: isMobile ? 14 : 16
-        }}
+        placeholderTextColor={bookingModalColors.placeholder}
+        style={bmIn.s208({ isMobile })}
       />
     </View>
   );

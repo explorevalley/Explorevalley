@@ -10,6 +10,8 @@ import {
 import { apiGet } from "../lib/api";
 import { getAuthMode } from "../lib/auth";
 import { getTrackedOrders } from "../lib/orders";
+import { myOrdersColors, myOrdersDynamicStyles as ds, myOrdersStyles as styles } from "../styles/MyOrdersScreen.styles";
+import { myOrdersScreenData as t } from "../staticData/myOrdersScreen.staticData";
 
 type OrderItem = {
   id: string;
@@ -21,29 +23,8 @@ type OrderItem = {
   raw: any;
 };
 
-const STATUS_COLORS: Record<string, string> = {
-  pending: "#f59e0b",
-  confirmed: "#3b82f6",
-  preparing: "#8b5cf6",
-  ready: "#06b6d4",
-  picked_up: "#6366f1",
-  in_transit: "#6366f1",
-  delivered: "#16a34a",
-  completed: "#16a34a",
-  cancelled: "#ef4444",
-};
-
-const STATUS_EMOJI: Record<string, string> = {
-  pending: "⏳",
-  confirmed: "✅",
-  preparing: "👨‍🍳",
-  ready: "📦",
-  picked_up: "🚚",
-  in_transit: "🚚",
-  delivered: "✅",
-  completed: "✅",
-  cancelled: "❌",
-};
+const STATUS_COLORS: Record<string, string> = t.statuses.colors;
+const STATUS_EMOJI: Record<string, string> = t.statuses.emoji;
 
 export default function MyOrdersScreen({
   onRequireAuth,
@@ -59,7 +40,7 @@ export default function MyOrdersScreen({
   const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [expandedId, setExpandedId] = useState<string | null>(null);
-  const [filter, setFilter] = useState<string>("all");
+  const [filter, setFilter] = useState<string>(t.tabs.all);
 
   const fetchOrders = useCallback(async () => {
     const authMode = getAuthMode();
@@ -74,16 +55,16 @@ export default function MyOrdersScreen({
         bookings: any[];
         foodOrders: any[];
         cabBookings: any[];
-      }>("/api/ai/my-orders");
+      }>(t.api.myOrders);
 
       const out: OrderItem[] = [];
 
       (res.bookings || []).forEach((b: any) => {
         out.push({
           id: b.id,
-          type: "booking",
+          type: t.tabs.booking,
           status: b.status || "pending",
-          title: b.tour_title || b.hotel_name || "Tour/Hotel Booking",
+          title: b.tour_title || b.hotel_name || t.order.bookingFallback,
           date: b.created_at || b.check_in || "",
           amount: b.pricing?.totalAmount || b.pricing?.total_amount || "",
           raw: b,
@@ -93,9 +74,9 @@ export default function MyOrdersScreen({
       (res.foodOrders || []).forEach((o: any) => {
         out.push({
           id: o.id,
-          type: "food",
+          type: t.tabs.food,
           status: o.status || "pending",
-          title: `Food Order — ${o.restaurant_id || "Restaurant"}`,
+          title: `${t.order.foodPrefix} ${o.restaurant_id || t.order.foodFallbackRestaurant}`,
           date: o.order_time || o.created_at || "",
           amount: o.pricing?.totalAmount || o.pricing?.total_amount || "",
           raw: o,
@@ -105,9 +86,9 @@ export default function MyOrdersScreen({
       (res.cabBookings || []).forEach((c: any) => {
         out.push({
           id: c.id,
-          type: "cab",
+          type: t.tabs.cab,
           status: c.status || "pending",
-          title: `Cab: ${c.pickup_location || ""} → ${c.drop_location || ""}`,
+          title: `${t.order.cabPrefix} ${c.pickup_location || ""} → ${c.drop_location || ""}`,
           date: c.datetime || c.created_at || "",
           amount: c.estimated_fare || "",
           raw: c,
@@ -120,9 +101,9 @@ export default function MyOrdersScreen({
         if (!out.find((o) => o.id === lo.id)) {
           out.push({
             id: lo.id,
-            type: lo.type || "food",
+            type: lo.type || t.tabs.food,
             status: lo.status || "pending",
-            title: lo.restaurant || lo.title || "Order",
+            title: lo.restaurant || lo.title || t.order.orderFallback,
             date: lo.placedAt || "",
             raw: lo,
           });
@@ -133,7 +114,7 @@ export default function MyOrdersScreen({
       setOrders(out);
       setError(null);
     } catch (err: any) {
-      setError(err.message || "Failed to load orders");
+      setError(err.message || t.errors.loadOrders);
     } finally {
       setLoading(false);
       setRefreshing(false);
@@ -145,78 +126,66 @@ export default function MyOrdersScreen({
   }, [fetchOrders]);
 
   const filtered = useMemo(() => {
-    if (filter === "all") return orders;
+    if (filter === t.tabs.all) return orders;
     return orders.filter((o) => o.type === filter);
   }, [orders, filter]);
 
   if (loading) {
     return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: "transparent" }}>
-        <ActivityIndicator color="#f4511e" size="large" />
-        <Text style={{ color: "#6b7280", marginTop: 8 }}>Loading your orders...</Text>
+      <View style={styles.loadingWrap}>
+        <ActivityIndicator color={myOrdersColors.spinner} size="large" />
+        <Text style={styles.loadingText}>{t.labels.loading}</Text>
       </View>
     );
   }
 
   return (
-    <View style={{ flex: 1, backgroundColor: "transparent" }}>
+    <View style={styles.root}>
       {/* Header */}
-      <View style={{ margin: 14, marginBottom: 10, paddingHorizontal: 16, paddingVertical: 14, borderWidth: 1, borderColor: "#1d3258", backgroundColor: "#0f1a2d", borderRadius: 16 }}>
-        <Text style={{ color: "#fff", fontWeight: "800", fontSize: 20 }}>My Orders</Text>
-        <Text style={{ color: "#9db0d6", fontSize: 12, marginTop: 2 }}>Track all your bookings, food orders and cab rides</Text>
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>{t.labels.headerTitle}</Text>
+        <Text style={styles.headerSub}>{t.labels.headerSub}</Text>
       </View>
 
       {/* Filter pills */}
-      <View style={{ flexDirection: "row", paddingHorizontal: 16, paddingBottom: 10, gap: 8, flexWrap: "wrap" }}>
-        {[
-          { key: "all", label: "All" },
-          { key: "booking", label: "Bookings" },
-          { key: "food", label: "Food" },
-          { key: "cab", label: "Cabs" },
-        ].map((f) => (
+      <View style={styles.filtersRow}>
+        {t.labels.filters.map((f) => (
           <Pressable
             key={f.key}
             onPress={() => setFilter(f.key)}
-            style={{
-              backgroundColor: filter === f.key ? "#f4511e" : "#ffffff",
-              paddingHorizontal: 14,
-              paddingVertical: 6,
-              borderRadius: 16,
-              borderWidth: 1,
-              borderColor: filter === f.key ? "#f4511e" : "#d5deeb",
-            }}
+            style={[styles.filterPill, ds.filterPill(filter === f.key)]}
           >
-            <Text style={{ color: filter === f.key ? "#fff" : "#334155", fontSize: 13, fontWeight: "700" }}>{f.label}</Text>
+            <Text style={[styles.filterText, ds.filterText(filter === f.key)]}>{f.label}</Text>
           </Pressable>
         ))}
       </View>
 
       {error ? (
-        <View style={{ padding: 16 }}>
-          <Text style={{ color: "#ef4444", fontSize: 13 }}>{error}</Text>
-          <Pressable onPress={fetchOrders} style={{ marginTop: 10, paddingVertical: 8, paddingHorizontal: 14, backgroundColor: "#fff", borderRadius: 8, borderWidth: 1, borderColor: "#d5deeb", alignSelf: "flex-start" }}>
-            <Text style={{ color: "#f4511e", fontWeight: "700" }}>Retry</Text>
+        <View style={styles.errorWrap}>
+          <Text style={styles.errorText}>{error}</Text>
+          <Pressable onPress={fetchOrders} style={styles.retryBtn}>
+            <Text style={styles.retryText}>{t.labels.retry}</Text>
           </Pressable>
         </View>
       ) : null}
 
       <ScrollView
-        style={{ flex: 1 }}
-        contentContainerStyle={{ padding: 16, gap: 12, paddingBottom: 40 }}
+        style={styles.list}
+        contentContainerStyle={styles.listContent}
         refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={() => { setRefreshing(true); fetchOrders(); }} tintColor="#f4511e" />
+          <RefreshControl refreshing={refreshing} onRefresh={() => { setRefreshing(true); fetchOrders(); }} tintColor={myOrdersColors.refreshTint} />
         }
       >
         {filtered.length === 0 ? (
-          <View style={{ alignItems: "center", paddingVertical: 60 }}>
-            <Text style={{ color: "#6b7280", fontSize: 15, textAlign: "center" }}>No orders yet. Explore Fest and place your first order.</Text>
+          <View style={styles.emptyWrap}>
+            <Text style={styles.emptyText}>{t.labels.empty}</Text>
           </View>
         ) : null}
 
         {filtered.map((order) => {
           const expanded = expandedId === order.id;
-          const statusColor = STATUS_COLORS[order.status] || "#888";
-          const statusEmoji = STATUS_EMOJI[order.status] || "•";
+          const statusColor = STATUS_COLORS[order.status] || STATUS_COLORS.fallback;
+          const statusEmoji = STATUS_EMOJI[order.status] || STATUS_EMOJI.fallback;
           const canRefund = ["pending", "confirmed"].includes(order.status);
           const canRate = ["delivered", "completed"].includes(order.status);
 
@@ -224,35 +193,24 @@ export default function MyOrdersScreen({
             <Pressable
               key={order.id}
               onPress={() => setExpandedId(expanded ? null : order.id)}
-              style={{
-                backgroundColor: "#fff",
-                borderRadius: 12,
-                borderWidth: 1,
-                borderColor: expanded ? "#f4511e" : "#d5deeb",
-                overflow: "hidden",
-                shadowColor: expanded ? "#f4511e" : "#1d2c49",
-                shadowOpacity: expanded ? 0.15 : 0.07,
-                shadowRadius: 8,
-                shadowOffset: { width: 0, height: 3 },
-                elevation: expanded ? 4 : 2,
-              }}
+              style={[styles.card, ds.cardState(expanded)]}
             >
               {/* Order header */}
-              <View style={{ padding: 14, flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
-                <View style={{ flex: 1, marginRight: 10 }}>
-                  <Text style={{ color: "#111827", fontWeight: "700", fontSize: 14 }} numberOfLines={1}>
+              <View style={styles.cardHeader}>
+                <View style={styles.cardHeaderMain}>
+                  <Text style={styles.cardTitle} numberOfLines={1}>
                     {order.title}
                   </Text>
-                  <Text style={{ color: "#7c8698", fontSize: 11, marginTop: 2 }}>
-                    {order.id.slice(0, 16)} · {order.date ? new Date(order.date).toLocaleDateString() : ""}
+                  <Text style={styles.cardMeta}>
+                    {order.id.slice(0, 16)} {t.misc.dot} {order.date ? new Date(order.date).toLocaleDateString() : ""}
                   </Text>
                 </View>
-                <View style={{ flexDirection: "row", alignItems: "center", gap: 6 }}>
+                <View style={styles.cardHeaderRight}>
                   {order.amount ? (
-                    <Text style={{ color: "#f4511e", fontWeight: "800", fontSize: 13 }}>₹{order.amount}</Text>
+                    <Text style={styles.amountText}>{t.misc.currency}{order.amount}</Text>
                   ) : null}
-                  <View style={{ backgroundColor: statusColor + "22", paddingHorizontal: 8, paddingVertical: 3, borderRadius: 10 }}>
-                    <Text style={{ color: statusColor, fontSize: 11, fontWeight: "700" }}>
+                  <View style={[styles.statusBadge, ds.statusBadge(statusColor)]}>
+                    <Text style={[styles.statusText, ds.statusText(statusColor)]}>
                       {statusEmoji} {order.status}
                     </Text>
                   </View>
@@ -261,29 +219,29 @@ export default function MyOrdersScreen({
 
               {/* Expanded detail */}
               {expanded ? (
-                <View style={{ padding: 14, paddingTop: 0, borderTopWidth: 1, borderTopColor: "#edf1f7" }}>
-                  <View style={{ backgroundColor: "#f8fafc", borderWidth: 1, borderColor: "#e4eaf3", borderRadius: 8, padding: 10, marginTop: 8 }}>
-                    <Text style={{ color: "#5f6b81", fontSize: 11, fontFamily: "monospace" }}>
-                      {JSON.stringify(order.raw, null, 2).slice(0, 600)}
+                <View style={styles.expandedWrap}>
+                  <View style={styles.rawWrap}>
+                    <Text style={styles.rawText}>
+                      {JSON.stringify(order.raw, null, 2).slice(0, t.rawPreviewLimit)}
                     </Text>
                   </View>
 
                   {/* Action buttons */}
-                  <View style={{ flexDirection: "row", gap: 8, marginTop: 12, flexWrap: "wrap" }}>
+                  <View style={styles.actionsRow}>
                     {canRefund && onRequestRefund ? (
                       <Pressable
                         onPress={() => onRequestRefund(order)}
-                        style={{ backgroundColor: "#fff5f5", paddingHorizontal: 14, paddingVertical: 8, borderRadius: 8, borderWidth: 1, borderColor: "#ef4444" }}
+                        style={styles.refundBtn}
                       >
-                        <Text style={{ color: "#ef4444", fontWeight: "700", fontSize: 12 }}>Request Refund</Text>
+                        <Text style={styles.refundText}>{t.labels.refund}</Text>
                       </Pressable>
                     ) : null}
                     {canRate && onRateExperience ? (
                       <Pressable
                         onPress={() => onRateExperience(order)}
-                        style={{ backgroundColor: "#fff7ed", paddingHorizontal: 14, paddingVertical: 8, borderRadius: 8, borderWidth: 1, borderColor: "#f59e0b" }}
+                        style={styles.rateBtn}
                       >
-                        <Text style={{ color: "#f59e0b", fontWeight: "700", fontSize: 12 }}>Rate Experience</Text>
+                        <Text style={styles.rateText}>{t.labels.rate}</Text>
                       </Pressable>
                     ) : null}
                   </View>

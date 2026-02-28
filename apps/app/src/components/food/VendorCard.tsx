@@ -1,5 +1,7 @@
 import { View, Text, Pressable, ImageBackground, useWindowDimensions } from "react-native";
 import type { Restaurant } from "@explorevalley/shared";
+import { vendorCardDynamicStyles as ds, vendorCardStyles as styles } from "../../styles/FoodComponents.styles";
+import { vendorCardData as t } from "../../staticData/vendorCard.staticData";
 
 interface VendorCardProps {
   vendor: Restaurant;
@@ -18,18 +20,18 @@ export default function VendorCard({ vendor, onPress }: VendorCardProps) {
     const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
 
     return (
-      <View style={{ flexDirection: "row", alignItems: "center", gap: 2 }}>
+      <View style={styles.starsRow}>
         {[...Array(fullStars)].map((_, i) => (
-          <Text key={`full-${i}`} style={{ color: "#f59e0b", fontSize: isMobile ? 14 : 16 }}>
-            ★
+          <Text key={`full-${i}`} style={[styles.starFull, ds.starTextSize(isMobile)]}>
+            {t.stars.full}
           </Text>
         ))}
         {hasHalfStar && (
-          <Text style={{ color: "#f59e0b", fontSize: isMobile ? 14 : 16 }}>☆</Text>
+          <Text style={[styles.starFull, ds.starTextSize(isMobile)]}>{t.stars.empty}</Text>
         )}
         {[...Array(emptyStars)].map((_, i) => (
-          <Text key={`empty-${i}`} style={{ color: "#c6cfde", fontSize: isMobile ? 14 : 16 }}>
-            ☆
+          <Text key={`empty-${i}`} style={[styles.starEmpty, ds.starTextSize(isMobile)]}>
+            {t.stars.empty}
           </Text>
         ))}
       </View>
@@ -39,68 +41,27 @@ export default function VendorCard({ vendor, onPress }: VendorCardProps) {
   return (
     <Pressable
       onPress={() => onPress(vendor)}
-      style={({ pressed, hovered }) => [
-        {
-          borderRadius: 12,
-          overflow: "hidden",
-          borderWidth: 1,
-          borderColor: hovered ? "#f4511e" : "#d5deeb",
-          backgroundColor: "#fff",
-          shadowColor: hovered ? "#f4511e" : "#1d2c49",
-          shadowOpacity: hovered ? 0.2 : 0.08,
-          shadowRadius: hovered ? 14 : 8,
-          shadowOffset: { width: 0, height: 4 },
-          elevation: hovered ? 5 : 2,
-          transform: [{ scale: pressed ? 0.98 : hovered ? 1.01 : 1 }]
-        }
-      ]}
+      style={({ pressed, hovered }) => [styles.card, ds.cardState(hovered, pressed)]}
     >
       <ImageBackground
         source={heroImage ? { uri: heroImage } : undefined as any}
-        style={{
-          width: "100%",
-          height: isMobile ? 140 : isTablet ? 160 : 180
-        }}
+        style={ds.heroHeight(isMobile, isTablet)}
         resizeMode="cover"
       >
-        <View style={{
-          flex: 1,
-          backgroundColor: "rgba(12, 20, 34, 0.42)",
-          padding: isMobile ? 10 : 12,
-          justifyContent: "space-between"
-        }}>
+        <View style={[styles.heroOverlay, ds.heroOverlayPadding(isMobile)]}>
           {vendor.isVeg && (
-            <View style={{ alignSelf: "flex-start" }}>
-              <View style={{
-                backgroundColor: "#d7f6de",
-                paddingHorizontal: 8,
-                paddingVertical: 4,
-                borderRadius: 6
-              }}>
-                <Text style={{
-                  color: "#165122",
-                  fontSize: isMobile ? 10 : 11,
-                  fontWeight: "700"
-                }}>
-                  PURE VEG
+              <View style={styles.badgeWrap}>
+              <View style={styles.vegBadge}>
+                <Text style={[styles.vegBadgeText, ds.textSize(isMobile, 10, 11)]}>
+                  {t.pureVeg}
                 </Text>
               </View>
             </View>
           )}
 
-          <View style={{ gap: 4 }}>
-            <View style={{
-              backgroundColor: "rgba(255, 255, 255, 0.92)",
-              paddingHorizontal: 8,
-              paddingVertical: 4,
-              borderRadius: 6,
-              alignSelf: "flex-start"
-            }}>
-              <Text style={{
-                color: "#111827",
-                fontSize: isMobile ? 11 : 12,
-                fontWeight: "700"
-              }}>
+          <View style={styles.sectionGap}>
+            <View style={styles.timeBadge}>
+              <Text style={[styles.timeBadgeText, ds.textSize(isMobile, 11, 12)]}>
                 {vendor.deliveryTime}
               </Text>
             </View>
@@ -108,53 +69,30 @@ export default function VendorCard({ vendor, onPress }: VendorCardProps) {
         </View>
       </ImageBackground>
 
-      <View style={{ padding: isMobile ? 12 : 14, gap: isMobile ? 8 : 10 }}>
+      <View style={[styles.body, ds.bodyPadding(isMobile)]}>
         <View>
-          <Text style={{
-            color: "#111827",
-            fontSize: isMobile ? 16 : 18,
-            fontWeight: "700",
-            marginBottom: 4
-          }}>
+          <Text style={[styles.title, ds.textSize(isMobile, 16, 18)]}>
             {vendor.name}
           </Text>
-          <Text style={{
-            color: "#6b7280",
-            fontSize: isMobile ? 12 : 13,
-            lineHeight: isMobile ? 16 : 18
-          }} numberOfLines={2}>
+          <Text style={[styles.description, ds.descText(isMobile)]} numberOfLines={2}>
             {vendor.description}
           </Text>
         </View>
 
-        <View style={{ flexDirection: "row", alignItems: "center", gap: 6 }}>
+        <View style={styles.ratingRow}>
           {renderStars(vendor.rating)}
-          <Text style={{
-            color: "#5f6b81",
-            fontSize: isMobile ? 12 : 13,
-            fontWeight: "600"
-          }}>
+          <Text style={[styles.ratingText, ds.textSize(isMobile, 12, 13)]}>
             {vendor.rating} ({vendor.reviewCount})
           </Text>
         </View>
 
-        <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 6 }}>
+        <View style={styles.chipRow}>
           {vendor.cuisine.slice(0, 3).map((cuisine, index) => (
             <View
               key={index}
-              style={{
-                backgroundColor: "#f7f9fc",
-                paddingHorizontal: 8,
-                paddingVertical: 4,
-                borderRadius: 6,
-                borderWidth: 1,
-                borderColor: "#d8e1ee"
-              }}
+              style={styles.cuisineChip}
             >
-              <Text style={{
-                color: "#445066",
-                fontSize: isMobile ? 11 : 12
-              }}>
+              <Text style={[styles.cuisineText, ds.textSize(isMobile, 11, 12)]}>
                 {cuisine}
               </Text>
             </View>
@@ -162,22 +100,13 @@ export default function VendorCard({ vendor, onPress }: VendorCardProps) {
         </View>
 
         {vendor.tags && vendor.tags.length > 0 && (
-          <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 6 }}>
+          <View style={styles.chipRow}>
             {vendor.tags.map((tag, index) => (
               <View
                 key={index}
-                style={{
-                  backgroundColor: tag.toLowerCase().includes("veg") ? "#d7f6de" : "#fff1e8",
-                  paddingHorizontal: 8,
-                  paddingVertical: 3,
-                  borderRadius: 6
-                }}
+                style={[styles.tagChip, ds.tagChip(tag)]}
               >
-                <Text style={{
-                  color: tag.toLowerCase().includes("veg") ? "#165122" : "#9a3412",
-                  fontSize: isMobile ? 10 : 11,
-                  fontWeight: "700"
-                }}>
+                <Text style={ds.tagText(tag, isMobile)}>
                   {tag}
                 </Text>
               </View>
@@ -185,24 +114,17 @@ export default function VendorCard({ vendor, onPress }: VendorCardProps) {
           </View>
         )}
 
-        <View style={{
-          paddingTop: isMobile ? 8 : 10,
-          borderTopWidth: 1,
-          borderTopColor: "#edf1f7"
-        }}>
-          <Text style={{
-            color: "#6b7280",
-            fontSize: isMobile ? 11 : 12
-          }}>
-            Min order: ₹{vendor.minimumOrder} • {vendor.location}
+        <View style={[styles.infoWrap, ds.infoWrap(isMobile)]}>
+          <Text style={[styles.infoText, ds.textSize(isMobile, 11, 12)]}>
+            {t.minOrderLabel}: ₹{vendor.minimumOrder} {t.separator} {vendor.location}
           </Text>
           {vendor.deliveryZones && vendor.deliveryZones.length > 0 ? (
-            <Text style={{ color: "#7c8698", fontSize: isMobile ? 10 : 11, marginTop: 4 }}>
-              Zones: {vendor.deliveryZones.join(", ")}
+            <Text style={[styles.infoSubText, ds.textSize(isMobile, 10, 11)]}>
+              {t.zonesLabel}: {vendor.deliveryZones.join(", ")}
             </Text>
           ) : vendor.serviceRadiusKm ? (
-            <Text style={{ color: "#7c8698", fontSize: isMobile ? 10 : 11, marginTop: 4 }}>
-              Service radius: {vendor.serviceRadiusKm} km
+            <Text style={[styles.infoSubText, ds.textSize(isMobile, 10, 11)]}>
+              {t.serviceRadiusLabel}: {vendor.serviceRadiusKm} {t.serviceRadiusUnit}
             </Text>
           ) : null}
         </View>

@@ -551,6 +551,13 @@ button, input, select, textarea {
   font-size: 12px;
   font-weight: 700;
 }
+.quick-add-chip {
+  cursor: pointer;
+}
+.quick-add-chip:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
 .chip-x {
   border: none;
   background: transparent;

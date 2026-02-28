@@ -1,5 +1,7 @@
 import React from "react";
 import { View, Text, ScrollView, Pressable, Linking, useWindowDimensions } from "react-native";
+import { rescueDynamicStyles as ds, rescueStyles as styles } from "../styles/RescueScreen.styles";
+import { rescueScreenData as t } from "../staticData/rescueScreen.staticData";
 
 type ContactNumber = {
   label: string;
@@ -19,61 +21,11 @@ type AmbulanceService = {
   numbers: ContactNumber[];
 };
 
-const RESCUE_TEAMS: RescueTeam[] = [
-  {
-    name: "Kullu District Emergency Control Room",
-    role: "Central coordination, dispatch, and incident logging.",
-    coverage: "All of Kullu district",
-    numbers: [
-      { label: "Control Room", value: "TBD" },
-      { label: "Alternate", value: "TBD" }
-    ]
-  },
-  {
-    name: "Mountain Rescue Team",
-    role: "High-altitude rescue, trekking incidents, and evacuation support.",
-    coverage: "Kullu valley and nearby routes",
-    numbers: [
-      { label: "Hotline", value: "TBD" }
-    ]
-  },
-  {
-    name: "River Safety and Flood Response",
-    role: "Swift-water rescue, flood support, and river safety operations.",
-    coverage: "Beas river stretch and tributaries",
-    numbers: [
-      { label: "Dispatch", value: "TBD" }
-    ]
-  },
-  {
-    name: "Forest and Wildlife Rescue",
-    role: "Forest incident response and wilderness assistance.",
-    coverage: "Forest zones in Kullu district",
-    numbers: [
-      { label: "Control", value: "TBD" }
-    ]
-  }
-];
-
-const AMBULANCE_SERVICES: AmbulanceService[] = [
-  {
-    name: "Government Ambulance",
-    coverage: "District hospitals and emergency pickup",
-    numbers: [
-      { label: "Emergency", value: "TBD" }
-    ]
-  },
-  {
-    name: "Private Ambulance Network",
-    coverage: "Local pickups and intercity transfers",
-    numbers: [
-      { label: "24x7", value: "TBD" }
-    ]
-  }
-];
+const RESCUE_TEAMS: RescueTeam[] = t.rescueTeams;
+const AMBULANCE_SERVICES: AmbulanceService[] = t.ambulanceServices;
 
 function canCall(value: string) {
-  return Boolean(value && value !== "TBD");
+  return Boolean(value && value !== t.placeholder);
 }
 
 function callNumber(value: string) {
@@ -87,72 +39,43 @@ export default function RescueScreen() {
 
   return (
     <ScrollView
-      contentContainerStyle={{
-        paddingTop: 110,
-        paddingHorizontal: isMobile ? 16 : 32,
-        paddingBottom: 40,
-        backgroundColor: "transparent",
-        minHeight: "100%"
-      }}
+      contentContainerStyle={[styles.content, ds.contentPad(isMobile)]}
     >
-      <View
-        style={{
-          borderRadius: 18,
-          padding: isMobile ? 18 : 24,
-          backgroundColor: "rgba(10, 10, 10, 0.92)",
-          borderWidth: 1,
-          borderColor: "rgba(255, 255, 255, 0.12)",
-          marginBottom: 18
-        }}
-      >
-        <Text style={{ color: "#fff", fontSize: isMobile ? 22 : 28, fontWeight: "800" }}>
-          Kullu Rescue Guide
+      <View style={[styles.hero, ds.heroPad(isMobile)]}>
+        <Text style={[styles.heroTitle, ds.heroTitleSize(isMobile)]}>
+          {t.hero.title}
         </Text>
-        <Text style={{ color: "#bdbdbd", marginTop: 8, fontSize: isMobile ? 14 : 16, lineHeight: 22 }}>
-          Verified rescue contacts and ambulance numbers for Kullu. Replace TBD with official numbers from your local authority.
+        <Text style={[styles.heroBody, ds.heroBodySize(isMobile)]}>
+          {t.hero.body}
         </Text>
       </View>
 
-      <View style={{ marginBottom: 18 }}>
-        <Text style={{ color: "#e6ffe8", fontSize: 18, fontWeight: "700", marginBottom: 10 }}>
-          Rescue Teams
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>
+          {t.sections.teams}
         </Text>
         {RESCUE_TEAMS.map((team) => (
           <View
             key={team.name}
-            style={{
-              borderRadius: 16,
-              padding: 16,
-              marginBottom: 12,
-              backgroundColor: "rgba(12, 12, 12, 0.9)",
-              borderWidth: 1,
-              borderColor: "rgba(46, 204, 113, 0.25)"
-            }}
+            style={[styles.card, ds.teamCardBorder]}
           >
-            <Text style={{ color: "#fff", fontSize: 17, fontWeight: "800" }}>{team.name}</Text>
-            <Text style={{ color: "#cfd8dc", marginTop: 6 }}>{team.role}</Text>
-            <Text style={{ color: "#9aa5b1", marginTop: 6 }}>Coverage: {team.coverage}</Text>
-            <View style={{ marginTop: 10 }}>
+            <Text style={styles.cardTitle}>{team.name}</Text>
+            <Text style={styles.cardText}>{team.role}</Text>
+            <Text style={styles.cardMuted}>{t.labels.coverage} {team.coverage}</Text>
+            <View style={styles.mt10}>
               {team.numbers.map((num) => (
-                <View key={`${team.name}-${num.label}`} style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
+                <View key={`${team.name}-${num.label}`} style={styles.rowBetween}>
                   <View>
-                    <Text style={{ color: "#b9f6ca", fontSize: 12 }}>{num.label}</Text>
-                    <Text style={{ color: "#fff", fontSize: 16, fontWeight: "700" }}>{num.value}</Text>
+                    <Text style={styles.labelGreen}>{num.label}</Text>
+                    <Text style={styles.value}>{num.value}</Text>
                   </View>
                   <Pressable
                     disabled={!canCall(num.value)}
                     onPress={() => callNumber(num.value)}
-                    style={{
-                      paddingHorizontal: 14,
-                      paddingVertical: 8,
-                      borderRadius: 999,
-                      borderWidth: 1,
-                      borderColor: canCall(num.value) ? "#22c55e" : "rgba(255,255,255,0.2)",
-                      backgroundColor: canCall(num.value) ? "rgba(34, 197, 94, 0.2)" : "transparent"
-                    }}
+                    style={[styles.callBtn, ds.callButton(canCall(num.value), "green")]}
                   >
-                    <Text style={{ color: canCall(num.value) ? "#dcfce7" : "#9aa5b1", fontWeight: "700" }}>
-                      {canCall(num.value) ? "Call" : "TBD"}
+                    <Text style={[styles.callText, ds.callText(canCall(num.value), "green")]}>
+                      {canCall(num.value) ? t.labels.call : t.placeholder}
                     </Text>
                   </Pressable>
                 </View>
@@ -162,45 +85,31 @@ export default function RescueScreen() {
         ))}
       </View>
 
-      <View style={{ marginBottom: 18 }}>
-        <Text style={{ color: "#e6ffe8", fontSize: 18, fontWeight: "700", marginBottom: 10 }}>
-          Ambulance Numbers
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>
+          {t.sections.ambulance}
         </Text>
         {AMBULANCE_SERVICES.map((service) => (
           <View
             key={service.name}
-            style={{
-              borderRadius: 16,
-              padding: 16,
-              marginBottom: 12,
-              backgroundColor: "rgba(12, 12, 12, 0.9)",
-              borderWidth: 1,
-              borderColor: "rgba(56, 189, 248, 0.25)"
-            }}
+            style={[styles.card, ds.ambulanceCardBorder]}
           >
-            <Text style={{ color: "#fff", fontSize: 17, fontWeight: "800" }}>{service.name}</Text>
-            <Text style={{ color: "#9aa5b1", marginTop: 6 }}>Coverage: {service.coverage}</Text>
-            <View style={{ marginTop: 10 }}>
+            <Text style={styles.cardTitle}>{service.name}</Text>
+            <Text style={styles.cardMuted}>{t.labels.coverage} {service.coverage}</Text>
+            <View style={styles.mt10}>
               {service.numbers.map((num) => (
-                <View key={`${service.name}-${num.label}`} style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
+                <View key={`${service.name}-${num.label}`} style={styles.rowBetween}>
                   <View>
-                    <Text style={{ color: "#bae6fd", fontSize: 12 }}>{num.label}</Text>
-                    <Text style={{ color: "#fff", fontSize: 16, fontWeight: "700" }}>{num.value}</Text>
+                    <Text style={styles.labelBlue}>{num.label}</Text>
+                    <Text style={styles.value}>{num.value}</Text>
                   </View>
                   <Pressable
                     disabled={!canCall(num.value)}
                     onPress={() => callNumber(num.value)}
-                    style={{
-                      paddingHorizontal: 14,
-                      paddingVertical: 8,
-                      borderRadius: 999,
-                      borderWidth: 1,
-                      borderColor: canCall(num.value) ? "#38bdf8" : "rgba(255,255,255,0.2)",
-                      backgroundColor: canCall(num.value) ? "rgba(56, 189, 248, 0.2)" : "transparent"
-                    }}
+                    style={[styles.callBtn, ds.callButton(canCall(num.value), "blue")]}
                   >
-                    <Text style={{ color: canCall(num.value) ? "#e0f2fe" : "#9aa5b1", fontWeight: "700" }}>
-                      {canCall(num.value) ? "Call" : "TBD"}
+                    <Text style={[styles.callText, ds.callText(canCall(num.value), "blue")]}>
+                      {canCall(num.value) ? t.labels.call : t.placeholder}
                     </Text>
                   </Pressable>
                 </View>
@@ -210,18 +119,10 @@ export default function RescueScreen() {
         ))}
       </View>
 
-      <View
-        style={{
-          borderRadius: 16,
-          padding: 16,
-          backgroundColor: "rgba(10, 10, 10, 0.92)",
-          borderWidth: 1,
-          borderColor: "rgba(255, 255, 255, 0.12)"
-        }}
-      >
-        <Text style={{ color: "#fff", fontSize: 16, fontWeight: "700" }}>Quick Safety Tips</Text>
-        <Text style={{ color: "#bdbdbd", marginTop: 8, lineHeight: 20 }}>
-          Share your live location, keep a power bank ready, and stay on marked routes. In case of emergency, call the nearest control room first.
+      <View style={styles.tipsCard}>
+        <Text style={styles.tipsTitle}>{t.sections.tips}</Text>
+        <Text style={styles.tipsBody}>
+          {t.tips}
         </Text>
       </View>
     </ScrollView>

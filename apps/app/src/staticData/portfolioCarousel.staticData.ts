@@ -1,0 +1,40 @@
+export const portfolioCarouselData = {
+  brand: {
+    base: "ExploreValley",
+    select: "ExploreValley Select",
+  },
+  kinds: {
+    hotel: "Hotel",
+    tour: "Tour",
+  },
+  currency: "INR",
+  priceFrom: (value: number | string) => `From INR ${value}`,
+  pricePerNight: (value: number | string) => `INR ${value}/night`,
+  priceFlat: (value: number | string) => `INR ${value}`,
+  discountOff: (pct: number) => `${pct}% OFF`,
+  availability: {
+    available: "Available",
+    unavailable: "Unavailable",
+  },
+  durationLabel: "Duration:",
+  highlightsLabel: "Highlights:",
+  bookNow: "Book Now",
+  viewPhotos: "View Photos",
+  galleryTitle: "Gallery",
+  storeBadges: {
+    appleIcon: "A",
+    playIcon: "P",
+    downloadOn: "Download on the",
+    getItOn: "Get it on",
+    appStore: "App Store",
+    playStore: "Play Store",
+  },
+  nav: {
+    previous: "Previous",
+    next: "Next",
+    prevArrow: "\u2039",
+    nextArrow: "\u203a",
+  },
+  close: "X",
+  noImage: "No image",
+};

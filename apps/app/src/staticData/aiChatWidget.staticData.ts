@@ -1,0 +1,20 @@
+export const aiChatWidgetData = {
+  welcomeId: "welcome",
+  welcomeText:
+    "Hi! I'm your Fest AI assistant.\n\n• Browse menus and order food\n• Tour and hotel recommendations\n• Order tracking and refunds\n\nJust type naturally!",
+  chatEndpoint: "/api/ai/chat",
+  sessionPrefix: "session_",
+  fallbackReply: "I couldn't process that. Please try again.",
+  escalatedNotice: "🔔 Your request has been escalated to our support team. They'll reach out shortly.",
+  errorPrefix: "⚠️ ",
+  errorFallback: "Something went wrong. Please try again.",
+  fabLabel: "AI",
+  title: "AI Assistant",
+  subtitle: "Menu · Tours · Orders",
+  askPlaceholder: "Ask about food, tours, orders...",
+  expandIcon: "⊞",
+  collapseIcon: "⊟",
+  closeIcon: "✕",
+  sendIcon: "↑",
+  robotIcon: "🤖",
+} as const;

@@ -13,6 +13,8 @@ import {
 } from "react-native";
 import { apiPost } from "../lib/api";
 import { getAuthMode, getAuthUser } from "../lib/auth";
+import { aiChatColors, aiChatDynamicStyles as ds, aiChatStyles as styles } from "../styles/AIChatWidget.styles";
+import { aiChatWidgetData as t } from "../staticData/aiChatWidget.staticData";
 
 type Message = {
   id: string;
@@ -35,9 +37,9 @@ export default function AIChatWidget({
   const [state, setState] = useState<WidgetState>("closed");
   const [messages, setMessages] = useState<Message[]>([
     {
-      id: "welcome",
+      id: t.welcomeId,
       role: "assistant",
-      text: "Hi! I'm your Fest AI assistant.\n\n• Browse menus and order food\n• Tour and hotel recommendations\n• Order tracking and refunds\n\nJust type naturally!",
+      text: t.welcomeText,
       timestamp: Date.now(),
     },
   ]);
@@ -77,16 +79,16 @@ export default function AIChatWidget({
     try {
       const user = getAuthUser();
       const res = await apiPost<{ reply: string; intent?: string; escalated?: boolean }>(
-        "/api/ai/chat",
+        t.chatEndpoint,
         {
           message: text,
-          sessionId: `session_${user?.phone || user?.email || "anon"}`,
+          sessionId: `${t.sessionPrefix}${user?.phone || user?.email || "anon"}`,
         }
       );
       const aiMsg: Message = {
         id: `ai_${Date.now()}`,
         role: "assistant",
-        text: res.reply || "I couldn't process that. Please try again.",
+        text: res.reply || t.fallbackReply,
         timestamp: Date.now(),
       };
       setMessages((prev) => [...prev, aiMsg]);
@@ -97,7 +99,7 @@ export default function AIChatWidget({
           {
             id: `sys_${Date.now()}`,
             role: "system",
-            text: "🔔 Your request has been escalated to our support team. They'll reach out shortly.",
+            text: t.escalatedNotice,
             timestamp: Date.now(),
           },
         ]);
@@ -114,7 +116,7 @@ export default function AIChatWidget({
         {
           id: `err_${Date.now()}`,
           role: "system",
-          text: `⚠️ ${err.message || "Something went wrong. Please try again."}`,
+          text: `${t.errorPrefix}${err.message || t.errorFallback}`,
           timestamp: Date.now(),
         },
       ]);
@@ -141,49 +143,16 @@ export default function AIChatWidget({
   /* ── Floating Action Button (always visible when closed) ── */
   if (state === "closed") {
     return (
-      <View
-        pointerEvents="box-none"
-        style={{ position: "absolute", bottom: 0, right: 0, left: 0, top: 0, zIndex: 9000 }}
-      >
-        <Animated.View
-          style={{
-            position: "absolute",
-            right: 16,
-            top: "50%",
-            marginTop: -28,
-            transform: [{ scale: pulseAnim }],
-          }}
-        >
+      <View pointerEvents="box-none" style={styles.overlay}>
+        <Animated.View style={[styles.fabWrap, ds.fabPulse(pulseAnim)]}>
           <Pressable
             onPress={() => open("mini")}
-            style={{
-              width: 56,
-              height: 56,
-              borderRadius: 28,
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "#16a34a",
-              ...(Platform.OS === "web"
-                ? { boxShadow: "0 4px 20px rgba(0,0,0,0.4)" }
-                : { shadowColor: "#000", shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.35, shadowRadius: 10, elevation: 8 }),
-            }}
+            style={[styles.fabButton, ds.fabShadow()]}
           >
-            <Text style={{ color: "#fff", fontWeight: "800", fontSize: 14 }}>AI</Text>
+            <Text style={styles.fabText}>{t.fabLabel}</Text>
             {unread > 0 ? (
-              <View
-                style={{
-                  position: "absolute",
-                  top: -4,
-                  right: -4,
-                  backgroundColor: "#ef4444",
-                  width: 20,
-                  height: 20,
-                  borderRadius: 10,
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <Text style={{ color: "#fff", fontSize: 10, fontWeight: "800" }}>{unread}</Text>
+              <View style={styles.unreadBadge}>
+                <Text style={styles.unreadText}>{unread}</Text>
               </View>
             ) : null}
           </Pressable>
@@ -194,200 +163,92 @@ export default function AIChatWidget({
 
   /* ── Chat Modal ── */
   return (
-    <View
-      pointerEvents="box-none"
-      style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        zIndex: 9000,
-      }}
-    >
+    <View pointerEvents="box-none" style={styles.overlay}>
       {/* Dim backdrop (full mode) */}
       {state === "full" ? (
         <Pressable
           onPress={() => setState("mini")}
-          style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, backgroundColor: "rgba(0,0,0,0.5)" }}
+          style={styles.backdrop}
         />
       ) : null}
 
       {/* Chat card */}
       <View
-        style={{
-          position: "absolute",
-          ...(state === "full"
-            ? {
-                top: isMobile ? 0 : 20,
-                left: isMobile ? 0 : (winW - FULL_W) / 2,
-                right: isMobile ? 0 : undefined,
-                bottom: isMobile ? 0 : 20,
-              }
-            : {
-                bottom: 18,
-                right: 12,
-              }),
-          width: state === "full" && isMobile ? undefined : chatW,
-          height: state === "full" && isMobile ? undefined : chatH,
-          backgroundColor: "#0c0c0c",
-          borderRadius: state === "full" && isMobile ? 0 : 16,
-          borderWidth: 1,
-          borderColor: "#2a2a2a",
-          overflow: "hidden",
-          ...(Platform.OS === "web"
-            ? { boxShadow: "0 8px 40px rgba(0,0,0,0.6)" }
-            : { shadowColor: "#000", shadowOffset: { width: 0, height: 8 }, shadowOpacity: 0.5, shadowRadius: 20, elevation: 12 }),
-        }}
+        style={[
+          styles.card,
+          ds.cardPlacement(state, isMobile, winW, FULL_W),
+          ds.cardSize(state, isMobile, chatW, chatH),
+          ds.cardRadius(state, isMobile),
+          ds.cardShadow(),
+        ]}
       >
         {/* Header bar */}
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            paddingHorizontal: 14,
-            paddingVertical: 10,
-            borderBottomWidth: 1,
-            borderBottomColor: "#222",
-            backgroundColor: "#111",
-            gap: 8,
-          }}
-        >
-          <Text style={{ fontSize: 18 }}>🤖</Text>
-          <View style={{ flex: 1 }}>
-            <Text style={{ color: "#fff", fontWeight: "800", fontSize: 14 }}>AI Assistant</Text>
-            <Text style={{ color: "#666", fontSize: 10 }}>Menu · Tours · Orders</Text>
+        <View style={styles.header}>
+          <Text style={styles.robotText}>{t.robotIcon}</Text>
+          <View style={styles.flex1}>
+            <Text style={styles.title}>{t.title}</Text>
+            <Text style={styles.subtitle}>{t.subtitle}</Text>
           </View>
           {/* Maximize / minimize toggle */}
           <Pressable
             onPress={() => setState(state === "full" ? "mini" : "full")}
-            style={{
-              width: 30,
-              height: 30,
-              borderRadius: 6,
-              backgroundColor: "#1a1a1a",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
+            style={styles.iconBtn}
           >
-            <Text style={{ color: "#888", fontSize: 14 }}>{state === "full" ? "⊟" : "⊞"}</Text>
+            <Text style={styles.iconBtnText}>{state === "full" ? t.collapseIcon : t.expandIcon}</Text>
           </Pressable>
           {/* Close */}
           <Pressable
             onPress={() => setState("closed")}
-            style={{
-              width: 30,
-              height: 30,
-              borderRadius: 6,
-              backgroundColor: "#1a1a1a",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
+            style={styles.iconBtn}
           >
-            <Text style={{ color: "#888", fontSize: 16 }}>✕</Text>
+            <Text style={styles.closeText}>{t.closeIcon}</Text>
           </Pressable>
         </View>
 
         {/* Messages */}
         <ScrollView
           ref={scrollRef}
-          style={{ flex: 1, paddingHorizontal: 10 }}
-          contentContainerStyle={{ paddingVertical: 10, gap: 8 }}
+          style={styles.messages}
+          contentContainerStyle={styles.messagesContent}
           onContentSizeChange={() => scrollRef.current?.scrollToEnd({ animated: true })}
           keyboardShouldPersistTaps="handled"
         >
           {messages.map((msg) => (
             <View
               key={msg.id}
-              style={{
-                alignSelf: msg.role === "user" ? "flex-end" : "flex-start",
-                maxWidth: "85%",
-                backgroundColor:
-                  msg.role === "user"
-                    ? "#16a34a"
-                    : msg.role === "system"
-                    ? "#2a2a1a"
-                    : "#161616",
-                borderRadius: 12,
-                borderWidth: msg.role === "assistant" ? 1 : 0,
-                borderColor: "#2a2a2a",
-                paddingHorizontal: 12,
-                paddingVertical: 8,
-              }}
+              style={[styles.bubble, ds.bubble(msg.role)]}
             >
-              <Text
-                style={{
-                  color: msg.role === "user" ? "#fff" : msg.role === "system" ? "#fbbf24" : "#ddd",
-                  fontSize: 13,
-                  lineHeight: 19,
-                }}
-              >
+              <Text style={[styles.bubbleText, ds.bubbleText(msg.role)]}>
                 {msg.text}
               </Text>
-              <Text
-                style={{
-                  color: msg.role === "user" ? "rgba(255,255,255,0.5)" : "#444",
-                  fontSize: 9,
-                  marginTop: 3,
-                  textAlign: msg.role === "user" ? "right" : "left",
-                }}
-              >
+              <Text style={[styles.timeText, ds.timeText(msg.role)]}>
                 {new Date(msg.timestamp).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
               </Text>
             </View>
           ))}
           {sending ? (
-            <View style={{ alignSelf: "flex-start", paddingHorizontal: 12, paddingVertical: 8 }}>
-              <ActivityIndicator color="#16a34a" size="small" />
+            <View style={styles.typingWrap}>
+              <ActivityIndicator color={aiChatColors.typingSpinner} size="small" />
             </View>
           ) : null}
         </ScrollView>
 
         {/* Input */}
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            paddingHorizontal: 10,
-            paddingVertical: 8,
-            borderTopWidth: 1,
-            borderTopColor: "#222",
-            backgroundColor: "#111",
-            gap: 6,
-          }}
-        >
+        <View style={styles.inputBar}>
           <TextInput
             value={input}
             onChangeText={setInput}
-            placeholder="Ask about food, tours, orders..."
-            placeholderTextColor="#555"
+            placeholder={t.askPlaceholder}
+            placeholderTextColor={aiChatColors.placeholder}
             onSubmitEditing={sendMessage}
-            style={{
-              flex: 1,
-              backgroundColor: "#1a1a1a",
-              color: "#fff",
-              borderRadius: 18,
-              paddingHorizontal: 14,
-              paddingVertical: Platform.OS === "web" ? 8 : 6,
-              fontSize: 13,
-              borderWidth: 1,
-              borderColor: "#2a2a2a",
-              ...(Platform.OS === "web" ? { outlineStyle: "none" } : {}),
-            }}
+            style={[styles.input, ds.inputPadding(), ds.inputOutline()]}
           />
           <Pressable
             onPress={sendMessage}
             disabled={sending || !input.trim()}
-            style={{
-              backgroundColor: input.trim() ? "#16a34a" : "#2a2a2a",
-              width: 34,
-              height: 34,
-              borderRadius: 17,
-              alignItems: "center",
-              justifyContent: "center",
-            }}
+            style={[styles.sendBtn, ds.sendBtn(Boolean(input.trim()))]}
           >
-            <Text style={{ color: "#fff", fontSize: 16 }}>↑</Text>
+            <Text style={styles.sendText}>{t.sendIcon}</Text>
           </Pressable>
         </View>
       </View>

@@ -1,0 +1,56 @@
+import { StyleSheet } from "react-native";
+
+export const styles = StyleSheet.create({
+  root: { flex: 1, backgroundColor: "transparent" },
+  content: { paddingTop: 92, paddingHorizontal: 16, paddingBottom: 40, gap: 12 },
+  headerCard: { backgroundColor: "#111", borderRadius: 14, padding: 14 },
+  kicker: { color: "#9ef1a6", fontWeight: "800", fontSize: 12 },
+  title: { color: "#fff", fontWeight: "800", fontSize: 24, marginTop: 4 },
+  subTitle: { color: "#ddd", marginTop: 4 },
+  loadingCard: { backgroundColor: "#fff", borderRadius: 12, padding: 12, borderWidth: 1, borderColor: "#e5e5e5", gap: 8 },
+  muted: { color: "#666" },
+  errorCard: { backgroundColor: "#fff3f3", borderColor: "#f6b3b3", borderWidth: 1, borderRadius: 12, padding: 10 },
+  errorText: { color: "#a11" },
+  grid: { gap: 10 },
+  cardShell: { gap: 8 },
+  card: { backgroundColor: "#fff", borderRadius: 12, padding: 12, borderWidth: 1, borderColor: "#e5e5e5", gap: 4 },
+  cardSelected: { borderColor: "#111", borderWidth: 2 },
+  chevron: { color: "#666", fontSize: 14, textAlign: "right", marginTop: -4 },
+  cardTitle: { fontWeight: "800", color: "#111", fontSize: 16 },
+  cardMeta: { color: "#444", fontSize: 12 },
+  cardPrice: { color: "#0b5", fontWeight: "700", marginTop: 2 },
+  emptyCard: { backgroundColor: "#fff", borderRadius: 12, padding: 12, borderWidth: 1, borderColor: "#e5e5e5" },
+  bookBtn: { backgroundColor: "#111", borderRadius: 12, paddingVertical: 12, alignItems: "center" },
+  bookBtnText: { color: "#fff", fontWeight: "800" },
+  notice: { color: "#111", fontWeight: "600" },
+  bookingCard: { backgroundColor: "#fff", borderRadius: 12, borderWidth: 1, borderColor: "#e5e5e5", padding: 12, gap: 8 },
+  bookingCardInline: { marginTop: 0, zIndex: 1 },
+  bookingCardOpen: { zIndex: 2500 },
+  dateRangeRow: { flexDirection: "row", gap: 8 },
+  dateRangeColumn: { gap: 8 },
+  dateRangeField: { flex: 1 },
+  fieldLabel: { color: "#333", fontSize: 12, fontWeight: "700", marginBottom: 4 },
+  datePickerWrap: {
+    borderWidth: 1,
+    borderColor: "#ddd",
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    paddingVertical: 10,
+    backgroundColor: "#fafafa"
+  },
+  sectionTitle: { fontWeight: "800", fontSize: 15, color: "#111" },
+  input: { borderWidth: 1, borderColor: "#ddd", borderRadius: 8, paddingHorizontal: 10, paddingVertical: 10, backgroundColor: "#fafafa" },
+  metaText: { marginTop: 2, color: "#333", fontWeight: "600" },
+  total: { marginTop: 4, fontWeight: "700", color: "#111" },
+  actions: { flexDirection: "row", justifyContent: "flex-end", gap: 8, marginTop: 6 },
+  actionBtn: { paddingHorizontal: 12, paddingVertical: 9, borderRadius: 8 },
+  actionGhost: { borderWidth: 1, borderColor: "#bbb", backgroundColor: "#fff" },
+  actionPrimary: { backgroundColor: "#111" },
+  actionPrimaryBusy: { opacity: 0.7 },
+  actionGhostText: { color: "#111", fontWeight: "700" },
+  actionPrimaryText: { color: "#fff", fontWeight: "800" }
+});
+
+export const bikeRentalColors = {
+  spinner: "#111",
+} as const;
