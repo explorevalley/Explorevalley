@@ -7,6 +7,8 @@ dist/
 coverage/
 release/
 release_staging_*/
+apps/app/web-dist/
+public/admin/app.js
 
 # Expo / Metro
 .expo/
@@ -33,6 +35,9 @@ keys/
 data/auth-logins.json
 data/auth-password-profiles.json
 data.json
+
+# Styles folder
+apps/app/src/styles/
 
 # Generated data / reports / uploads
 data/backups/
